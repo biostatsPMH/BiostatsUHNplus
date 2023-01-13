@@ -1,0 +1,349 @@
+#' Nested version of reportRmd:::covsum()
+#'
+#' @param data dataframe containing data
+#' @param covs character vector with the names of columns to include in table
+#' @param maincov covariate to stratify table by
+#' @param id covariates to nest summary by
+#' @param digits number of digits for summarizing mean data, does not affect
+#'   p-values
+#' @param numobs named list overriding the number of people you expect to have
+#'   the covariate
+#' @param markup boolean indicating if you want latex markup
+#' @param sanitize boolean indicating if you want to sanitize all strings to not
+#'   break LaTeX
+#' @param nicenames boolean indicating if you want to replace . and _ in strings
+#'   with a space
+#' @param IQR boolean indicating if you want to display the inter quantile range
+#'   (Q1,Q3) as opposed to (min,max) in the summary for continuous variables
+#' @param all.stats boolean indicating if all summary statistics (Q1,Q3 +
+#'   min,max on a separate line) should be displayed. Overrides IQR.
+#' @param pvalue boolean indicating if you want p-values included in the table
+#' @param show.tests boolean indicating if the type of statistical used should
+#'   be shown in a column beside the pvalues. Ignored if pvalue=FALSE.
+#' @param dropLevels logical, indicating if empty factor levels be dropped from
+#'   the output, default is TRUE.
+#' @param excludeLevels a named list of covariate levels to exclude from
+#'   statistical tests in the form list(varname =c('level1','level2')). These
+#'   levels will be excluded from association tests, but not the table. This can
+#'   be useful for levels where there is a logical skip (ie not missing, but not
+#'   presented). Ignored if pvalue=FALSE.
+#' @param full boolean indicating if you want the full sample included in the
+#'   table, ignored if maincov is NULL
+#' @param digits.cat number of digits for the proportions when summarizing
+#'   categorical data (default: 0)
+#' @param testcont test of choice for continuous variables,one of
+#'   \emph{rank-sum} (default) or \emph{ANOVA}
+#' @param testcat test of choice for categorical variables,one of
+#'   \emph{Chi-squared} (default) or \emph{Fisher}
+#' @param include_missing Option to include NA values of maincov. NAs will not
+#'   be included in statistical tests
+#' @param percentage choice of how percentages are presented ,one of
+#'   \emph{column} (default) or \emph{row}
+#' @keywords dataframe
+#' @importFrom stats lm sd
+#' @importFrom rstatix cramer_v eta_squared
+#' @importFrom reportRmd covsum formatp nicename niceNum csep lpvalue
+#' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
+#'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},and
+#'   \code{\link{anova}}
+covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, numobs = NULL, 
+                           markup = TRUE, sanitize = TRUE, nicenames = TRUE, IQR = FALSE, 
+                           all.stats = FALSE, pvalue = TRUE, show.tests = FALSE, excludeLevels = NULL, 
+                           full = TRUE, digits.cat = 0, testcont = c("rank-sum test", 
+                                                                     "ANOVA"), testcat = c("Chi-squared", "Fisher"), 
+                           include_missing = FALSE, percentage = c("column", "row")) 
+{
+  #-#-#-#-#-#-#-#-#-#-#-#-#
+  if (missing(id)) 
+    stop("id is a required argument")
+  warning("Use this function at your own risk. Please check output.\nOrder of nested ids matter. For example, in c('id1','id2') id1 should be nested within id2, etc.\n")
+  nested.pvalue=FALSE
+  if (pvalue){ 
+    nested.pvalue=TRUE
+    nc <- parallel::detectCores() # number of cores
+    warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).\n", "\nUsing ", nc, " processor(s) for parallel processing.\n", sep=""))
+  }
+  options(dplyr.summarise.inform = FALSE)
+  covsIdData1 <- function(covs = covs, id = id, data = data, excludeLevels = excludeLevels){
+    id <- c(id, NULL)
+    tto <- data %>%
+      purrr::modify_if(is.character, as.factor) %>%
+      dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
+      dplyr::group_by(!!!(rlang::syms(id))) %>%
+      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
+      dplyr::group_by(!!!(rlang::syms(id))) %>%
+      dplyr::filter(dplyr::row_number() == 1)
+    tto <- as.data.frame(tto)
+    tto
+  }
+  covsIdData2 <- function(covs = covs, id = id, data = data, excludeLevels = excludeLevels){
+    tto <- data %>%
+      purrr::modify_if(is.character, as.factor) %>%
+      dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
+      dplyr::group_by(!!!(rlang::syms(id))) %>%
+      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
+      dplyr::group_by(!!!(rlang::syms(id))) %>%
+      dplyr::filter(dplyr::row_number() == 1)
+    tto <- as.data.frame(tto)
+    tto
+  }
+  maincovCovsIdData1 <- function(maincov = maincov, covs = covs, id = id, data = data, excludeLevels = excludeLevels){
+    id <- c(id, maincov)
+    tto <- data %>%
+      purrr::modify_if(is.character, as.factor) %>%
+      dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
+      dplyr::group_by(!!!(rlang::syms(id))) %>%
+      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
+      dplyr::group_by(!!!(rlang::syms(id))) %>%
+      dplyr::filter(dplyr::row_number() == 1)
+    tto <- as.data.frame(tto)
+    tto
+  }
+  maincovCovsIdData2 <- function(maincov = maincov, covs = covs, id = id, data = data, excludeLevels = excludeLevels){
+    tto <- data %>%
+      purrr::modify_if(is.character, as.factor) %>%
+      dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
+      dplyr::group_by(!!!(rlang::syms(id))) %>%
+      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
+      dplyr::group_by(!!!(rlang::syms(id))) %>%
+      dplyr::filter(dplyr::row_number() == 1)
+    tto <- as.data.frame(tto)
+    tto
+  }
+  if (is.null(maincov) & !is.null(id)){ 
+    data1 <- covsIdData1(covs, id, data)
+    data2 <- covsIdData2(covs, id, data)
+  }
+  else if (!is.null(maincov) & !is.null(id)) {
+    data1 <- maincovCovsIdData1(maincov, covs, id, data)
+    data2 <- maincovCovsIdData2(maincov, covs, id, data)
+    dataWithoutMaincov1 <- covsIdData1(covs, id, data) 
+    dataWithoutMaincov2 <- covsIdData2(covs, id, data)
+  }
+  else {
+    data <- data
+  }
+  #-#-#-#-#-#-#-#-#-#-#-#-#
+  #obj1 <- reportRmd:::covsum(data = data1, covs = covs, maincov = maincov)
+  #obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL)
+  obj1 <- reportRmd:::covsum(data = data1, covs = covs, maincov = maincov, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, show.tests=show.tests, excludeLevels= excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
+  obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, show.tests=show.tests, excludeLevels= excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
+  objComb <- cbind(obj2, obj1[, -c(1:2)]);
+  colnames(objComb)[2] <- paste("Full Sample (", colnames(objComb)[2], ")", sep="");
+  
+  #------------# LRT glmer nested pvalues #------------#;
+  ###https://search.r-project.org/CRAN/refmans/afex/html/mixed.html
+  if (nested.pvalue & !is.null(maincov) & !is.null(id)) {
+    objComb$cov <- "";
+    objComb$cov[which(objComb[2] == "")] <- covs;
+    objComb$'Nested p-value' <- "";
+    suppressWarnings({
+      tryCatch({
+        cl <- parallel::makeCluster(rep("localhost", nc)) # make cluster
+        suppressWarnings({tryCatch({
+          out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(anova(afex::mixed(as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=cl, method="LRT"))[4]), silent=TRUE))
+          #out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(anova(afex::mixed(as.formula(paste(maincov, '~', x, '+(', x, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, cl=cl, method="LRT"))[4]), silent=TRUE))
+        }, error=function(e){})})
+        try(stopCluster(cl), silent=TRUE)
+      }, error=function(e){})
+      suppressWarnings({
+        tryCatch({
+          try(stopCluster(cl), silent=TRUE)
+        }, error=function(e){})
+      })
+      out_glmer <- as.numeric(unlist(out_glmer));
+      objComb$'Nested p-value'[which(objComb$cov != "")] <- unlist(out_glmer);
+      objComb <- objComb[, which(names(objComb) != "cov")];
+    })
+    objComb;
+  }
+  else {
+    objComb;
+  }
+}
+
+
+#' Outputs a nested version of reportRmd:::rm_covsum()
+#'
+#' @param data dataframe containing data
+#' @param covs character vector with the names of columns to include in table
+#' @param maincov covariate to stratify table by
+#' @param id covariates to nest summary by
+#' @param caption character containing table caption (default is no caption)
+#' @param tableOnly Logical, if TRUE then a dataframe is returned, otherwise a
+#'   formatted printed object is returned (default).
+#' @param covTitle character with the names of the covariate (predictor) column.
+#'   The default is to leave this empty for output or, for table only output to
+#'   use the column name 'Covariate'.
+#' @param digits number of digits for summarizing mean data
+#' @param digits.cat number of digits for the proportions when summarizing
+#'   categorical data (default: 0)
+#' @param nicenames boolean indicating if you want to replace . and _ in strings
+#'   with a space
+#' @param IQR boolean indicating if you want to display the inter quantile range
+#'   (Q1,Q3) as opposed to (min,max) in the summary for continuous variables
+#' @param all.stats boolean indicating if all summary statistics (Q1,Q3 +
+#'   min,max on a separate line) should be displayed. Overrides IQR.
+#' @param pvalue boolean indicating if you want p-values included in the table
+#' @param effSize boolean indicating if you want effect sizes included in the
+#'   table. Can only be obtained if pvalue is also requested.
+#' @param unformattedp boolean indicating if you would like the p-value to be
+#'   returned unformated (ie not rounded or prefixed with '<'). Best used with
+#'   tableOnly = T and outTable function. See examples.
+#' @param show.tests boolean indicating if the type of statistical used should
+#'   be shown in a column beside the pvalues. Ignored if pvalue=FALSE.
+#' @param testcont test of choice for continuous variables,one of
+#'   \emph{rank-sum} (default) or \emph{ANOVA}
+#' @param testcat test of choice for categorical variables,one of
+#'   \emph{Chi-squared} (default) or \emph{Fisher}
+#' @param full boolean indicating if you want the full sample included in the
+#'   table, ignored if maincov is NULL
+#' @param include_missing Option to include NA values of maincov. NAs will not
+#'   be included in statistical tests
+#' @param percentage choice of how percentages are presented, one of
+#'   \emph{column} (default) or \emph{row}
+#' @param dropLevels logical, indicating if empty factor levels be dropped from
+#'   the output, default is TRUE.
+#' @param excludeLevels a named list of covariate levels to exclude from
+#'   statistical tests in the form list(varname =c('level1','level2')). These
+#'   levels will be excluded from association tests, but not the table. This can
+#'   be useful for levels where there is a logical skip (ie not missing, but not
+#'   presented). Ignored if pvalue=FALSE.
+#' @param numobs named list overriding the number of people you expect to have
+#'   the covariate
+#' @param chunk_label only used if output is to Word to allow cross-referencing
+#' @keywords dataframe
+#' @return A character vector of the table source code, unless tableOnly=TRUE in
+#'   which case a data frame is returned
+#' @export
+#' @seealso \code{\link{covsum}},\code{\link{fisher.test}},
+#'   \code{\link{chisq.test}}, \code{\link{wilcox.test}},
+#'   \code{\link{kruskal.test}}, \code{\link{anova}}, and \code{\link{outTable}}
+#' @examples
+rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
+                             digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,pvalue=TRUE, show.tests=FALSE,
+                             testcont = c('rank-sum test','ANOVA'),testcat = c('Chi-squared','Fisher'),
+                             full=TRUE,include_missing=FALSE,percentage=c('column','row'),
+                             excludeLevels=NULL,numobs=NULL,markup=TRUE, sanitize= TRUE,chunk_label,...){
+  
+  argList <- as.list(match.call(expand.dots = TRUE)[-1])
+  argsToPass <- intersect(names(formals(covsum_nested)),names(argList))
+  covsumArgs <- argList[names(argList) %in% argsToPass]
+  covsumArgs[["markup"]] <- FALSE; covsumArgs[["sanitize"]] <- FALSE
+  tab <- do.call(covsum_nested,covsumArgs)
+  if (nicenames) output_var_names <- gsub('[_.]',' ',covs) else output_var_names <- covs
+  to_indent <- which(!tab$Covariate %in% output_var_names)
+  to_bold_name <- which(tab$Covariate %in% output_var_names)
+  if (nicenames) tab$Covariate <- gsub('[_.]',' ',tab$Covariate)
+  names(tab)[1] <-covTitle
+  bold_cells <- arrayInd(to_bold_name, dim(tab))
+  
+  if ('p-value' %in% names(tab)) {
+    # format p-values nicely
+    to_bold_p <- which(tab[["p-value"]]<.05 & !tab[["p-value"]]=="")
+    p_vals <- tab[['p-value']]
+    new_p <- sapply(p_vals,reportRmd:::formatp)
+    tab[['p-value']] <- new_p
+    if (length(to_bold_p)>0)    bold_cells <- rbind(bold_cells,
+                                                    matrix(cbind(to_bold_p, which(names(tab)=='p-value')),ncol=2))
+  }
+  
+  if ('Nested p-value' %in% names(tab)) {
+    # format p-values nicely
+    to_bold_p <- which(tab[["Nested p-value"]]<.05 & !tab[["Nested p-value"]]=="")
+    p_vals <- tab[['Nested p-value']]
+    new_p <- sapply(p_vals,reportRmd:::formatp)
+    tab[['Nested p-value']] <- new_p
+    if (length(to_bold_p)>0)    bold_cells <- rbind(bold_cells,
+                                                    matrix(cbind(to_bold_p, which(names(tab)=='Nested p-value')),ncol=2))
+  }
+  tryCatch({
+    if (length(which(tab$'p-value' != '' & is.na(tab$'Nested p-value'))) > 0) {
+      tab$'Nested p-value'[tab$'p-value' != '' & is.na(tab$'Nested p-value')] <- 'Did not converge;<br>quasi or complete<br>category separation';
+    }
+  }, error=function(e){})
+  
+  if (tableOnly){
+    if (names(tab)[1]=='') names(tab)[1]<- 'Covariate'
+    return(tab)
+  }
+  
+  if ('p-value' %in% names(tab)) 
+    colnames(tab)[colnames(tab) == 'p-value'] <- 'Unnested p-value'
+  if ('StatTest' %in% names(tab)) 
+    colnames(tab)[colnames(tab) == 'StatTest'] <- 'Unnested StatTest'
+  suppressWarnings({
+    tryCatch({
+      try(stopCluster(cl), silent=TRUE)
+    }, error=function(e){})
+  })
+  
+  
+  outTable(tab=tab,to_indent=to_indent,bold_cells = bold_cells,
+           caption=caption,
+           chunk_label=ifelse(missing(chunk_label),'NOLABELTOADD',chunk_label))
+  
+}
+
+
+
+
+
+nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
+  cc <- summary(mcmcglmm_object)$solutions
+  citab <- with(as.data.frame(cc),
+                cbind(RR_HPDI_95 = paste0(format(round(exp(cc[,1]), 2), nsmall=2), 
+                                          " (", format(round(exp(cc[,2]), 2), nsmall=2), ", ", 
+                                          format(round(exp(cc[,3]), 2), nsmall=2), ")", sep=""),
+                      MCMCp = format(round(cc[,5], 3), nsmall=3), eff_sample = format(round(cc[,4], 2), nsmall=2) ))
+  rownames(citab) <- rownames(cc)
+  mcmcglmm_ci <- citab;
+  mcmcglmm_ci <- as.data.frame(mcmcglmm_ci);
+  mcmcglmm_ci <- tibble::rownames_to_column(mcmcglmm_ci, "Variable");
+  mcmcglmm_ci <- mcmcglmm_ci[-1,];
+  colnames(mcmcglmm_ci) <- c("Variable", "RR (95% HPDI)", "MCMCp", "eff.samp");
+  mcmcglmm_ci$join <- mcmcglmm_ci$Variable;
+  
+  tryCatch({
+    varLevels <- do.call(rbind, lapply(sapply(dataset[, c(all.vars(mcmcglmm_object$Fixed$formula)[-1])], levels), data.frame))
+    varLevels <- tibble::rownames_to_column(varLevels, "Variable");
+    colnames(varLevels) <- c("Variable", "Levels");
+    varLevels$Variable <- gsub("(.*)\\.(.*)", "\\1", varLevels$Variable);
+    varLevels$join <- paste(varLevels$Variable, varLevels$Levels, sep="");
+  }, error=function(e){return(printErr <- NA)})
+  
+  if (is.null(varLevels)) {
+    varLevels <- as.data.frame(cbind(mcmcglmm_ci$Variable, NA, mcmcglmm_ci$join))
+  }
+  colnames(varLevels) <- c("Variable", "Levels", "join");
+  
+  opd_mcmcglmm <- plyr::join_all(list(varLevels, mcmcglmm_ci), by=c("join"), type='full');
+  opd_mcmcglmm <- opd_mcmcglmm %>% modify_if(is.factor, as.character);
+  
+  origVar <- as.data.frame(all.vars(mcmcglmm_object$Fixed$formula)[-1]);
+  colnames(origVar) <- "Variable";
+  origVar <- origVar %>%
+    dplyr::mutate(OrigOrder = 1:n())
+  
+  opd_mcmcglmm <- plyr::join_all(list(opd_mcmcglmm, origVar), by=c("Variable"), type='full');
+  
+  tryCatch({
+    opd_mcmcglmm[which(is.na(opd_mcmcglmm$"RR (95% HPDI)")), ]$"RR (95% HPDI)" <- "reference";
+  }, error=function(e){return(printErr <- NA)})
+  opd_mcmcglmm <- opd_mcmcglmm %>%
+    dplyr::select(-join) %>%
+    dplyr::mutate(Ovar = match(Variable, unique(Variable))) %>% 
+    dplyr::group_by(Variable) %>% 
+    dplyr::mutate(instance = 1:n())
+  tryCatch({
+    opd_mcmcglmm[which(opd_mcmcglmm$"RR (95% HPDI)" == "reference"), ]$instance <- 0;
+  }, error=function(e){return(printErr <- NA)})
+  opd_mcmcglmm <- opd_mcmcglmm %>%
+    dplyr::arrange(Variable, instance) %>%
+    dplyr::arrange(OrigOrder,instance) %>%
+    dplyr::select(-instance, -Ovar, -OrigOrder)
+  opd_mcmcglmm$Variable <- gsub("_", " ", opd_mcmcglmm$Variable);
+  opd_mcmcglmm$Variable[duplicated(opd_mcmcglmm$Variable )] <- NA;
+  opd_mcmcglmm$MCMCp[opd_mcmcglmm$MCMCp == "0.000"] <- "<0.001";
+  opd_mcmcglmm;
+}
