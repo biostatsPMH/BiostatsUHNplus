@@ -1,3 +1,10 @@
+covsum <- utils::getFromNamespace("covsum", "reportRmd")
+csep <- utils::getFromNamespace("csep", "reportRmd")
+formatp <- utils::getFromNamespace("formatp", "reportRmd")
+lpvalue <- utils::getFromNamespace("lpvalue", "reportRmd")
+niceNum <- utils::getFromNamespace("niceNum", "reportRmd")
+nicename <- utils::getFromNamespace("nicename", "reportRmd")
+
 #' Nested version of reportRmd:::covsum()
 #'
 #' @param data dataframe containing data
@@ -48,7 +55,7 @@
 #' @importFrom modeest mlv 
 #' @importFrom parallel detectCores makeCluster
 #' @importFrom afex mixed
-#' @importFrom reportRmd covsum formatp nicename niceNum csep lpvalue
+#' @importFrom utils getFromNamespace
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
 #'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},and
 #'   \code{\link{anova}}
@@ -229,7 +236,6 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' @importFrom modeest mlv 
 #' @importFrom parallel detectCores makeCluster
 #' @importFrom afex mixed
-#' @importFrom reportRmd covsum formatp nicename niceNum csep lpvalue
 #' @export
 #' @seealso \code{\link{covsum}},\code{\link{fisher.test}},
 #'   \code{\link{chisq.test}}, \code{\link{wilcox.test}},
