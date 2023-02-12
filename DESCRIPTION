@@ -1,12 +1,19 @@
 Package: BiostatsUHNplus
-Title: What the Package Does (One Line, Title Case)
+Title: Statistical functions for nested and hierarchical data
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Authors@R: c(
+    person(given="Lisa",family="Avery",email = "lisa.avery@uhn.ca",role=c("aut")),
+    person(given="Osvaldo",family="Espin-Garcia",email = "osvaldo.espin-garcia@uhnresearch.ca",role="aut"),
+    person(given="Tyler",family="Pittman",email="tyler.pittman@uhnresearch.ca",role=c("cre","aut"),comment=c(ORCHID="0000-0002-5013-6980")),
+    person(given="Anna",family="Santiago",email="anna.santiago@uhnresearch.ca",role="aut"),
+    person(given="Jessica",family="Weiss",email = "jessica.weiss@uhn.ca",role="aut"),    
+    person(given="Wei", family="Xu",email = "wxu@uhnres.utoronto.ca",role="aut"))
+Description: Miscellaneous code snippets and functions with pipes and multiple package dependencies.
+License: MIT + file LICENSE
+Suggests: 
+    rmarkdown,
+    testthat (>= 3.0.0)
+Imports: utils
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
