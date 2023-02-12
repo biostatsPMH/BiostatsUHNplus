@@ -1,40 +1,33 @@
 ---
 title: "Example nested reportRmd and Bayesian hierarchical model summary"
-author:
-  #- Tyler Pittman:
-  #    email: tyler.pittman@uhnresearch.ca
-      #institute: biostats
-      #correspondence: true
-  #- name: Amy Liu
-  #  institute: [biostats, dalla]
-  #- name: Wei Xu
-  #  institute: [biostats, dalla]
-institute:
-  - biostats: Department of Biostatistics, Princess Margaret Cancer Centre, Toronto, Canada
-  #- dalla: Dalla Lana School of Public Health, University of Toronto, Toronto, Canada
-date: "`r format(Sys.time(), '%d %B %Y')`"
+site: bookdown::bookdown_site
 output: 
-  word_document:
-    toc: yes
-    pandoc_args: 
-      - !expr paste0("--lua-filter=", here::here("T:/Knowledge Transfer Rounds/KTR 2023/Tyler_covsum_nested_BHM/lua_filters", "scholarly-metadata.lua"))
-      - !expr paste0("--lua-filter=", here::here("T:/Knowledge Transfer Rounds/KTR 2023/Tyler_covsum_nested_BHM/lua_filters", "author-info-blocks.lua"))
-sansfont: Calibri Light
-mainfont: Calibri Light
-#bibliography:
-#csl: Vancouver.csl
-link-citations: yes
+  bookdown::gitbook:
+    split_by: 'section'
+    pandoc_args: [ "--csl", "Vancouver.csl" ]
+    config:
+      toc:
+        toc_depth: 3
+        collapse: none
+        scroll_highlight: yes
+        before: |
+          <li> &nbsp;&nbsp; BiostatsUHNplus    </li>
+          <li> &nbsp;&nbsp; PMH Biostatistics</li>
+      edit : null
+      search: yes
+      sharing:
+        facebook: false
+        twitter: false
+        all: false
+      fontsettings:
+        theme: white
+        family: sans
+        size: 2
+      info: no
 ---
 
 
 ```{r setup, include=FALSE}
-#---#Below is how to run RMarkdown script in Windows Commmand prompt for batch jobs!
-### make sure you have Pandoc installed under your own account (you can do this yourself) https://pandoc.org/installing.html
-
-### this starts CMD job in background so after closing CMD prompt it still executes
-# @start "" C:\"Program Files"\R\R-4.2.2\bin\Rscript.exe -e "rmarkdown::render('T:\\Knowledge Transfer Rounds\\KTR 2023\\Tyler_covsum_nested_BHM\\nested_reportRmd_BHM_example_18Jan2023.Rmd')"
-#---#
-
 ###Please check out reportRmd package GitHub page for latest updates - https://github.com/biostatsPMH/reportRmd
 #devtools::install_github("biostatsPMH/reportRmd", ref="master")
 #devtools::install_github("biostatsPMH/reportRmd");
@@ -57,9 +50,11 @@ library(ggpattern);
 library(ggtext);      #allows markdown i.e. superscripts in ggplot text;
 library(grDevices);
 
-#knitr::opts_chunk$set(dev="CairoPNG")
+# This is necessary to ensure that the figures appear on the website.
+if (! file.exists('.nojekyll')) file.create('.nojekyll')
+if (! file.exists('docs/.nojekyll')) file.create('docs/.nojekyll')
+suppressWarnings(library(kableExtra))
 
-setwd("T:\\Knowledge Transfer Rounds\\KTR 2023\\Tyler_covsum_nested_BHM");
 data(Milk, package='nlme');
 Milk <- Milk;
 Milk <- as.data.frame(Milk);
@@ -88,12 +83,9 @@ This is a demonstration of how to use the **reportRmd** package for example data
 
 The modified data set is "Milk" from the **nlme** package. It comprises 1337 observations of milk protein content from 79 cows. High protein is milk $\geq$ 3.6 percent protein. Yard variable (5 sites) is spurious and was added to data set.
 
-```{r funcs, echo=F, warning=F, message=F, results='asis'}
-source("covsum_nested_28Dec2022.R")
-source("nice_mcmcglmm_28Dec2022.R")
-  
-```
+**Word of caution:**
 
+As with reportRmd, the BiostatsUHNplus package is designed for statistical reporting and does not provide checks on the suitability of model fit. 
 
 \newpage
 # Exploratory analysis
@@ -417,14 +409,14 @@ p <- ggplot(Milk_plot, aes(x="", y=Count)) +
   ggtitle(paste("Proportion of variation explained in high milk protein", sep="")) +
   labs(caption = "<sup>1</sup>Diet: barley, barley+lupin, lupin<br><sup>2</sup>Time: up to 19 weekly observation instances since calving<br><sup>3</sup>Cow: 79 distinct animals<br><sup>4</sup>Yard: 5 farming sites") +
   theme(plot.caption.position = "plot", plot.caption = element_markdown(hjust = 0, lineheight = 1.2), legend.text = element_markdown() )
-ggsave(paste("variance_pie_plot", ".png", sep=""), p, width=6.4, height=4.0, device="png");
+ggsave(paste("images/variance_pie_plot", ".png", sep=""), p, width=6.4, height=4.0, device="png");
 #theme_get(); #check this to see theme options for ggplot with element_text() object!;
 
 ```
 
 
 ```{r ana20, echo=FALSE, out.width='100%'}
-knitr::include_graphics(paste("variance_pie_plot", ".png", sep=""))
+knitr::include_graphics(paste("images/variance_pie_plot", ".png", sep=""))
 ```
 
 
@@ -594,7 +586,7 @@ pRE_Cows <-
   theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines")) +
  	labs(subtitle=paste("Cow (weekly samples, high protein samples)"), caption="") +
   labs(y="Risk Ratio", x="Cow (weekly samples, high protein samples)");
-ggsave(paste("caterpillar_plot_Cows_", "Model.png", sep=""), pRE_Cows, scale = 1.1, width=6.4, height=7.4, device="png");
+ggsave(paste("images/caterpillar_plot_Cows_", "Model.png", sep=""), pRE_Cows, scale = 1.1, width=6.4, height=7.4, device="png");
 
 pRE_Yards <- 
 	ggplot(ranefYards,aes(term,est)) +
@@ -616,7 +608,7 @@ pRE_Yards <-
   theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines")) +
  	labs(subtitle=paste("Yard (weekly samples, high protein samples)"), caption="") +
   labs(y="Risk Ratio", x="Yard (weekly samples, high protein samples)");
-ggsave(paste("caterpillar_plot_Yards_", "Model.png", sep=""), pRE_Yards, scale = 1.1, width=6.4, height=3.2, device="png");
+ggsave(paste("images/caterpillar_plot_Yards_", "Model.png", sep=""), pRE_Yards, scale = 1.1, width=6.4, height=3.2, device="png");
 ```
 
 
@@ -625,7 +617,7 @@ ggsave(paste("caterpillar_plot_Yards_", "Model.png", sep=""), pRE_Yards, scale =
 Risk ratio of high protein milk among cows is below. Highest posterior density intervals are not necessarily symmetric, but should be close to symmetric upon running more model iterations. Note that cows L23 and L27 have a higher risk estimate for high protein milk in random effect, even though those cows were fed a diet of lupins and should in theory have lower protein milk. Cow B01 also has higher risk of high protein milk, but was always fed a better diet (barley).
 
 ```{r ana22, echo=FALSE, out.width='100%'}
-knitr::include_graphics(paste("caterpillar_plot_Cows_", "Model.png", sep=""))
+knitr::include_graphics(paste("images/caterpillar_plot_Cows_", "Model.png", sep=""))
 ```
 
 
@@ -634,6 +626,6 @@ knitr::include_graphics(paste("caterpillar_plot_Cows_", "Model.png", sep=""))
 Risk ratio of high protein milk among yards is below. Highest posterior density intervals are not necessarily symmetric.
 
 ```{r ana23, echo=FALSE, out.width='100%'}
-knitr::include_graphics(paste("caterpillar_plot_Yards_", "Model.png", sep=""))
+knitr::include_graphics(paste("images/caterpillar_plot_Yards_", "Model.png", sep=""))
 ```
 

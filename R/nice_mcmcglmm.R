@@ -7,6 +7,10 @@
 #' @importFrom plyr join_all 
 #' @importFrom purrr modify_if 
 #' @importFrom dplyr select mutate arrange group_by 
+#' @examples
+#' mcmcglmm_mva <- nice_mcmcglmm(model1, Milk);
+#' options(knitr.kable.NA = '');
+#' knitr::kable(mcmcglmm_mva);
 nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   cc <- summary(mcmcglmm_object)$solutions
   citab <- with(as.data.frame(cc),

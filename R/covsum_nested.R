@@ -235,6 +235,8 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   \code{\link{chisq.test}}, \code{\link{wilcox.test}},
 #'   \code{\link{kruskal.test}}, \code{\link{anova}}, and \code{\link{outTable}}
 #' @examples
+#' rm_covsum_nested(data = Milk, id = c("Cow"), covs = c("protein", "Time", 
+#' "Diet", "Yard"), maincov = "High_Protein")
 rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
                              digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,pvalue=TRUE, show.tests=FALSE,
                              testcont = c('rank-sum test','ANOVA'),testcat = c('Chi-squared','Fisher'),

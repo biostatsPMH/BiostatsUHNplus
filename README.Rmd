@@ -1,0 +1,40 @@
+---
+output: github_document
+always_allow_html: true
+---
+
+<!-- This file is used to create README.md
+Note that the README.md document may need updating to change
+'\<0.001' to '<0.001'. 
+-->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+
+```
+
+# BiostatsUHNplus
+
+The goal of BiostatsUHNplus is to house various code functions and snippets with many package dependencies used by Biostatistics@UHN that is publicly available.
+
+Many of these are add-on features to reportRmd.
+
+## Installation
+
+You can install the development version of BiostatsUHNplus from [GitHub](https://github.com/) with:
+
+
+``` r
+# install.packages("devtools")
+devtools::install_github("biostatsPMH/BiostatsUHNplus")
+```
+
+## Documentation
+
+[Online Documentation](https://biostatsPMH.github.io/BiostatsUHNplus/)
+
