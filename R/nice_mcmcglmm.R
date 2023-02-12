@@ -1,3 +1,12 @@
+#' Nice model output from MCMCglmm::MCMCglmm()
+#' 
+#' @param mcmcglmm_object returned from MCMCglmm()
+#' @param data dataframe containing data
+#' @keywords dataframe
+#' @importFrom tibble rownames_to_column 
+#' @importFrom plyr join_all 
+#' @importFrom purrr modify_if 
+#' @importFrom dplyr select mutate arrange group_by 
 nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   cc <- summary(mcmcglmm_object)$solutions
   citab <- with(as.data.frame(cc),
