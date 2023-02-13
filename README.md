@@ -39,46 +39,6 @@ data("pembrolizumab");
 #str(pembrolizumab);
 
 rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"), covs = c("age", "sex", "l_size", "pdl1", "tmb", "baseline_ctdna", "change_ctdna_group", "orr", "cbr", "os_time", "pfs_status", "pfs_time"), maincov = "os_status");
-#> Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Use this function at your own risk. Please check output.
-#> Order of nested ids matter. For example, in c('id1','id2') id1 should be nested within id2, etc.
-#> Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.
-#> Nested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).
-#> 
-#> Using 12 processor(s) for parallel processing.
-#> Warning: Low counts are present in change_ctdna_group variable consider Fisher's
-#> test.
-#> Warning: Low counts are present in orr variable consider Fisher's test.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: age
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: sex, id, cohort
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: l_size
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: pdl1
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: tmb
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: baseline_ctdna
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: change_ctdna_group, id, cohort
-#> Contrasts set to contr.sum for the following variables: orr, id, cohort
-#> Contrasts set to contr.sum for the following variables: cbr, id, cohort
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: os_time
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: pfs_status
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: pfs_time
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Registered S3 method overwritten by 'httr':
-#>   method         from  
-#>   print.response rmutil
 ```
 
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
