@@ -41,8 +41,7 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus")
 
 ## Example
 
-### A wrapper for the as.numeric function. Prints entries that fail to
-parse instead of throwing uninformative error
+### A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error
 
 ```{r example1}
 library(BiostatsUHNplus);

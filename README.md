@@ -1,7 +1,7 @@
 
 <!-- This file is used to create README.md
 Note that the README.md document may need updating to change
-'\<0.001' to '<0.001'. 
+'<0.001' to '<0.001'. 
 -->
 
 # BiostatsUHNplus
@@ -28,9 +28,7 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus")
 
 ## Example
 
-### A wrapper for the as.numeric function. Prints entries that fail to
-
-parse instead of throwing uninformative error
+### A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error
 
 ``` r
 library(BiostatsUHNplus);
