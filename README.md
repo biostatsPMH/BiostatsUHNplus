@@ -1,13 +1,13 @@
 
 <!-- This file is used to create README.md
 Note that the README.md document may need updating to change
-'<0.001' to '<0.001'. 
+'\<0.001' to '<0.001'. 
 -->
 
 # BiostatsUHNplus
 
 The goal of BiostatsUHNplus is to house publicly available code
-functions and snippets (multiple package dependencies) used by
+functions and snippets (some with multiple package dependencies) used by
 <Biostatistics@UHN>.
 
 Many of these functions build upon the features of **reportRmd**.
@@ -28,6 +28,20 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus")
 
 ## Example
 
+### A wrapper for the as.numeric function. Prints entries that fail to
+
+parse instead of throwing uninformative error
+
+``` r
+library(BiostatsUHNplus);
+z <- as_numeric_parse(c(1:5, "String1",6:10,"String2"))
+#> The following entries were converted to NA values:
+#> Entry 6, 'String1'
+#> Entry 12, 'String2'
+z
+#>  [1]  1  2  3  4  5 NA  6  7  8  9 10 NA
+```
+
 ### Summary statistics by patient ID nested in cohort, stratified by overall survival status
 
 Use model output and unnested or nested p-value with caution!
@@ -42,7 +56,10 @@ rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"),
   covs = c("age", "sex", "l_size", "pdl1", "tmb", 
   "baseline_ctdna", "change_ctdna_group", "orr", "cbr", "os_time",
   "pfs_status", "pfs_time"), maincov = "os_status");
-
+#> Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Use this function at your own risk. Please check output.
+#> Order of nested ids matter. For example, in c('id1','id2') id1 should be nested within id2, etc.
+#> Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.
+#> Nested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).
 ```
 
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
