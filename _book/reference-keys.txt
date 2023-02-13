@@ -21,3 +21,5 @@ caterpillar-plot-for-random-effect-of-yard
 biostatsuhnplus
 installation
 documentation
+example
+summary-statistics-by-patient-id-nested-in-cohort-stratified-by-overall-survival-status

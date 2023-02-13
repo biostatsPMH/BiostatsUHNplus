@@ -42,10 +42,13 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus")
 
 ### Summary statistics by patient ID nested in cohort, stratified by overall survival status
 
+Use model output, and unnested and nested p-value at caution!
+
 ```{r example}
 library(reportRmd);
 library(BiostatsUHNplus);
 data("pembrolizumab");
+#str(pembrolizumab);
 
 rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"), covs = c("age", "sex", "l_size", "pdl1", "tmb", "baseline_ctdna", "change_ctdna_group", "orr", "cbr", "os_time", "pfs_status", "pfs_time"), maincov = "os_status");
 
