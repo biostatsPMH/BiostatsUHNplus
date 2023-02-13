@@ -7,6 +7,7 @@
 #' @importFrom plyr join_all 
 #' @importFrom purrr modify_if 
 #' @importFrom dplyr select mutate arrange group_by 
+#' @export
 #' @examples
 #' mcmcglmm_mva <- nice_mcmcglmm(model1, Milk);
 #' options(knitr.kable.NA = '');

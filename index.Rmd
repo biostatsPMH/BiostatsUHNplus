@@ -30,7 +30,13 @@ output:
 ```{r setup, include=FALSE}
 ###Please check out reportRmd package GitHub page for latest updates - https://github.com/biostatsPMH/reportRmd
 #devtools::install_github("biostatsPMH/reportRmd", ref="master")
-#devtools::install_github("biostatsPMH/reportRmd");
+#devtools::install_github("biostatsPMH/reportRmd", ref="development");
+#devtools::install_github("biostatsPMH/BiostatsUHNplus");
+
+#BiostatsUHNplus::rm_covsum_nested;
+#BiostatsUHNplus::nice_mcmcglmm;
+
+library(BiostatsUHNplus)
 library(reportRmd);
 library(rlang);       #gives syms() for turning strings into symbols;
 library(modeest);     #gives mlv() for most likely value imputation;
@@ -74,6 +80,12 @@ Milk[which(Milk$Diet == "barley+lupins"), ]$Diet_Type <- "2";
 Milk[which(Milk$Diet == "lupins"), ]$Diet_Type <- "3";
 Milk$Diet_Type <- as.factor(Milk$Diet_Type);
 
+```
+
+```{r chunk-name, include=FALSE}
+knitr::opts_chunk$set(
+  fig.path = "man/figures/"
+)
 ```
 
 
@@ -416,7 +428,7 @@ ggsave(paste("images/variance_pie_plot", ".png", sep=""), p, width=6.4, height=4
 
 
 ```{r ana20, echo=FALSE, out.width='100%'}
-knitr::include_graphics(paste("images/variance_pie_plot", ".png", sep=""))
+knitr::include_graphics(paste("variance_pie_plot", ".png", sep=""))
 ```
 
 
@@ -586,7 +598,7 @@ pRE_Cows <-
   theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines")) +
  	labs(subtitle=paste("Cow (weekly samples, high protein samples)"), caption="") +
   labs(y="Risk Ratio", x="Cow (weekly samples, high protein samples)");
-ggsave(paste("images/caterpillar_plot_Cows_", "Model.png", sep=""), pRE_Cows, scale = 1.1, width=6.4, height=7.4, device="png");
+ggsave(paste("caterpillar_plot_Cows_", "Model.png", sep=""), pRE_Cows, scale = 1.1, width=6.4, height=7.4, device="png");
 
 pRE_Yards <- 
 	ggplot(ranefYards,aes(term,est)) +
@@ -608,7 +620,7 @@ pRE_Yards <-
   theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines")) +
  	labs(subtitle=paste("Yard (weekly samples, high protein samples)"), caption="") +
   labs(y="Risk Ratio", x="Yard (weekly samples, high protein samples)");
-ggsave(paste("images/caterpillar_plot_Yards_", "Model.png", sep=""), pRE_Yards, scale = 1.1, width=6.4, height=3.2, device="png");
+ggsave(paste("caterpillar_plot_Yards_", "Model.png", sep=""), pRE_Yards, scale = 1.1, width=6.4, height=3.2, device="png");
 ```
 
 
@@ -617,7 +629,7 @@ ggsave(paste("images/caterpillar_plot_Yards_", "Model.png", sep=""), pRE_Yards, 
 Risk ratio of high protein milk among cows is below. Highest posterior density intervals are not necessarily symmetric, but should be close to symmetric upon running more model iterations. Note that cows L23 and L27 have a higher risk estimate for high protein milk in random effect, even though those cows were fed a diet of lupins and should in theory have lower protein milk. Cow B01 also has higher risk of high protein milk, but was always fed a better diet (barley).
 
 ```{r ana22, echo=FALSE, out.width='100%'}
-knitr::include_graphics(paste("images/caterpillar_plot_Cows_", "Model.png", sep=""))
+knitr::include_graphics(paste("caterpillar_plot_Cows_", "Model.png", sep=""))
 ```
 
 
@@ -626,6 +638,6 @@ knitr::include_graphics(paste("images/caterpillar_plot_Cows_", "Model.png", sep=
 Risk ratio of high protein milk among yards is below. Highest posterior density intervals are not necessarily symmetric.
 
 ```{r ana23, echo=FALSE, out.width='100%'}
-knitr::include_graphics(paste("images/caterpillar_plot_Yards_", "Model.png", sep=""))
+knitr::include_graphics(paste("caterpillar_plot_Yards_", "Model.png", sep=""))
 ```
 
