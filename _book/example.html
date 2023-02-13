@@ -200,41 +200,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.3</span> Example<a href="example.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="summary-statistics-by-patient-id-nested-in-cohort-stratified-by-overall-survival-status" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Summary statistics by patient ID nested in cohort, stratified by overall survival status<a href="example.html#summary-statistics-by-patient-id-nested-in-cohort-stratified-by-overall-survival-status" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Use model output, and unnested and nested p-value at caution!</p>
+<p>Use model output, and unnested or nested p-value at caution!</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="example.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reportRmd);</span>
 <span id="cb16-2"><a href="example.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
 <span id="cb16-3"><a href="example.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;pembrolizumab&quot;</span>);</span>
 <span id="cb16-4"><a href="example.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#str(pembrolizumab);</span></span>
 <span id="cb16-5"><a href="example.html#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="example.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> pembrolizumab, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;cohort&quot;</span>), <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;l_size&quot;</span>, <span class="st">&quot;pdl1&quot;</span>, <span class="st">&quot;tmb&quot;</span>, <span class="st">&quot;baseline_ctdna&quot;</span>, <span class="st">&quot;change_ctdna_group&quot;</span>, <span class="st">&quot;orr&quot;</span>, <span class="st">&quot;cbr&quot;</span>, <span class="st">&quot;os_time&quot;</span>, <span class="st">&quot;pfs_status&quot;</span>, <span class="st">&quot;pfs_time&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;os_status&quot;</span>);</span>
-<span id="cb16-7"><a href="example.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb16-8"><a href="example.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: age</span></span>
-<span id="cb16-9"><a href="example.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
-<span id="cb16-10"><a href="example.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: sex, id, cohort</span></span>
-<span id="cb16-11"><a href="example.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb16-12"><a href="example.html#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: l_size</span></span>
-<span id="cb16-13"><a href="example.html#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
+<span id="cb16-6"><a href="example.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> pembrolizumab, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;cohort&quot;</span>), </span>
+<span id="cb16-7"><a href="example.html#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;l_size&quot;</span>, <span class="st">&quot;pdl1&quot;</span>, <span class="st">&quot;tmb&quot;</span>, </span>
+<span id="cb16-8"><a href="example.html#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;baseline_ctdna&quot;</span>, <span class="st">&quot;change_ctdna_group&quot;</span>, <span class="st">&quot;orr&quot;</span>, <span class="st">&quot;cbr&quot;</span>, <span class="st">&quot;os_time&quot;</span>,</span>
+<span id="cb16-9"><a href="example.html#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;pfs_status&quot;</span>, <span class="st">&quot;pfs_time&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;os_status&quot;</span>);</span>
+<span id="cb16-10"><a href="example.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
+<span id="cb16-11"><a href="example.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: age</span></span>
+<span id="cb16-12"><a href="example.html#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
+<span id="cb16-13"><a href="example.html#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: sex, id, cohort</span></span>
 <span id="cb16-14"><a href="example.html#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb16-15"><a href="example.html#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: pdl1</span></span>
+<span id="cb16-15"><a href="example.html#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: l_size</span></span>
 <span id="cb16-16"><a href="example.html#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
 <span id="cb16-17"><a href="example.html#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb16-18"><a href="example.html#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: tmb</span></span>
+<span id="cb16-18"><a href="example.html#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: pdl1</span></span>
 <span id="cb16-19"><a href="example.html#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
 <span id="cb16-20"><a href="example.html#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb16-21"><a href="example.html#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: baseline_ctdna</span></span>
+<span id="cb16-21"><a href="example.html#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: tmb</span></span>
 <span id="cb16-22"><a href="example.html#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
-<span id="cb16-23"><a href="example.html#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: change_ctdna_group, id, cohort</span></span>
-<span id="cb16-24"><a href="example.html#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: orr, id, cohort</span></span>
-<span id="cb16-25"><a href="example.html#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: cbr, id, cohort</span></span>
-<span id="cb16-26"><a href="example.html#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb16-27"><a href="example.html#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: os_time</span></span>
-<span id="cb16-28"><a href="example.html#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
+<span id="cb16-23"><a href="example.html#cb16-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
+<span id="cb16-24"><a href="example.html#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: baseline_ctdna</span></span>
+<span id="cb16-25"><a href="example.html#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
+<span id="cb16-26"><a href="example.html#cb16-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: change_ctdna_group, id, cohort</span></span>
+<span id="cb16-27"><a href="example.html#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: orr, id, cohort</span></span>
+<span id="cb16-28"><a href="example.html#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: cbr, id, cohort</span></span>
 <span id="cb16-29"><a href="example.html#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb16-30"><a href="example.html#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: pfs_status</span></span>
+<span id="cb16-30"><a href="example.html#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: os_time</span></span>
 <span id="cb16-31"><a href="example.html#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
 <span id="cb16-32"><a href="example.html#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb16-33"><a href="example.html#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: pfs_time</span></span>
-<span id="cb16-34"><a href="example.html#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span></code></pre></div>
+<span id="cb16-33"><a href="example.html#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: pfs_status</span></span>
+<span id="cb16-34"><a href="example.html#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
+<span id="cb16-35"><a href="example.html#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
+<span id="cb16-36"><a href="example.html#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: pfs_time</span></span>
+<span id="cb16-37"><a href="example.html#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>

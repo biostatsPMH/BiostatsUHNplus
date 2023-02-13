@@ -38,7 +38,11 @@ library(BiostatsUHNplus);
 data("pembrolizumab");
 #str(pembrolizumab);
 
-rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"), covs = c("age", "sex", "l_size", "pdl1", "tmb", "baseline_ctdna", "change_ctdna_group", "orr", "cbr", "os_time", "pfs_status", "pfs_time"), maincov = "os_status");
+rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"), 
+  covs = c("age", "sex", "l_size", "pdl1", "tmb", 
+  "baseline_ctdna", "change_ctdna_group", "orr", "cbr", "os_time",
+  "pfs_status", "pfs_time"), maincov = "os_status");
+
 ```
 
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
