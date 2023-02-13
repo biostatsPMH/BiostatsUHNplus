@@ -46,7 +46,7 @@ parse instead of throwing uninformative error
 
 ```{r example1}
 library(BiostatsUHNplus);
-z <- as.numeric.parse(c(1:5, "String1",6:10,"String2"))
+z <- as_numeric_parse(c(1:5, "String1",6:10,"String2"))
 z
 
 ```
