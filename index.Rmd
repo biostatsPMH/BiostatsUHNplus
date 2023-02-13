@@ -26,6 +26,15 @@ output:
       info: no
 ---
 
+# Overview
+This is a demonstration of how to use **reportRmd** with the **BiostatsUHNplus** package for example data with *rm_covsum()* and R Markdown. A nested version of function, *rm_nested_covsum()* is demonstrated.
+
+The modified data set is "Milk" from the **nlme** package. It comprises 1337 observations of milk protein content from 79 cows. High protein is milk $\geq$ 3.6 percent protein. Yard variable (5 sites) is spurious and was added to data set.
+
+**Word of caution:**
+
+As with reportRmd, the BiostatsUHNplus package is designed for statistical reporting and does not provide checks on the suitability of model fit. 
+
 
 ```{r setup, include=FALSE}
 ###Please check out reportRmd package GitHub page for latest updates - https://github.com/biostatsPMH/reportRmd
@@ -89,17 +98,6 @@ knitr::opts_chunk$set(
 ```
 
 
-\newpage
-# Background {-}
-This is a demonstration of how to use the **reportRmd** package for example data with *rm_covsum()* and R Markdown. A nested version of function, *rm_nested_covsum()* is demonstrated.
-
-The modified data set is "Milk" from the **nlme** package. It comprises 1337 observations of milk protein content from 79 cows. High protein is milk $\geq$ 3.6 percent protein. Yard variable (5 sites) is spurious and was added to data set.
-
-**Word of caution:**
-
-As with reportRmd, the BiostatsUHNplus package is designed for statistical reporting and does not provide checks on the suitability of model fit. 
-
-\newpage
 # Exploratory analysis
 ## Summary of high protein status
 ### By data record (row):
@@ -109,7 +107,6 @@ rm_covsum(data = Milk, covs = c("protein", "Time", "Diet"), maincov = "High_Prot
 ```
 
 
-\newpage
 ### By cow in yard at observation instance:
 Y denotes high protein milk sample, N denotes non-high protein milk sample.
 
@@ -122,8 +119,6 @@ knitr::kable(Milk_t);
 ```
 
 
-
-\newpage
 ## Nested summary of high protein status
 ### By cow:
 There are 72 cows that had at least one instance of milk with high protein content. Every cow (all 79) had at least one instance of milk with low protein content.
@@ -132,7 +127,6 @@ rm_covsum_nested(data = Milk, id = c("Cow"), covs = c("protein", "Time", "Diet",
 ```
 
 
-\newpage
 ### By cow nested in yard:
 Notice that this summary is the same as by cow, since each cow stays in only one yard for this example data.
 ```{r ana4, echo=T, warning=F, message=F, results='asis'}
@@ -140,7 +134,7 @@ rm_covsum_nested(data = Milk, id = c("Cow", "Yard"), covs = c("protein", "Time",
 ```
 
 
-\newpage
+
 ## Nested summary of yard
 ### By cow:
 Of the 5 yards, each that had at least one instance of a cow having milk with high protein content and a cow having milk with low protein content. Cows in some yards may have a lower mean time in weeks since calving, but there is no evidence to suggest that is a difference among yards.
@@ -149,7 +143,7 @@ rm_covsum_nested(data = Milk, id = c("Cow"), covs = c("protein", "Time"), mainco
 ```
 
 
-\newpage
+
 ## Nested summary of diet
 ### By cow:
 It is of interest to note that each of the three diet types is given in each yard. Be aware of reverse causation - high protein milk does not necessarily influence diet type!
@@ -158,7 +152,6 @@ rm_covsum_nested(data = Milk, id = c("Cow"), covs = c("protein", "High_Protein",
 ```
 
 
-\newpage 
 However, it appear that each cow was assigned to only one diet over all observation instances. Diet 1 = barley, 2 = barley+lupins and 3 = lupins.
 
 ```{r ana7, echo=T, warning=F, message=F, results='asis'}
@@ -171,7 +164,6 @@ knitr::kable(Diet_t);
 
 
 
-\newpage
 # Inferential analysis
 ## Kaplan-Meier survival curve
 Cows with five consecutive samples of non-high protein milk are designated to going to market.
@@ -204,7 +196,6 @@ ggkmcif(response = c('Time','Market'), cov='Diet', data=Milk_SA);
 
 
 
-\newpage
 ## Logistic model
 Examine the bivariate relationship first among variables to high protein status of milk. Check for quasi or complete separation of categories. Shout out to Lisa Avery for this function!
 
@@ -213,7 +204,6 @@ plotuv(data=Milk, response='High_Protein', covs=c('Cow', 'Yard', 'Diet', 'Time',
 ```
 
 
-\newpage
 Below logistic model does not account for clustering of repeat observations by cow to high protein status of milk.
 
 ```{r ana11, echo=T, warning=F, message=F, results='asis'}
@@ -221,7 +211,6 @@ rm_mvsum(model=glm(High_Protein ~ Diet + Yard + Time, data=Milk, family='binomia
 ```
 
 
-\newpage
 ## Generalized estimating equations model
 Below logistic model takes account of repeat observation by cow. Examine different correlation structures. It is of interest to note that (odds of) high protein content in milk appears to decrease as time since calving increases.
 
@@ -235,7 +224,7 @@ rm_mvsum(model=geeglm(HP ~ Diet + Yard + Time, id=c(Cow), data=Milk, family=bino
 ```
 
 
-\newpage
+
 ## Bayesian hierarchical model
 
 ```{r ana13, echo=F, warning=F, message=F, results='asis'}
@@ -263,7 +252,6 @@ knitr::kable(mcmcglmm_mva);
 ```
 
 
-
 Random effects ICC and 95% highest posterior density interval:
 
 ```{r ana15, echo=F, warning=F, message=F, results='asis'}
@@ -281,7 +269,6 @@ row.names(dft1) <- c("Cow", "Yard");
 options(knitr.kable.NA = '');
 knitr::kable(dft1);
 ```
-
 
 
 ```{r ana16, echo=F, warning=F, message=F, results='asis'}
@@ -338,8 +325,6 @@ knitr::kable(rs_c);
 ```
 
 
-
-\newpage
 ### Variance piechart
 ```{r ana19, echo=F, warning=F, message=F, results='asis'}
 #colnames(model1$Sol);
@@ -421,14 +406,14 @@ p <- ggplot(Milk_plot, aes(x="", y=Count)) +
   ggtitle(paste("Proportion of variation explained in high milk protein", sep="")) +
   labs(caption = "<sup>1</sup>Diet: barley, barley+lupin, lupin<br><sup>2</sup>Time: up to 19 weekly observation instances since calving<br><sup>3</sup>Cow: 79 distinct animals<br><sup>4</sup>Yard: 5 farming sites") +
   theme(plot.caption.position = "plot", plot.caption = element_markdown(hjust = 0, lineheight = 1.2), legend.text = element_markdown() )
-ggsave(paste("images/variance_pie_plot", ".png", sep=""), p, width=6.4, height=4.0, device="png");
+ggsave(paste("man/figures/variance_pie_plot", ".png", sep=""), p, width=6.4, height=4.0, device="png");
 #theme_get(); #check this to see theme options for ggplot with element_text() object!;
 
 ```
 
 
 ```{r ana20, echo=FALSE, out.width='100%'}
-knitr::include_graphics(paste("variance_pie_plot", ".png", sep=""))
+knitr::include_graphics(paste("man/figures/variance_pie_plot", ".png", sep=""))
 ```
 
 
@@ -598,7 +583,7 @@ pRE_Cows <-
   theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines")) +
  	labs(subtitle=paste("Cow (weekly samples, high protein samples)"), caption="") +
   labs(y="Risk Ratio", x="Cow (weekly samples, high protein samples)");
-ggsave(paste("caterpillar_plot_Cows_", "Model.png", sep=""), pRE_Cows, scale = 1.1, width=6.4, height=7.4, device="png");
+ggsave(paste("man/figures/caterpillar_plot_Cows_", "Model.png", sep=""), pRE_Cows, scale = 1.1, width=6.4, height=7.4, device="png");
 
 pRE_Yards <- 
 	ggplot(ranefYards,aes(term,est)) +
@@ -620,24 +605,22 @@ pRE_Yards <-
   theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines")) +
  	labs(subtitle=paste("Yard (weekly samples, high protein samples)"), caption="") +
   labs(y="Risk Ratio", x="Yard (weekly samples, high protein samples)");
-ggsave(paste("caterpillar_plot_Yards_", "Model.png", sep=""), pRE_Yards, scale = 1.1, width=6.4, height=3.2, device="png");
+ggsave(paste("man/figures/caterpillar_plot_Yards_", "Model.png", sep=""), pRE_Yards, scale = 1.1, width=6.4, height=3.2, device="png");
 ```
 
 
-\newpage
 ### Caterpillar plot for random effect of cow
 Risk ratio of high protein milk among cows is below. Highest posterior density intervals are not necessarily symmetric, but should be close to symmetric upon running more model iterations. Note that cows L23 and L27 have a higher risk estimate for high protein milk in random effect, even though those cows were fed a diet of lupins and should in theory have lower protein milk. Cow B01 also has higher risk of high protein milk, but was always fed a better diet (barley).
 
 ```{r ana22, echo=FALSE, out.width='100%'}
-knitr::include_graphics(paste("caterpillar_plot_Cows_", "Model.png", sep=""))
+knitr::include_graphics(paste("man/figures/caterpillar_plot_Cows_", "Model.png", sep=""))
 ```
 
 
-\newpage
 ### Caterpillar plot for random effect of yard
 Risk ratio of high protein milk among yards is below. Highest posterior density intervals are not necessarily symmetric.
 
 ```{r ana23, echo=FALSE, out.width='100%'}
-knitr::include_graphics(paste("caterpillar_plot_Yards_", "Model.png", sep=""))
+knitr::include_graphics(paste("man/figures/caterpillar_plot_Yards_", "Model.png", sep=""))
 ```
 
