@@ -20,7 +20,8 @@ knitr::opts_chunk$set(
 
 # BiostatsUHNplus
 
-The goal of BiostatsUHNplus is to house publicly available code functions and snippets (multiple package dependencies) used by Biostatistics@UHN.
+The goal of BiostatsUHNplus is to house publicly available code functions and snippets (some with multiple package dependencies) 
+used by Biostatistics@UHN.
 
 Many of these functions build upon the features of **reportRmd**.
 
@@ -40,11 +41,22 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus")
 
 ## Example
 
+### A wrapper for the as.numeric function. Prints entries that fail to
+parse instead of throwing uninformative error
+
+```{r example1}
+library(BiostatsUHNplus);
+z <- as.numeric.parse(c(1:5, "String1",6:10,"String2"))
+z
+
+```
+
+
 ### Summary statistics by patient ID nested in cohort, stratified by overall survival status
 
 Use model output and unnested or nested p-value with caution!
 
-```{r example}
+```{r example2}
 library(reportRmd);
 library(BiostatsUHNplus);
 data("pembrolizumab");
