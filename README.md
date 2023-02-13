@@ -30,7 +30,7 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus")
 
 ### Summary statistics by patient ID nested in cohort, stratified by overall survival status
 
-Use model output, and unnested and nested p-value at caution!
+Use model output and unnested or nested p-value at caution!
 
 ``` r
 library(reportRmd);
