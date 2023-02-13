@@ -20,9 +20,9 @@ knitr::opts_chunk$set(
 
 # BiostatsUHNplus
 
-The goal of BiostatsUHNplus is to house various code functions and snippets with many package dependencies used by Biostatistics@UHN that is publicly available.
+The goal of BiostatsUHNplus is to house publicly available code functions and snippets (multiple package dependencies) used by Biostatistics@UHN.
 
-Many of these are add-on features to reportRmd.
+Many of these functions build upon the features of **reportRmd**.
 
 ## Installation
 
@@ -37,4 +37,18 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus")
 ## Documentation
 
 [Online Documentation](https://biostatsPMH.github.io/BiostatsUHNplus/)
+
+## Example
+
+### Summary statistics by patient ID nested in cohort, stratified by overall survival status
+
+```{r example}
+library(reportRmd);
+library(BiostatsUHNplus);
+data("pembrolizumab");
+
+rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"), covs = c("age", "sex", "l_size", "pdl1", "tmb", "baseline_ctdna", "change_ctdna_group", "orr", "cbr", "os_time", "pfs_status", "pfs_time"), maincov = "os_status");
+
+```
+
 

@@ -41,6 +41,7 @@ As with reportRmd, the BiostatsUHNplus package is designed for statistical repor
 #devtools::install_github("biostatsPMH/reportRmd", ref="master")
 #devtools::install_github("biostatsPMH/reportRmd", ref="development");
 #devtools::install_github("biostatsPMH/BiostatsUHNplus");
+#devtools::document() to update NAMESPACE for changes in rpackage;
 
 #BiostatsUHNplus::rm_covsum_nested;
 #BiostatsUHNplus::nice_mcmcglmm;

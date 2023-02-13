@@ -56,6 +56,7 @@ nicename <- utils::getFromNamespace("nicename", "reportRmd")
 #' @importFrom parallel detectCores makeCluster
 #' @importFrom afex mixed
 #' @importFrom utils getFromNamespace
+#' @importFrom magrittr "%>%"
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
 #'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},and
 #'   \code{\link{anova}}
