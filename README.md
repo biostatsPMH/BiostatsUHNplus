@@ -8,7 +8,7 @@ Note that the README.md document may need updating to change
 
 The goal of BiostatsUHNplus is to house publicly available code
 functions and snippets (some with multiple package dependencies) used by
-<Biostatistics@UHN>.
+[Biostatistics@UHN](https://www.biostatspm.com/) in Toronto, Canada.
 
 Many of these functions build upon the features of **reportRmd**.
 
