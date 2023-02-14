@@ -42,7 +42,7 @@ z
 
 ### Summary statistics by patient ID nested in cohort, stratified by overall survival status
 
-Use model output and unnested or nested p-value with caution!
+Use summary output and unnested or nested p-value with caution!
 
 ``` r
 library(reportRmd);
