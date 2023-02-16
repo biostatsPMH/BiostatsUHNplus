@@ -27,12 +27,20 @@ Many of these functions build upon the features of **reportRmd**.
 
 ## Installation
 
-You can install the development version of BiostatsUHNplus from [GitHub](https://github.com/) with:
+You can install the main version of BiostatsUHNplus from [GitHub](https://github.com/) with:
 
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("biostatsPMH/BiostatsUHNplus")
+```
+
+You can install the development version (option to include effect size in nested summaries) of BiostatsUHNplus from [GitHub](https://github.com/) with:
+
+
+``` r
+# install.packages("devtools")
+devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="development")
 ```
 
 ## Documentation

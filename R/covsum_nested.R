@@ -25,6 +25,8 @@ nicename <- utils::getFromNamespace("nicename", "reportRmd")
 #' @param all.stats boolean indicating if all summary statistics (Q1,Q3 +
 #'   min,max on a separate line) should be displayed. Overrides IQR.
 #' @param pvalue boolean indicating if you want p-values included in the table
+#' @param effSize boolean indicating if you want effect sizes included in the 
+#'   table. Can only be obtained if pvalue is also requested.
 #' @param show.tests boolean indicating if the type of statistical used should
 #'   be shown in a column beside the pvalues. Ignored if pvalue=FALSE.
 #' @param dropLevels logical, indicating if empty factor levels be dropped from
@@ -62,7 +64,7 @@ nicename <- utils::getFromNamespace("nicename", "reportRmd")
 #'   \code{\link{anova}}
 covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, numobs = NULL, 
                            markup = TRUE, sanitize = TRUE, nicenames = TRUE, IQR = FALSE, 
-                           all.stats = FALSE, pvalue = TRUE, show.tests = FALSE, excludeLevels = NULL, 
+                           all.stats = FALSE, pvalue = TRUE, effSize = TRUE, show.tests = TRUE, excludeLevels = NULL, 
                            full = TRUE, digits.cat = 0, testcont = c("rank-sum test", 
                                                                      "ANOVA"), testcat = c("Chi-squared", "Fisher"), 
                            include_missing = FALSE, percentage = c("column", "row")) 
@@ -140,8 +142,8 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
   #-#-#-#-#-#-#-#-#-#-#-#-#
   #obj1 <- reportRmd:::covsum(data = data1, covs = covs, maincov = maincov)
   #obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL)
-  obj1 <- reportRmd:::covsum(data = data1, covs = covs, maincov = maincov, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, show.tests=show.tests, excludeLevels= excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
-  obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, show.tests=show.tests, excludeLevels= excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
+  obj1 <- reportRmd:::covsum(data = data1, covs = covs, maincov = maincov, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels= excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
+  obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels= excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
   objComb <- cbind(obj2, obj1[, -c(1:2)]);
   colnames(objComb)[2] <- paste("Full Sample (", colnames(objComb)[2], ")", sep="");
   
@@ -245,7 +247,8 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' rm_covsum_nested(data = Milk, id = c("Cow"), covs = c("protein", "Time", 
 #' "Diet", "Yard"), maincov = "High_Protein")
 rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
-                             digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,pvalue=TRUE, show.tests=FALSE,
+                             digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
+                             pvalue=TRUE,effSize=TRUE,show.tests=TRUE,
                              testcont = c('rank-sum test','ANOVA'),testcat = c('Chi-squared','Fisher'),
                              full=TRUE,include_missing=FALSE,percentage=c('column','row'),
                              excludeLevels=NULL,numobs=NULL,markup=TRUE, sanitize= TRUE,chunk_label,...){
@@ -271,7 +274,11 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
     if (length(to_bold_p)>0)    bold_cells <- rbind(bold_cells,
                                                     matrix(cbind(to_bold_p, which(names(tab)=='p-value')),ncol=2))
   }
-  
+  if ("Effect Size" %in% names(tab)) {
+    e_vals <- tab[["Effect Size"]]
+    new_e <- sapply(e_vals,reportRmd:::formatp)
+    tab[["Effect Size"]] <- new_e
+  }
   if ('Nested p-value' %in% names(tab)) {
     # format p-values nicely
     to_bold_p <- which(tab[["Nested p-value"]]<.05 & !tab[["Nested p-value"]]=="")
