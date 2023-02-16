@@ -20,22 +20,22 @@ knitr::opts_chunk$set(
 
 # BiostatsUHNplus
 
-The goal of BiostatsUHNplus is to house publicly available code functions and snippets (some with multiple package dependencies) 
+The goal of **BiostatsUHNplus** is to house publicly available code functions and snippets (some with multiple package dependencies) 
 used by [Biostatistics@UHN](https://www.biostatspm.com/) in Toronto, Canada.
 
-Many of these functions build upon the features of **reportRmd**.
+Many of these functions build upon the features of [**reportRmd**](https://github.com/biostatsPMH/reportRmd).
 
 ## Installation
 
-You can install the main version of BiostatsUHNplus from [GitHub](https://github.com/) with:
+If using the main branch of **reportRmd**, you can install the main version of **BiostatsUHNplus** from [GitHub](https://github.com/) with:
 
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("biostatsPMH/BiostatsUHNplus")
+devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="main")
 ```
 
-You can install the development version (option to include effect size in nested summaries) of BiostatsUHNplus from [GitHub](https://github.com/) with:
+If using the development branch of **reportRmd**, you can install the development version (option to include effect size in nested summaries) of **BiostatsUHNplus** from [GitHub](https://github.com/) with:
 
 
 ``` r
