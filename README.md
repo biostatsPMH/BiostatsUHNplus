@@ -14,12 +14,21 @@ Many of these functions build upon the features of **reportRmd**.
 
 ## Installation
 
-You can install the development version of BiostatsUHNplus from
+You can install the main version of BiostatsUHNplus from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("biostatsPMH/BiostatsUHNplus")
+```
+
+You can install the development version (option to include effect size
+in nested summaries) of BiostatsUHNplus from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="development")
 ```
 
 ## Documentation
@@ -78,6 +87,12 @@ Full Sample (n=94)
 Unnested p-value
 </th>
 <th style="text-align:right;">
+Effect Size
+</th>
+<th style="text-align:right;">
+Unnested StatTest
+</th>
+<th style="text-align:right;">
 Nested p-value
 </th>
 </tr>
@@ -97,6 +112,12 @@ Nested p-value
 0.28
 </td>
 <td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Eta sq
+</td>
+<td style="text-align:right;">
 0.18
 </td>
 </tr>
@@ -112,6 +133,10 @@ Mean (sd)
 </td>
 <td style="text-align:right;">
 56.7 (13.1)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -135,6 +160,10 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -148,6 +177,12 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 1.00
+</td>
+<td style="text-align:right;">
+<0.001
+</td>
+<td style="text-align:right;">
+Chi Sq, Cramer
 </td>
 <td style="text-align:right;">
 0.82
@@ -165,6 +200,10 @@ Female
 </td>
 <td style="text-align:right;">
 39 (61)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -188,6 +227,10 @@ Male
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -201,6 +244,12 @@ Male
 </td>
 <td style="text-align:right;">
 0.34
+</td>
+<td style="text-align:right;">
+0.009
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Eta sq
 </td>
 <td style="text-align:right;">
 0.35
@@ -218,6 +267,10 @@ Mean (sd)
 </td>
 <td style="text-align:right;">
 91.7 (63.6)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -241,6 +294,10 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -254,6 +311,12 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 0.05
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Eta sq
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">0.010</span>
@@ -271,6 +334,10 @@ Mean (sd)
 </td>
 <td style="text-align:right;">
 8.3 (21.2)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -294,6 +361,10 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -307,6 +378,10 @@ Missing
 </td>
 <td style="text-align:right;">
 1
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -327,6 +402,12 @@ Missing
 0.64
 </td>
 <td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Eta sq
+</td>
+<td style="text-align:right;">
 0.12
 </td>
 </tr>
@@ -342,6 +423,10 @@ Mean (sd)
 </td>
 <td style="text-align:right;">
 0.8 (0.7)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -365,6 +450,10 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -378,6 +467,12 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;"><0.001</span>
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Eta sq
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">0.02</span>
@@ -395,6 +490,10 @@ Mean (sd)
 </td>
 <td style="text-align:right;">
 450.7 (766.8)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -418,6 +517,10 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -431,6 +534,12 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">0.002</span>
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+<td style="text-align:right;">
+Chi Sq, Cramer
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;"><0.001</span>
@@ -448,6 +557,10 @@ Decrease from baseline
 </td>
 <td style="text-align:right;">
 14 (30)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -471,6 +584,10 @@ Increase from baseline
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -484,6 +601,10 @@ Missing
 </td>
 <td style="text-align:right;">
 18
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -504,6 +625,12 @@ Missing
 <0.001
 </td>
 <td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+Chi Sq, Cramer
+</td>
+<td style="text-align:right;">
 <0.001
 </td>
 </tr>
@@ -519,6 +646,10 @@ CR/PR
 </td>
 <td style="text-align:right;">
 2 (3)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -542,6 +673,10 @@ SD/PD
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -555,6 +690,12 @@ SD/PD
 </td>
 <td style="text-align:right;">
 <0.001
+</td>
+<td style="text-align:right;">
+0.46
+</td>
+<td style="text-align:right;">
+Chi Sq, Cramer
 </td>
 <td style="text-align:right;">
 <0.001
@@ -577,6 +718,10 @@ CR/PR/SD\>=C6
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -589,6 +734,10 @@ PD/SD<c6>
 </td>
 <td style="text-align:right;">
 57 (89)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -611,6 +760,12 @@ PD/SD<c6>
 <0.001
 </td>
 <td style="text-align:right;">
+0.54
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Eta sq
+</td>
+<td style="text-align:right;">
 <0.001
 </td>
 </tr>
@@ -626,6 +781,10 @@ Mean (sd)
 </td>
 <td style="text-align:right;">
 9.6 (7.1)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -649,6 +808,10 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -662,6 +825,12 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 <0.001
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Eta sq
 </td>
 <td style="text-align:right;">
 Did not converge;<br>quasi or complete<br>category separation
@@ -679,6 +848,10 @@ Mean (sd)
 </td>
 <td style="text-align:right;">
 1.0 (0.0)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -702,6 +875,10 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;">
@@ -715,6 +892,12 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 <0.001
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Eta sq
 </td>
 <td style="text-align:right;">
 <0.001
@@ -737,6 +920,10 @@ Mean (sd)
 </td>
 <td style="text-align:right;">
 </td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -750,6 +937,10 @@ Median (Min,Max)
 </td>
 <td style="text-align:right;">
 1.9 (0.4, 10.1)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
