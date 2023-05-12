@@ -1,6 +1,6 @@
 #' Nice model output from MCMCglmm::MCMCglmm()
 #' 
-#' @param mcmcglmm_object returned from MCMCglmm()
+#' @param mcmcglmm_object returned output from MCMCglmm()
 #' @param data dataframe containing data
 #' @keywords dataframe
 #' @importFrom tibble rownames_to_column 
