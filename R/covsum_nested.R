@@ -266,11 +266,13 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
   covsumArgs[["sanitize"]] <- FALSE
   covsumArgs[["nicenames"]] <- FALSE
   tab <- do.call(covsum_nested, covsumArgs)
+  colnames(tab)[1] <- "Covariate"
+  output_var_names <- covs
   Sys.sleep(1)
-  to_indent <- which(!attr(tab,"varID"))
-  to_bold_name <- which(attr(tab,"varID"))
+  to_indent <- which(!tab$Covariate %in% output_var_names)
+  to_bold_name <- which(tab$Covariate %in% output_var_names)
   bold_cells <- arrayInd(to_bold_name, dim(tab))
-  
+
   if (nicenames) tab$Covariate <- reportRmd:::replaceLbl(argList$data, tab$Covariate)
   names(tab)[1] <- covTitle
   if ("p-value" %in% names(tab)) {
