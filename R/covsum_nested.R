@@ -260,12 +260,12 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
       as.numeric(x)
     }
   argList <- as.list(match.call(expand.dots = TRUE)[-1])
-  argsToPass <- intersect(names(formals(covsum)), names(argList))
+  argsToPass <- intersect(names(formals(covsum_nested)), names(argList))
   covsumArgs <- argList[names(argList) %in% argsToPass]
   covsumArgs[["markup"]] <- FALSE
   covsumArgs[["sanitize"]] <- FALSE
   covsumArgs[["nicenames"]] <- FALSE
-  tab <- do.call(covsum, covsumArgs)
+  tab <- do.call(covsum_nested, covsumArgs)
   Sys.sleep(1)
   to_indent <- which(!attr(tab,"varID"))
   to_bold_name <- which(attr(tab,"varID"))
