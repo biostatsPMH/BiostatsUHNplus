@@ -83,46 +83,46 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
   is.date <- function(x) inherits(x, 'Date')
   covsIdData1 <- function(covs = covs, id = id, data = data, excludeLevels = excludeLevels){
     id <- c(id, NULL)
-    tto <- data %>%
-      purrr::modify_if(is.character, as.factor) %>%
-      dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
-      dplyr::group_by(!!!(rlang::syms(id))) %>%
-      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
-      dplyr::group_by(!!!(rlang::syms(id))) %>%
+    tto <- data |>
+      purrr::modify_if(is.character, as.factor) |>
+      dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
+      dplyr::group_by(!!!(rlang::syms(id))) |>
+      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
+      dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::filter(dplyr::row_number() == 1)
     tto <- as.data.frame(tto)
     tto
   }
   covsIdData2 <- function(covs = covs, id = id, data = data, excludeLevels = excludeLevels){
-    tto <- data %>%
-      purrr::modify_if(is.character, as.factor) %>%
-      dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
-      dplyr::group_by(!!!(rlang::syms(id))) %>%
-      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
-      dplyr::group_by(!!!(rlang::syms(id))) %>%
+    tto <- data |>
+      purrr::modify_if(is.character, as.factor) |>
+      dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
+      dplyr::group_by(!!!(rlang::syms(id))) |>
+      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
+      dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::filter(dplyr::row_number() == 1)
     tto <- as.data.frame(tto)
     tto
   }
   maincovCovsIdData1 <- function(maincov = maincov, covs = covs, id = id, data = data, excludeLevels = excludeLevels){
     id <- c(id, maincov)
-    tto <- data %>%
-      purrr::modify_if(is.character, as.factor) %>%
-      dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
-      dplyr::group_by(!!!(rlang::syms(id))) %>%
-      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
-      dplyr::group_by(!!!(rlang::syms(id))) %>%
+    tto <- data |>
+      purrr::modify_if(is.character, as.factor) |>
+      dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
+      dplyr::group_by(!!!(rlang::syms(id))) |>
+      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
+      dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::filter(dplyr::row_number() == 1)
     tto <- as.data.frame(tto)
     tto
   }
   maincovCovsIdData2 <- function(maincov = maincov, covs = covs, id = id, data = data, excludeLevels = excludeLevels){
-    tto <- data %>%
-      purrr::modify_if(is.character, as.factor) %>%
-      dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
-      dplyr::group_by(!!!(rlang::syms(id))) %>%
-      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
-      dplyr::group_by(!!!(rlang::syms(id))) %>%
+    tto <- data |>
+      purrr::modify_if(is.character, as.factor) |>
+      dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
+      dplyr::group_by(!!!(rlang::syms(id)), !!!(rlang::syms(covs))) |>
+      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
+      dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::filter(dplyr::row_number() == 1)
     tto <- as.data.frame(tto)
     tto

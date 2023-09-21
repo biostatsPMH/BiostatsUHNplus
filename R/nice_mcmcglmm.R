@@ -42,11 +42,11 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   colnames(varLevels) <- c("Variable", "Levels", "join");
   
   opd_mcmcglmm <- plyr::join_all(list(varLevels, mcmcglmm_ci), by=c("join"), type='full');
-  opd_mcmcglmm <- opd_mcmcglmm %>% modify_if(is.factor, as.character);
+  opd_mcmcglmm <- opd_mcmcglmm |> modify_if(is.factor, as.character);
   
   origVar <- as.data.frame(all.vars(mcmcglmm_object$Fixed$formula)[-1]);
   colnames(origVar) <- "Variable";
-  origVar <- origVar %>%
+  origVar <- origVar |>
     dplyr::mutate(OrigOrder = 1:n())
   
   opd_mcmcglmm <- plyr::join_all(list(opd_mcmcglmm, origVar), by=c("Variable"), type='full');
@@ -54,17 +54,17 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   tryCatch({
     opd_mcmcglmm[which(is.na(opd_mcmcglmm$"RR (95% HPDI)")), ]$"RR (95% HPDI)" <- "reference";
   }, error=function(e){return(printErr <- NA)})
-  opd_mcmcglmm <- opd_mcmcglmm %>%
-    dplyr::select(-join) %>%
-    dplyr::mutate(Ovar = match(Variable, unique(Variable))) %>% 
-    dplyr::group_by(Variable) %>% 
+  opd_mcmcglmm <- opd_mcmcglmm 
+    dplyr::select(-join) 
+    dplyr::mutate(Ovar = match(Variable, unique(Variable)))  
+    dplyr::group_by(Variable)  
     dplyr::mutate(instance = 1:n())
   tryCatch({
     opd_mcmcglmm[which(opd_mcmcglmm$"RR (95% HPDI)" == "reference"), ]$instance <- 0;
   }, error=function(e){return(printErr <- NA)})
-  opd_mcmcglmm <- opd_mcmcglmm %>%
-    dplyr::arrange(Variable, instance) %>%
-    dplyr::arrange(OrigOrder,instance) %>%
+  opd_mcmcglmm <- opd_mcmcglmm 
+    dplyr::arrange(Variable, instance) 
+    dplyr::arrange(OrigOrder,instance) 
     dplyr::select(-instance, -Ovar, -OrigOrder)
   opd_mcmcglmm$Variable <- gsub("_", " ", opd_mcmcglmm$Variable);
   opd_mcmcglmm$Variable[duplicated(opd_mcmcglmm$Variable )] <- NA;
