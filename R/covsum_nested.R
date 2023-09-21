@@ -204,9 +204,10 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' @param pvalue boolean indicating if you want p-values included in the table
 #' @param effSize boolean indicating if you want effect sizes included in the
 #'   table. Can only be obtained if pvalue is also requested.
+#' @param p.adjust p-adjustments to be performed
 #' @param unformattedp boolean indicating if you would like the p-value to be
-#'   returned unformated (ie not rounded or prefixed with '<'). Best used with
-#'   tableOnly = T and outTable function. See examples.
+#'   returned unformatted (ie not rounded or prefixed with '<'). Best used with
+#'   tableOnly = T and outTable function. 
 #' @param show.tests boolean indicating if the type of statistical used should
 #'   be shown in a column beside the pvalues. Ignored if pvalue=FALSE.
 #' @param testcont test of choice for continuous variables,one of
@@ -249,31 +250,41 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' "Diet", "Yard"), maincov = "High_Protein")
 rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
                              digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
-                             pvalue=TRUE,effSize=TRUE,show.tests=TRUE,
+                             pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp = FALSE,show.tests=TRUE,
                              testcont = c('rank-sum test','ANOVA'),testcat = c('Chi-squared','Fisher'),
                              full=TRUE,include_missing=FALSE,percentage=c('column','row'),
                              excludeLevels=NULL,numobs=NULL,markup=TRUE, sanitize= TRUE,chunk_label,...){
   
+  if (unformattedp |p.adjust !='none')
+    formatp <- function(x) {
+      as.numeric(x)
+    }
   argList <- as.list(match.call(expand.dots = TRUE)[-1])
-  argsToPass <- intersect(names(formals(covsum_nested)),names(argList))
+  argsToPass <- intersect(names(formals(covsum)), names(argList))
   covsumArgs <- argList[names(argList) %in% argsToPass]
-  covsumArgs[["markup"]] <- FALSE; covsumArgs[["sanitize"]] <- FALSE
-  tab <- do.call(covsum_nested,covsumArgs)
-  if (nicenames) output_var_names <- gsub('[_.]',' ',covs) else output_var_names <- covs
-  to_indent <- which(!tab$Covariate %in% output_var_names)
-  to_bold_name <- which(tab$Covariate %in% output_var_names)
-  if (nicenames) tab$Covariate <- gsub('[_.]',' ',tab$Covariate)
-  names(tab)[1] <-covTitle
+  covsumArgs[["markup"]] <- FALSE
+  covsumArgs[["sanitize"]] <- FALSE
+  covsumArgs[["nicenames"]] <- FALSE
+  tab <- do.call(covsum, covsumArgs)
+  Sys.sleep(1)
+  to_indent <- which(!attr(tab,"varID"))
+  to_bold_name <- which(attr(tab,"varID"))
   bold_cells <- arrayInd(to_bold_name, dim(tab))
   
-  if ('p-value' %in% names(tab)) {
-    # format p-values nicely
-    to_bold_p <- which(tab[["p-value"]]<.05 & !tab[["p-value"]]=="")
-    p_vals <- tab[['p-value']]
-    new_p <- sapply(p_vals,reportRmd:::formatp)
-    tab[['p-value']] <- new_p
-    if (length(to_bold_p)>0)    bold_cells <- rbind(bold_cells,
-                                                    matrix(cbind(to_bold_p, which(names(tab)=='p-value')),ncol=2))
+  if (nicenames) tab$Covariate <- reportRmd:::replaceLbl(argList$data, tab$Covariate)
+  names(tab)[1] <- covTitle
+  if ("p-value" %in% names(tab)) {
+    if (p.adjust!='none'){
+      tab[["p (unadjusted)"]] <- tab[["p-value"]]
+      tab[["p-value"]] <- sapply(tab[["p-value"]],function(x) p.adjust(x,method=p.adjust))
+    }
+    to_bold_p <- which(as.numeric(tab[["p-value"]]) < 0.05)
+    p_vals <- tab[["p-value"]]
+    new_p <- sapply(p_vals, reportRmd:::formatp)
+    tab[["p-value"]] <- new_p
+    if (length(to_bold_p) > 0)
+      bold_cells <- rbind(bold_cells, matrix(cbind(to_bold_p,
+                                                   which(names(tab) == "p-value")), ncol = 2))
   }
   if ("Effect Size" %in% names(tab)) {
     e_vals <- tab[["Effect Size"]]
