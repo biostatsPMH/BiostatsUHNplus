@@ -80,13 +80,14 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
     warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).\n", "\nUsing ", nc, " processor(s) for parallel processing.\n", sep=""))
   }
   options(dplyr.summarise.inform = FALSE)
+  is.date <- function(x) inherits(x, 'Date')
   covsIdData1 <- function(covs = covs, id = id, data = data, excludeLevels = excludeLevels){
     id <- c(id, NULL)
     tto <- data %>%
       purrr::modify_if(is.character, as.factor) %>%
       dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
       dplyr::group_by(!!!(rlang::syms(id))) %>%
-      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.Date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
+      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
       dplyr::group_by(!!!(rlang::syms(id))) %>%
       dplyr::filter(dplyr::row_number() == 1)
     tto <- as.data.frame(tto)
@@ -97,7 +98,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       purrr::modify_if(is.character, as.factor) %>%
       dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
       dplyr::group_by(!!!(rlang::syms(id))) %>%
-      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.Date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
+      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
       dplyr::group_by(!!!(rlang::syms(id))) %>%
       dplyr::filter(dplyr::row_number() == 1)
     tto <- as.data.frame(tto)
@@ -109,7 +110,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       purrr::modify_if(is.character, as.factor) %>%
       dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
       dplyr::group_by(!!!(rlang::syms(id))) %>%
-      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.Date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
+      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
       dplyr::group_by(!!!(rlang::syms(id))) %>%
       dplyr::filter(dplyr::row_number() == 1)
     tto <- as.data.frame(tto)
@@ -120,7 +121,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       purrr::modify_if(is.character, as.factor) %>%
       dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) %>%
       dplyr::group_by(!!!(rlang::syms(id))) %>%
-      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.Date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
+      dplyr::summarise(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) %>%
       dplyr::group_by(!!!(rlang::syms(id))) %>%
       dplyr::filter(dplyr::row_number() == 1)
     tto <- as.data.frame(tto)
