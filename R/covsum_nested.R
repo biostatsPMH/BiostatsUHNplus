@@ -310,6 +310,9 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
   
   if (tableOnly){
     if (names(tab)[1]=='') names(tab)[1]<- 'Covariate'
+    attr(tab, "to_indent") <- to_indent
+    attr(tab, "bold_cells") <- bold_cells
+    attr(tab, "dimchk") <- dim(tab)
     return(tab)
   }
   
