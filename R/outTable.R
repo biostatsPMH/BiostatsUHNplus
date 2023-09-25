@@ -95,7 +95,7 @@ outTable <- function(tab,row.names=NULL,to_indent=numeric(0),bold_headers=TRUE,
                    ifelse(knitr::pandoc_to(c('doc','docx')),'doc',
                           ifelse(knitr::is_latex_output(),'latex','html')))
   
-  if (format %in% c('html','latex')){
+  if (!is.null(format) && format %in% c('html','latex')){
     out_fmt = format
   }
   
