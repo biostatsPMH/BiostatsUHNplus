@@ -89,7 +89,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
       dplyr::group_by(!!!(rlang::syms(id))) |>
-      dplyr::filter(dplyr::row_number() == 1)
+      dplyr::filter(dplyr::row_number() == ceiling(n()/2))
     tto <- as.data.frame(tto)
     tto
   }
@@ -100,7 +100,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
       dplyr::group_by(!!!(rlang::syms(id))) |>
-      dplyr::filter(dplyr::row_number() == 1)
+      dplyr::filter(dplyr::row_number() == ceiling(n()/2))
     tto <- as.data.frame(tto)
     tto
   }
@@ -112,7 +112,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
       dplyr::group_by(!!!(rlang::syms(id))) |>
-      dplyr::filter(dplyr::row_number() == 1)
+      dplyr::filter(dplyr::row_number() == ceiling(n()/2))
     tto <- as.data.frame(tto)
     tto
   }
@@ -120,10 +120,10 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
     tto <- data |>
       purrr::modify_if(is.character, as.factor) |>
       dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
-      dplyr::group_by(!!!(rlang::syms(id)), !!!(rlang::syms(covs))) |>
+      dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
       dplyr::group_by(!!!(rlang::syms(id)), .drop=FALSE) |>
-      dplyr::filter(dplyr::row_number() == 1)
+      dplyr::filter(dplyr::row_number() == ceiling(n()/2))
     tto <- as.data.frame(tto)
     tto
   }
