@@ -1,6 +1,6 @@
 # Rmarkdown Reporting --------------------------------------------------------------
 
-#' Print tables to PDF/Latex HTML or Word
+#' Borrowed from reportRmd package. Print tables to PDF/Latex HTML or Word.
 #'
 #' Output the table nicely to whatever format is appropriate. This is the output
 #' function used by the rm_* printing functions.
