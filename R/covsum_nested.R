@@ -180,7 +180,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 }
 
 
-#' Outputs a nested version of reportRmd:::rm_covsum()
+#' Outputs a nested version of reportRmd::rm_covsum()
 #'
 #' @param data dataframe containing data
 #' @param covs character vector with the names of columns to include in table
