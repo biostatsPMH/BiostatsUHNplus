@@ -46,7 +46,7 @@
 #' # To make custom changes or change the fontsize in PDF/HTML
 #' tab <- rm_covsum(data=pembrolizumab,maincov = 'change_ctdna_group',
 #' covs=c('age','sex','pdl1','tmb','l_size'),show.tests=TRUE,tableOnly = TRUE)
-#' outTable(tab, fontsize=7)
+#' outTable(tab, fontsize=7).
 #'
 #' # To bold columns with the variable names
 #'  rows_bold <- c(1,4,7,10,13)
