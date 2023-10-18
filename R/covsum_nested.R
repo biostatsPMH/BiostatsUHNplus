@@ -88,7 +88,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
       dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
-      dplyr::group_by(!!!(rlang::syms(id))) |>
+      dplyr::group_by(!!!(rlang::syms(id)), .drop=FALSE) |>
       dplyr::filter(dplyr::row_number() == ceiling(n()/2))
     tto <- as.data.frame(tto)
     tto
@@ -99,7 +99,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
       dplyr::group_by(!!!(rlang::syms(id))) |>
       dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
-      dplyr::group_by(!!!(rlang::syms(id))) |>
+      dplyr::group_by(!!!(rlang::syms(id)), .drop=FALSE) |>
       dplyr::filter(dplyr::row_number() == ceiling(n()/2))
     tto <- as.data.frame(tto)
     tto
@@ -143,7 +143,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
   #-#-#-#-#-#-#-#-#-#-#-#-#
   #obj1 <- reportRmd:::covsum(data = data1, covs = covs, maincov = maincov)
   #obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL, dropLevels = FALSE)
-  obj1 <- reportRmd:::covsum(data = data1, covs = covs, maincov = maincov, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels=excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
+  obj1 <- reportRmd:::covsum(data = data1, covs = covs, dropLevels = FALSE, maincov = maincov, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels=excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
   obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL, dropLevels = FALSE, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels=excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
   objComb <- cbind(obj2, obj1[, -c(1:2)]);
   colnames(objComb)[2] <- paste("Full Sample (", colnames(objComb)[2], ")", sep="");
