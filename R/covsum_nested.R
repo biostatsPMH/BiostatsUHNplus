@@ -147,20 +147,32 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
   obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL, dropLevels = FALSE, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels=excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
   objComb <- cbind(obj2, obj1[,-1]);
   
-  if (length(unique(eval(parse(text=paste("data1$", maincov, sep=""))))) < 2) {
-    objComb <- objComb[,-3];
-    full <- F;
+  if (!is.null(maincov)) {
+    if (length(unique(eval(parse(text=paste("data1$", maincov, sep=""))))) < 2) {
+      objComb <- objComb[,-3];
+      full <- F;
+    }
+    if (full) {
+      objComb <- objComb[,-2];  
+    }
+    if (length(unique(eval(parse(text=paste("data1$", maincov, sep=""))))) > 1 ) {
+      #colnames(objComb)[2] <- paste("Full Sample (", colnames(objComb)[2], ")", sep="");
+    } else {
+      colnames(objComb)[2] <- paste(unique(eval(parse(text=paste("data1$", maincov, sep=""))))[1], " (", colnames(objComb)[2], ")", sep="");
+    }  
+    if (!full && (length(unique(eval(parse(text=paste("data1$", maincov, sep=""))))) > 1)) {
+      objComb <- objComb[,-2];  
+    }
   }
-  if (full) {
-    objComb <- objComb[,-2];  
-  }
-  if (length(unique(eval(parse(text=paste("data1$", maincov, sep=""))))) > 1 ) {
-    #colnames(objComb)[2] <- paste("Full Sample (", colnames(objComb)[2], ")", sep="");
-  } else {
-    colnames(objComb)[2] <- paste(unique(eval(parse(text=paste("data1$", maincov, sep=""))))[1], " (", colnames(objComb)[2], ")", sep="");
-  }  
-  if (!full && (length(unique(eval(parse(text=paste("data1$", maincov, sep=""))))) > 1)) {
-    objComb <- objComb[,-2];  
+  if (is.null(maincov)) {
+    if (full) {
+      objComb <- objComb[,-3];
+      colnames(objComb)[2] <- paste("Full Sample (", colnames(objComb)[2], ")", sep="");
+    }
+    if (!full) {
+      objComb <- objComb[,-3]; 
+      colnames(objComb)[2] <- paste("Full Sample (", colnames(objComb)[2], ")", sep="");
+    }
   }
   #------------# LRT glmer nested pvalues #------------#;
   ###https://search.r-project.org/CRAN/refmans/afex/html/mixed.html
