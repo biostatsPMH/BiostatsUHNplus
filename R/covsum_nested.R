@@ -292,6 +292,7 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
   covsumArgs[["sanitize"]] <- FALSE
   covsumArgs[["nicenames"]] <- FALSE
   tab <- do.call(covsum_nested, covsumArgs)
+  #tab <- objComb;
   colnames(tab)[1] <- "Covariate"
   output_var_names <- covs
   Sys.sleep(1)
@@ -321,12 +322,13 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
   }
   if ('Nested p-value' %in% names(tab)) {
     # format p-values nicely
-    to_bold_p <- which(tab[["Nested p-value"]]<.05 & !tab[["Nested p-value"]]=="")
+    to_bold_p <- which(!tab[["Nested p-value"]]=="" & as.numeric(tab[["Nested p-value"]])< 0.05)
     p_vals <- tab[['Nested p-value']]
     new_p <- sapply(p_vals,reportRmd:::formatp)
     tab[['Nested p-value']] <- new_p
-    if (length(to_bold_p)>0)    bold_cells <- rbind(bold_cells,
-                                                    matrix(cbind(to_bold_p, which(names(tab)=='Nested p-value')),ncol=2))
+    if (length(to_bold_p)>0)    
+      bold_cells <- rbind(bold_cells,
+                                  matrix(cbind(to_bold_p, which(names(tab)=='Nested p-value')),ncol=2))
   }
   tryCatch({
     if (length(which(tab$'p-value' != '' & is.na(tab$'Nested p-value'))) > 0) {
