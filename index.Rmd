@@ -170,22 +170,22 @@ knitr::kable(Diet_t);
 Cows with five consecutive samples of non-high protein milk are designated to going to market.
 
 ```{r ana8, echo=F, warning=F, message=F, results='asis'}
-market_Cows <- Milk %>% 
-  dplyr::select(Cow, Diet, Yard, Time, High_Protein) %>%
-  dplyr::group_by(Cow, Diet, Yard, High_Protein, status = data.table::rleid(High_Protein == "N")) %>% 
-  dplyr::mutate(Consec_Weeks = if_else(High_Protein == "N", row_number(), 0L)) %>%
-  dplyr::ungroup() %>%
-  dplyr::select(Cow, Time, Consec_Weeks) %>%
-  dplyr::filter(Consec_Weeks == 5) %>%
-  dplyr::arrange(Cow, Time) %>% 
-  dplyr::group_by(Cow) %>% 
-  dplyr::filter(row_number()==1) %>%
+market_Cows <- Milk |> 
+  dplyr::select(Cow, Diet, Yard, Time, High_Protein) |>
+  dplyr::group_by(Cow, Diet, Yard, High_Protein, status = data.table::rleid(High_Protein == "N")) |> 
+  dplyr::mutate(Consec_Weeks = if_else(High_Protein == "N", row_number(), 0L)) |>
+  dplyr::ungroup() |>
+  dplyr::select(Cow, Time, Consec_Weeks) |>
+  dplyr::filter(Consec_Weeks == 5) |>
+  dplyr::arrange(Cow, Time) |> 
+  dplyr::group_by(Cow) |> 
+  dplyr::filter(row_number()==1) |>
   dplyr::mutate(Market = 1)
 Milk_SA <- plyr::join_all(list(Milk, market_Cows[, c("Cow", "Time", "Market")]), by=c("Cow", "Time"), type='left', match = "first");
-Milk_SA <- Milk_SA %>%
-  dplyr::select(Cow, Yard, Time, Diet, High_Protein, HP, Market) %>%
-  dplyr::arrange(Cow, desc(Market), desc(Time)) %>%
-  dplyr::group_by(Cow) %>% 
+Milk_SA <- Milk_SA |>
+  dplyr::select(Cow, Yard, Time, Diet, High_Protein, HP, Market) |>
+  dplyr::arrange(Cow, desc(Market), desc(Time)) |>
+  dplyr::group_by(Cow) |> 
   dplyr::filter(row_number()==1) 
 Milk_SA$Market[which(is.na(Milk_SA$Market))] <- 0;
 ```
@@ -216,10 +216,10 @@ rm_mvsum(model=glm(High_Protein ~ Diet + Yard + Time, data=Milk, family='binomia
 Below logistic model takes account of repeat observation by cow. Examine different correlation structures. It is of interest to note that (odds of) high protein content in milk appears to decrease as time since calving increases.
 
 ```{r ana12, echo=T, warning=F, message=F, results='asis'}
-Milk <- Milk %>% modify_if(is.character, as.factor);
-Milk <- Milk %>% tidyr::drop_na()
+Milk <- Milk |> modify_if(is.character, as.factor);
+Milk <- Milk |> tidyr::drop_na()
 Milk <- droplevels(Milk);
-Milk <- Milk %>% dplyr::arrange(Yard, Cow, Time);
+Milk <- Milk |> dplyr::arrange(Yard, Cow, Time);
 
 rm_mvsum(model=geeglm(HP ~ Diet + Yard + Time, id=c(Cow), data=Milk, family=binomial, corstr="ar1"), data=Milk, showN=T, CIwidth=0.95);
 ```
@@ -373,8 +373,8 @@ Milk_plot$Count <- Milk_plot$pct;
 Milk_plot$pct <- sprintf("%1.1f%%", 100*Milk_plot$pct);
 Milk_plot$cat <- NA;
 Milk_plot$cat <- paste(Milk_plot$Name, " (", Milk_plot$pct, ")", sep="");
-Milk_plot <- Milk_plot %>% 
-  purrr::modify_if(is.character, as.factor) %>%
+Milk_plot <- Milk_plot |> 
+  purrr::modify_if(is.character, as.factor) |>
   dplyr::arrange(results)
 #str(Milk_plot);
 tryCatch({
@@ -448,24 +448,24 @@ ranefYards$term <- reorder(factor(rownames(ranefYards)), ranefYards$est);
 
 
 ###This part links random effect RRs to weekly instances and high protein instance count;
-instCow <- Milk %>% 
-  dplyr::rename(ID = Cow) %>%
-  dplyr::select(ID) %>%
-  dplyr::group_by(ID, .drop = FALSE) %>%  
+instCow <- Milk |> 
+  dplyr::rename(ID = Cow) |>
+  dplyr::select(ID) |>
+  dplyr::group_by(ID, .drop = FALSE) |>  
   dplyr::count(name="instances", .drop=FALSE) 
-hp_instCow <- Milk %>% 
-  dplyr::rename(ID = Cow) %>%
-  dplyr::select(ID, HP) %>%
-  dplyr::filter(HP == 1) %>%
-  dplyr::group_by(ID, .drop = FALSE) %>%  
-  dplyr::count(HP, name="hp_instances") %>%
+hp_instCow <- Milk |> 
+  dplyr::rename(ID = Cow) |>
+  dplyr::select(ID, HP) |>
+  dplyr::filter(HP == 1) |>
+  dplyr::group_by(ID, .drop = FALSE) |>  
+  dplyr::count(HP, name="hp_instances") |>
   dplyr::select(-HP) 
 ranefCows <- plyr::join_all(list(ranefCows, instCow[, c("ID", "instances")], hp_instCow[, c("ID", "hp_instances")]), by=c("ID"), type='left', match = "first");
 ranefCows$term <- paste(ranefCows$term, " (", ranefCows$instances, ", ", ranefCows$hp_instances, ")", sep="");
 ranefCows$term <- reorder(factor(ranefCows$term), ranefCows$est);
 num_groups <- 2;
-ranefCows <- ranefCows %>%
-  dplyr::arrange(est) %>%
+ranefCows <- ranefCows |>
+  dplyr::arrange(est) |>
   dplyr::group_by(facet=(row_number()-1) %/% (n()/num_groups)+1)
 ranefCows$facet <- as.factor(ranefCows$facet);
 ranefCows$facet <- ordered(ranefCows$facet, levels = c("2", "1"));
@@ -475,24 +475,24 @@ ranefCows$lower <- as.numeric(format(round(ranefCows$lower, 2), nsmall=2));
 ranefCows$upper <- as.numeric(format(round(ranefCows$upper, 2), nsmall=2));
 ranefCows$significance[(ranefCows$lower >= 1.00 & ranefCows$upper >= 1.00) | (ranefCows$lower <= 1.00 & ranefCows$upper <= 1.00)] <- "different";
 
-instYard <- Milk %>% 
-  dplyr::rename(ID = Yard) %>%
-  dplyr::select(ID) %>%
-  dplyr::group_by(ID, .drop = FALSE) %>%  
+instYard <- Milk |> 
+  dplyr::rename(ID = Yard) |>
+  dplyr::select(ID) |>
+  dplyr::group_by(ID, .drop = FALSE) |>  
   dplyr::count(name="instances", .drop=FALSE) 
-hp_instYard <- Milk %>% 
-  dplyr::rename(ID = Yard) %>%
-  dplyr::select(ID, HP) %>%
-  dplyr::filter(HP == 1) %>%
-  dplyr::group_by(ID, .drop = FALSE) %>%  
-  dplyr::count(HP, name="hp_instances") %>%
+hp_instYard <- Milk |> 
+  dplyr::rename(ID = Yard) |>
+  dplyr::select(ID, HP) |>
+  dplyr::filter(HP == 1) |>
+  dplyr::group_by(ID, .drop = FALSE) |>  
+  dplyr::count(HP, name="hp_instances") |>
   dplyr::select(-HP) 
 ranefYards <- plyr::join_all(list(ranefYards, instYard[, c("ID", "instances")], hp_instYard[, c("ID", "hp_instances")]), by=c("ID"), type='left', match = "first");
 ranefYards$term <- paste(ranefYards$term, " (", ranefYards$instances, ", ", ranefYards$hp_instances, ")", sep="");
 ranefYards$term <- reorder(factor(ranefYards$term), ranefYards$est);
 num_groups <- 1;
-ranefYards <- ranefYards %>%
-  dplyr::arrange(est) %>%
+ranefYards <- ranefYards |>
+  dplyr::arrange(est) |>
   dplyr::group_by(facet=(row_number()-1) %/% (n()/num_groups)+1)
 ranefYards$facet <- as.factor(ranefYards$facet);
 ranefYards$facet <- ordered(ranefYards$facet, levels = c("1"));

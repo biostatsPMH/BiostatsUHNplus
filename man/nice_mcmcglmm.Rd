@@ -7,7 +7,7 @@
 nice_mcmcglmm(mcmcglmm_object, dataset)
 }
 \arguments{
-\item{mcmcglmm_object}{returned from MCMCglmm()}
+\item{mcmcglmm_object}{returned output from MCMCglmm()}
 
 \item{data}{dataframe containing data}
 }

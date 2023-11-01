@@ -17,7 +17,8 @@ covsum_nested(
   IQR = FALSE,
   all.stats = FALSE,
   pvalue = TRUE,
-  show.tests = FALSE,
+  effSize = TRUE,
+  show.tests = TRUE,
   excludeLevels = NULL,
   full = TRUE,
   digits.cat = 0,
@@ -57,6 +58,9 @@ with a space}
 min,max on a separate line) should be displayed. Overrides IQR.}
 
 \item{pvalue}{boolean indicating if you want p-values included in the table}
+
+\item{effSize}{boolean indicating if you want effect sizes included in the
+table. Can only be obtained if pvalue is also requested.}
 
 \item{show.tests}{boolean indicating if the type of statistical used should
 be shown in a column beside the pvalues. Ignored if pvalue=FALSE.}

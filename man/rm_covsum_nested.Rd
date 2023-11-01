@@ -2,7 +2,7 @@
 % Please edit documentation in R/covsum_nested.R
 \name{rm_covsum_nested}
 \alias{rm_covsum_nested}
-\title{Outputs a nested version of reportRmd:::rm_covsum()}
+\title{Outputs a nested version of reportRmd::rm_covsum()}
 \usage{
 rm_covsum_nested(
   data,
@@ -17,7 +17,10 @@ rm_covsum_nested(
   IQR = FALSE,
   all.stats = FALSE,
   pvalue = TRUE,
-  show.tests = FALSE,
+  effSize = TRUE,
+  p.adjust = "none",
+  unformattedp = FALSE,
+  show.tests = TRUE,
   testcont = c("rank-sum test", "ANOVA"),
   testcat = c("Chi-squared", "Fisher"),
   full = TRUE,
@@ -63,6 +66,15 @@ min,max on a separate line) should be displayed. Overrides IQR.}
 
 \item{pvalue}{boolean indicating if you want p-values included in the table}
 
+\item{effSize}{boolean indicating if you want effect sizes included in the
+table. Can only be obtained if pvalue is also requested.}
+
+\item{p.adjust}{p-adjustments to be performed}
+
+\item{unformattedp}{boolean indicating if you would like the p-value to be
+returned unformatted (ie not rounded or prefixed with '<'). Best used with
+tableOnly = T and outTable function.}
+
 \item{show.tests}{boolean indicating if the type of statistical used should
 be shown in a column beside the pvalues. Ignored if pvalue=FALSE.}
 
@@ -94,13 +106,6 @@ the covariate}
 
 \item{id}{covariates to nest summary by}
 
-\item{effSize}{boolean indicating if you want effect sizes included in the
-table. Can only be obtained if pvalue is also requested.}
-
-\item{unformattedp}{boolean indicating if you would like the p-value to be
-returned unformated (ie not rounded or prefixed with '<'). Best used with
-tableOnly = T and outTable function. See examples.}
-
 \item{dropLevels}{logical, indicating if empty factor levels be dropped from
 the output, default is TRUE.}
 }
@@ -109,7 +114,7 @@ A character vector of the table source code, unless tableOnly=TRUE in
 which case a data frame is returned
 }
 \description{
-Outputs a nested version of reportRmd:::rm_covsum()
+Outputs a nested version of reportRmd::rm_covsum()
 }
 \examples{
 rm_covsum_nested(data = Milk, id = c("Cow"), covs = c("protein", "Time", 
