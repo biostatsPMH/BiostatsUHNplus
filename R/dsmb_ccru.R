@@ -27,7 +27,7 @@
 #' @param numSubj vector to override value for number of subjects in summary (if provided)
 #' @keywords dataframe
 #' @return three Excel files containing DSMB-CCRU AE summary tables
-#' @importFrom openxlsx createStyle createWorkbook addWorksheet writeData mergeCells addStyle setRowHeights setColWidths OutsideBorders saveWorkbook
+#' @importFrom openxlsx createStyle createWorkbook addWorksheet writeData mergeCells addStyle setRowHeights setColWidths saveWorkbook
 #' @importFrom dplyr left_join select distinct mutate arrange summarise group_by filter across row_number n_distinct
 #' @importFrom stringr str_detect
 #' @export
