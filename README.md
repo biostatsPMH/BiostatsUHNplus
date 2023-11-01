@@ -1,7 +1,7 @@
 
 <!-- This file is used to create README.md
 Note that the README.md document may need updating to change
-'<0.001' to '<0.001'. 
+'\<0.001' to '<0.001'. 
 -->
 
 # BiostatsUHNplus
@@ -68,6 +68,40 @@ rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"),
 #> Order of nested ids matter. For example, in c('id1','id2') id1 should be nested within id2, etc.
 #> Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.
 #> Nested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).
+#> 
+#> Using 8 processor(s) for parallel processing.
+#> Warning: Low counts are present in orr variable consider Fisher's test.
+#> Contrasts set to contr.sum for the following variables: id, cohort
+#> Numerical variables NOT centered on 0: age
+#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
+#> Contrasts set to contr.sum for the following variables: sex, id, cohort
+#> Contrasts set to contr.sum for the following variables: id, cohort
+#> Numerical variables NOT centered on 0: l_size
+#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
+#> Contrasts set to contr.sum for the following variables: id, cohort
+#> Numerical variables NOT centered on 0: pdl1
+#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
+#> Contrasts set to contr.sum for the following variables: id, cohort
+#> Numerical variables NOT centered on 0: tmb
+#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
+#> Contrasts set to contr.sum for the following variables: id, cohort
+#> Numerical variables NOT centered on 0: baseline_ctdna
+#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
+#> Contrasts set to contr.sum for the following variables: change_ctdna_group, id, cohort
+#> Contrasts set to contr.sum for the following variables: orr, id, cohort
+#> Contrasts set to contr.sum for the following variables: cbr, id, cohort
+#> Contrasts set to contr.sum for the following variables: id, cohort
+#> Numerical variables NOT centered on 0: os_time
+#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
+#> Contrasts set to contr.sum for the following variables: id, cohort
+#> Numerical variables NOT centered on 0: pfs_status
+#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
+#> Contrasts set to contr.sum for the following variables: id, cohort
+#> Numerical variables NOT centered on 0: pfs_time
+#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
+#> Registered S3 method overwritten by 'httr':
+#>   method         from  
+#>   print.response rmutil
 ```
 
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
@@ -113,10 +147,10 @@ Nested p-value
 0.28
 </td>
 <td style="text-align:right;">
-0.02
+0.11
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
 0.18
@@ -183,7 +217,7 @@ Median (Min,Max)
 <0.001
 </td>
 <td style="text-align:right;">
-Chi Sq, Cramer
+Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
 0.82
@@ -247,10 +281,10 @@ Male
 0.34
 </td>
 <td style="text-align:right;">
-0.009
+0.097
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
 0.35
@@ -311,13 +345,13 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-0.05
+0.052
 </td>
 <td style="text-align:right;">
-0.08
+0.20
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">0.010</span>
@@ -403,10 +437,10 @@ Missing
 0.64
 </td>
 <td style="text-align:right;">
-0.03
+0.048
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
 0.12
@@ -470,13 +504,13 @@ Median (Min,Max)
 <span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
-0.04
+0.37
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.02</span>
+<span style="font-weight: bold;">0.017</span>
 </td>
 </tr>
 <tr>
@@ -537,10 +571,10 @@ Median (Min,Max)
 <span style="font-weight: bold;">0.002</span>
 </td>
 <td style="text-align:right;">
-0.36
+0.32
 </td>
 <td style="text-align:right;">
-Chi Sq, Cramer
+Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;"><0.001</span>
@@ -623,16 +657,16 @@ Missing
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<0.001
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.51
 </td>
 <td style="text-align:right;">
-Chi Sq, Cramer
+Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<0.001
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -690,16 +724,16 @@ SD/PD
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<0.001
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.46
 </td>
 <td style="text-align:right;">
-Chi Sq, Cramer
+Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<0.001
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -758,16 +792,16 @@ PD/SD<c6>
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<0.001
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
-0.54
+0.70
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<0.001
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -825,13 +859,13 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<0.001
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
-0.31
+0.56
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
 Did not converge;<br>quasi or complete<br>category separation
@@ -892,16 +926,16 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<0.001
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
-0.41
+0.50
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<0.001
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
