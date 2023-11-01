@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.2 Nested summary of high protein status | Example nested reportRmd and Bayesian hierarchical model summary</title>
   <meta name="description" content="2.2 Nested summary of high protein status | Example nested reportRmd and Bayesian hierarchical model summary" />
-  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.2 Nested summary of high protein status | Example nested reportRmd and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
+code span.bu { } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.im { } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 </head>
 
@@ -208,14 +212,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.
 ## Nested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method=&#39;LRT&#39;)).
 ## 
-## Using 12 processor(s) for parallel processing.</code></pre>
+## Using 8 processor(s) for parallel processing.</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
 </th>
 <th style="text-align:right;">
-Full Sample (n=79)
+Full Sample (n=151)
 </th>
 <th style="text-align:right;">
 N (n=79)
@@ -249,13 +253,13 @@ Nested p-value
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-&lt;0.001
+<span style="font-weight: bold;">&lt;0.001</span>
 </td>
 <td style="text-align:right;">
-0.83
+0.86
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
 Did not converge;<br>quasi or complete<br>category separation
@@ -266,7 +270,7 @@ Did not converge;<br>quasi or complete<br>category separation
 Mean (sd)
 </td>
 <td style="text-align:right;">
-3.4 (0.2)
+3.5 (0.3)
 </td>
 <td style="text-align:right;">
 3.3 (0.1)
@@ -288,7 +292,7 @@ Mean (sd)
 Median (Min,Max)
 </td>
 <td style="text-align:right;">
-3.4 (2.9, 3.9)
+3.4 (2.9, 4.2)
 </td>
 <td style="text-align:right;">
 3.3 (2.9, 3.5)
@@ -319,13 +323,13 @@ Median (Min,Max)
 <span style="font-weight: bold;">0.001</span>
 </td>
 <td style="text-align:right;">
-0.08
+0.26
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.02</span>
+<span style="font-weight: bold;">0.024</span>
 </td>
 </tr>
 <tr>
@@ -333,7 +337,7 @@ Wilcoxon Rank Sum, Eta sq
 Mean (sd)
 </td>
 <td style="text-align:right;">
-9.0 (1.1)
+8.3 (3.3)
 </td>
 <td style="text-align:right;">
 9.2 (1.5)
@@ -355,7 +359,7 @@ Mean (sd)
 Median (Min,Max)
 </td>
 <td style="text-align:right;">
-10.0 (7.1, 10.4)
+8.6 (1.0, 18.0)
 </td>
 <td style="text-align:right;">
 9.4 (2.5, 12.5)
@@ -386,10 +390,10 @@ Median (Min,Max)
 0.89
 </td>
 <td style="text-align:right;">
-0.04
+0.039
 </td>
 <td style="text-align:right;">
-Chi Sq, Cramer
+Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -400,7 +404,7 @@ Chi Sq, Cramer
 barley
 </td>
 <td style="text-align:right;">
-25 (32)
+49 (32)
 </td>
 <td style="text-align:right;">
 25 (32)
@@ -422,7 +426,7 @@ barley
 barley+lupins
 </td>
 <td style="text-align:right;">
-27 (34)
+53 (35)
 </td>
 <td style="text-align:right;">
 27 (34)
@@ -444,7 +448,7 @@ barley+lupins
 lupins
 </td>
 <td style="text-align:right;">
-27 (34)
+49 (32)
 </td>
 <td style="text-align:right;">
 27 (34)
@@ -475,13 +479,13 @@ lupins
 1.00
 </td>
 <td style="text-align:right;">
-0.03
+0.036
 </td>
 <td style="text-align:right;">
-Chi Sq, Cramer
+Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-0.88
+0.14
 </td>
 </tr>
 <tr>
@@ -489,13 +493,13 @@ Chi Sq, Cramer
 1
 </td>
 <td style="text-align:right;">
-23 (29)
+36 (24)
 </td>
 <td style="text-align:right;">
-23 (29)
+18 (23)
 </td>
 <td style="text-align:right;">
-22 (31)
+18 (25)
 </td>
 <td style="text-align:right;">
 </td>
@@ -511,13 +515,13 @@ Chi Sq, Cramer
 2
 </td>
 <td style="text-align:right;">
-11 (14)
+18 (12)
 </td>
 <td style="text-align:right;">
-11 (14)
+10 (13)
 </td>
 <td style="text-align:right;">
-10 (14)
+8 (11)
 </td>
 <td style="text-align:right;">
 </td>
@@ -533,13 +537,13 @@ Chi Sq, Cramer
 3
 </td>
 <td style="text-align:right;">
-12 (15)
+35 (23)
 </td>
 <td style="text-align:right;">
-12 (15)
+18 (23)
 </td>
 <td style="text-align:right;">
-11 (15)
+17 (24)
 </td>
 <td style="text-align:right;">
 </td>
@@ -555,13 +559,13 @@ Chi Sq, Cramer
 4
 </td>
 <td style="text-align:right;">
-18 (23)
+36 (24)
 </td>
 <td style="text-align:right;">
-18 (23)
+19 (24)
 </td>
 <td style="text-align:right;">
-15 (21)
+17 (24)
 </td>
 <td style="text-align:right;">
 </td>
@@ -577,13 +581,13 @@ Chi Sq, Cramer
 5
 </td>
 <td style="text-align:right;">
-15 (19)
+26 (17)
 </td>
 <td style="text-align:right;">
-15 (19)
+14 (18)
 </td>
 <td style="text-align:right;">
-14 (19)
+12 (17)
 </td>
 <td style="text-align:right;">
 </td>
@@ -607,7 +611,7 @@ Chi Sq, Cramer
 <th style="text-align:left;">
 </th>
 <th style="text-align:right;">
-Full Sample (n=79)
+Full Sample (n=151)
 </th>
 <th style="text-align:right;">
 N (n=79)
@@ -641,13 +645,13 @@ Nested p-value
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-&lt;0.001
+<span style="font-weight: bold;">&lt;0.001</span>
 </td>
 <td style="text-align:right;">
-0.83
+0.86
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
 Did not converge;<br>quasi or complete<br>category separation
@@ -658,7 +662,7 @@ Did not converge;<br>quasi or complete<br>category separation
 Mean (sd)
 </td>
 <td style="text-align:right;">
-3.4 (0.2)
+3.5 (0.3)
 </td>
 <td style="text-align:right;">
 3.3 (0.1)
@@ -680,7 +684,7 @@ Mean (sd)
 Median (Min,Max)
 </td>
 <td style="text-align:right;">
-3.4 (2.9, 3.9)
+3.4 (2.9, 4.2)
 </td>
 <td style="text-align:right;">
 3.3 (2.9, 3.5)
@@ -711,13 +715,13 @@ Median (Min,Max)
 <span style="font-weight: bold;">0.001</span>
 </td>
 <td style="text-align:right;">
-0.08
+0.26
 </td>
 <td style="text-align:right;">
-Wilcoxon Rank Sum, Eta sq
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.02</span>
+<span style="font-weight: bold;">0.024</span>
 </td>
 </tr>
 <tr>
@@ -725,7 +729,7 @@ Wilcoxon Rank Sum, Eta sq
 Mean (sd)
 </td>
 <td style="text-align:right;">
-9.0 (1.1)
+8.3 (3.3)
 </td>
 <td style="text-align:right;">
 9.2 (1.5)
@@ -747,7 +751,7 @@ Mean (sd)
 Median (Min,Max)
 </td>
 <td style="text-align:right;">
-10.0 (7.1, 10.4)
+8.6 (1.0, 18.0)
 </td>
 <td style="text-align:right;">
 9.4 (2.5, 12.5)
@@ -778,10 +782,10 @@ Median (Min,Max)
 0.89
 </td>
 <td style="text-align:right;">
-0.04
+0.039
 </td>
 <td style="text-align:right;">
-Chi Sq, Cramer
+Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -792,7 +796,7 @@ Chi Sq, Cramer
 barley
 </td>
 <td style="text-align:right;">
-25 (32)
+49 (32)
 </td>
 <td style="text-align:right;">
 25 (32)
@@ -814,7 +818,7 @@ barley
 barley+lupins
 </td>
 <td style="text-align:right;">
-27 (34)
+53 (35)
 </td>
 <td style="text-align:right;">
 27 (34)
@@ -836,7 +840,7 @@ barley+lupins
 lupins
 </td>
 <td style="text-align:right;">
-27 (34)
+49 (32)
 </td>
 <td style="text-align:right;">
 27 (34)
