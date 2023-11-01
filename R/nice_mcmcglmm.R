@@ -54,7 +54,7 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
     opd_mcmcglmm[which(is.na(opd_mcmcglmm$"RR (95% HPDI)")), ]$"RR (95% HPDI)" <- "reference";
   }, error=function(e){return(printErr <- NA)})
   opd_mcmcglmm <- opd_mcmcglmm |>
-    dplyr::select(-join) |>
+    dplyr::select(!join) |>
     dplyr::mutate(Ovar = match(Variable, unique(Variable))) |> 
     dplyr::group_by(Variable) |> 
     dplyr::mutate(instance = 1:n())
@@ -64,7 +64,7 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   opd_mcmcglmm <- opd_mcmcglmm |>
     dplyr::arrange(Variable, instance) |>
     dplyr::arrange(OrigOrder,instance) |> 
-    dplyr::select(-instance, -Ovar, -OrigOrder)
+    dplyr::select(!instance, !Ovar, !OrigOrder)
   opd_mcmcglmm$Variable <- gsub("_", " ", opd_mcmcglmm$Variable);
   opd_mcmcglmm$Variable[duplicated(opd_mcmcglmm$Variable )] <- NA;
   opd_mcmcglmm$MCMCp[opd_mcmcglmm$MCMCp == "0.000"] <- "<0.001";
