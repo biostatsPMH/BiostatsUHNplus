@@ -7,7 +7,6 @@
 #' @importFrom plyr join_all 
 #' @importFrom purrr modify_if 
 #' @importFrom dplyr select mutate arrange group_by 
-#' @importFrom magrittr "%>%"
 #' @export
 #' @examples
 #' mcmcglmm_mva <- nice_mcmcglmm(model1, Milk);
@@ -54,17 +53,17 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   tryCatch({
     opd_mcmcglmm[which(is.na(opd_mcmcglmm$"RR (95% HPDI)")), ]$"RR (95% HPDI)" <- "reference";
   }, error=function(e){return(printErr <- NA)})
-  opd_mcmcglmm <- opd_mcmcglmm 
-    dplyr::select(-join) 
-    dplyr::mutate(Ovar = match(Variable, unique(Variable)))  
-    dplyr::group_by(Variable)  
+  opd_mcmcglmm <- opd_mcmcglmm |>
+    dplyr::select(-join) |>
+    dplyr::mutate(Ovar = match(Variable, unique(Variable))) |> 
+    dplyr::group_by(Variable) |> 
     dplyr::mutate(instance = 1:n())
   tryCatch({
     opd_mcmcglmm[which(opd_mcmcglmm$"RR (95% HPDI)" == "reference"), ]$instance <- 0;
   }, error=function(e){return(printErr <- NA)})
-  opd_mcmcglmm <- opd_mcmcglmm 
-    dplyr::arrange(Variable, instance) 
-    dplyr::arrange(OrigOrder,instance) 
+  opd_mcmcglmm <- opd_mcmcglmm |>
+    dplyr::arrange(Variable, instance) |>
+    dplyr::arrange(OrigOrder,instance) |> 
     dplyr::select(-instance, -Ovar, -OrigOrder)
   opd_mcmcglmm$Variable <- gsub("_", " ", opd_mcmcglmm$Variable);
   opd_mcmcglmm$Variable[duplicated(opd_mcmcglmm$Variable )] <- NA;
