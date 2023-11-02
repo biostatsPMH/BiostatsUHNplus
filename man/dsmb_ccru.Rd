@@ -14,12 +14,12 @@ dsmb_ccru(
   cutDate,
   boundDate = NULL,
   subjID,
-  enrollment_DF,
-  demography_DF,
-  ineligibility_DF,
-  ae_DF,
-  genderVar,
+  subjID_ineligText = NULL,
+  baseline_datasets,
+  ae_dataset,
   ineligVar,
+  ineligVarText = NULL,
+  genderVar,
   enrolDtVar,
   ae_detailVar,
   ae_categoryVar,
@@ -39,7 +39,7 @@ dsmb_ccru(
 
 \item{title}{full character vector with name of study}
 
-\item{comp}{comparison group (if provided)}
+\item{comp}{baseline comparison group, for example, cohort (if provided)}
 
 \item{pi}{character vector name of study principal investigator}
 
@@ -49,19 +49,22 @@ dsmb_ccru(
 
 \item{boundDate}{lower bound cutoff date for AEs (if provided)}
 
-\item{subjID}{key identifier field for subject ID in data sets}
+\item{subjID}{key identifier field for participant ID in data sets}
 
-\item{enrollment_DF}{data set that contains enrollment variables}
+\item{subjID_ineligText}{character text that denotes participant IDs to exclude,
+for example, c("New Subject") (if provided)}
 
-\item{demography_DF}{data set that contains demography variables}
+\item{baseline_datasets}{list of data frames that contain baseline participant characteristics,
+for example, list(enrollment_DF,demography_DF,ineligibility_DF)}
 
-\item{ineligibility_DF}{data set that contains ineligibility variables}
+\item{ae_dataset}{data frame that contains subject AEs}
 
-\item{ae_DF}{data set that contains AEs}
+\item{ineligVar}{field that denotes participant ineligibility}
+
+\item{ineligVarText}{character text that denotes participant ineligibility,
+for example, c("Yes", "Y") (if provided)}
 
 \item{genderVar}{field that denotes participant gender}
-
-\item{ineligVar}{field that denotes participant ineligibility (Yes, No)}
 
 \item{enrolDtVar}{field that denotes participant enrolment date (i.e. 10MAY2021)}
 
@@ -74,13 +77,13 @@ dsmb_ccru(
 \item{ae_onsetDtVar}{field that denotes participant AE onset date}
 
 \item{ae_detailOtherText}{character text that denotes referencing vebatim AE field,
-for example, "Other, specify" (if provided)}
+for example, c("Other, specify", "OTHER") (if provided)}
 
 \item{ae_detailOtherVar}{field that denotes participant AE detail other (if provided)}
 
 \item{ae_verbatimVar}{field that denotes participant AE detail verbatim (if provided)}
 
-\item{numSubj}{vector to override value for number of subjects in summary (if provided)}
+\item{numSubj}{vector to override value for number of participants in summary (if provided)}
 }
 \value{
 three Excel files containing DSMB-CCRU AE summary tables
@@ -92,12 +95,13 @@ Outputs the three DSMB-CCRU AE summary tables in Excel format per UHN template
 dsmb_ccru(protocol="CLINICAL_TRIAL",setwd="T:/My location/study",
    title="A feasibility study to evaluate a cancer drug",
    comp="COHORT",pi="Dr. PI",presDate="17NOV2023",cutDate="31AUG2023",boundDate=NULL,
-   subjID="Subject",enrollment_DF=enrollment_DF,demography_DF=demography_DF,
-   ineligibility_DF=ineligibility_DF,ae_DF=ae_DF,
-   genderVar="GENDER_CODE",ineligVar="INELIGIBILITY_STATUS",enrolDtVar="ENROL_DATE_INT",
+   subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+   baseline_datasets=list(enrollment_DF,demography_DF,ineligibility_DF),
+   ae_dataset=ae_DF,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
+   genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",
    ae_detailVar="ae_detail",ae_categoryVar="ae_category",
    ae_severityVar="AE_SEV_GD_STD",ae_onsetDtVar="AE_ONSET_DT_INT",
-   ae_verbatimOtherText="Other, specify",ae_detailOtherVar="CTCAE5_LLT_NM",
+   ae_verbatimOtherText=c("Other, specify", "OTHER"),ae_detailOtherVar="CTCAE5_LLT_NM",
    ae_verbatimVar="AE_VERBATIM_TRM_TXT",numSubj=c(4,5,6,7))
 }
 \keyword{dataframe}
