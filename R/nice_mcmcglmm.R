@@ -64,7 +64,7 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   opd_mcmcglmm <- opd_mcmcglmm |>
     dplyr::arrange(Variable, instance) |>
     dplyr::arrange(OrigOrder,instance) |> 
-    dplyr::select(!instance, !Ovar, !OrigOrder)
+    dplyr::select(!c(instance, Ovar, OrigOrder))
   opd_mcmcglmm$Variable <- gsub("_", " ", opd_mcmcglmm$Variable);
   opd_mcmcglmm$Variable[duplicated(opd_mcmcglmm$Variable )] <- NA;
   opd_mcmcglmm$MCMCp[opd_mcmcglmm$MCMCp == "0.000"] <- "<0.001";
