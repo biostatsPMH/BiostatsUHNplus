@@ -3,49 +3,55 @@
 #' @param protocol study protocol name (uppercase, no spaces permitted)
 #' @param setwd working directory to write summary files to
 #' @param title full character vector with name of study
-#' @param comp comparison group (if provided)
+#' @param comp baseline comparison group, for example, cohort (if provided)
 #' @param pi character vector name of study principal investigator
 #' @param presDate presentation date (i.e. 17NOV2023) for DSMB
 #' @param cutDate recent cutoff date for AEs (i.e. 31AUG2023)
 #' @param boundDate lower bound cutoff date for AEs (if provided)
-#' @param subjID key identifier field for subject ID in data sets
-#' @param enrollment_DF data set that contains enrollment variables
-#' @param demography_DF data set that contains demography variables
-#' @param ineligibility_DF data set that contains ineligibility variables
-#' @param ae_DF data set that contains AEs
+#' @param subjID key identifier field for participant ID in data sets
+#' @param subjID_ineligText character text that denotes participant IDs to exclude,
+#'    for example, c("New Subject") (if provided)
+#' @param baseline_datasets list of data frames that contain baseline participant characteristics,
+#'    for example, list(enrollment_DF,demography_DF,ineligibility_DF)
+#' @param ae_dataset data frame that contains subject AEs
+#' @param ineligVar field that denotes participant ineligibility
+#' @param ineligVarText character text that denotes participant ineligibility,
+#'    for example, c("Yes", "Y") (if provided)
 #' @param genderVar field that denotes participant gender
-#' @param ineligVar field that denotes participant ineligibility (Yes, No)
 #' @param enrolDtVar field that denotes participant enrolment date (i.e. 10MAY2021)
 #' @param ae_detailVar field that denotes participant AE detail (lower-level term)
 #' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
 #' @param ae_onsetDtVar field that denotes participant AE onset date
 #' @param ae_detailOtherText character text that denotes referencing vebatim AE field, 
-#'   for example, "Other, specify" (if provided)
+#'   for example, c("Other, specify", "OTHER") (if provided)
 #' @param ae_detailOtherVar field that denotes participant AE detail other (if provided)
 #' @param ae_verbatimVar field that denotes participant AE detail verbatim (if provided)
-#' @param numSubj vector to override value for number of subjects in summary (if provided)
+#' @param numSubj vector to override value for number of participants in summary (if provided)
 #' @keywords dataframe
 #' @return three Excel files containing DSMB-CCRU AE summary tables
 #' @importFrom openxlsx createStyle createWorkbook addWorksheet writeData mergeCells addStyle setRowHeights setColWidths saveWorkbook
-#' @importFrom dplyr left_join select distinct mutate arrange summarise group_by filter across row_number n_distinct
+#' @importFrom plyr join_all
+#' @importFrom dplyr select distinct mutate arrange summarise group_by filter across row_number n_distinct
 #' @importFrom stringr str_detect
 #' @export
 #' @examples
 #' dsmb_ccru(protocol="CLINICAL_TRIAL",setwd="T:/My location/study",
 #'    title="A feasibility study to evaluate a cancer drug",
 #'    comp="COHORT",pi="Dr. PI",presDate="17NOV2023",cutDate="31AUG2023",boundDate=NULL,
-#'    subjID="Subject",enrollment_DF=enrollment_DF,demography_DF=demography_DF,
-#'    ineligibility_DF=ineligibility_DF,ae_DF=ae_DF,
-#'    genderVar="GENDER_CODE",ineligVar="INELIGIBILITY_STATUS",enrolDtVar="ENROL_DATE_INT",
+#'    subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+#'    baseline_datasets=list(enrollment_DF,demography_DF,ineligibility_DF),
+#'    ae_dataset=ae_DF,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
+#'    genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",
 #'    ae_detailVar="ae_detail",ae_categoryVar="ae_category",
 #'    ae_severityVar="AE_SEV_GD_STD",ae_onsetDtVar="AE_ONSET_DT_INT",
-#'    ae_verbatimOtherText="Other, specify",ae_detailOtherVar="CTCAE5_LLT_NM",
+#'    ae_verbatimOtherText=c("Other, specify", "OTHER"),ae_detailOtherVar="CTCAE5_LLT_NM",
 #'    ae_verbatimVar="AE_VERBATIM_TRM_TXT",numSubj=c(4,5,6,7))
 
 dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDate=NULL,
-                      subjID,enrollment_DF,demography_DF,ineligibility_DF,ae_DF,
-                      genderVar,ineligVar,enrolDtVar,ae_detailVar,ae_categoryVar,
+                      subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
+                      ineligVar,ineligVarText=NULL,
+                      genderVar,enrolDtVar,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,ae_detailOtherText=NULL,ae_detailOtherVar=NULL,
                       ae_verbatimVar=NULL,numSubj=NULL,...){
 
@@ -126,33 +132,33 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     ae_detailOtherText <- "Other, specify";
   }
   if (is.null(comp)) {
-    subjectsKeep_DF <- enrollment_DF |> 
-      dplyr::left_join(demography_DF, by = subjID) |>
-      dplyr::left_join(ineligibility_DF, by = subjID) |>
+    subjectsKeep_DF <- plyr::join_all(baseline_datasets, by = subjID, type = "full") |>
       #### --------------------------------------------- ####
       #### Just modify the below line for variable names ####
       dplyr::mutate(Subject = eval(parse(text=subjID)), comp = "", gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
       dplyr::select(Subject, comp, gender_code, PT_ELIG_IND_3, PARTIC_ENROL_DT_INT) |>
+      dplyr::group_by(Subject) |>
+      dplyr::summarise(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
       #### --------------------------------------------- ####
       dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
-      dplyr::filter(!PT_ELIG_IND_3 %in% c("Yes"), !Subject %in% c("New Subject")) |>
+      dplyr::filter(!PT_ELIG_IND_3 %in% ineligVarText, !Subject %in% subjID_ineligText) |>
       dplyr::arrange(Subject)
   }
   if (!is.null(comp)) {
-    subjectsKeep_DF <- enrollment_DF |> 
-      dplyr::left_join(demography_DF, by = subjID) |>
-      dplyr::left_join(ineligibility_DF, by = subjID) |>
+    subjectsKeep_DF <- plyr::join_all(baseline_datasets, by = subjID, type = "full") |>
       #### --------------------------------------------- ####
-    #### Just modify the below line for variable names ####
-    dplyr::mutate(Subject = eval(parse(text=subjID)), comp = eval(parse(text=comp)), gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
+      #### Just modify the below line for variable names ####
+      dplyr::mutate(Subject = eval(parse(text=subjID)), comp = eval(parse(text=comp)), gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
       dplyr::select(Subject, comp, gender_code, PT_ELIG_IND_3, PARTIC_ENROL_DT_INT) |>
+      dplyr::group_by(Subject) |>
+      dplyr::summarise(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
       #### --------------------------------------------- ####
-    dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
-      dplyr::filter(!PT_ELIG_IND_3 %in% c("Yes"), !Subject %in% c("New Subject")) |>
+      dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
+      dplyr::filter(!PT_ELIG_IND_3 %in% ineligVarText, !Subject %in% subjID_ineligText) |>
       dplyr::arrange(Subject)
   }
   
-  aeKeep_DF <- ae_DF |>
+  aeKeep_DF <- ae_dataset |>
     #### --------------------------------------------- ####
   #### Just modify the below line for variable names ####
   dplyr::mutate(Subject = eval(parse(text=subjID)), ae_grade_code_dyn_std = eval(parse(text=ae_severityVar)), CTCAE5_LLT_NM = eval(parse(text=ae_detailOtherVar)), AE_VERBATIM_TRM_TXT = eval(parse(text=ae_verbatimVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar))) |>
@@ -161,7 +167,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
   dplyr::mutate(ae_detail = toupper(ifelse(stringr::str_detect(ae_detail, ae_detailOtherText), trimws(AE_VERBATIM_TRM_TXT), ae_detail)), AE_ONSET_DT_INT = toupper(format(as.Date(AE_ONSET_DT_INT, tz = "UTC"), "%d%b%Y")), ae_category = toupper(ae_category)) |>
     dplyr::mutate(ae_detail = toupper(ifelse(is.na(ae_detail), CTCAE5_LLT_NM, ae_detail))) 
   
-  
+  #i <- 1;
   for (i in 1:length(unique(subjectsKeep_DF[["comp"]]))) {
     comp <- unique(subjectsKeep_DF[["comp"]])[i]
     tryCatch({
