@@ -4,12 +4,12 @@ Version: 0.0.0.9000
 Authors@R: c(
     person(given="Lisa",family="Avery",email = "lisa.avery@uhn.ca",role=c("aut")),
     person(given="Zeynep",family="Baskurt",email = "zeynep.baskurt@uhn.ca",role="aut"),
-    person(given="Osvaldo",family="Espin-Garcia",email = "osvaldo.espin-garcia@uhnresearch.ca",role="aut"),
-    person(given="Katrina",family="Hueniken",email = "katrina.hueniken@uhnresearch.ca",role="aut"),
-    person(given="Katherine",family="Lajkosz",email = "katherine.lajkosz@uhnresearch.ca",role="aut"),
+    person(given="Osvaldo",family="Espin-Garcia",email = "osvaldo.espin-garcia@uhn.ca",role="aut"),
+    person(given="Katrina",family="Hueniken",email = "katrina.hueniken@uhn.ca",role="aut"),
+    person(given="Katherine",family="Lajkosz",email = "katherine.lajkosz@uhn.ca",role="aut"),
     person(given="Xuan",family="Li",email = "xuan.li@uhnresearch.ca",role="aut"),
-    person(given="Tyler",family="Pittman",email="tyler.pittman@uhnresearch.ca",role=c("cre","aut"),comment=c(ORCHID="0000-0002-5013-6980")),
-    person(given="Anna",family="Santiago",email="anna.santiago@uhnresearch.ca",role="aut"),
+    person(given="Tyler",family="Pittman",email="tyler.pittman@uhn.ca",role=c("cre","aut"),comment=c(ORCHID="0000-0002-5013-6980")),
+    person(given="Anna",family="Santiago",email="anna.santiago@uhn.ca",role="aut"),
     person(given="Jessica",family="Weiss",email = "jessica.weiss@uhn.ca",role="aut"),    
     person(given="Wei", family="Xu",email = "wxu@uhnres.utoronto.ca",role="aut"))
 Description: Miscellaneous code snippets and functions with pipes and multiple package dependencies.
@@ -17,7 +17,25 @@ License: MIT + file LICENSE
 Suggests: 
     rmarkdown,
     testthat (>= 3.0.0)
-Imports: utils
+Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Imports: 
+    afex,
+    dplyr,
+    modeest,
+    openxlsx,
+    parallel,
+    plyr,
+    purrr,
+    rlang,
+    rstatix,
+    stats,
+    stringr,
+    tibble,
+    utils
+Collate: 'as_numeric_parse.R' 'covsum_nested.R' 'dsmb_ccru.R' 'nice_mcmcglmm.R'
+Depends: 
+    R (>= 4.2)
+LazyData: true
