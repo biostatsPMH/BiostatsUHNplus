@@ -984,3 +984,43 @@ Median (Min,Max)
 </tr>
 </tbody>
 </table>
+
+### Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template
+
+Uses addendum fake study data. DSMB-CCRU AE summary tables in below code
+example can be found in the *dsmb_ccru_tables* folder of
+**BiostatsUHNplus** package.
+
+``` r
+library(reportRmd);
+library(BiostatsUHNplus);
+data("enrollment", "demography", "ineligibility", "ae");
+
+## This does summary for all participants;
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
+          title="Phase X Study to Evaluate Treatments A-D",
+          comp=NULL,pi="Dr. Principal Investigator",
+          presDate="30OCT2020",cutDate="31AUG2020",
+          boundDate=NULL,subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+          baseline_datasets=list(enrollment,demography,ineligibility),
+          ae_dataset=ae,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
+          genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+          ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD_STD",
+          ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
+          ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
+          numSubj=NULL)
+
+## This does summary for each cohort;
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
+          title="Phase X Study to Evaluate Treatments A-D",
+          comp="COHORT",pi="Dr. Principal Investigator",
+          presDate="30OCT2020",cutDate="31AUG2020",
+          boundDate=NULL,subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+          baseline_datasets=list(enrollment,demography,ineligibility),
+          ae_dataset=ae,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
+          genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+          ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD_STD",
+          ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
+          ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
+          numSubj=NULL)
+```
