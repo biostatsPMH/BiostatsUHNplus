@@ -182,6 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="example.html"><a href="example.html#a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error"><i class="fa fa-check"></i><b>4.3.1</b> A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error</a></li>
 <li class="chapter" data-level="4.3.2" data-path="example.html"><a href="example.html#summary-statistics-by-patient-id-nested-in-cohort-stratified-by-overall-survival-status"><i class="fa fa-check"></i><b>4.3.2</b> Summary statistics by patient ID nested in cohort, stratified by overall survival status</a></li>
+<li class="chapter" data-level="4.3.3" data-path="example.html"><a href="example.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1133,6 +1134,41 @@ Median (Min,Max)
 </tr>
 </tbody>
 </table>
+</div>
+<div id="outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template<a href="example.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uses addendum fake study data. DSMB-CCRU AE summary tables in below code example can be found in the <em>dsmb_ccru_tables</em> folder of <strong>BiostatsUHNplus</strong> package.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="example.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reportRmd);</span>
+<span id="cb19-2"><a href="example.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
+<span id="cb19-3"><a href="example.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;enrollment&quot;</span>, <span class="st">&quot;demography&quot;</span>, <span class="st">&quot;ineligibility&quot;</span>, <span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb19-4"><a href="example.html#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="example.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="do">## This does summary for all participants;</span></span>
+<span id="cb19-6"><a href="example.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dsmb_ccru</span>(<span class="at">protocol=</span><span class="st">&quot;EXAMPLE_STUDY&quot;</span>,<span class="at">setwd=</span><span class="st">&quot;.&quot;</span>,</span>
+<span id="cb19-7"><a href="example.html#cb19-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">title=</span><span class="st">&quot;Phase X Study to Evaluate Treatments A-D&quot;</span>,</span>
+<span id="cb19-8"><a href="example.html#cb19-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">comp=</span><span class="cn">NULL</span>,<span class="at">pi=</span><span class="st">&quot;Dr. Principal Investigator&quot;</span>,</span>
+<span id="cb19-9"><a href="example.html#cb19-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">presDate=</span><span class="st">&quot;30OCT2020&quot;</span>,<span class="at">cutDate=</span><span class="st">&quot;31AUG2020&quot;</span>,</span>
+<span id="cb19-10"><a href="example.html#cb19-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">boundDate=</span><span class="cn">NULL</span>,<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;New Subject&quot;</span>,<span class="st">&quot;Test&quot;</span>),</span>
+<span id="cb19-11"><a href="example.html#cb19-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment,demography,ineligibility),</span>
+<span id="cb19-12"><a href="example.html#cb19-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_dataset=</span>ae,<span class="at">ineligVar=</span><span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>,<span class="at">ineligVarText=</span><span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Y&quot;</span>),</span>
+<span id="cb19-13"><a href="example.html#cb19-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">genderVar=</span><span class="st">&quot;GENDER_CODE&quot;</span>,<span class="at">enrolDtVar=</span><span class="st">&quot;ENROL_DATE_INT&quot;</span>,<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb19-14"><a href="example.html#cb19-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD_STD&quot;</span>,</span>
+<span id="cb19-15"><a href="example.html#cb19-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">ae_detailOtherText=</span><span class="st">&quot;Other, specify&quot;</span>,</span>
+<span id="cb19-16"><a href="example.html#cb19-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_detailOtherVar=</span><span class="st">&quot;CTCAE5_LLT_NM&quot;</span>,<span class="at">ae_verbatimVar=</span><span class="st">&quot;AE_VERBATIM_TRM_TXT&quot;</span>,</span>
+<span id="cb19-17"><a href="example.html#cb19-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">numSubj=</span><span class="cn">NULL</span>)</span>
+<span id="cb19-18"><a href="example.html#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="example.html#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="do">## This does summary for each cohort;</span></span>
+<span id="cb19-20"><a href="example.html#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="fu">dsmb_ccru</span>(<span class="at">protocol=</span><span class="st">&quot;EXAMPLE_STUDY&quot;</span>,<span class="at">setwd=</span><span class="st">&quot;.&quot;</span>,</span>
+<span id="cb19-21"><a href="example.html#cb19-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">title=</span><span class="st">&quot;Phase X Study to Evaluate Treatments A-D&quot;</span>,</span>
+<span id="cb19-22"><a href="example.html#cb19-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">comp=</span><span class="st">&quot;COHORT&quot;</span>,<span class="at">pi=</span><span class="st">&quot;Dr. Principal Investigator&quot;</span>,</span>
+<span id="cb19-23"><a href="example.html#cb19-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">presDate=</span><span class="st">&quot;30OCT2020&quot;</span>,<span class="at">cutDate=</span><span class="st">&quot;31AUG2020&quot;</span>,</span>
+<span id="cb19-24"><a href="example.html#cb19-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">boundDate=</span><span class="cn">NULL</span>,<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;New Subject&quot;</span>,<span class="st">&quot;Test&quot;</span>),</span>
+<span id="cb19-25"><a href="example.html#cb19-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment,demography,ineligibility),</span>
+<span id="cb19-26"><a href="example.html#cb19-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_dataset=</span>ae,<span class="at">ineligVar=</span><span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>,<span class="at">ineligVarText=</span><span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Y&quot;</span>),</span>
+<span id="cb19-27"><a href="example.html#cb19-27" aria-hidden="true" tabindex="-1"></a>          <span class="at">genderVar=</span><span class="st">&quot;GENDER_CODE&quot;</span>,<span class="at">enrolDtVar=</span><span class="st">&quot;ENROL_DATE_INT&quot;</span>,<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb19-28"><a href="example.html#cb19-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD_STD&quot;</span>,</span>
+<span id="cb19-29"><a href="example.html#cb19-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">ae_detailOtherText=</span><span class="st">&quot;Other, specify&quot;</span>,</span>
+<span id="cb19-30"><a href="example.html#cb19-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_detailOtherVar=</span><span class="st">&quot;CTCAE5_LLT_NM&quot;</span>,<span class="at">ae_verbatimVar=</span><span class="st">&quot;AE_VERBATIM_TRM_TXT&quot;</span>,</span>
+<span id="cb19-31"><a href="example.html#cb19-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">numSubj=</span><span class="cn">NULL</span>)</span></code></pre></div>
 
 </div>
 </div>
