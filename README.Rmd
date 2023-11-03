@@ -80,15 +80,15 @@ rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"),
 
 ### Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template
 
-Uses addendum fake study data.
+Uses addendum fake study data. DSMB-CCRU AA summary tables in below code examples are outputted in *dsmb_ccru_tables* folder of **BiostatsUHNplus** package.
 
 ```{r example3}
 library(reportRmd);
 library(BiostatsUHNplus);
-data(c("enrollment", "demography", "ineligibility", "ae"));
+data(enrollment, "demography", "ineligibility", "ae");
 
 ## This does summary for all participants;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables",
           title="Phase X Study to Evaluate Treatments A-D",
           comp=NULL,pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -102,7 +102,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="",
           numSubj=NULL)
 
 ## This does summary for each cohort;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables",
           title="Phase X Study to Evaluate Treatments A-D",
           comp="COHORT",pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -114,7 +114,6 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="",
           ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
           ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
           numSubj=NULL)
-
 ```
 
 
