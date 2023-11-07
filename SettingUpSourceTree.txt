@@ -18,7 +18,7 @@ This will allow you to enter your username (or email)
 
 Then change Authentication back to OAuth 
 
-Click Refresh Password, this will take you to a gitHub login
+Click Refresh Password, this will take you to a GitHub login
 
 Login, click OK, and maybe OK again to go back to SourceTree
 
