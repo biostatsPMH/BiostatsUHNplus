@@ -122,7 +122,7 @@ Full Sample (n=94)
 Unnested p-value
 </th>
 <th style="text-align:right;">
-Effect Size
+Unnested Effect Size
 </th>
 <th style="text-align:right;">
 Unnested StatTest

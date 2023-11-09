@@ -92,16 +92,18 @@ three Excel files containing DSMB-CCRU AE summary tables
 Outputs the three DSMB-CCRU AE summary tables in Excel format per UHN template
 }
 \examples{
-dsmb_ccru(protocol="CLINICAL_TRIAL",setwd="T:/My location/study",
-   title="A feasibility study to evaluate a cancer drug",
-   comp="COHORT",pi="Dr. PI",presDate="17NOV2023",cutDate="31AUG2023",boundDate=NULL,
-   subjID="Subject",subjID_ineligText=c("New Subject","Test"),
-   baseline_datasets=list(enrollment_DF,demography_DF,ineligibility_DF),
-   ae_dataset=ae_DF,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
-   genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",
-   ae_detailVar="ae_detail",ae_categoryVar="ae_category",
-   ae_severityVar="AE_SEV_GD_STD",ae_onsetDtVar="AE_ONSET_DT_INT",
-   ae_verbatimOtherText=c("Other, specify", "OTHER"),ae_detailOtherVar="CTCAE5_LLT_NM",
-   ae_verbatimVar="AE_VERBATIM_TRM_TXT",numSubj=c(4,5,6,7))
+data("enrollment", "demography", "ineligibility", "ae");
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
+  title="Phase X Study to Evaluate Treatments A-D",
+  comp="COHORT",pi="Dr. Principal Investigator",
+  presDate="30OCT2020",cutDate="31AUG2020",
+  boundDate=NULL,subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+  baseline_datasets=list(enrollment,demography,ineligibility),
+  ae_dataset=ae,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
+  genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD_STD",
+  ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
+  ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
+  numSubj=c(2,4,5,6))
 }
 \keyword{dataframe}
