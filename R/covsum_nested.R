@@ -235,6 +235,9 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   tableOnly = T and outTable function. 
 #' @param show.tests boolean indicating if the type of statistical used should
 #'   be shown in a column beside the pvalues. Ignored if pvalue=FALSE.
+#' @param just.nested.pvalue boolean indicating if the just the nested p-value
+#'   should be shown in a column, and not unnested p-value, unnested statistical
+#'   tests and effect size. Overrides effSize and show.tests arguments.
 #' @param testcont test of choice for continuous variables,one of
 #'   \emph{rank-sum} (default) or \emph{ANOVA}
 #' @param testcat test of choice for categorical variables,one of
@@ -276,9 +279,10 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
                              digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
                              pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp = FALSE,show.tests=TRUE,
-                             testcont = c('rank-sum test','ANOVA'),testcat = c('Chi-squared','Fisher'),
-                             full=TRUE,include_missing=FALSE,percentage=c('column','row'),
-                             excludeLevels=NULL,numobs=NULL,markup=TRUE, sanitize= TRUE,chunk_label,...){
+                             just.nested.pvalue=FALSE,testcont=c('rank-sum test','ANOVA'),
+                             testcat=c('Chi-squared','Fisher'),full=TRUE,include_missing=FALSE,
+                             percentage=c('column','row'),excludeLevels=NULL,numobs=NULL,markup=TRUE, 
+                             sanitize= TRUE,chunk_label,...){
   
   if (unformattedp |p.adjust !='none')
     formatp <- function(x) {
@@ -298,6 +302,12 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
   to_indent <- which(!tab$Covariate %in% output_var_names)
   to_bold_name <- which(tab$Covariate %in% output_var_names)
   bold_cells <- arrayInd(to_bold_name, dim(tab))
+  
+  if (just.nested.pvalue == T) {
+    if ('Nested p-value' %in% names(tab)) {
+      tab <- tab[,-which(names(tab) %in% c('p-value', 'StatTest', 'Effect Size'))]
+    }
+  }
 
   if (nicenames) tab$Covariate <- reportRmd:::replaceLbl(argList$data, tab$Covariate)
   names(tab)[1] <- covTitle
@@ -335,6 +345,19 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
     }
   }, error=function(e){})
   
+  if ('p-value' %in% names(tab)) 
+    names(tab)[names(tab) == 'p-value'] <- 'Unnested p-value'
+  if ('StatTest' %in% names(tab)) 
+    names(tab)[names(tab) == 'StatTest'] <- 'Unnested StatTest'
+  if ('Effect Size' %in% names(tab)) 
+    names(tab)[names(tab) == 'Effect Size'] <- 'Unnested Effect Size'
+  
+  suppressWarnings({
+    tryCatch({
+      try(stopCluster(cl), silent=TRUE)
+    }, error=function(e){})
+  })
+  
   if (tableOnly){
     if (names(tab)[1]=='') names(tab)[1]<- 'Covariate'
     attr(tab, "to_indent") <- to_indent
@@ -342,16 +365,6 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
     attr(tab, "dimchk") <- dim(tab)
     return(tab)
   }
-  
-  if ('p-value' %in% names(tab)) 
-    colnames(tab)[colnames(tab) == 'p-value'] <- 'Unnested p-value'
-  if ('StatTest' %in% names(tab)) 
-    colnames(tab)[colnames(tab) == 'StatTest'] <- 'Unnested StatTest'
-  suppressWarnings({
-    tryCatch({
-      try(stopCluster(cl), silent=TRUE)
-    }, error=function(e){})
-  })
   
   
   outTable(tab=tab,to_indent=to_indent,bold_cells = bold_cells,
