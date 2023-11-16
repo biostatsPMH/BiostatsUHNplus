@@ -1040,9 +1040,10 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test")
                  fontColours=c("#FF4F00","#FFDB58"),
                  panelColours=c("#AAF0D1","#B31B1B"),
                  attribColours=c("#F6ADC6","#C54B8C","#A4DDED","#0077BE","#9AB973",
-                                 "#01796F","#FFA343","#CC7722","#E0B0FF","#5A4FCF"),                                  attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
+                                 "#01796F","#FFA343","#CC7722","#E0B0FF","#5A4FCF"),
+                 attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
                  columnWidths=c(23,15))
-ggsave(paste("man/figures/ae_category_timeline_plot", ".png", sep=""), p, width=5.6, height=5.4, device="png", scale = 1);
+ggsave(paste("man/figures/ae_category_timeline_plot", ".png", sep=""), p, width=3.6, height=5.4, device="png", scale = 1);
 ```
 
 <img src="man/figures/ae_category_timeline_plot.png" width="100%" />
