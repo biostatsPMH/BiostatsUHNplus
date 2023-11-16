@@ -25,6 +25,8 @@
 #'   for example, could be one of c("day","week","month","year") (if provided)
 #' @param include_ae_detail boolean that denotes if AE detail should be included
 #'    in timeline plot. Default is True
+#' @param legendPerSpace parameter at denotes proportion of vertical image space 
+#'    dedicated to legend at bottom. Default is 0.05 for AE detail and 0.1 for AE Category
 #' @keywords plot
 #' @return ggplot object of AE timeline plot
 #' @importFrom plyr join_all rbind.fill
@@ -56,7 +58,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
                       ae_attribVars,ae_attribVarsName=NULL,ae_attribVarText=NULL,
                       startDtVar,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,time_unit=c("day","week","month","year"),
-                      include_ae_detail=T,...){
+                      include_ae_detail=T,legendPerSpace=NULL,...){
   
   options(dplyr.summarise.inform = FALSE)
   if (is.null(ae_attribVarText)) {
@@ -91,6 +93,13 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   
   
   if (include_ae_detail == T) {
+    
+    if (is.null(legendPerSpace)) {
+      legendPerSpaceDetail = 0.05
+    } else {
+      legendPerSpaceDetail = legendPerSpace
+    }
+    
     #i <- 1;
     mydataPlot <- NA;
     mydataPlot <- as.data.frame(mydataPlot);
@@ -254,11 +263,17 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     le1 <- cowplot::get_legend(p1_with_legend)
     
     #---!!!!!! note the second parameter in rel_heights below sets legend space area on plot !!!!!!---# 
-    pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, 0.05)) +
+    pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, legendPerSpaceDetail)) +
       theme(plot.background = element_rect(fill = "white", colour = NA))
     
     return(pPlot)
   } else {
+    
+    if (is.null(legendPerSpace)) {
+      legendPerSpaceCategory = 0.1
+    } else {
+      legendPerSpaceCategory = legendPerSpace
+    }
     
     #i <- 1;
     mydataPlot <- NA;
@@ -405,7 +420,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     #### This part makes the legend centered below both plot and panel area;
     gt <- ggplot_gtable(ggplot_build(p1_no_legend))
     le1 <- cowplot::get_legend(p1_with_legend)
-    pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, 0.1)) +
+    pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, legendPerSpaceCategory)) +
       theme(plot.background = element_rect(fill = "white", colour = NA))
     
     return(pPlot)
