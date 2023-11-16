@@ -1151,7 +1151,7 @@ Median (Min,Max)
 <span id="cb19-11"><a href="example.html#cb19-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment,demography,ineligibility),</span>
 <span id="cb19-12"><a href="example.html#cb19-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_dataset=</span>ae,<span class="at">ineligVar=</span><span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>,<span class="at">ineligVarText=</span><span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Y&quot;</span>),</span>
 <span id="cb19-13"><a href="example.html#cb19-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">genderVar=</span><span class="st">&quot;GENDER_CODE&quot;</span>,<span class="at">enrolDtVar=</span><span class="st">&quot;ENROL_DATE_INT&quot;</span>,<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
-<span id="cb19-14"><a href="example.html#cb19-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD_STD&quot;</span>,</span>
+<span id="cb19-14"><a href="example.html#cb19-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
 <span id="cb19-15"><a href="example.html#cb19-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">ae_detailOtherText=</span><span class="st">&quot;Other, specify&quot;</span>,</span>
 <span id="cb19-16"><a href="example.html#cb19-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_detailOtherVar=</span><span class="st">&quot;CTCAE5_LLT_NM&quot;</span>,<span class="at">ae_verbatimVar=</span><span class="st">&quot;AE_VERBATIM_TRM_TXT&quot;</span>,</span>
 <span id="cb19-17"><a href="example.html#cb19-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">numSubj=</span><span class="cn">NULL</span>)</span>
@@ -1165,10 +1165,42 @@ Median (Min,Max)
 <span id="cb19-25"><a href="example.html#cb19-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment,demography,ineligibility),</span>
 <span id="cb19-26"><a href="example.html#cb19-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_dataset=</span>ae,<span class="at">ineligVar=</span><span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>,<span class="at">ineligVarText=</span><span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Y&quot;</span>),</span>
 <span id="cb19-27"><a href="example.html#cb19-27" aria-hidden="true" tabindex="-1"></a>          <span class="at">genderVar=</span><span class="st">&quot;GENDER_CODE&quot;</span>,<span class="at">enrolDtVar=</span><span class="st">&quot;ENROL_DATE_INT&quot;</span>,<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
-<span id="cb19-28"><a href="example.html#cb19-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD_STD&quot;</span>,</span>
+<span id="cb19-28"><a href="example.html#cb19-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
 <span id="cb19-29"><a href="example.html#cb19-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">ae_detailOtherText=</span><span class="st">&quot;Other, specify&quot;</span>,</span>
 <span id="cb19-30"><a href="example.html#cb19-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_detailOtherVar=</span><span class="st">&quot;CTCAE5_LLT_NM&quot;</span>,<span class="at">ae_verbatimVar=</span><span class="st">&quot;AE_VERBATIM_TRM_TXT&quot;</span>,</span>
 <span id="cb19-31"><a href="example.html#cb19-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">numSubj=</span><span class="cn">NULL</span>)</span></code></pre></div>
+<!-- ### Adverse event timeline plots -->
+<!-- Uses addendum fake study data. Shows timeline for onset of AE after study enrollment. The first plot includes both AE category and AE detail. -->
+<!-- ```{r example4} -->
+<!-- library(reportRmd); -->
+<!-- library(BiostatsUHNplus); -->
+<!-- data("enrollment", "ae"); -->
+<!-- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"), -->
+<!--                  baseline_datasets=list(enrollment), -->
+<!--                  ae_dataset=ae, -->
+<!--                  ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"), -->
+<!--                  ae_attribVarsName=c("Drug 1","Drug 2"), -->
+<!--                  ae_attribVarText=c("Definite", "Probable", "Possible"), -->
+<!--                  enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail", -->
+<!--                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD", -->
+<!--                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")  -->
+<!-- ``` -->
+<!-- The below plot summarizes timeline by AE category. -->
+<!-- ```{r example5} -->
+<!-- library(reportRmd); -->
+<!-- library(BiostatsUHNplus); -->
+<!-- data("enrollment", "ae"); -->
+<!-- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"), -->
+<!--                  baseline_datasets=list(enrollment), -->
+<!--                  ae_dataset=ae, -->
+<!--                  ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"), -->
+<!--                  ae_attribVarsName=c("Drug 1","Drug 2"), -->
+<!--                  ae_attribVarText=c("Definite", "Probable", "Possible"), -->
+<!--                  enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail", -->
+<!--                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD", -->
+<!--                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month", -->
+<!--                  include_ae_detail=F)  -->
+<!-- ``` -->
 
 </div>
 </div>

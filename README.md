@@ -214,7 +214,7 @@ Median (Min,Max)
 1.00
 </td>
 <td style="text-align:right;">
-<0.001
+\<0.001
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
@@ -501,7 +501,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.37
@@ -577,7 +577,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 </tr>
 <tr>
@@ -657,7 +657,7 @@ Missing
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.51
@@ -666,7 +666,7 @@ Missing
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 </tr>
 <tr>
@@ -724,7 +724,7 @@ SD/PD
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.46
@@ -733,7 +733,7 @@ SD/PD
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 </tr>
 <tr>
@@ -792,7 +792,7 @@ PD/SD<c6>
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.70
@@ -801,7 +801,7 @@ PD/SD<c6>
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 </tr>
 <tr>
@@ -859,7 +859,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.56
@@ -926,7 +926,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.50
@@ -935,7 +935,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 </tr>
 <tr>
