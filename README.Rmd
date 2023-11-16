@@ -118,41 +118,41 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
 
 
 
-<!-- ### Adverse event timeline plots -->
+### Adverse event timeline plots
 
-<!-- Uses addendum fake study data. Shows timeline for onset of AE after study enrollment. The first plot includes both AE category and AE detail. -->
+Uses addendum fake study data. Shows timeline for onset of AE after study enrollment. The first plot includes both AE category and AE detail.
 
-<!-- ```{r example4} -->
-<!-- library(reportRmd); -->
-<!-- library(BiostatsUHNplus); -->
-<!-- data("enrollment", "ae"); -->
+```{r example4}
+library(reportRmd);
+library(BiostatsUHNplus);
+data("enrollment", "ae");
 
-<!-- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"), -->
-<!--                  baseline_datasets=list(enrollment), -->
-<!--                  ae_dataset=ae, -->
-<!--                  ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"), -->
-<!--                  ae_attribVarsName=c("Drug 1","Drug 2"), -->
-<!--                  ae_attribVarText=c("Definite", "Probable", "Possible"), -->
-<!--                  enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail", -->
-<!--                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD", -->
-<!--                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")  -->
-<!-- ``` -->
+ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+                 baseline_datasets=list(enrollment),
+                 ae_dataset=ae,
+                 ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
+                 ae_attribVarsName=c("Drug 1","Drug 2"),
+                 ae_attribVarText=c("Definite", "Probable", "Possible"),
+                 enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+                 ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
+                 ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")
+```
 
-<!-- The below plot summarizes timeline by AE category. -->
+The below plot summarizes timeline by AE category.
 
-<!-- ```{r example5} -->
-<!-- library(reportRmd); -->
-<!-- library(BiostatsUHNplus); -->
-<!-- data("enrollment", "ae"); -->
+```{r example5}
+library(reportRmd);
+library(BiostatsUHNplus);
+data("enrollment", "ae");
 
-<!-- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"), -->
-<!--                  baseline_datasets=list(enrollment), -->
-<!--                  ae_dataset=ae, -->
-<!--                  ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"), -->
-<!--                  ae_attribVarsName=c("Drug 1","Drug 2"), -->
-<!--                  ae_attribVarText=c("Definite", "Probable", "Possible"), -->
-<!--                  enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail", -->
-<!--                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD", -->
-<!--                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month", -->
-<!--                  include_ae_detail=F)  -->
-<!-- ``` -->
+ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+                 baseline_datasets=list(enrollment),
+                 ae_dataset=ae,
+                 ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
+                 ae_attribVarsName=c("Drug 1","Drug 2"),
+                 ae_attribVarText=c("Definite", "Probable", "Possible"),
+                 enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+                 ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
+                 ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
+                 include_ae_detail=F)
+```
