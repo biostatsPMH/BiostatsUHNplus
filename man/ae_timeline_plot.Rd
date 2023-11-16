@@ -22,6 +22,13 @@ ae_timeline_plot(
   ae_onsetDtVar,
   time_unit = c("day", "week", "month", "year"),
   include_ae_detail = T,
+  legendPerSpace = NULL,
+  fonts = NULL,
+  fontColours = NULL,
+  panelColours = NULL,
+  attribColours = NULL,
+  attribSymbols = NULL,
+  columnWidths = NULL,
   ...
 )
 }
@@ -61,6 +68,27 @@ for example, could be one of c("day","week","month","year") (if provided)}
 
 \item{include_ae_detail}{boolean that denotes if AE detail should be included
 in timeline plot. Default is True}
+
+\item{legendPerSpace}{parameter at denotes proportion of vertical image space
+dedicated to legend at bottom. Default is 0.05 for AE detail and 0.1 for AE Category}
+
+\item{fonts}{character text that denotes font for AE category, AE detail, axis,
+legend and plot labels (if provided)}
+
+\item{fontColours}{character text that denotes system font colours for AE category and
+AE detail (if provided)}
+
+\item{panelColours}{character text that denotes panel background colours for AE category
+and AE detail (if provided)}
+
+\item{attribColours}{character text that denotes colours for attributions, supports up to 10
+distinct colours (if provided)}
+
+\item{attribSymbols}{text that denotes median plot symbols for attributions, supports up to 10
+distinct symbols (if provided)}
+
+\item{columnWidths}{text that denotes character columns widths for AE category and AE detail
+columns (if provided)}
 }
 \value{
 ggplot object of AE timeline plot
@@ -83,7 +111,14 @@ plotOut <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","
   ae_attribVarText=c("Definite", "Probable", "Possible"),
   startDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
   ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
-  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")
+  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week",
+  fonts=c("Forte","Gadugi","French Script MT","Albany AMT","Calibri"),
+  fontColours=c("#FF4F00","#FFDB58"),
+  panelColours=c("#AAF0D1","#B31B1B"),
+  attribColours=c("#F6ADC6","#C54B8C","#A4DDED","#0077BE","#9AB973","#01796F",
+    "#FFA343","#CC7722","#E0B0FF","#5A4FCF"),                                   
+  attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
+  columnWidths=c(23,15))
   ggsave(paste("ae_detail_timeline_plot_example_2", ".png", sep=""), plotOut, width=6.4, height=18, device="png", scale = 1);
 }
 \keyword{plot}

@@ -27,6 +27,18 @@
 #'    in timeline plot. Default is True
 #' @param legendPerSpace parameter at denotes proportion of vertical image space 
 #'    dedicated to legend at bottom. Default is 0.05 for AE detail and 0.1 for AE Category
+#' @param fonts character text that denotes font for AE category, AE detail, axis,
+#'   legend and plot labels (if provided)
+#' @param fontColours character text that denotes system font colours for AE category and
+#'   AE detail (if provided)
+#' @param panelColours character text that denotes panel background colours for AE category
+#'   and AE detail (if provided)
+#' @param attribColours character text that denotes colours for attributions, supports up to 10
+#'   distinct colours (if provided)
+#' @param attribSymbols text that denotes median plot symbols for attributions, supports up to 10
+#'   distinct symbols (if provided)
+#' @param columnWidths text that denotes character columns widths for AE category and AE detail
+#'   columns (if provided)
 #' @keywords plot
 #' @return ggplot object of AE timeline plot
 #' @importFrom plyr join_all rbind.fill
@@ -51,18 +63,101 @@
 #'   ae_attribVarText=c("Definite", "Probable", "Possible"),
 #'   startDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
 #'   ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
-#'   ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")
+#'   ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week",
+#'   fonts=c("Forte","Gadugi","French Script MT","Albany AMT","Calibri"),
+#'   fontColours=c("#FF4F00","#FFDB58"),
+#'   panelColours=c("#AAF0D1","#B31B1B"),
+#'   attribColours=c("#F6ADC6","#C54B8C","#A4DDED","#0077BE","#9AB973","#01796F",
+#'     "#FFA343","#CC7722","#E0B0FF","#5A4FCF"),                                   
+#'   attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
+#'   columnWidths=c(23,15))
 #'   ggsave(paste("ae_detail_timeline_plot_example_2", ".png", sep=""), plotOut, width=6.4, height=18, device="png", scale = 1);
 
 ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
                       ae_attribVars,ae_attribVarsName=NULL,ae_attribVarText=NULL,
                       startDtVar,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,time_unit=c("day","week","month","year"),
-                      include_ae_detail=T,legendPerSpace=NULL,...){
+                      include_ae_detail=T,legendPerSpace=NULL,
+                      fonts=NULL,fontColours=NULL,panelColours=NULL,
+                      attribColours=NULL,attribSymbols=NULL,
+                      columnWidths=NULL,...){
   
   options(dplyr.summarise.inform = FALSE)
   if (is.null(ae_attribVarText)) {
     ae_attribVarText <- c("Definite", "Probable", "Possible");
+  }
+  if (is.null(fonts)) {
+    fontCategory <- "Bahnschrift";
+    fontDetail <- "Bauhaus 93";
+    fontAxis <- "Berlin Sans FB";
+    fontLegend <- "Arial";
+    fontPlotLabels <- "Arial";
+  } else {
+    fontCategory <- fonts[1];
+    fontDetail <- fonts[2];
+    fontAxis <- fonts[3];
+    fontLegend <- fonts[4];
+    fontPlotLabels <- fonts[5];
+  }
+  if (is.null(fontColours)) {
+    fontColoursCategory <- "black";
+    fontColoursDetail <- "white";
+  } else {
+    fontColoursCategory <- fontColours[1];
+    fontColoursDetail <- fontColours[2];
+  }
+  if (is.null(panelColours)) {
+    panelColoursCategory <- "#FFB347";
+    panelColoursDetail <- "#C19A6B";
+  } else {
+    panelColoursCategory <- panelColours[1];
+    panelColoursDetail <- panelColours[2];
+  }
+  if (is.null(attribColours)) {
+    attribColours1 <- "#FF2800";
+    attribColours2 <- "#AE0C00";
+    attribColours3 <- "#08E8DE";
+    attribColours4 <- "#1DACD6";
+    attribColours5 <- "#BF94E4";
+    attribColours6 <- "#702963";
+    attribColours7 <- "#FFBF00";
+    attribColours8 <- "#FF7E00";
+    attribColours9 <- "#8DB600";
+    attribColours10 <- "#008000";
+  } else {
+    attribColours1 <- attribColours[1];
+    attribColours2 <- attribColours[2];
+    attribColours3 <- attribColours[3];
+    attribColours4 <- attribColours[4];
+    attribColours5 <- attribColours[5];
+    attribColours6 <- attribColours[6];
+    attribColours7 <- attribColours[7];
+    attribColours8 <- attribColours[8];
+    attribColours9 <- attribColours[9];
+    attribColours10 <- attribColours[10];
+  }
+  if (is.null(attribSymbols)) {
+    attribSymbols1 <- 1;
+    attribSymbols2 <- 2;
+    attribSymbols3 <- 3;
+    attribSymbols4 <- 4;
+    attribSymbols5 <- 5;
+    attribSymbols6 <- 6;
+    attribSymbols7 <- 7;
+    attribSymbols8 <- 8;
+    attribSymbols9 <- 9;
+    attribSymbols10 <- 10;
+  } else {
+    attribSymbols1 <- attribSymbols[1];
+    attribSymbols2 <- attribSymbols[2];
+    attribSymbols3 <- attribSymbols[3];
+    attribSymbols4 <- attribSymbols[4];
+    attribSymbols5 <- attribSymbols[5];
+    attribSymbols6 <- attribSymbols[6];
+    attribSymbols7 <- attribSymbols[7];
+    attribSymbols8 <- attribSymbols[8];
+    attribSymbols9 <- attribSymbols[9];
+    attribSymbols10 <- attribSymbols[10];
   }
   if (time_unit == "day") {
     divisionUnit = 1;
@@ -99,7 +194,14 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     } else {
       legendPerSpaceDetail = legendPerSpace
     }
-    
+    if (is.null(columnWidths)) {
+      columnWidth1 = 15;
+      columnWidth2 = 25;
+    } else {
+      columnWidth1 = columnWidths[1];
+      columnWidth2 = columnWidths[2];
+    }
+  
     #i <- 1;
     mydataPlot <- NA;
     mydataPlot <- as.data.frame(mydataPlot);
@@ -165,8 +267,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     plotData <- as.data.frame(plotData);
     plotData$label <- paste(plotData$time_median, " (", plotData$time_min, "-", plotData$time_max, ")", sep="");
     plotData[which(plotData$time_min == plotData$time_max), ]$label <- paste("  ", plotData[which(plotData$time_min == plotData$time_max), ]$time_median, sep="");
-    plotData$ae_category <- stringr::str_wrap(plotData$ae_category, width = 15);
-    plotData$ae_detail <- stringr::str_wrap(plotData$ae_detail, width = 25);
+    plotData$ae_category <- stringr::str_wrap(plotData$ae_category, width = columnWidth1);
+    plotData$ae_detail <- stringr::str_wrap(plotData$ae_detail, width = columnWidth2);
     
     ### Make correct order for AEs to be plotted;
     plotData <- plotData |>
@@ -224,9 +326,9 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     SOC_LLT_strips <- ggh4x::strip_nested(
       # Vertical strips
       size = "variable",
-      background_y = ggh4x::elem_list_rect(fill = c("#FFB347", "#C19A6B")),
-      text_y = ggh4x::elem_list_text(colour = c("black", "white"),
-                              family=c("Bahnschrift", "Bauhaus 93"),
+      background_y = ggh4x::elem_list_rect(fill = c(panelColoursCategory, panelColoursDetail)),
+      text_y = ggh4x::elem_list_text(colour = c(fontColoursCategory, fontColoursDetail),
+                              family=c(fontCategory, fontDetail),
                               hjust = c(1,0), 
                               vjust = c(1,0.5)),
       by_layer_y = TRUE
@@ -237,14 +339,14 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     
     p1_with_legend <- ggplot(plotData, aes(xmin=time_min, xmax=time_max, y=forcats::fct_rev(group))) + 
       ggstance::geom_pointrangeh(aes(x=time_median, shape=group, color=group), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), fatten=2) +
-      geom_text(aes(x=time_max, color=group, label=label), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), size=2.6, hjust=-0.2, show.legend = FALSE) +
-      scale_color_manual(name=NULL, values=c("#FF2800", "#AE0C00", "#08E8DE", "#1DACD6", "#BF94E4", "#702963", "#FFBF00", "#FF7E00", "#8DB600", "#008000" )) +
-      scale_shape_manual(name=NULL, values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+      geom_text(aes(x=time_max, color=group, label=label), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), size=2.6, hjust=-0.2, show.legend = FALSE, family=fontPlotLabels) +
+      scale_color_manual(name=NULL, values=c(attribColours1, attribColours2, attribColours3, attribColours4, attribColours5, attribColours6, attribColours7, attribColours8, attribColours9, attribColours10)) +
+      scale_shape_manual(name=NULL, values=c(attribSymbols1, attribSymbols2, attribSymbols3, attribSymbols4, attribSymbols5, attribSymbols6, attribSymbols7, attribSymbols8, attribSymbols9, attribSymbols10)) +
       xlab(paste(plotTimeText, " [median onset time (range)]", sep="")) +
       theme(legend.position="bottom") + 
       theme(legend.title = element_blank()) +
       guides(color=guide_legend(nrow=2,byrow=F)) +
-      theme(strip.text.y.left = element_text(angle = 0), strip.text = element_text(family="Bahnschrift", hjust = 1, vjust = 1, margin = margin(5, 5, 5, 5, "pt")), strip.background = element_rect(fill="#FFB347", color="white")) +
+      theme(strip.text.y.left = element_text(angle = 0), strip.text = element_text(family=fontCategory, hjust = 1, vjust = 1, margin = margin(5, 5, 5, 5, "pt")), strip.background = element_rect(fill=panelColoursCategory, color="white")) +
       theme(panel.spacing=unit(0, "cm")) +
       theme(axis.text.y = element_text(hjust = 1)) +
       scale_x_continuous(expand = expansion(add = c(0, 0)), limits=c(0,max(plotData$time_max)*1.30), minor_breaks=NULL) +
@@ -252,8 +354,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), panel.border=element_blank(), panel.background=element_blank(), plot.title=element_text(hjust = 0.5)) +
       ggh4x::facet_nested(ae_category + forcats::fct_rev(ae_detail) ~ ., scales = "free", space = "free", switch = "y", strip = SOC_LLT_strips) +
       scale_y_discrete(position = "right") +
-      theme(legend.key = element_rect(fill = "white"), text=element_text(family="Arial"), plot.margin = margin(0,0,0,0, "cm")) +
-      theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(), axis.title.x = element_text(family="Berlin Sans FB")) +
+      theme(legend.key = element_rect(fill = "white"), text=element_text(family=fontLegend), plot.margin = margin(0,0,0,0, "cm")) +
+      theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(), axis.title.x = element_text(family=fontAxis)) +
       ggh4x::force_panelsizes(rows = plotSpan$span) +
       theme(legend.title=element_blank(), legend.margin = margin(0, 0, 0, 0), legend.spacing.x = unit(0, "mm"), legend.spacing.y = unit(0, "mm"))
     p1_no_legend <- p1_with_legend + theme(legend.position = "none")
@@ -273,6 +375,13 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       legendPerSpaceCategory = 0.1
     } else {
       legendPerSpaceCategory = legendPerSpace
+    }
+    if (is.null(columnWidths)) {
+      columnWidth1 = 25;
+      columnWidth2 = 15;
+    } else {
+      columnWidth1 = columnWidths[1];
+      columnWidth2 = columnWidths[2];
     }
     
     #i <- 1;
@@ -338,7 +447,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     plotData <- as.data.frame(plotData);
     plotData$label <- paste(plotData$time_median, " (", plotData$time_min, "-", plotData$time_max, ")", sep="");
     plotData[which(plotData$time_min == plotData$time_max), ]$label <- paste("  ", plotData[which(plotData$time_min == plotData$time_max), ]$time_median, sep="");
-    plotData$ae_category <- stringr::str_wrap(plotData$ae_category, width = 25);
+    plotData$ae_category <- stringr::str_wrap(plotData$ae_category, width = columnWidth1);
     
     ### Make correct order for AEs to be plotted;
     plotData <- plotData |>
@@ -383,9 +492,9 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     SOC_LLT_strips <- ggh4x::strip_nested(
       # Vertical strips
       size = "variable",
-      background_y = ggh4x::elem_list_rect(fill = c("#FFB347", "#C19A6B")),
-      text_y = ggh4x::elem_list_text(colour = c("black", "white"),
-                                     family=c("Bahnschrift", "Bauhaus 93"),
+      background_y = ggh4x::elem_list_rect(fill = c(panelColoursCategory, panelColoursDetail)),
+      text_y = ggh4x::elem_list_text(colour = c(fontColoursCategory, fontColoursDetail),
+                                     family=c(fontCategory, fontDetail),
                                      hjust = c(1,0), 
                                      vjust = c(1,0.5)),
       by_layer_y = TRUE
@@ -396,14 +505,14 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     
     p1_with_legend <- ggplot(plotData, aes(xmin=time_min, xmax=time_max, y=forcats::fct_rev(group))) + 
       ggstance::geom_pointrangeh(aes(x=time_median, shape=group, color=group), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), fatten=2) +
-      geom_text(aes(x=time_max, color=group, label=label), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), size=2.6, hjust=-0.2, show.legend = FALSE) +
-      scale_color_manual(name=NULL, values=c("#FF2800", "#AE0C00", "#08E8DE", "#1DACD6", "#BF94E4", "#702963", "#FFBF00", "#FF7E00", "#8DB600", "#008000" )) +
-      scale_shape_manual(name=NULL, values=c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+      geom_text(aes(x=time_max, color=group, label=label), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), size=2.6, hjust=-0.2, show.legend = FALSE, family=fontPlotLabels) +
+      scale_color_manual(name=NULL, values=c(attribColours1, attribColours2, attribColours3, attribColours4, attribColours5, attribColours6, attribColours7, attribColours8, attribColours9, attribColours10)) +
+      scale_shape_manual(name=NULL, values=c(attribSymbols1, attribSymbols2, attribSymbols3, attribSymbols4, attribSymbols5, attribSymbols6, attribSymbols7, attribSymbols8, attribSymbols9, attribSymbols10)) +
       xlab(paste(plotTimeText, " [median onset time (range)]", sep="")) +
       theme(legend.position="bottom") + 
       theme(legend.title = element_blank()) +
       guides(color=guide_legend(nrow=2,byrow=F)) +
-      theme(strip.text.y.left = element_text(angle = 0), strip.text = element_text(family="Bahnschrift", hjust = 1, margin = margin(5, 5, 5, 5, "pt")), strip.background = element_rect(fill="#FFB347", color="white")) +
+      theme(strip.text.y.left = element_text(angle = 0), strip.text = element_text(family=fontCategory, hjust = 1, margin = margin(5, 5, 5, 5, "pt")), strip.background = element_rect(fill=panelColoursCategory, color="white")) +
       theme(panel.spacing=unit(0, "cm")) +
       theme(axis.text.y = element_text(hjust = 1)) +
       scale_x_continuous(expand = expansion(add = c(0,30)), limits=c(0,max(plotData$time_max)*1.30), minor_breaks=NULL) +
@@ -411,9 +520,10 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), panel.border=element_blank(), panel.background=element_blank(), plot.title=element_text(hjust = 0.5)) +
       ggh4x::facet_nested(forcats::fct_rev(ae_category) ~ ., scales = "free", space = "free", switch = "y", strip = SOC_LLT_strips) +
       scale_y_discrete(position = "right") +
-      theme(legend.key = element_rect(fill = "white"), text=element_text(family="Arial"), plot.margin = margin(0,0,0,0, "cm")) +
-      theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(), axis.title.x = element_text(family="Berlin Sans FB")) +
+      theme(legend.key = element_rect(fill = "white"), text=element_text(family=fontLegend), plot.margin = margin(0,0,0,0, "cm")) +
+      theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(), axis.title.x = element_text(family=fontAxis)) +
       ggh4x::force_panelsizes(rows = plotSpan$span) +
+      theme(strip.text = element_text (margin = margin (2, 1, 2, 15))) +
       theme(legend.title=element_blank(), legend.margin = margin(0, 0, 0, 0), legend.spacing.x = unit(0, "mm"), legend.spacing.y = unit(0, "mm"))
     p1_no_legend <- p1_with_legend + theme(legend.position = "none")
     
