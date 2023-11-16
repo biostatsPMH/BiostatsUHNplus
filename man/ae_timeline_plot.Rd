@@ -3,7 +3,9 @@
 \name{ae_timeline_plot}
 \alias{ae_timeline_plot}
 \title{Outputs AE timeline plots including just system organ class (AE category), or
-system organ class and lower level term (AE detail)}
+system organ class and lower level term (AE detail). This function can fit up
+to 5 different attributions. Modify width, height and scale parameters in
+ggsave() to customize fit for large plot.}
 \usage{
 ae_timeline_plot(
   subjID,
@@ -13,7 +15,7 @@ ae_timeline_plot(
   ae_attribVars,
   ae_attribVarsName = NULL,
   ae_attribVarText = NULL,
-  enrolDtVar,
+  startDtVar,
   ae_detailVar,
   ae_categoryVar,
   ae_severityVar,
@@ -43,7 +45,8 @@ for example, c("Drug 1", "Drug 2") (if provided)}
 \item{ae_attribVarText}{character text that denotes related attribution, for example
 c("Definite", "Probable", "Possible") (if provided)}
 
-\item{enrolDtVar}{field that denotes participant enrolment date (i.e. 10MAY2021)}
+\item{startDtVar}{field that denotes participant start date (i.e. 10MAY2021). For example,
+it could be enrollment date or screening date}
 
 \item{ae_detailVar}{field that denotes participant AE detail (lower-level term)}
 
@@ -64,7 +67,9 @@ ggplot object of AE timeline plot
 }
 \description{
 Outputs AE timeline plots including just system organ class (AE category), or
-system organ class and lower level term (AE detail)
+system organ class and lower level term (AE detail). This function can fit up
+to 5 different attributions. Modify width, height and scale parameters in
+ggsave() to customize fit for large plot.
 }
 \examples{
 data("enrollment", "ae");
@@ -76,7 +81,7 @@ plotOut <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","
                "CTC_AE_ATTR_SCALE"),
   ae_attribVarsName=c("Drug 1","Drug 2", "Drug 3","Drug 4", "Drug 5"),
   ae_attribVarText=c("Definite", "Probable", "Possible"),
-  enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+  startDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
   ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
   ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")
   ggsave(paste("ae_detail_timeline_plot_example_2", ".png", sep=""), plotOut, width=6.4, height=18, device="png", scale = 1);

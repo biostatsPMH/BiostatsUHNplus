@@ -15,7 +15,8 @@
 #'    for example, c("Drug 1", "Drug 2") (if provided)
 #' @param ae_attribVarText character text that denotes related attribution, for example
 #'    c("Definite", "Probable", "Possible") (if provided)
-#' @param enrolDtVar field that denotes participant enrolment date (i.e. 10MAY2021)
+#' @param startDtVar field that denotes participant start date (i.e. 10MAY2021). For example,
+#'    it could be enrollment date or screening date
 #' @param ae_detailVar field that denotes participant AE detail (lower-level term)
 #' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
@@ -46,14 +47,14 @@
 #'                "CTC_AE_ATTR_SCALE"),
 #'   ae_attribVarsName=c("Drug 1","Drug 2", "Drug 3","Drug 4", "Drug 5"),
 #'   ae_attribVarText=c("Definite", "Probable", "Possible"),
-#'   enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+#'   startDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
 #'   ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
 #'   ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")
 #'   ggsave(paste("ae_detail_timeline_plot_example_2", ".png", sep=""), plotOut, width=6.4, height=18, device="png", scale = 1);
 
 ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
                       ae_attribVars,ae_attribVarsName=NULL,ae_attribVarText=NULL,
-                      enrolDtVar,ae_detailVar,ae_categoryVar,
+                      startDtVar,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,time_unit=c("day","week","month","year"),
                       include_ae_detail=T,...){
   
@@ -80,7 +81,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   
   mydata <- plyr::join_all(baseline_datasets, by = subjID, type = "full") |>
     dplyr::right_join(ae, by = subjID) |>
-    dplyr::mutate(Subject = eval(parse(text=subjID)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar)), ENROL_DATE_INT = eval(parse(text=enrolDtVar))) |>
+    dplyr::mutate(Subject = eval(parse(text=subjID)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar)), AE_SEV_GD = eval(parse(text=ae_severityVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar)), ENROL_DATE_INT = eval(parse(text=startDtVar))) |>
     dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(ae_attribVars), AE_ONSET_DT_INT, ENROL_DATE_INT) |>
     dplyr::group_by(across(c(Subject, ae_detail, ae_category, dplyr::all_of(ae_attribVars), AE_SEV_GD, AE_ONSET_DT_INT))) |>
     dplyr::summarise(ENROL_DATE_INT = ENROL_DATE_INT[which(!is.na(ENROL_DATE_INT))[1]]) |>
