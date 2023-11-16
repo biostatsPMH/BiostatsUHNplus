@@ -23,7 +23,12 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
     afex,
+    cowplot,
     dplyr,
+    forcats,
+    ggh4x,
+    gglot,
+    ggplot2,
     modeest,
     openxlsx,
     parallel,
@@ -35,7 +40,7 @@ Imports:
     stringr,
     tibble,
     utils
-Collate: 'as_numeric_parse.R' 'covsum_nested.R' 'dsmb_ccru.R' 'nice_mcmcglmm.R'
+Collate: 'as_numeric_parse.R' 'covsum_nested.R' 'dsmb_ccru.R' 'nice_mcmcglmm.R' 'ae_timeline_plot.R'
 Depends: 
     R (>= 4.2)
 LazyData: true
