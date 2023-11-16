@@ -990,11 +990,11 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
 ### Adverse event timeline plots
 
 Uses addendum fake study data. Shows timeline for onset of AE after
-study enrollment. Can display up to 5 attributions.
+study enrollment. Can display up to 5 attributions. Time unit may be one
+of day, week, month or year.
 
-The below plot includes both AE category and AE detail. Modify *width*,
-*height* and *scale* parameters in ggsave() to customize fit for large
-plot.
+The below plot includes both AE category and AE detail in default colour
+and font scheme.
 
 ``` r
 library(ggplot2);
@@ -1007,7 +1007,7 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test")
                  ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
                  ae_attribVarsName=c("Drug 1","Drug 2"),
                  ae_attribVarText=c("Definite", "Probable", "Possible"),
-                 enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+                 startDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")
 ggsave(paste("man/figures/ae_detail_timeline_plot", ".png", sep=""), p, width=6.4, height=10, device="png", scale = 1.15);
@@ -1015,7 +1015,11 @@ ggsave(paste("man/figures/ae_detail_timeline_plot", ".png", sep=""), p, width=6.
 
 <img src="man/figures/ae_detail_timeline_plot.png" width="100%" />
 
-The next plot summarizes timeline by AE category.
+The next plot summarizes timeline by AE category. Fonts, colours,
+symbols, column widths (character length) and time unit are customized.
+
+The *width*, *height* and *scale* parameters in ggsave() can also be
+modified to fit large plot.
 
 ``` r
 library(ggplot2);
@@ -1028,10 +1032,16 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test")
                  ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
                  ae_attribVarsName=c("Drug 1","Drug 2"),
                  ae_attribVarText=c("Definite", "Probable", "Possible"),
-                 enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+                 startDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
-                 include_ae_detail=F)
+                 include_ae_detail=F,
+                 fonts=c("Forte","Gadugi","French Script MT","Albany AMT","Calibri"),
+                 fontColours=c("#FF4F00","#FFDB58"),
+                 panelColours=c("#AAF0D1","#B31B1B"),
+                 attribColours=c("#F6ADC6","#C54B8C","#A4DDED","#0077BE","#9AB973",
+                                 "#01796F","#FFA343","#CC7722","#E0B0FF","#5A4FCF"),                                  attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
+                 columnWidths=c(23,15))
 ggsave(paste("man/figures/ae_category_timeline_plot", ".png", sep=""), p, width=5.6, height=5.4, device="png", scale = 1);
 ```
 
