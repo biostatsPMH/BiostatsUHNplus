@@ -25,3 +25,4 @@ example
 a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error
 summary-statistics-by-patient-id-nested-in-cohort-stratified-by-overall-survival-status
 outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template
+adverse-event-timeline-plots

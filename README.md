@@ -64,44 +64,6 @@ rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"),
   covs = c("age", "sex", "l_size", "pdl1", "tmb", 
   "baseline_ctdna", "change_ctdna_group", "orr", "cbr", "os_time",
   "pfs_status", "pfs_time"), maincov = "os_status");
-#> Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Use this function at your own risk. Please check output.
-#> Order of nested ids matter. For example, in c('id1','id2') id1 should be nested within id2, etc.
-#> Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.
-#> Nested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).
-#> 
-#> Using 8 processor(s) for parallel processing.
-#> Warning: Low counts are present in orr variable consider Fisher's test.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: age
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: sex, id, cohort
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: l_size
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: pdl1
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: tmb
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: baseline_ctdna
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: change_ctdna_group, id, cohort
-#> Contrasts set to contr.sum for the following variables: orr, id, cohort
-#> Contrasts set to contr.sum for the following variables: cbr, id, cohort
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: os_time
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: pfs_status
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Contrasts set to contr.sum for the following variables: id, cohort
-#> Numerical variables NOT centered on 0: pfs_time
-#> If in interactions, interpretation of lower order (e.g., main) effects difficult.
-#> Registered S3 method overwritten by 'httr':
-#>   method         from  
-#>   print.response rmutil
 ```
 
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
@@ -214,7 +176,7 @@ Median (Min,Max)
 1.00
 </td>
 <td style="text-align:right;">
-\<0.001
+<0.001
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
@@ -501,7 +463,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.37
@@ -577,7 +539,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -657,7 +619,7 @@ Missing
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.51
@@ -666,7 +628,7 @@ Missing
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -724,7 +686,7 @@ SD/PD
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.46
@@ -733,7 +695,7 @@ SD/PD
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -792,7 +754,7 @@ PD/SD<c6>
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.70
@@ -801,7 +763,7 @@ PD/SD<c6>
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -859,7 +821,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.56
@@ -926,7 +888,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.50
@@ -935,7 +897,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -1005,7 +967,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
           baseline_datasets=list(enrollment,demography,ineligibility),
           ae_dataset=ae,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
           genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
-          ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD_STD",
+          ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
           ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
           ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
           numSubj=NULL)
@@ -1019,8 +981,58 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
           baseline_datasets=list(enrollment,demography,ineligibility),
           ae_dataset=ae,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
           genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
-          ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD_STD",
+          ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
           ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
           ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
           numSubj=NULL)
 ```
+
+### Adverse event timeline plots
+
+Uses addendum fake study data. Shows timeline for onset of AE after
+study enrollment. Can display up to 5 attributions.
+
+The below plot includes both AE category and AE detail. Modify *width*,
+*height* and *scale* parameters in ggsave() to customize fit for large
+plot.
+
+``` r
+library(ggplot2);
+library(BiostatsUHNplus);
+data("enrollment", "ae");
+
+p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+                 baseline_datasets=list(enrollment),
+                 ae_dataset=ae,
+                 ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
+                 ae_attribVarsName=c("Drug 1","Drug 2"),
+                 ae_attribVarText=c("Definite", "Probable", "Possible"),
+                 enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+                 ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
+                 ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")
+ggsave(paste("man/figures/ae_detail_timeline_plot", ".png", sep=""), p, width=6.4, height=10, device="png", scale = 1.15);
+```
+
+<img src="man/figures/ae_detail_timeline_plot.png" width="100%" />
+
+The next plot summarizes timeline by AE category.
+
+``` r
+library(ggplot2);
+library(BiostatsUHNplus);
+data("enrollment", "ae");
+
+p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+                 baseline_datasets=list(enrollment),
+                 ae_dataset=ae,
+                 ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
+                 ae_attribVarsName=c("Drug 1","Drug 2"),
+                 ae_attribVarText=c("Definite", "Probable", "Possible"),
+                 enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+                 ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
+                 ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
+                 include_ae_detail=F)
+ggsave(paste("man/figures/ae_category_timeline_plot", ".png", sep=""), p, width=5.6, height=5.4, device="png", scale = 1);
+```
+
+<img src="man/figures/ae_category_timeline_plot.png" width="100%" />

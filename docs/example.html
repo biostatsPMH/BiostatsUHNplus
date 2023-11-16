@@ -183,6 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.1" data-path="example.html"><a href="example.html#a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error"><i class="fa fa-check"></i><b>4.3.1</b> A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error</a></li>
 <li class="chapter" data-level="4.3.2" data-path="example.html"><a href="example.html#summary-statistics-by-patient-id-nested-in-cohort-stratified-by-overall-survival-status"><i class="fa fa-check"></i><b>4.3.2</b> Summary statistics by patient ID nested in cohort, stratified by overall survival status</a></li>
 <li class="chapter" data-level="4.3.3" data-path="example.html"><a href="example.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
+<li class="chapter" data-level="4.3.4" data-path="example.html"><a href="example.html#adverse-event-timeline-plots"><i class="fa fa-check"></i><b>4.3.4</b> Adverse event timeline plots</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -225,35 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-6"><a href="example.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> pembrolizumab, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;cohort&quot;</span>), </span>
 <span id="cb18-7"><a href="example.html#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;age&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;l_size&quot;</span>, <span class="st">&quot;pdl1&quot;</span>, <span class="st">&quot;tmb&quot;</span>, </span>
 <span id="cb18-8"><a href="example.html#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;baseline_ctdna&quot;</span>, <span class="st">&quot;change_ctdna_group&quot;</span>, <span class="st">&quot;orr&quot;</span>, <span class="st">&quot;cbr&quot;</span>, <span class="st">&quot;os_time&quot;</span>,</span>
-<span id="cb18-9"><a href="example.html#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;pfs_status&quot;</span>, <span class="st">&quot;pfs_time&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;os_status&quot;</span>);</span>
-<span id="cb18-10"><a href="example.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb18-11"><a href="example.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: age</span></span>
-<span id="cb18-12"><a href="example.html#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
-<span id="cb18-13"><a href="example.html#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: sex, id, cohort</span></span>
-<span id="cb18-14"><a href="example.html#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb18-15"><a href="example.html#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: l_size</span></span>
-<span id="cb18-16"><a href="example.html#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
-<span id="cb18-17"><a href="example.html#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb18-18"><a href="example.html#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: pdl1</span></span>
-<span id="cb18-19"><a href="example.html#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
-<span id="cb18-20"><a href="example.html#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb18-21"><a href="example.html#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: tmb</span></span>
-<span id="cb18-22"><a href="example.html#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
-<span id="cb18-23"><a href="example.html#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb18-24"><a href="example.html#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: baseline_ctdna</span></span>
-<span id="cb18-25"><a href="example.html#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
-<span id="cb18-26"><a href="example.html#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: change_ctdna_group, id, cohort</span></span>
-<span id="cb18-27"><a href="example.html#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: orr, id, cohort</span></span>
-<span id="cb18-28"><a href="example.html#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: cbr, id, cohort</span></span>
-<span id="cb18-29"><a href="example.html#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb18-30"><a href="example.html#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: os_time</span></span>
-<span id="cb18-31"><a href="example.html#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
-<span id="cb18-32"><a href="example.html#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb18-33"><a href="example.html#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: pfs_status</span></span>
-<span id="cb18-34"><a href="example.html#cb18-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span>
-<span id="cb18-35"><a href="example.html#cb18-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Contrasts set to contr.sum for the following variables: id, cohort</span></span>
-<span id="cb18-36"><a href="example.html#cb18-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Numerical variables NOT centered on 0: pfs_time</span></span>
-<span id="cb18-37"><a href="example.html#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; If in interactions, interpretation of lower order (e.g., main) effects difficult.</span></span></code></pre></div>
+<span id="cb18-9"><a href="example.html#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;pfs_status&quot;</span>, <span class="st">&quot;pfs_time&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;os_status&quot;</span>);</span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1169,38 +1142,43 @@ Median (Min,Max)
 <span id="cb19-29"><a href="example.html#cb19-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">ae_detailOtherText=</span><span class="st">&quot;Other, specify&quot;</span>,</span>
 <span id="cb19-30"><a href="example.html#cb19-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_detailOtherVar=</span><span class="st">&quot;CTCAE5_LLT_NM&quot;</span>,<span class="at">ae_verbatimVar=</span><span class="st">&quot;AE_VERBATIM_TRM_TXT&quot;</span>,</span>
 <span id="cb19-31"><a href="example.html#cb19-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">numSubj=</span><span class="cn">NULL</span>)</span></code></pre></div>
-<!-- ### Adverse event timeline plots -->
-<!-- Uses addendum fake study data. Shows timeline for onset of AE after study enrollment. The first plot includes both AE category and AE detail. -->
-<!-- ```{r example4} -->
-<!-- library(reportRmd); -->
-<!-- library(BiostatsUHNplus); -->
-<!-- data("enrollment", "ae"); -->
-<!-- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"), -->
-<!--                  baseline_datasets=list(enrollment), -->
-<!--                  ae_dataset=ae, -->
-<!--                  ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"), -->
-<!--                  ae_attribVarsName=c("Drug 1","Drug 2"), -->
-<!--                  ae_attribVarText=c("Definite", "Probable", "Possible"), -->
-<!--                  enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail", -->
-<!--                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD", -->
-<!--                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")  -->
-<!-- ``` -->
-<!-- The below plot summarizes timeline by AE category. -->
-<!-- ```{r example5} -->
-<!-- library(reportRmd); -->
-<!-- library(BiostatsUHNplus); -->
-<!-- data("enrollment", "ae"); -->
-<!-- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"), -->
-<!--                  baseline_datasets=list(enrollment), -->
-<!--                  ae_dataset=ae, -->
-<!--                  ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"), -->
-<!--                  ae_attribVarsName=c("Drug 1","Drug 2"), -->
-<!--                  ae_attribVarText=c("Definite", "Probable", "Possible"), -->
-<!--                  enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail", -->
-<!--                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD", -->
-<!--                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month", -->
-<!--                  include_ae_detail=F)  -->
-<!-- ``` -->
+</div>
+<div id="adverse-event-timeline-plots" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Adverse event timeline plots<a href="example.html#adverse-event-timeline-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uses addendum fake study data. Shows timeline for onset of AE after study enrollment. Can display up to 5 attributions.</p>
+<p>The below plot includes both AE category and AE detail. Modify <em>width</em>, <em>height</em> and <em>scale</em> parameters in ggsave() to customize fit for large plot.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="example.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2);</span>
+<span id="cb20-2"><a href="example.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
+<span id="cb20-3"><a href="example.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;enrollment&quot;</span>, <span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb20-4"><a href="example.html#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="example.html#cb20-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ae_timeline_plot</span>(<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;New Subject&quot;</span>,<span class="st">&quot;Test&quot;</span>),</span>
+<span id="cb20-6"><a href="example.html#cb20-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment),</span>
+<span id="cb20-7"><a href="example.html#cb20-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_dataset=</span>ae,</span>
+<span id="cb20-8"><a href="example.html#cb20-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVars=</span><span class="fu">c</span>(<span class="st">&quot;CTC_AE_ATTR_SCALE&quot;</span>,<span class="st">&quot;CTC_AE_ATTR_SCALE_1&quot;</span>),</span>
+<span id="cb20-9"><a href="example.html#cb20-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarsName=</span><span class="fu">c</span>(<span class="st">&quot;Drug 1&quot;</span>,<span class="st">&quot;Drug 2&quot;</span>),</span>
+<span id="cb20-10"><a href="example.html#cb20-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarText=</span><span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>),</span>
+<span id="cb20-11"><a href="example.html#cb20-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">enrolDtVar=</span><span class="st">&quot;ENROL_DATE_INT&quot;</span>,<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb20-12"><a href="example.html#cb20-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
+<span id="cb20-13"><a href="example.html#cb20-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">time_unit=</span><span class="st">&quot;week&quot;</span>)</span>
+<span id="cb20-14"><a href="example.html#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_detail_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), p, <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="dv">10</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="fl">1.15</span>);</span></code></pre></div>
+<p><img src="man/figures/ae_detail_timeline_plot.png" width="100%" /></p>
+<p>The next plot summarizes timeline by AE category.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="example.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2);</span>
+<span id="cb21-2"><a href="example.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
+<span id="cb21-3"><a href="example.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;enrollment&quot;</span>, <span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb21-4"><a href="example.html#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="example.html#cb21-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ae_timeline_plot</span>(<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;New Subject&quot;</span>,<span class="st">&quot;Test&quot;</span>),</span>
+<span id="cb21-6"><a href="example.html#cb21-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment),</span>
+<span id="cb21-7"><a href="example.html#cb21-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_dataset=</span>ae,</span>
+<span id="cb21-8"><a href="example.html#cb21-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVars=</span><span class="fu">c</span>(<span class="st">&quot;CTC_AE_ATTR_SCALE&quot;</span>,<span class="st">&quot;CTC_AE_ATTR_SCALE_1&quot;</span>),</span>
+<span id="cb21-9"><a href="example.html#cb21-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarsName=</span><span class="fu">c</span>(<span class="st">&quot;Drug 1&quot;</span>,<span class="st">&quot;Drug 2&quot;</span>),</span>
+<span id="cb21-10"><a href="example.html#cb21-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarText=</span><span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>),</span>
+<span id="cb21-11"><a href="example.html#cb21-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">enrolDtVar=</span><span class="st">&quot;ENROL_DATE_INT&quot;</span>,<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb21-12"><a href="example.html#cb21-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
+<span id="cb21-13"><a href="example.html#cb21-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">time_unit=</span><span class="st">&quot;month&quot;</span>,</span>
+<span id="cb21-14"><a href="example.html#cb21-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">include_ae_detail=</span>F)</span>
+<span id="cb21-15"><a href="example.html#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_category_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), p, <span class="at">width=</span><span class="fl">5.6</span>, <span class="at">height=</span><span class="fl">5.4</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="dv">1</span>);</span></code></pre></div>
+<p><img src="man/figures/ae_category_timeline_plot.png" width="100%" /></p>
 
 </div>
 </div>
