@@ -362,6 +362,17 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       dplyr::filter(dplyr::row_number()==1) 
     plotSpan <- as.data.frame(plotSpan);
     
+    SOC_LLT_strips <- ggh4x::strip_nested(
+      # Vertical strips
+      size = "variable",
+      background_y = ggh4x::elem_list_rect(fill = c("#FFB347", "#C19A6B")),
+      text_y = ggh4x::elem_list_text(colour = c("black", "white"),
+                                     family=c("Bahnschrift", "Bauhaus 93"),
+                                     hjust = c(1,0), 
+                                     vjust = c(1,0.5)),
+      by_layer_y = TRUE
+    )
+    
     #plotData;
     plotData$group <- as.factor(plotData$group);
     
