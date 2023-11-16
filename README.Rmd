@@ -148,7 +148,7 @@ knitr::include_graphics(paste("man/figures/ae_detail_timeline_plot", ".png", sep
 
 The next plot summarizes timeline by AE category. Fonts, colours, symbols, column widths (character length) and time unit are customized.
 
-The *width*, *height* and *scale* parameters in ggsave() can also be modified to fit large plot.
+The *width*, *height* and *scale* parameters in ggsave() can also be modified to fit a large plot.
 
 ```{r example5a, message=F, warning=F}
 library(ggplot2);

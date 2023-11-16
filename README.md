@@ -1019,7 +1019,7 @@ The next plot summarizes timeline by AE category. Fonts, colours,
 symbols, column widths (character length) and time unit are customized.
 
 The *width*, *height* and *scale* parameters in ggsave() can also be
-modified to fit large plot.
+modified to fit a large plot.
 
 ``` r
 library(ggplot2);
