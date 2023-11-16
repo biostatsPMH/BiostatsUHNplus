@@ -32,7 +32,6 @@
 #' @importFrom forcats fct_rev
 #' @importFrom cowplot get_legend
 #' @import ggplot2
-#' @importFrom ggplot2 ggplot_gtable ggplot_build
 #' @export
 #' @examples
 #' data("enrollment", "ae");
