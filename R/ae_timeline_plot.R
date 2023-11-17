@@ -15,8 +15,10 @@
 #'    for example, c("Drug 1", "Drug 2") (if provided)
 #' @param ae_attribVarText character text that denotes related attribution, for example
 #'    c("Definite", "Probable", "Possible") (if provided)
-#' @param startDtVar field that denotes participant start date (i.e. 10MAY2021). For example,
-#'    it could be enrollment date or screening date
+#' @param startDtVars field(s) that denotes participant start date (i.e. 10MAY2021). For example,
+#'    it could be enrollment date or screening date. If more than one field given 
+#'    (unique names are required), each field is assumed to be specific start date 
+#'    for attribution in corresponding field order
 #' @param ae_detailVar field that denotes participant AE detail (lower-level term)
 #' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
@@ -43,7 +45,7 @@
 #' @return ggplot object of AE timeline plot
 #' @importFrom plyr join_all rbind.fill
 #' @importFrom purrr modify_if
-#' @importFrom dplyr select distinct mutate arrange summarise group_by filter across row_number n_distinct all_of right_join count ungroup
+#' @importFrom dplyr select distinct mutate arrange summarise group_by filter across row_number n_distinct all_of right_join count ungroup coalesce
 #' @importFrom stringr str_detect str_wrap str_split
 #' @importFrom ggh4x strip_nested facet_nested elem_list_text elem_list_rect force_panelsizes
 #' @importFrom forcats fct_rev
@@ -61,7 +63,7 @@
 #'                "CTC_AE_ATTR_SCALE"),
 #'   ae_attribVarsName=c("Drug 1","Drug 2", "Drug 3","Drug 4", "Drug 5"),
 #'   ae_attribVarText=c("Definite", "Probable", "Possible"),
-#'   startDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+#'   startDtVars=c("ENROL_DATE_INT"),ae_detailVar="ae_detail",
 #'   ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
 #'   ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week",
 #'   fonts=c("Forte","Gadugi","French Script MT","Albany AMT","Calibri"),
@@ -75,7 +77,7 @@
 
 ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
                       ae_attribVars,ae_attribVarsName=NULL,ae_attribVarText=NULL,
-                      startDtVar,ae_detailVar,ae_categoryVar,
+                      startDtVars,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,time_unit=c("day","week","month","year"),
                       include_ae_detail=T,legendPerSpace=NULL,
                       fonts=NULL,fontColours=NULL,panelColours=NULL,
@@ -178,11 +180,11 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   
   mydata <- plyr::join_all(baseline_datasets, by = subjID, type = "full") |>
     dplyr::right_join(ae, by = subjID) |>
-    dplyr::mutate(Subject = eval(parse(text=subjID)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar)), AE_SEV_GD = eval(parse(text=ae_severityVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar)), ENROL_DATE_INT = eval(parse(text=startDtVar))) |>
-    dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(ae_attribVars), AE_ONSET_DT_INT, ENROL_DATE_INT) |>
+    dplyr::mutate(Subject = eval(parse(text=subjID)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar)), AE_SEV_GD = eval(parse(text=ae_severityVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar))) |>
+    dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(ae_attribVars), dplyr::all_of(startDtVars), AE_ONSET_DT_INT) |>
     dplyr::group_by(across(c(Subject, ae_detail, ae_category, dplyr::all_of(ae_attribVars), AE_SEV_GD, AE_ONSET_DT_INT))) |>
-    dplyr::summarise(ENROL_DATE_INT = ENROL_DATE_INT[which(!is.na(ENROL_DATE_INT))[1]]) |>
-    dplyr::mutate(AE_ONSET_DT_INT = as.Date(AE_ONSET_DT_INT, tz = "UTC"), ENROL_DATE_INT = as.Date(ENROL_DATE_INT, tz = "UTC"), AE_SEV_GD = as.numeric(AE_SEV_GD)) |>
+    dplyr::summarise(dplyr::across(dplyr::all_of(startDtVars), ~dplyr::coalesce(x=.x))) |>
+    dplyr::mutate(AE_ONSET_DT_INT = as.Date(AE_ONSET_DT_INT, tz = "UTC"), dplyr::across(dplyr::all_of(startDtVars), ~as.Date(x=.x, tz = "UTC")), AE_SEV_GD = as.numeric(AE_SEV_GD)) |>
     dplyr::filter(!Subject %in% subjID_ineligText) |>
     dplyr::arrange(Subject)
   
@@ -202,7 +204,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       columnWidth2 = columnWidths[2];
     }
   
-    #i <- 1;
+    #i <- 2;
     mydataPlot <- NA;
     mydataPlot <- as.data.frame(mydataPlot);
     for (i in 1:length(ae_attribVars)) {
@@ -214,13 +216,18 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       }
       
       selectedAttribVar <- ae_attribVars[i];
+      if (!is.na(startDtVars[i])) {
+        selectedStartVar <- startDtVars[i]
+      } else {
+        selectedStartVar <- startDtVars[1]
+      }
   
       mydata_drug112 <- mydata |> 
         dplyr::ungroup() |>
-        dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), AE_ONSET_DT_INT, ENROL_DATE_INT) |> 
-        dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(1:2) & AE_ONSET_DT_INT >= ENROL_DATE_INT) |>
-        dplyr::group_by(Subject, ae_detail, ae_category, AE_ONSET_DT_INT, ENROL_DATE_INT) |>
-        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - ENROL_DATE_INT) |>
+        dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), dplyr::all_of(selectedStartVar), AE_ONSET_DT_INT) |> 
+        dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(1:2) & AE_ONSET_DT_INT >= get(selectedStartVar)) |>
+        dplyr::group_by(Subject, ae_detail, ae_category, AE_ONSET_DT_INT, get(selectedStartVar)) |>
+        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
         dplyr::ungroup() |>
         dplyr::group_by(Subject, ae_detail, ae_category) |>
         dplyr::arrange(AE_ONSET_DT_INT) 
@@ -235,15 +242,14 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       
       mydata_drug13p <- mydata |> 
         dplyr::ungroup() |>
-        dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), AE_ONSET_DT_INT, ENROL_DATE_INT) |> 
-        dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(3:5) & AE_ONSET_DT_INT >= ENROL_DATE_INT) |>
-        dplyr::group_by(Subject, ae_detail, ae_category, AE_ONSET_DT_INT, ENROL_DATE_INT) |>
-        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - ENROL_DATE_INT) |>
+        dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), dplyr::all_of(selectedStartVar), AE_ONSET_DT_INT) |> 
+        dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(3:5) & AE_ONSET_DT_INT >= get(selectedStartVar)) |>
+        dplyr::group_by(Subject, ae_detail, ae_category, AE_ONSET_DT_INT, get(selectedStartVar)) |>
+        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
         dplyr::ungroup() |>
         dplyr::group_by(Subject, ae_detail, ae_category) |>
         dplyr::arrange(AE_ONSET_DT_INT)
       #dplyr::filter(dplyr::row_number()==1) #takes the first grade 3+ AE per subject by type
-      
       mydata_drug1_sum3p <- mydata_drug13p |>
         dplyr::ungroup() |>
         dplyr::select(ae_detail, ae_category, drug1_ae) |>
@@ -349,7 +355,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       theme(strip.text.y.left = element_text(angle = 0), strip.text = element_text(family=fontCategory, hjust = 1, vjust = 1, margin = margin(5, 5, 5, 5, "pt")), strip.background = element_rect(fill=panelColoursCategory, color="white")) +
       theme(panel.spacing=unit(0, "cm")) +
       theme(axis.text.y = element_text(hjust = 1)) +
-      scale_x_continuous(expand = expansion(add = c(0, 0)), limits=c(0,max(plotData$time_max)*1.30), minor_breaks=NULL) +
+      scale_x_continuous(expand = expansion(add = c(8,30)), limits=c(0,max(plotData$time_max)*1.30), minor_breaks=NULL) +
       theme(panel.grid.minor.x=element_blank(), panel.grid.major.y=element_blank(), panel.grid.minor.y=element_blank()) +
       theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), panel.border=element_blank(), panel.background=element_blank(), plot.title=element_text(hjust = 0.5)) +
       ggh4x::facet_nested(ae_category + forcats::fct_rev(ae_detail) ~ ., scales = "free", space = "free", switch = "y", strip = SOC_LLT_strips) +
@@ -396,13 +402,18 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       }
       
       selectedAttribVar <- ae_attribVars[i];
+      if (!is.na(startDtVars[i])) {
+        selectedStartVar <- startDtVars[i]
+      } else {
+        selectedStartVar <- startDtVars[1]
+      }
     
       mydata_drug112 <- mydata |> 
         dplyr::ungroup() |>
-        dplyr::select(Subject, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), AE_ONSET_DT_INT, ENROL_DATE_INT) |> 
-        dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(1:2) & AE_ONSET_DT_INT >= ENROL_DATE_INT) |>
-        dplyr::group_by(Subject, ae_category, AE_ONSET_DT_INT, ENROL_DATE_INT) |>
-        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - ENROL_DATE_INT) |>
+        dplyr::select(Subject, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), dplyr::all_of(selectedStartVar), AE_ONSET_DT_INT) |> 
+        dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(1:2) & AE_ONSET_DT_INT >= get(selectedStartVar)) |>
+        dplyr::group_by(Subject, ae_category, AE_ONSET_DT_INT, get(selectedStartVar)) |>
+        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
         dplyr::ungroup() |>
         dplyr::group_by(Subject, ae_category) |>
         dplyr::arrange(AE_ONSET_DT_INT) 
@@ -417,10 +428,10 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       
       mydata_drug13p <- mydata |> 
         dplyr::ungroup() |>
-        dplyr::select(Subject, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), AE_ONSET_DT_INT, ENROL_DATE_INT) |> 
-        dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(3:5) & AE_ONSET_DT_INT >= ENROL_DATE_INT) |>
-        dplyr::group_by(Subject, ae_category, AE_ONSET_DT_INT, ENROL_DATE_INT) |>
-        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - ENROL_DATE_INT) |>
+        dplyr::select(Subject, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), dplyr::all_of(selectedStartVar), AE_ONSET_DT_INT) |> 
+        dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(3:5) & AE_ONSET_DT_INT >= get(selectedStartVar)) |>
+        dplyr::group_by(Subject, ae_category, AE_ONSET_DT_INT, get(selectedStartVar)) |>
+        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
         dplyr::ungroup() |>
         dplyr::group_by(Subject, ae_category) |>
         dplyr::arrange(AE_ONSET_DT_INT) 
@@ -515,7 +526,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       theme(strip.text.y.left = element_text(angle = 0), strip.text = element_text(family=fontCategory, hjust = 1, margin = margin(5, 5, 5, 5, "pt")), strip.background = element_rect(fill=panelColoursCategory, color="white")) +
       theme(panel.spacing=unit(0, "cm")) +
       theme(axis.text.y = element_text(hjust = 1)) +
-      scale_x_continuous(expand = expansion(add = c(0,30)), limits=c(0,max(plotData$time_max)*1.30), minor_breaks=NULL) +
+      scale_x_continuous(expand = expansion(add = c(8,30)), limits=c(0,max(plotData$time_max)*1.30), minor_breaks=NULL) +
       theme(panel.grid.minor.x=element_blank(), panel.grid.major.y=element_blank(), panel.grid.minor.y=element_blank()) +
       theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), panel.border=element_blank(), panel.background=element_blank(), plot.title=element_text(hjust = 0.5)) +
       ggh4x::facet_nested(forcats::fct_rev(ae_category) ~ ., scales = "free", space = "free", switch = "y", strip = SOC_LLT_strips) +

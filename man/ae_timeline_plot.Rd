@@ -15,7 +15,7 @@ ae_timeline_plot(
   ae_attribVars,
   ae_attribVarsName = NULL,
   ae_attribVarText = NULL,
-  startDtVar,
+  startDtVars,
   ae_detailVar,
   ae_categoryVar,
   ae_severityVar,
@@ -52,8 +52,10 @@ for example, c("Drug 1", "Drug 2") (if provided)}
 \item{ae_attribVarText}{character text that denotes related attribution, for example
 c("Definite", "Probable", "Possible") (if provided)}
 
-\item{startDtVar}{field that denotes participant start date (i.e. 10MAY2021). For example,
-it could be enrollment date or screening date}
+\item{startDtVars}{field(s) that denotes participant start date (i.e. 10MAY2021). For example,
+it could be enrollment date or screening date. If more than one field given
+(unique names are required), each field is assumed to be specific start date
+for attribution in corresponding field order}
 
 \item{ae_detailVar}{field that denotes participant AE detail (lower-level term)}
 
@@ -109,7 +111,7 @@ plotOut <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","
                "CTC_AE_ATTR_SCALE"),
   ae_attribVarsName=c("Drug 1","Drug 2", "Drug 3","Drug 4", "Drug 5"),
   ae_attribVarText=c("Definite", "Probable", "Possible"),
-  startDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+  startDtVars=c("ENROL_DATE_INT"),ae_detailVar="ae_detail",
   ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
   ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week",
   fonts=c("Forte","Gadugi","French Script MT","Albany AMT","Calibri"),
