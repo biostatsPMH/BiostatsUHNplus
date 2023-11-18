@@ -367,7 +367,7 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE
   }
   
   
-  outTable(tab=tab,to_indent=to_indent,bold_cells = bold_cells,
+  reportRmd::outTable(tab=tab,to_indent=to_indent,bold_cells = bold_cells,
            caption=caption,
            chunk_label=ifelse(missing(chunk_label),'NOLABELTOADD',chunk_label))
   
