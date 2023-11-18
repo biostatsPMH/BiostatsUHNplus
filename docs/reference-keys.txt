@@ -21,8 +21,11 @@ caterpillar-plot-for-random-effect-of-yard
 biostatsuhnplus
 installation
 documentation
-example
+examples
 a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error
-summary-statistics-by-patient-id-nested-in-cohort-stratified-by-overall-survival-status
+summary-statistics-of-adverse-events-nested-by-participant-in-cohort-stratified-by-adverse-event-severity
 outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template
-adverse-event-timeline-plots
+adverse-event-onset-timeline-plots
+example-1
+example-2
+example-3

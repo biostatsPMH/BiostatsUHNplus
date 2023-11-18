@@ -59,21 +59,23 @@ z
 ```
 
 
-### Summary statistics by patient ID nested in cohort, stratified by overall survival status
+### Summary statistics of adverse events nested by participant in cohort, stratified by adverse event severity
 
-Use summary output and unnested or nested p-value with caution!
+Uses addendum fake study data. Interpret summary output and unnested or nested p-value with caution!
+
+Note that if participants were enrolled in more than cohort (crossover), the total N for Full Sample would be less than that of the total N of the adverse event severity categories. Since total N for Full Sample (287) is the same as total N of the severity categories (131 + 88 + 56 + 10 + 2), this suggests that there was no crossover of participants in cohorts.
 
 ```{r example2, message=F, warning=F}
-library(reportRmd);
+library(plyr);
 library(BiostatsUHNplus);
-data("pembrolizumab");
-#str(pembrolizumab);
 
-rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"), 
-  covs = c("age", "sex", "l_size", "pdl1", "tmb", 
-  "baseline_ctdna", "change_ctdna_group", "orr", "cbr", "os_time",
-  "pfs_status", "pfs_time"), maincov = "os_status");
+data("enrollment", "demography", "ineligibility", "ae");
+clinT <- plyr::join_all(list(enrollment, demography, ineligibility, ae), 
+  by = "Subject", type = "full");
 
+rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"), 
+  covs = c("ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT",
+  "CTC_AE_ATTR_SCALE", "CTC_AE_ATTR_SCALE_1", "ae_category"), maincov = "AE_SEV_GD");
 ```
 
 
@@ -83,7 +85,6 @@ rm_covsum_nested(data = pembrolizumab, id = c("id", "cohort"),
 Uses addendum fake study data. DSMB-CCRU AE summary tables in below code example can be found in the *dsmb_ccru_tables* folder of **BiostatsUHNplus** package.
 
 ```{r example3, message=F, warning=F}
-library(reportRmd);
 library(BiostatsUHNplus);
 data("enrollment", "demography", "ineligibility", "ae");
 
@@ -118,8 +119,9 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
 
 
 
-### Adverse event timeline plots
+### Adverse event onset timeline plots
 
+#### Example 1
 Uses addendum fake study data. Shows timeline for onset of AE after study enrollment. Can display up to 5 attributions. Time unit may be one of day, week, month or year.
 
 Note that if more than one field is given for *startDtVars* (unique names required), each field is assumed to be specific start date for attribution in corresponding field order.
@@ -140,7 +142,7 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test")
                  startDtVars=c("ENROL_DATE_INT"),ae_detailVar="ae_detail",
                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")
-ggsave(paste("man/figures/ae_detail_timeline_plot", ".png", sep=""), p, width=6.4, height=10, device="png", scale = 1.15);
+ggplot2::ggsave(paste("man/figures/ae_detail_timeline_plot", ".png", sep=""), p, width=6.4, height=10, device="png", scale = 1.15);
 ```
 
 ```{r example4b, echo=FALSE, out.width='100%'}
@@ -148,6 +150,7 @@ knitr::include_graphics(paste("man/figures/ae_detail_timeline_plot", ".png", sep
 ```
 
 
+#### Example 2
 The next plot summarizes timeline by AE category. Fonts, colours, symbols, column widths (character length) and time unit are customized.
 
 The *width*, *height* and *scale* parameters in ggsave() can also be modified to fit a large plot.
@@ -174,9 +177,44 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test")
                                  "#01796F","#FFA343","#CC7722","#E0B0FF","#5A4FCF"),
                  attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
                  columnWidths=c(23,15))
-ggsave(paste("man/figures/ae_category_timeline_plot", ".png", sep=""), p, width=3.6, height=5.4, device="png", scale = 1);
+ggplot2::ggsave(paste("man/figures/ae_category_timeline_plot", ".png", sep=""), p, width=3.6, height=5.4, device="png", scale = 1);
 ```
 
 ```{r example5b, echo=FALSE, out.width='100%'}
 knitr::include_graphics(paste("man/figures/ae_category_timeline_plot", ".png", sep=""))
+```
+
+
+#### Example 3
+If available, specific start date for attribution in corresponding field order (unique field name required) can be used. Drug start date is closer to AE onset than enrollment date.
+
+Below, subjects 01 and 11 are excluded.
+
+
+```{r example6a, message=F, warning=F}
+library(ggplot2);
+library(BiostatsUHNplus);
+data("drug1_admin", "drug2_admin", "ae");
+
+p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("01","11"),
+                 baseline_datasets=list(drug1_admin, drug2_admin),
+                 ae_dataset=ae,
+                 ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
+                 ae_attribVarsName=c("Drug 1","Drug 2"),
+                 ae_attribVarText=c("Definite", "Probable", "Possible"),
+                 startDtVars=c("TX1_DATE_INT","TX2_DATE_INT"),
+                 ae_detailVar="ae_detail",
+                 ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
+                 ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
+                 include_ae_detail=F,
+                 fonts=c("Calibri","Albany AMT","Gadugi","French Script MT","Forte"),
+                 fontColours=c("#FFBF00"),
+                 panelColours=c("#DA3287"),
+                 attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),                                       attribSymbols=c(7,8,5,6,9,10),
+                 columnWidths=c(23))
+ggplot2::ggsave(paste("man/figures/ae_category_attribStart_timeline_plot", ".png", sep=""), p, width=4.2, height=5.4, device="png", scale = 1);
+```
+
+```{r example6b, echo=FALSE, out.width='100%'}
+knitr::include_graphics(paste("man/figures/ae_category_attribStart_timeline_plot", ".png", sep=""))
 ```
