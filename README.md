@@ -36,7 +36,7 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="development")
 
 [Online Documentation](https://biostatsPMH.github.io/BiostatsUHNplus/)
 
-## Example
+## Examples
 
 ### A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error
 
