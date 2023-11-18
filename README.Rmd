@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 # BiostatsUHNplus
 
 The goal of **BiostatsUHNplus** is to house publicly available code functions and snippets (some with multiple package dependencies) 
-used by [Biostatistics@UHN](https://www.biostatspm.com/) in Toronto, Canada.
+used by [Biostatistics@UHN](https://www.biostatsuhn.com/) in Toronto, Canada.
 
 Many of these functions build upon the features of [**reportRmd**](https://github.com/biostatsPMH/reportRmd).
 

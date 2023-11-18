@@ -88,79 +88,92 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   if (is.null(ae_attribVarText)) {
     ae_attribVarText <- c("Definite", "Probable", "Possible");
   }
-  if (is.null(fonts)) {
-    fontCategory <- "Bahnschrift";
-    fontDetail <- "Bauhaus 93";
-    fontAxis <- "Berlin Sans FB";
-    fontLegend <- "Arial";
-    fontPlotLabels <- "Arial";
-  } else {
-    fontCategory <- fonts[1];
-    fontDetail <- fonts[2];
-    fontAxis <- fonts[3];
-    fontLegend <- fonts[4];
-    fontPlotLabels <- fonts[5];
+  
+  fontCategory <- "Bahnschrift";
+  fontDetail <- "Bauhaus 93";
+  fontAxis <- "Berlin Sans FB";
+  fontLegend <- "Arial";
+  fontPlotLabels <- "Arial";
+  if (!is.null(fonts)) {
+    tryCatch({
+      fontCategory <- na.fail(fonts[1]);
+      fontDetail <- na.fail(fonts[2]);
+      fontAxis <- na.fail(fonts[3]);
+      fontLegend <- na.fail(fonts[4]);
+      fontPlotLabels <- na.fail(fonts[5]);
+    }, error=function(e){})
   }
-  if (is.null(fontColours)) {
-    fontColoursCategory <- "black";
-    fontColoursDetail <- "white";
-  } else {
-    fontColoursCategory <- fontColours[1];
-    fontColoursDetail <- fontColours[2];
+  
+  fontColoursCategory <- "black";
+  fontColoursDetail <- "white";
+  if (!is.null(fontColours)) {
+    tryCatch({
+      fontColoursCategory <- na.fail(fontColours[1]);
+      fontColoursDetail <- na.fail(fontColours[2]);
+    }, error=function(e){})
   }
-  if (is.null(panelColours)) {
-    panelColoursCategory <- "#FFB347";
-    panelColoursDetail <- "#C19A6B";
-  } else {
-    panelColoursCategory <- panelColours[1];
-    panelColoursDetail <- panelColours[2];
+
+  panelColoursCategory <- "#FFB347";
+  panelColoursDetail <- "#C19A6B";
+  if (!is.null(panelColours)) {
+    tryCatch({
+      panelColoursCategory <- na.fail(panelColours[1]);
+      panelColoursDetail <- na.fail(panelColours[2]);
+    }, error=function(e){})
   }
-  if (is.null(attribColours)) {
-    attribColours1 <- "#FF2800";
-    attribColours2 <- "#AE0C00";
-    attribColours3 <- "#08E8DE";
-    attribColours4 <- "#1DACD6";
-    attribColours5 <- "#BF94E4";
-    attribColours6 <- "#702963";
-    attribColours7 <- "#FFBF00";
-    attribColours8 <- "#FF7E00";
-    attribColours9 <- "#8DB600";
-    attribColours10 <- "#008000";
-  } else {
-    attribColours1 <- attribColours[1];
-    attribColours2 <- attribColours[2];
-    attribColours3 <- attribColours[3];
-    attribColours4 <- attribColours[4];
-    attribColours5 <- attribColours[5];
-    attribColours6 <- attribColours[6];
-    attribColours7 <- attribColours[7];
-    attribColours8 <- attribColours[8];
-    attribColours9 <- attribColours[9];
-    attribColours10 <- attribColours[10];
+
+  attribColours1 <- "#FF2800";
+  attribColours2 <- "#AE0C00";
+  attribColours3 <- "#08E8DE";
+  attribColours4 <- "#1DACD6";
+  attribColours5 <- "#BF94E4";
+  attribColours6 <- "#702963";
+  attribColours7 <- "#FFBF00";
+  attribColours8 <- "#FF7E00";
+  attribColours9 <- "#8DB600";
+  attribColours10 <- "#008000";
+  if (!is.null(attribColours)) {
+    tryCatch({
+      attribColours1 <- na.fail(attribColours[1]);
+      attribColours2 <- na.fail(attribColours[2]);
+      attribColours3 <- na.fail(attribColours[3]);
+      attribColours4 <- na.fail(attribColours[4]);
+      attribColours5 <- na.fail(attribColours[5]);
+      attribColours6 <- na.fail(attribColours[6]);
+      attribColours7 <- na.fail(attribColours[7]);
+      attribColours8 <- na.fail(attribColours[8]);
+      attribColours9 <- na.fail(attribColours[9]);
+      attribColours10 <- na.fail(attribColours[10]);
+    }, error=function(e){})
   }
-  if (is.null(attribSymbols)) {
-    attribSymbols1 <- 1;
-    attribSymbols2 <- 2;
-    attribSymbols3 <- 3;
-    attribSymbols4 <- 4;
-    attribSymbols5 <- 5;
-    attribSymbols6 <- 6;
-    attribSymbols7 <- 7;
-    attribSymbols8 <- 8;
-    attribSymbols9 <- 9;
-    attribSymbols10 <- 10;
-  } else {
-    attribSymbols1 <- attribSymbols[1];
-    attribSymbols2 <- attribSymbols[2];
-    attribSymbols3 <- attribSymbols[3];
-    attribSymbols4 <- attribSymbols[4];
-    attribSymbols5 <- attribSymbols[5];
-    attribSymbols6 <- attribSymbols[6];
-    attribSymbols7 <- attribSymbols[7];
-    attribSymbols8 <- attribSymbols[8];
-    attribSymbols9 <- attribSymbols[9];
-    attribSymbols10 <- attribSymbols[10];
+
+  attribSymbols1 <- 1;
+  attribSymbols2 <- 2;
+  attribSymbols3 <- 3;
+  attribSymbols4 <- 4;
+  attribSymbols5 <- 5;
+  attribSymbols6 <- 6;
+  attribSymbols7 <- 7;
+  attribSymbols8 <- 8;
+  attribSymbols9 <- 9;
+  attribSymbols10 <- 10;
+  if (!is.null(attribSymbols)) {
+    tryCatch({
+      attribSymbols1 <- na.fail(attribSymbols[1]);
+      attribSymbols2 <- na.fail(attribSymbols[2]);
+      attribSymbols3 <- na.fail(attribSymbols[3]);
+      attribSymbols4 <- na.fail(attribSymbols[4]);
+      attribSymbols5 <- na.fail(attribSymbols[5]);
+      attribSymbols6 <- na.fail(attribSymbols[6]);
+      attribSymbols7 <- na.fail(attribSymbols[7]);
+      attribSymbols8 <- na.fail(attribSymbols[8]);
+      attribSymbols9 <- na.fail(attribSymbols[9]);
+      attribSymbols10 <- na.fail(attribSymbols[10]);
+    }, error=function(e){})
   }
+
+  divisionUnit = 1;
+  plotTimeText = "Days";
   if (time_unit == "day") {
     divisionUnit = 1;
     plotTimeText = "Days"
@@ -191,17 +204,20 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   
   if (include_ae_detail == T) {
     
-    if (is.null(legendPerSpace)) {
-      legendPerSpaceDetail = 0.05
-    } else {
-      legendPerSpaceDetail = legendPerSpace
+    legendPerSpaceDetail = 0.05
+    if (!is.null(legendPerSpace)) {
+      tryCatch({
+        legendPerSpaceDetail = na.fail(legendPerSpace)
+      }, error=function(e){})
     }
-    if (is.null(columnWidths)) {
-      columnWidth1 = 15;
-      columnWidth2 = 25;
-    } else {
-      columnWidth1 = columnWidths[1];
-      columnWidth2 = columnWidths[2];
+    
+    columnWidth1 = 15;
+    columnWidth2 = 25;
+    if (!is.null(columnWidths)) {
+      tryCatch({
+        columnWidth1 = na.fail(columnWidths[1]);
+        columnWidth2 = na.fail(columnWidths[2]);
+      }, error=function(e){})
     }
   
     #i <- 2;
@@ -209,10 +225,11 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     mydataPlot <- as.data.frame(mydataPlot);
     for (i in 1:length(ae_attribVars)) {
       
-      if (is.null(ae_attribVarsName)) {
-        drugName <- paste("Attribution ", i, sep="");
-      } else {
-        drugName <- ae_attribVarsName[i];
+      drugName <- paste("Attribution ", i, sep="");
+      if (!is.null(ae_attribVarsName)) {
+        tryCatch({
+          drugName <- na.fail(ae_attribVarsName[i]);
+        }, error=function(e){})
       }
       
       selectedAttribVar <- ae_attribVars[i];
@@ -377,17 +394,20 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     return(pPlot)
   } else {
     
-    if (is.null(legendPerSpace)) {
-      legendPerSpaceCategory = 0.1
-    } else {
-      legendPerSpaceCategory = legendPerSpace
+    legendPerSpaceCategory = 0.1
+    if (!is.null(legendPerSpace)) {
+      tryCatch({
+        legendPerSpaceCategory = na.fail(legendPerSpace)
+      }, error=function(e){})
     }
-    if (is.null(columnWidths)) {
-      columnWidth1 = 25;
-      columnWidth2 = 15;
-    } else {
-      columnWidth1 = columnWidths[1];
-      columnWidth2 = columnWidths[2];
+    
+    columnWidth1 = 25;
+    columnWidth2 = 15;
+    if (!is.null(columnWidths)) {
+      tryCatch({
+        columnWidth1 = na.fail(columnWidths[1]);
+        columnWidth2 = na.fail(columnWidths[2]);
+      }, error=function(e){})
     }
     
     #i <- 1;
@@ -395,10 +415,11 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     mydataPlot <- as.data.frame(mydataPlot);
     for (i in 1:length(ae_attribVars)) {
       
-      if (is.null(ae_attribVarsName)) {
-        drugName <- paste("Attribution ", i, sep="");
-      } else {
-        drugName <- ae_attribVarsName[i];
+      drugName <- paste("Attribution ", i, sep="");
+      if (!is.null(ae_attribVarsName)) {
+        tryCatch({
+          drugName <- na.fail(ae_attribVarsName[i]);
+        }, error=function(e){})
       }
       
       selectedAttribVar <- ae_attribVars[i];
