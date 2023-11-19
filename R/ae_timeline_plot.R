@@ -1,7 +1,7 @@
-#' Outputs AE timeline plots including just system organ class (AE category), or 
-#' system organ class and lower level term (AE detail). This function can fit up
-#' to 5 different attributions. Modify width, height and scale parameters in 
-#' ggsave() to customize fit for large plot.
+#' Outputs related adverse event timeline plots including just system organ class 
+#' (AE category), or system organ class and lower level term (AE detail). This 
+#' function can fit up to 5 different attributions. Modify width, height and scale 
+#' parameters in ggsave() to customize fit for large plot.
 #'
 #' @param subjID key identifier field for participant ID in data sets
 #' @param subjID_ineligText character text that denotes participant IDs to exclude,

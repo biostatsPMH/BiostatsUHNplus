@@ -644,7 +644,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.22
@@ -653,7 +653,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 </tr>
 <tr>
@@ -980,7 +980,7 @@ Unrelated
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.36
@@ -989,7 +989,7 @@ Unrelated
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 </tr>
 <tr>
@@ -1775,7 +1775,7 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test")
                  include_ae_detail=F,
                  fonts=c("Forte","Gadugi","French Script MT","Albany AMT","Calibri"),
                  fontColours=c("#FF4F00","#FFDB58"),
-                 panelColours=c("#AAF0D1","#B31B1B"),
+                 panelColours=c("#AAF0D1",NA,"white"),
                  attribColours=c("#F6ADC6","#C54B8C","#A4DDED","#0077BE","#9AB973",
                                  "#01796F","#FFA343","#CC7722","#E0B0FF","#5A4FCF"),
                  attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
@@ -1810,9 +1810,10 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("01","11"),
                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
                  include_ae_detail=F,
                  fonts=c("Calibri","Albany AMT","Gadugi","French Script MT","Forte"),
-                 fontColours=c("#FFBF00"),
-                 panelColours=c("#DA3287"),
-                 attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),                                       attribSymbols=c(7,8,5,6,9,10),
+                 fontColours=c("#FFE135"),
+                 panelColours=c("#E52B50",NA,"#FFF5EE"),
+                 attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),   
+                 attribSymbols=c(7,8,5,6),
                  columnWidths=c(23))
 ggplot2::ggsave(paste("man/figures/ae_category_attribStart_timeline_plot", ".png", sep=""), p, width=4.2, height=5.4, device="png", scale = 1);
 ```

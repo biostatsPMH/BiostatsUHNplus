@@ -89,7 +89,7 @@ library(BiostatsUHNplus);
 data("enrollment", "demography", "ineligibility", "ae");
 
 ## This does summary for all participants;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables",
           title="Phase X Study to Evaluate Treatments A-D",
           comp=NULL,pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -103,7 +103,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
           numSubj=NULL)
 
 ## This does summary for each cohort;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables",
           title="Phase X Study to Evaluate Treatments A-D",
           comp="COHORT",pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -119,10 +119,10 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
 
 
 
-### Adverse event onset timeline plots
+### Related adverse event onset timeline plots
 
 #### Example 1
-Uses addendum fake study data. Shows timeline for onset of AE after study enrollment. Can display up to 5 attributions. Time unit may be one of day, week, month or year.
+Uses addendum fake study data. Shows timeline for onset of related AE after study enrollment. Can display up to 5 attributions. Time unit may be one of day, week, month or year.
 
 Note that if more than one field is given for *startDtVars* (unique names required), each field is assumed to be specific start date for attribution in corresponding field order.
 
@@ -209,7 +209,7 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("01","11"),
                  include_ae_detail=F,
                  fonts=c("Calibri","Albany AMT","Gadugi","French Script MT","Forte"),
                  fontColours=c("#FFE135"),
-                 panelColours=c("#E52B50",NA,"#FFE4C4"),
+                 panelColours=c("#E52B50",NA,"#FFF5EE"),
                  attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),   
                  attribSymbols=c(7,8,5,6),
                  columnWidths=c(23))

@@ -2,10 +2,10 @@
 % Please edit documentation in R/ae_timeline_plot.R
 \name{ae_timeline_plot}
 \alias{ae_timeline_plot}
-\title{Outputs AE timeline plots including just system organ class (AE category), or
-system organ class and lower level term (AE detail). This function can fit up
-to 5 different attributions. Modify width, height and scale parameters in
-ggsave() to customize fit for large plot.}
+\title{Outputs related adverse event timeline plots including just system organ class
+(AE category), or system organ class and lower level term (AE detail). This
+function can fit up to 5 different attributions. Modify width, height and scale
+parameters in ggsave() to customize fit for large plot.}
 \usage{
 ae_timeline_plot(
   subjID,
@@ -96,10 +96,10 @@ columns (if provided)}
 ggplot object of AE timeline plot
 }
 \description{
-Outputs AE timeline plots including just system organ class (AE category), or
-system organ class and lower level term (AE detail). This function can fit up
-to 5 different attributions. Modify width, height and scale parameters in
-ggsave() to customize fit for large plot.
+Outputs related adverse event timeline plots including just system organ class
+(AE category), or system organ class and lower level term (AE detail). This
+function can fit up to 5 different attributions. Modify width, height and scale
+parameters in ggsave() to customize fit for large plot.
 }
 \examples{
 data("drug1_admin", "drug2_admin", "ae");

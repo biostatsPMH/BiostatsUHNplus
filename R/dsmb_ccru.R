@@ -1,7 +1,7 @@
 #' Outputs the three DSMB-CCRU AE summary tables in Excel format per UHN template
 #'
 #' @param protocol study protocol name (uppercase, no spaces permitted)
-#' @param setwd working directory to write summary files to
+#' @param setwd directory to write Excel summary files to
 #' @param title full character vector with name of study
 #' @param comp baseline comparison group, for example, cohort (if provided)
 #' @param pi character vector name of study principal investigator
@@ -119,7 +119,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
   
   #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#;
 
-  setwd(setwd);
+  #setwd(setwd);
   
   if (is.null(boundDate)) {
     boundDate <- "01JAN1990";
@@ -242,7 +242,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     setRowHeights(wb, 1, rows = 9, heights = 82); 
     setColWidths(wb, 1, cols = c(1, 2, 3, 4, 5, 6), widths = c(34, 34, 15, 15, 15, 15));
     OutsideBorders(wb, sheet_ = 1, rows_ = 9:(length(table1_df[, 1])+9), cols_ = 1:6);
-    saveWorkbook(wb, table1_fn, overwrite = TRUE);
+    saveWorkbook(wb, paste(setwd, table1_fn, sep=""), overwrite = TRUE);
     
     #### Table 2; 
     table2_dfa <- aes2_DF |>
@@ -286,7 +286,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     setRowHeights(wb, 1, rows = 9, heights = 82); 
     setColWidths(wb, 1, cols = c(1, 2, 3, 4, 5), widths = c(34, 15, 15, 15, 15));
     OutsideBorders(wb, sheet_ = 1, rows_ = 9:(length(table2_df[, 1])+9), cols_ = 1:5);
-    saveWorkbook(wb, table2_fn, overwrite = TRUE);
+    saveWorkbook(wb, paste(setwd, table2_fn, sep=""), overwrite = TRUE);
     
     #### Table 3;
     table3_dfa <- aes1_DF |>
@@ -330,7 +330,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     setRowHeights(wb, 1, rows = 9, heights = 82); 
     setColWidths(wb, 1, cols = c(1, 2, 3, 4, 5), widths = c(34, 15, 15, 15, 15));
     OutsideBorders(wb, sheet_ = 1, rows_ = 9:(length(table3_df[, 1])+9), cols_ = 1:5);
-    saveWorkbook(wb, table3_fn, overwrite = TRUE);
+    saveWorkbook(wb, paste(setwd, table3_fn, sep=""), overwrite = TRUE);
     
     #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#;
   }      

@@ -35,7 +35,7 @@ dsmb_ccru(
 \arguments{
 \item{protocol}{study protocol name (uppercase, no spaces permitted)}
 
-\item{setwd}{working directory to write summary files to}
+\item{setwd}{directory to write Excel summary files to}
 
 \item{title}{full character vector with name of study}
 
