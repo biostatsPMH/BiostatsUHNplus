@@ -89,7 +89,7 @@ library(BiostatsUHNplus);
 data("enrollment", "demography", "ineligibility", "ae");
 
 ## This does summary for all participants;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
           title="Phase X Study to Evaluate Treatments A-D",
           comp=NULL,pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -103,7 +103,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables",
           numSubj=NULL)
 
 ## This does summary for each cohort;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
           title="Phase X Study to Evaluate Treatments A-D",
           comp="COHORT",pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",

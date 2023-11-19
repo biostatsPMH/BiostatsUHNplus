@@ -25,7 +25,7 @@ examples
 a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error
 summary-statistics-of-adverse-events-nested-by-participant-in-cohort-stratified-by-adverse-event-severity
 outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template
-adverse-event-onset-timeline-plots
+related-adverse-event-onset-timeline-plots
 example-1
 example-2
 example-3
