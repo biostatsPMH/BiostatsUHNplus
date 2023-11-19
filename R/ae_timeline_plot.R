@@ -33,8 +33,8 @@
 #'   legend and plot labels (if provided)
 #' @param fontColours character text that denotes system font colours for AE category and
 #'   AE detail (if provided)
-#' @param panelColours character text that denotes panel background colours for AE category
-#'   and AE detail (if provided)
+#' @param panelColours character text that denotes panel background colours for AE category,
+#'   AE detail and plot area (if provided)
 #' @param attribColours character text that denotes colours for attributions, supports up to 10
 #'   distinct colours (if provided)
 #' @param attribSymbols text that denotes median plot symbols for attributions, supports up to 10
@@ -54,26 +54,25 @@
 #' @import ggplot2
 #' @export
 #' @examples
-#' data("enrollment", "ae");
-#' plotOut <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"),
-#'   baseline_datasets=list(enrollment),
-#'   ae_dataset=ae,
-#'   ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1",
-#'                "CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1",
-#'                "CTC_AE_ATTR_SCALE"),
-#'   ae_attribVarsName=c("Drug 1","Drug 2", "Drug 3","Drug 4", "Drug 5"),
-#'   ae_attribVarText=c("Definite", "Probable", "Possible"),
-#'   startDtVars=c("ENROL_DATE_INT"),ae_detailVar="ae_detail",
-#'   ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
-#'   ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week",
-#'   fonts=c("Forte","Gadugi","French Script MT","Albany AMT","Calibri"),
-#'   fontColours=c("#FF4F00","#FFDB58"),
-#'   panelColours=c("#AAF0D1","#B31B1B"),
-#'   attribColours=c("#F6ADC6","#C54B8C","#A4DDED","#0077BE","#9AB973","#01796F",
-#'     "#FFA343","#CC7722","#E0B0FF","#5A4FCF"),                                   
-#'   attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
-#'   columnWidths=c(23,15))
-#'   ggsave(paste("ae_detail_timeline_plot_example_2", ".png", sep=""), plotOut, width=6.4, height=18, device="png", scale = 1);
+#' data("drug1_admin", "drug2_admin", "ae");
+#' p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("01","11"),
+#'                       baseline_datasets=list(drug1_admin, drug2_admin),
+#'                       ae_dataset=ae,
+#'                       ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
+#'                       ae_attribVarsName=c("Drug 1","Drug 2"),
+#'                       ae_attribVarText=c("Definite", "Probable", "Possible"),
+#'                       startDtVars=c("TX1_DATE_INT","TX2_DATE_INT"),
+#'                       ae_detailVar="ae_detail",
+#'                       ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
+#'                       ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
+#'                       include_ae_detail=F,
+#'                       fonts=c("Calibri","Albany AMT","Gadugi","French Script MT","Forte"),
+#'                       fontColours=c("#FFE135"),
+#'                       panelColours=c("#E52B50",NA,"#FFE4C4"),
+#'                       attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),   
+#'                       attribSymbols=c(7,8,5,6),
+#'                       columnWidths=c(23))
+#' ggplot2::ggsave(paste("ae_category_attribStart_timeline_plot", ".png", sep=""), p, width=4.2, height=5.4, device="png", scale = 1);
 
 ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
                       ae_attribVars,ae_attribVarsName=NULL,ae_attribVarText=NULL,
@@ -97,9 +96,15 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   if (!is.null(fonts)) {
     tryCatch({
       fontCategory <- na.fail(fonts[1]);
+    }, error=function(e){})
+    tryCatch({
       fontDetail <- na.fail(fonts[2]);
+    }, error=function(e){})
       fontAxis <- na.fail(fonts[3]);
+    tryCatch({
       fontLegend <- na.fail(fonts[4]);
+    }, error=function(e){})
+    tryCatch({
       fontPlotLabels <- na.fail(fonts[5]);
     }, error=function(e){})
   }
@@ -109,16 +114,24 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   if (!is.null(fontColours)) {
     tryCatch({
       fontColoursCategory <- na.fail(fontColours[1]);
+    }, error=function(e){})
+    tryCatch({
       fontColoursDetail <- na.fail(fontColours[2]);
     }, error=function(e){})
   }
 
   panelColoursCategory <- "#FFB347";
   panelColoursDetail <- "#C19A6B";
+  panelColoursPlot <- "#FAF0E6";
   if (!is.null(panelColours)) {
     tryCatch({
       panelColoursCategory <- na.fail(panelColours[1]);
+    }, error=function(e){})
+    tryCatch({
       panelColoursDetail <- na.fail(panelColours[2]);
+    }, error=function(e){})
+    tryCatch({
+      panelColoursPlot <- na.fail(panelColours[3]);
     }, error=function(e){})
   }
 
@@ -135,14 +148,32 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   if (!is.null(attribColours)) {
     tryCatch({
       attribColours1 <- na.fail(attribColours[1]);
+    }, error=function(e){})
+    tryCatch({
       attribColours2 <- na.fail(attribColours[2]);
+    }, error=function(e){})
+    tryCatch({
       attribColours3 <- na.fail(attribColours[3]);
+    }, error=function(e){})
+    tryCatch({
       attribColours4 <- na.fail(attribColours[4]);
+    }, error=function(e){})
+    tryCatch({
       attribColours5 <- na.fail(attribColours[5]);
+    }, error=function(e){})
+    tryCatch({
       attribColours6 <- na.fail(attribColours[6]);
+    }, error=function(e){})
+    tryCatch({
       attribColours7 <- na.fail(attribColours[7]);
+    }, error=function(e){})
+    tryCatch({
       attribColours8 <- na.fail(attribColours[8]);
+    }, error=function(e){})
+    tryCatch({
       attribColours9 <- na.fail(attribColours[9]);
+    }, error=function(e){})
+    tryCatch({
       attribColours10 <- na.fail(attribColours[10]);
     }, error=function(e){})
   }
@@ -160,14 +191,32 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   if (!is.null(attribSymbols)) {
     tryCatch({
       attribSymbols1 <- na.fail(attribSymbols[1]);
+    }, error=function(e){})
+    tryCatch({
       attribSymbols2 <- na.fail(attribSymbols[2]);
+    }, error=function(e){})
+    tryCatch({
       attribSymbols3 <- na.fail(attribSymbols[3]);
+    }, error=function(e){})
+    tryCatch({
       attribSymbols4 <- na.fail(attribSymbols[4]);
+    }, error=function(e){})
+    tryCatch({
       attribSymbols5 <- na.fail(attribSymbols[5]);
+    }, error=function(e){})
+    tryCatch({
       attribSymbols6 <- na.fail(attribSymbols[6]);
+    }, error=function(e){})
+    tryCatch({
       attribSymbols7 <- na.fail(attribSymbols[7]);
+    }, error=function(e){})
+    tryCatch({
       attribSymbols8 <- na.fail(attribSymbols[8]);
+    }, error=function(e){})
+    tryCatch({
       attribSymbols9 <- na.fail(attribSymbols[9]);
+    }, error=function(e){})
+    tryCatch({
       attribSymbols10 <- na.fail(attribSymbols[10]);
     }, error=function(e){})
   }
@@ -216,6 +265,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     if (!is.null(columnWidths)) {
       tryCatch({
         columnWidth1 = na.fail(columnWidths[1]);
+      }, error=function(e){})
+      tryCatch({
         columnWidth2 = na.fail(columnWidths[2]);
       }, error=function(e){})
     }
@@ -377,8 +428,9 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), panel.border=element_blank(), panel.background=element_blank(), plot.title=element_text(hjust = 0.5)) +
       ggh4x::facet_nested(ae_category + forcats::fct_rev(ae_detail) ~ ., scales = "free", space = "free", switch = "y", strip = SOC_LLT_strips) +
       scale_y_discrete(position = "right") +
-      theme(legend.key = element_rect(fill = "white"), text=element_text(family=fontLegend), plot.margin = margin(0,0,0,0, "cm")) +
+      theme(legend.key = element_rect(fill = panelColoursPlot), text=element_text(family=fontLegend), legend.background = element_rect(fill = panelColoursPlot), plot.margin = margin(0,0,0,0, "cm")) +
       theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(), axis.title.x = element_text(family=fontAxis)) +
+      theme(panel.background = element_rect(fill = panelColoursPlot)) +
       ggh4x::force_panelsizes(rows = plotSpan$span) +
       theme(legend.title=element_blank(), legend.margin = margin(0, 0, 0, 0), legend.spacing.x = unit(0, "mm"), legend.spacing.y = unit(0, "mm"))
     p1_no_legend <- p1_with_legend + theme(legend.position = "none")
@@ -406,6 +458,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     if (!is.null(columnWidths)) {
       tryCatch({
         columnWidth1 = na.fail(columnWidths[1]);
+      }, error=function(e){})
+      tryCatch({
         columnWidth2 = na.fail(columnWidths[2]);
       }, error=function(e){})
     }
@@ -552,8 +606,9 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
       theme(axis.title.y=element_blank(), axis.ticks.y=element_blank(), panel.border=element_blank(), panel.background=element_blank(), plot.title=element_text(hjust = 0.5)) +
       ggh4x::facet_nested(forcats::fct_rev(ae_category) ~ ., scales = "free", space = "free", switch = "y", strip = SOC_LLT_strips) +
       scale_y_discrete(position = "right") +
-      theme(legend.key = element_rect(fill = "white"), text=element_text(family=fontLegend), plot.margin = margin(0,0,0,0, "cm")) +
+      theme(legend.key = element_rect(fill = panelColoursPlot), text=element_text(family=fontLegend), legend.background = element_rect(fill = panelColoursPlot), plot.margin = margin(0,0,0,0, "cm")) +
       theme(axis.title.y=element_blank(), axis.text.y=element_blank(), axis.ticks.y=element_blank(), axis.title.x = element_text(family=fontAxis)) +
+      theme(panel.background = element_rect(fill = panelColoursPlot)) +
       ggh4x::force_panelsizes(rows = plotSpan$span) +
       theme(strip.text = element_text (margin = margin (2, 1, 2, 15))) +
       theme(legend.title=element_blank(), legend.margin = margin(0, 0, 0, 0), legend.spacing.x = unit(0, "mm"), legend.spacing.y = unit(0, "mm"))

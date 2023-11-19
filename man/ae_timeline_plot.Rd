@@ -80,8 +80,8 @@ legend and plot labels (if provided)}
 \item{fontColours}{character text that denotes system font colours for AE category and
 AE detail (if provided)}
 
-\item{panelColours}{character text that denotes panel background colours for AE category
-and AE detail (if provided)}
+\item{panelColours}{character text that denotes panel background colours for AE category,
+AE detail and plot area (if provided)}
 
 \item{attribColours}{character text that denotes colours for attributions, supports up to 10
 distinct colours (if provided)}
@@ -102,25 +102,24 @@ to 5 different attributions. Modify width, height and scale parameters in
 ggsave() to customize fit for large plot.
 }
 \examples{
-data("enrollment", "ae");
-plotOut <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test"),
-  baseline_datasets=list(enrollment),
-  ae_dataset=ae,
-  ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1",
-               "CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1",
-               "CTC_AE_ATTR_SCALE"),
-  ae_attribVarsName=c("Drug 1","Drug 2", "Drug 3","Drug 4", "Drug 5"),
-  ae_attribVarText=c("Definite", "Probable", "Possible"),
-  startDtVars=c("ENROL_DATE_INT"),ae_detailVar="ae_detail",
-  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
-  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week",
-  fonts=c("Forte","Gadugi","French Script MT","Albany AMT","Calibri"),
-  fontColours=c("#FF4F00","#FFDB58"),
-  panelColours=c("#AAF0D1","#B31B1B"),
-  attribColours=c("#F6ADC6","#C54B8C","#A4DDED","#0077BE","#9AB973","#01796F",
-    "#FFA343","#CC7722","#E0B0FF","#5A4FCF"),                                   
-  attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
-  columnWidths=c(23,15))
-  ggsave(paste("ae_detail_timeline_plot_example_2", ".png", sep=""), plotOut, width=6.4, height=18, device="png", scale = 1);
+data("drug1_admin", "drug2_admin", "ae");
+p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("01","11"),
+                      baseline_datasets=list(drug1_admin, drug2_admin),
+                      ae_dataset=ae,
+                      ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
+                      ae_attribVarsName=c("Drug 1","Drug 2"),
+                      ae_attribVarText=c("Definite", "Probable", "Possible"),
+                      startDtVars=c("TX1_DATE_INT","TX2_DATE_INT"),
+                      ae_detailVar="ae_detail",
+                      ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
+                      ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
+                      include_ae_detail=F,
+                      fonts=c("Calibri","Albany AMT","Gadugi","French Script MT","Forte"),
+                      fontColours=c("#FFE135"),
+                      panelColours=c("#E52B50",NA,"#FFE4C4"),
+                      attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),   
+                      attribSymbols=c(7,8,5,6),
+                      columnWidths=c(23))
+ggplot2::ggsave(paste("ae_category_attribStart_timeline_plot", ".png", sep=""), p, width=4.2, height=5.4, device="png", scale = 1);
 }
 \keyword{plot}
