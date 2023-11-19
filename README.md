@@ -644,7 +644,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.22
@@ -653,7 +653,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -980,7 +980,7 @@ Unrelated
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.36
@@ -989,7 +989,7 @@ Unrelated
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -1714,6 +1714,20 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
           ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
           ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
           numSubj=NULL)
+
+## Does same as above, but overrides number of subjects in cohorts;
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
+          title="Phase X Study to Evaluate Treatments A-D",
+          comp="COHORT",pi="Dr. Principal Investigator",
+          presDate="30OCT2020",cutDate="31AUG2020",
+          boundDate=NULL,subjID="Subject",subjID_ineligText=c("New Subject","Test"),
+          baseline_datasets=list(enrollment,demography,ineligibility),
+          ae_dataset=ae,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
+          genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
+          ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
+          ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
+          ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
+          numSubj=c(3,4,3,3))
 ```
 
 ### Related adverse event onset timeline plots
@@ -1811,7 +1825,7 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("01","11"),
                  include_ae_detail=F,
                  fonts=c("Calibri","Albany AMT","Gadugi","French Script MT","Forte"),
                  fontColours=c("#FFE135"),
-                 panelColours=c("#E52B50",NA,"#FADADD"),
+                 panelColours=c("#E52B50",NA,"#FFF5EE"),
                  attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),   
                  attribSymbols=c(7,8,5,6),
                  columnWidths=c(23))
