@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.2 Logistic model | Example nested reportRmd and Bayesian hierarchical model summary</title>
-  <meta name="description" content="3.2 Logistic model | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <title>2.3 Nested summary of yard | Example nested reportRmd and Bayesian hierarchical model summary</title>
+  <meta name="description" content="2.3 Nested summary of yard | Example nested reportRmd and Bayesian hierarchical model summary" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.2 Logistic model | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta property="og:title" content="2.3 Nested summary of yard | Example nested reportRmd and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.2 Logistic model | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta name="twitter:title" content="2.3 Nested summary of yard | Example nested reportRmd and Bayesian hierarchical model summary" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="kaplan-meier-survival-curve.html"/>
-<link rel="next" href="generalized-estimating-equations-model.html"/>
+<link rel="prev" href="nested-summary-of-high-protein-status.html"/>
+<link rel="next" href="nested-summary-of-diet.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -203,220 +203,137 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logistic-model" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Logistic model<a href="logistic-model.html#logistic-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Examine the bivariate relationship first among variables to high protein status of milk. Check for quasi or complete separation of categories. Shout out to Lisa Avery for this function!</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="logistic-model.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotuv</span>(<span class="at">data=</span>Milk, <span class="at">response=</span><span class="st">&#39;High_Protein&#39;</span>, <span class="at">covs=</span><span class="fu">c</span>(<span class="st">&#39;Cow&#39;</span>, <span class="st">&#39;Yard&#39;</span>, <span class="st">&#39;Diet&#39;</span>, <span class="st">&#39;Time&#39;</span>, <span class="st">&#39;protein&#39;</span>));</span></code></pre></div>
-<p><img src="man/figures/ana10-1.png" width="672" /></p>
-<p>Below logistic model does not account for clustering of repeat observations by cow to high protein status of milk.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="logistic-model.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_mvsum</span>(<span class="at">model=</span><span class="fu">glm</span>(High_Protein <span class="sc">~</span> Diet <span class="sc">+</span> Yard <span class="sc">+</span> Time, <span class="at">data=</span>Milk, <span class="at">family=</span><span class="st">&#39;binomial&#39;</span>), <span class="at">showN=</span>T, <span class="at">vif=</span>T);</span></code></pre></div>
+<div id="nested-summary-of-yard" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Nested summary of yard<a href="nested-summary-of-yard.html#nested-summary-of-yard" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="by-cow-1" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> By cow:<a href="nested-summary-of-yard.html#by-cow-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Of the 5 yards, each that had at least one instance of a cow having milk with high protein content and a cow having milk with low protein content. Cows in some yards may have a lower mean time in weeks since calving, but there is no evidence to suggest that is a difference among yards.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="nested-summary-of-yard.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> Milk, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;Cow&quot;</span>), <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;protein&quot;</span>, <span class="st">&quot;Time&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;Yard&quot;</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
 </th>
 <th style="text-align:right;">
-OR(95%CI)
+Full Sample (n=79)
 </th>
 <th style="text-align:right;">
-p-value
+1 (n=25)
 </th>
 <th style="text-align:right;">
-N
+2 (n=11)
 </th>
 <th style="text-align:right;">
-Event
+3 (n=13)
 </th>
 <th style="text-align:right;">
-VIF
+4 (n=14)
+</th>
+<th style="text-align:right;">
+5 (n=16)
+</th>
+<th style="text-align:right;">
+Unnested p-value
+</th>
+<th style="text-align:right;">
+Unnested Effect Size
+</th>
+<th style="text-align:right;">
+Unnested StatTest
+</th>
+<th style="text-align:right;">
+Nested p-value
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">Diet</span>
+<span style="font-weight: bold;">protein</span>
 </td>
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">&lt;0.001</span>
 </td>
 <td style="text-align:right;">
-1337
 </td>
 <td style="text-align:right;">
-386
 </td>
 <td style="text-align:right;">
-1.02
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.87
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+<td style="text-align:right;">
+Kruskal Wallis, Eta sq
+</td>
+<td style="text-align:right;">
+0.98
 </td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
-barley
+Mean (sd)
 </td>
 <td style="text-align:right;">
-Reference
+3.4 (0.2)
 </td>
 <td style="text-align:right;">
+3.4 (0.2)
 </td>
 <td style="text-align:right;">
-425
+3.4 (0.2)
 </td>
 <td style="text-align:right;">
-183
+3.4 (0.2)
 </td>
 <td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-barley+lupins
+3.4 (0.2)
 </td>
 <td style="text-align:right;">
-0.47 (0.35, 0.63)
-</td>
-<td style="text-align:right;">
-<span style="font-weight: bold;">&lt;0.001</span>
-</td>
-<td style="text-align:right;">
-459
-</td>
-<td style="text-align:right;">
-119
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-lupins
-</td>
-<td style="text-align:right;">
-0.31 (0.23, 0.42)
-</td>
-<td style="text-align:right;">
-<span style="font-weight: bold;">&lt;0.001</span>
-</td>
-<td style="text-align:right;">
-453
-</td>
-<td style="text-align:right;">
-84
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="font-weight: bold;">Yard</span>
+3.4 (0.2)
 </td>
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-0.27
 </td>
 <td style="text-align:right;">
-1337
-</td>
-<td style="text-align:right;">
-386
-</td>
-<td style="text-align:right;">
-1.01
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-1
-</td>
-<td style="text-align:right;">
-Reference
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-254
-</td>
-<td style="text-align:right;">
-64
 </td>
 <td style="text-align:right;">
 </td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
-2
+Median (Min,Max)
 </td>
 <td style="text-align:right;">
-1.14 (0.77, 1.70)
+3.4 (2.9, 3.9)
 </td>
 <td style="text-align:right;">
-0.52
+3.5 (3.0, 3.8)
 </td>
 <td style="text-align:right;">
-275
+3.4 (2.9, 3.7)
 </td>
 <td style="text-align:right;">
-78
+3.3 (3.1, 3.7)
 </td>
 <td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-3
+3.5 (3.2, 3.9)
 </td>
 <td style="text-align:right;">
-1.27 (0.86, 1.88)
-</td>
-<td style="text-align:right;">
-0.23
-</td>
-<td style="text-align:right;">
-311
-</td>
-<td style="text-align:right;">
-91
+3.4 (3.0, 3.8)
 </td>
 <td style="text-align:right;">
 </td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-4
-</td>
-<td style="text-align:right;">
-1.50 (1.01, 2.22)
-</td>
-<td style="text-align:right;">
-<span style="font-weight: bold;">0.044</span>
-</td>
-<td style="text-align:right;">
-256
-</td>
-<td style="text-align:right;">
-93
-</td>
 <td style="text-align:right;">
 </td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-5
-</td>
 <td style="text-align:right;">
-1.06 (0.69, 1.62)
-</td>
-<td style="text-align:right;">
-0.78
-</td>
-<td style="text-align:right;">
-241
-</td>
-<td style="text-align:right;">
-60
 </td>
 <td style="text-align:right;">
 </td>
@@ -426,31 +343,103 @@ Reference
 <span style="font-weight: bold;">Time</span>
 </td>
 <td style="text-align:right;">
-0.97 (0.95, 1.00)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.032</span>
 </td>
 <td style="text-align:right;">
-1337
 </td>
 <td style="text-align:right;">
-386
 </td>
 <td style="text-align:right;">
-1.00
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+0.028
+</td>
+<td style="text-align:right;">
+Kruskal Wallis, Eta sq
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Mean (sd)
+</td>
+<td style="text-align:right;">
+9.0 (1.1)
+</td>
+<td style="text-align:right;">
+8.9 (1.1)
+</td>
+<td style="text-align:right;">
+9.2 (1.1)
+</td>
+<td style="text-align:right;">
+8.8 (1.2)
+</td>
+<td style="text-align:right;">
+9.3 (1.1)
+</td>
+<td style="text-align:right;">
+9.0 (1.2)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Median (Min,Max)
+</td>
+<td style="text-align:right;">
+10.0 (7.1, 10.4)
+</td>
+<td style="text-align:right;">
+9.3 (7.1, 10.0)
+</td>
+<td style="text-align:right;">
+10.0 (7.5, 10.0)
+</td>
+<td style="text-align:right;">
+8.0 (7.5, 10.1)
+</td>
+<td style="text-align:right;">
+10.0 (7.5, 10.2)
+</td>
+<td style="text-align:right;">
+9.8 (7.5, 10.4)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
 </td>
 </tr>
 </tbody>
 </table>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="kaplan-meier-survival-curve.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="generalized-estimating-equations-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="nested-summary-of-high-protein-status.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="nested-summary-of-diet.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
