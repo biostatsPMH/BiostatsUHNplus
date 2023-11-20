@@ -59,11 +59,11 @@ z
 ```
 
 
-### Summary statistics of adverse events nested by participant in cohort, stratified by adverse event severity
+### Summary statistics of adverse events nested by participant in cohort, stratified by first attribution
 
 Uses addendum fake study data. Interpret summary output and unnested or nested p-value with caution!
 
-Note that if participants were enrolled in more than cohort (crossover), the total N for Full Sample would be less than that of the total N of the adverse event severity categories. Since total N for Full Sample (287) is the same as total N of the severity categories (131 + 88 + 56 + 10 + 2), this suggests that there was no crossover of participants in cohorts.
+Note that if participants were enrolled in more than cohort (crossover), the total N for Full Sample would be less than that of the total N of the adverse event first attribution categories. Since total N for Full Sample (38) is the same as total N of the severity categories (12 + 3 + 12 + 11), this suggests that there was no crossover of participants in cohorts.
 
 ```{r example2, message=F, warning=F}
 library(plyr);
@@ -72,10 +72,17 @@ library(BiostatsUHNplus);
 data("enrollment", "demography", "ineligibility", "ae");
 clinT <- plyr::join_all(list(enrollment, demography, ineligibility, ae), 
   by = "Subject", type = "full");
+clinT$AE_SEV_GD <- as.numeric(clinT$AE_SEV_GD);
+clinT$Drug_1_Attribution <- "Unrelated";
+clinT$Drug_1_Attribution[clinT$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- "Related";
+clinT$Drug_2_Attribution <- "Unrelated";
+clinT$Drug_2_Attribution[clinT$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Related";
 
-rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"), 
-  covs = c("ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT",
-  "CTC_AE_ATTR_SCALE", "CTC_AE_ATTR_SCALE_1", "ae_category"), maincov = "AE_SEV_GD");
+rm_covsum_nested(data = clinT, id = c("Subject", "COHORT"), 
+  covs = c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution", "ae_category"), maincov = "Drug_1_Attribution");
+
+rm_covsum_nested(data = clinT, id = c("Subject", "COHORT"), 
+  covs = c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution"), maincov = "Drug_1_Attribution", full=F);
 ```
 
 
