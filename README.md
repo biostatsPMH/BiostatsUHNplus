@@ -86,7 +86,7 @@ rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"),
 <th style="text-align:left;">
 </th>
 <th style="text-align:right;">
-n=234
+Full Sample (n=234)
 </th>
 <th style="text-align:right;">
 Related (n=49)
