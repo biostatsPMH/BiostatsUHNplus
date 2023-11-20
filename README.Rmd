@@ -63,7 +63,7 @@ z
 
 Uses addendum fake study data. Interpret summary output and unnested or nested p-value with caution!
 
-Note that if participants were enrolled in more than cohort (crossover), the total N for Full Sample would be less than that of the total N of the adverse event first attribution categories. Since total N for Full Sample (38) is the same as total N of the severity categories (12 + 3 + 12 + 11), this suggests that there was no crossover of participants in cohorts.
+Note that if participants were enrolled in more than cohort (crossover), or if repeat AEs in participant had different attribution, the total N for Full Sample will be less than that of the total N of attribution for first study drug. Since total N for Full Sample (234) is less than total N of the first study drug attribution categories (49 + 198), this suggests that there was instances of repeat AEs in participants having different attribution to first study drug.
 
 ```{r example2, message=F, warning=F}
 library(plyr);
@@ -78,11 +78,8 @@ clinT$Drug_1_Attribution[clinT$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", 
 clinT$Drug_2_Attribution <- "Unrelated";
 clinT$Drug_2_Attribution[clinT$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Related";
 
-rm_covsum_nested(data = clinT, id = c("Subject", "COHORT"), 
+rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"), 
   covs = c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution", "ae_category"), maincov = "Drug_1_Attribution");
-
-rm_covsum_nested(data = clinT, id = c("Subject", "COHORT"), 
-  covs = c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution"), maincov = "Drug_1_Attribution", full=F);
 ```
 
 

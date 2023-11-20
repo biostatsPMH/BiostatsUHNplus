@@ -50,17 +50,18 @@ z
 #>  [1]  1  2  3  4  5 NA  6  7  8  9 10 NA
 ```
 
-### Summary statistics of adverse events nested by participant in cohort, stratified by adverse event severity
+### Summary statistics of adverse events nested by participant in cohort, stratified by first attribution
 
 Uses addendum fake study data. Interpret summary output and unnested or
 nested p-value with caution!
 
 Note that if participants were enrolled in more than cohort (crossover),
-the total N for Full Sample would be less than that of the total N of
-the adverse event severity categories. Since total N for Full Sample
-(287) is the same as total N of the severity categories (131 + 88 + 56 +
-10 + 2), this suggests that there was no crossover of participants in
-cohorts.
+or if repeat AEs in participant had different attribution, the total N
+for Full Sample will be less than that of the total N of attribution for
+first study drug. Since total N for Full Sample (234) is less than total
+N of the first study drug attribution categories (49 + 198), this
+suggests that there was instances of repeat AEs in participants having
+different attribution to first study drug.
 
 ``` r
 library(plyr);
@@ -69,10 +70,14 @@ library(BiostatsUHNplus);
 data("enrollment", "demography", "ineligibility", "ae");
 clinT <- plyr::join_all(list(enrollment, demography, ineligibility, ae), 
   by = "Subject", type = "full");
+clinT$AE_SEV_GD <- as.numeric(clinT$AE_SEV_GD);
+clinT$Drug_1_Attribution <- "Unrelated";
+clinT$Drug_1_Attribution[clinT$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- "Related";
+clinT$Drug_2_Attribution <- "Unrelated";
+clinT$Drug_2_Attribution[clinT$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Related";
 
 rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"), 
-  covs = c("ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT",
-  "CTC_AE_ATTR_SCALE", "CTC_AE_ATTR_SCALE_1", "ae_category"), maincov = "AE_SEV_GD");
+  covs = c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution", "ae_category"), maincov = "Drug_1_Attribution");
 ```
 
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
@@ -81,22 +86,13 @@ rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"),
 <th style="text-align:left;">
 </th>
 <th style="text-align:right;">
-Full Sample (n=287)
+n=234
 </th>
 <th style="text-align:right;">
-1 (n=131)
+Related (n=49)
 </th>
 <th style="text-align:right;">
-2 (n=88)
-</th>
-<th style="text-align:right;">
-3 (n=56)
-</th>
-<th style="text-align:right;">
-4 (n=10)
-</th>
-<th style="text-align:right;">
-5 (n=2)
+Unrelated (n=198)
 </th>
 <th style="text-align:right;">
 Unnested p-value
@@ -115,6 +111,73 @@ Nested p-value
 <tbody>
 <tr>
 <td style="text-align:left;">
+<span style="font-weight: bold;">AE SEV GD</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.098
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Mean (sd)
+</td>
+<td style="text-align:right;">
+1.8 (0.8)
+</td>
+<td style="text-align:right;">
+2.0 (0.9)
+</td>
+<td style="text-align:right;">
+1.7 (0.8)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Median (Min,Max)
+</td>
+<td style="text-align:right;">
+1.5 (1.0, 5.0)
+</td>
+<td style="text-align:right;">
+2 (1, 4)
+</td>
+<td style="text-align:right;">
+1.5 (1.0, 5.0)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
 <span style="font-weight: bold;">ENROL DATE INT</span>
 </td>
 <td style="text-align:right;">
@@ -128,18 +191,10 @@ Nested p-value
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.83
-</td>
-<td style="text-align:right;">
-0.004
-</td>
-<td style="text-align:right;">
-Kruskal Wallis, Eta sq
-</td>
-<td style="text-align:right;">
-0.54
+0.68
 </td>
 </tr>
 <tr>
@@ -147,22 +202,13 @@ Kruskal Wallis, Eta sq
 Mean (sd)
 </td>
 <td style="text-align:right;">
-2016-12-20 (296.7 days)
+2017-01-07 (301.8 days)
 </td>
 <td style="text-align:right;">
-2016-12-09 (278.8 days)
+2017-01-31 (322.7 days)
 </td>
 <td style="text-align:right;">
-2016-12-24 (285.6 days)
-</td>
-<td style="text-align:right;">
-2017-01-16 (346.4 days)
-</td>
-<td style="text-align:right;">
-2016-12-07 (365.5 days)
-</td>
-<td style="text-align:right;">
-2016-07-29 (272.9 days)
+2016-12-28 (294.3 days)
 </td>
 <td style="text-align:right;">
 </td>
@@ -181,19 +227,10 @@ Median (Min,Max)
 2016-09-14 (2016-01-18, 2018-05-16)
 </td>
 <td style="text-align:right;">
-2016-09-14 (2016-01-18, 2018-05-16)
+2017-02-07 (2016-01-18, 2018-05-16)
 </td>
 <td style="text-align:right;">
 2016-09-14 (2016-01-18, 2018-05-16)
-</td>
-<td style="text-align:right;">
-2016-09-14 (2016-01-18, 2018-04-25)
-</td>
-<td style="text-align:right;">
-2016-08-02 (2016-01-18, 2018-04-25)
-</td>
-<td style="text-align:right;">
-2016-07-29 (2016-01-18, 2017-02-07)
 </td>
 <td style="text-align:right;">
 </td>
@@ -215,22 +252,16 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
+0.65
 </td>
 <td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-0.25
-</td>
-<td style="text-align:right;">
-0.13
+0.081
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-0.25
+0.95
 </td>
 </tr>
 <tr>
@@ -238,22 +269,13 @@ Chi Sq, Cramer’s V
 Cohort A
 </td>
 <td style="text-align:right;">
-74 (26)
+59 (25)
 </td>
 <td style="text-align:right;">
-31 (24)
+13 (27)
 </td>
 <td style="text-align:right;">
-20 (23)
-</td>
-<td style="text-align:right;">
-18 (32)
-</td>
-<td style="text-align:right;">
-4 (40)
-</td>
-<td style="text-align:right;">
-1 (50)
+49 (25)
 </td>
 <td style="text-align:right;">
 </td>
@@ -269,22 +291,13 @@ Cohort A
 Cohort B
 </td>
 <td style="text-align:right;">
-110 (38)
+83 (35)
 </td>
 <td style="text-align:right;">
-57 (44)
+14 (29)
 </td>
 <td style="text-align:right;">
-33 (38)
-</td>
-<td style="text-align:right;">
-16 (29)
-</td>
-<td style="text-align:right;">
-3 (30)
-</td>
-<td style="text-align:right;">
-1 (50)
+74 (37)
 </td>
 <td style="text-align:right;">
 </td>
@@ -300,22 +313,13 @@ Cohort B
 Cohort C
 </td>
 <td style="text-align:right;">
-40 (14)
+37 (16)
 </td>
 <td style="text-align:right;">
-19 (15)
+10 (20)
 </td>
 <td style="text-align:right;">
-17 (19)
-</td>
-<td style="text-align:right;">
-4 (7)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+30 (15)
 </td>
 <td style="text-align:right;">
 </td>
@@ -331,22 +335,13 @@ Cohort C
 Cohort D
 </td>
 <td style="text-align:right;">
-63 (22)
+55 (24)
 </td>
 <td style="text-align:right;">
-24 (18)
+12 (24)
 </td>
 <td style="text-align:right;">
-18 (20)
-</td>
-<td style="text-align:right;">
-18 (32)
-</td>
-<td style="text-align:right;">
-3 (30)
-</td>
-<td style="text-align:right;">
-0 (0)
+45 (23)
 </td>
 <td style="text-align:right;">
 </td>
@@ -368,22 +363,16 @@ Cohort D
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-0.26
-</td>
-<td style="text-align:right;">
 0.14
+</td>
+<td style="text-align:right;">
+0.093
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-0.45
+0.63
 </td>
 </tr>
 <tr>
@@ -391,22 +380,13 @@ Chi Sq, Cramer’s V
 Female
 </td>
 <td style="text-align:right;">
-66 (23)
+51 (22)
 </td>
 <td style="text-align:right;">
-27 (21)
+15 (31)
 </td>
 <td style="text-align:right;">
-17 (19)
-</td>
-<td style="text-align:right;">
-17 (30)
-</td>
-<td style="text-align:right;">
-4 (40)
-</td>
-<td style="text-align:right;">
-1 (50)
+39 (20)
 </td>
 <td style="text-align:right;">
 </td>
@@ -422,22 +402,13 @@ Female
 Male
 </td>
 <td style="text-align:right;">
-221 (77)
+183 (78)
 </td>
 <td style="text-align:right;">
-104 (79)
+34 (69)
 </td>
 <td style="text-align:right;">
-71 (81)
-</td>
-<td style="text-align:right;">
-39 (70)
-</td>
-<td style="text-align:right;">
-6 (60)
-</td>
-<td style="text-align:right;">
-1 (50)
+159 (80)
 </td>
 <td style="text-align:right;">
 </td>
@@ -463,12 +434,6 @@ Male
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
@@ -479,22 +444,13 @@ Chi Sq, Cramer’s V
 No
 </td>
 <td style="text-align:right;">
-262 (100)
+215 (100)
 </td>
 <td style="text-align:right;">
-115 (100)
+46 (100)
 </td>
 <td style="text-align:right;">
-82 (100)
-</td>
-<td style="text-align:right;">
-53 (100)
-</td>
-<td style="text-align:right;">
-10 (100)
-</td>
-<td style="text-align:right;">
-2 (100)
+181 (100)
 </td>
 <td style="text-align:right;">
 </td>
@@ -510,22 +466,13 @@ No
 Missing
 </td>
 <td style="text-align:right;">
-25
-</td>
-<td style="text-align:right;">
-16
-</td>
-<td style="text-align:right;">
-6
+19
 </td>
 <td style="text-align:right;">
 3
 </td>
 <td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-0
+17
 </td>
 <td style="text-align:right;">
 </td>
@@ -551,18 +498,10 @@ Missing
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.66
-</td>
-<td style="text-align:right;">
-0.008
-</td>
-<td style="text-align:right;">
-Kruskal Wallis, Eta sq
-</td>
-<td style="text-align:right;">
-0.56
+0.64
 </td>
 </tr>
 <tr>
@@ -570,22 +509,13 @@ Kruskal Wallis, Eta sq
 Mean (sd)
 </td>
 <td style="text-align:right;">
-2017-11-06 (165.8 days)
+2017-11-03 (161.1 days)
 </td>
 <td style="text-align:right;">
-2017-11-11 (166.8 days)
+2017-10-01 (146.6 days)
 </td>
 <td style="text-align:right;">
-2017-10-28 (180.4 days)
-</td>
-<td style="text-align:right;">
-2017-11-22 (148.1 days)
-</td>
-<td style="text-align:right;">
-2017-09-12 (118.1 days)
-</td>
-<td style="text-align:right;">
-2017-09-07 (152.7 days)
+2017-11-10 (161.2 days)
 </td>
 <td style="text-align:right;">
 </td>
@@ -601,22 +531,13 @@ Mean (sd)
 Median (Min,Max)
 </td>
 <td style="text-align:right;">
-2017-10-12 (2016-05-02, 2019-01-13)
+2017-10-05 (2016-05-02, 2019-01-13)
 </td>
 <td style="text-align:right;">
-2017-10-11 (2017-03-18, 2019-01-08)
+2017-09-07 (2017-03-18, 2018-11-24)
 </td>
 <td style="text-align:right;">
-2017-10-01 (2016-05-02, 2019-01-13)
-</td>
-<td style="text-align:right;">
-2017-11-21 (2017-03-16, 2018-12-19)
-</td>
-<td style="text-align:right;">
-2017-09-10 (2017-04-11, 2018-04-15)
-</td>
-<td style="text-align:right;">
-2017-09-07 (2017-05-22, 2017-12-24)
+2017-10-15 (2016-05-02, 2019-01-13)
 </td>
 <td style="text-align:right;">
 </td>
@@ -629,13 +550,7 @@ Median (Min,Max)
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">CTC AE ATTR SCALE</span>
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
+<span style="font-weight: bold;">Drug 2 Attribution</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -647,7 +562,7 @@ Median (Min,Max)
 <span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
-0.22
+0.55
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
@@ -658,87 +573,16 @@ Chi Sq, Cramer’s V
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Possible
+Related
 </td>
 <td style="text-align:right;">
-53 (18)
+37 (16)
 </td>
 <td style="text-align:right;">
-19 (15)
+28 (57)
 </td>
 <td style="text-align:right;">
-16 (18)
-</td>
-<td style="text-align:right;">
-12 (21)
-</td>
-<td style="text-align:right;">
-6 (60)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Probable
-</td>
-<td style="text-align:right;">
-6 (2)
-</td>
-<td style="text-align:right;">
-3 (2)
-</td>
-<td style="text-align:right;">
-1 (1)
-</td>
-<td style="text-align:right;">
-1 (2)
-</td>
-<td style="text-align:right;">
-1 (10)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Unlikely
-</td>
-<td style="text-align:right;">
-139 (48)
-</td>
-<td style="text-align:right;">
-82 (63)
-</td>
-<td style="text-align:right;">
-38 (43)
-</td>
-<td style="text-align:right;">
-19 (34)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+11 (6)
 </td>
 <td style="text-align:right;">
 </td>
@@ -754,205 +598,13 @@ Unlikely
 Unrelated
 </td>
 <td style="text-align:right;">
-89 (31)
+197 (84)
 </td>
 <td style="text-align:right;">
-27 (21)
+21 (43)
 </td>
 <td style="text-align:right;">
-33 (38)
-</td>
-<td style="text-align:right;">
-24 (43)
-</td>
-<td style="text-align:right;">
-3 (30)
-</td>
-<td style="text-align:right;">
-2 (100)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="font-weight: bold;">CTC AE ATTR SCALE 1</span>
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-0.72
-</td>
-<td style="text-align:right;">
-0.10
-</td>
-<td style="text-align:right;">
-Chi Sq, Cramer’s V
-</td>
-<td style="text-align:right;">
-0.26
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-</td>
-<td style="text-align:right;">
-2 (1)
-</td>
-<td style="text-align:right;">
-2 (2)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Possible
-</td>
-<td style="text-align:right;">
-50 (17)
-</td>
-<td style="text-align:right;">
-19 (15)
-</td>
-<td style="text-align:right;">
-18 (20)
-</td>
-<td style="text-align:right;">
-10 (18)
-</td>
-<td style="text-align:right;">
-3 (30)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Probable
-</td>
-<td style="text-align:right;">
-4 (1)
-</td>
-<td style="text-align:right;">
-3 (2)
-</td>
-<td style="text-align:right;">
-1 (1)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Unlikely
-</td>
-<td style="text-align:right;">
-112 (39)
-</td>
-<td style="text-align:right;">
-58 (44)
-</td>
-<td style="text-align:right;">
-28 (32)
-</td>
-<td style="text-align:right;">
-23 (41)
-</td>
-<td style="text-align:right;">
-3 (30)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Unrelated
-</td>
-<td style="text-align:right;">
-119 (41)
-</td>
-<td style="text-align:right;">
-49 (37)
-</td>
-<td style="text-align:right;">
-41 (47)
-</td>
-<td style="text-align:right;">
-23 (41)
-</td>
-<td style="text-align:right;">
-4 (40)
-</td>
-<td style="text-align:right;">
-2 (100)
+187 (94)
 </td>
 <td style="text-align:right;">
 </td>
@@ -974,22 +626,16 @@ Unrelated
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
+<span style="font-weight: bold;">0.003</span>
 </td>
 <td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
-</td>
-<td style="text-align:right;">
-0.36
+0.42
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -997,22 +643,13 @@ Chi Sq, Cramer’s V
 Blood and lymphatic system disorders
 </td>
 <td style="text-align:right;">
-16 (6)
+15 (6)
 </td>
 <td style="text-align:right;">
-0 (0)
+6 (12)
 </td>
 <td style="text-align:right;">
-5 (6)
-</td>
-<td style="text-align:right;">
-11 (20)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+10 (5)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1028,22 +665,13 @@ Blood and lymphatic system disorders
 Cardiac disorders
 </td>
 <td style="text-align:right;">
-6 (2)
-</td>
-<td style="text-align:right;">
-3 (2)
-</td>
-<td style="text-align:right;">
-3 (3)
+6 (3)
 </td>
 <td style="text-align:right;">
 0 (0)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+6 (3)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1068,15 +696,6 @@ Ear and labyrinth disorders
 1 (1)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
 </td>
 <td style="text-align:right;">
 </td>
@@ -1093,16 +712,7 @@ Endocrine disorders
 1 (0)
 </td>
 <td style="text-align:right;">
-1 (1)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+1 (2)
 </td>
 <td style="text-align:right;">
 0 (0)
@@ -1121,22 +731,13 @@ Endocrine disorders
 Eye disorders
 </td>
 <td style="text-align:right;">
-5 (2)
-</td>
-<td style="text-align:right;">
-3 (2)
-</td>
-<td style="text-align:right;">
-2 (2)
+4 (2)
 </td>
 <td style="text-align:right;">
 0 (0)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+4 (2)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1152,22 +753,13 @@ Eye disorders
 Gastrointestinal disorders
 </td>
 <td style="text-align:right;">
-39 (14)
+32 (14)
 </td>
 <td style="text-align:right;">
-21 (16)
+16 (33)
 </td>
 <td style="text-align:right;">
-16 (18)
-</td>
-<td style="text-align:right;">
-2 (4)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+22 (11)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1183,22 +775,13 @@ Gastrointestinal disorders
 General disorders and administration site conditions
 </td>
 <td style="text-align:right;">
-20 (7)
-</td>
-<td style="text-align:right;">
-12 (9)
-</td>
-<td style="text-align:right;">
-7 (8)
+19 (8)
 </td>
 <td style="text-align:right;">
 1 (2)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+18 (9)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1220,16 +803,7 @@ Hepatobiliary disorders
 0 (0)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-2 (4)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+2 (1)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1251,16 +825,7 @@ Immune system disorders
 0 (0)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-1 (2)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+1 (1)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1276,22 +841,13 @@ Immune system disorders
 Infections and infestations
 </td>
 <td style="text-align:right;">
-19 (7)
+15 (6)
 </td>
 <td style="text-align:right;">
-0 (0)
+5 (10)
 </td>
 <td style="text-align:right;">
-8 (9)
-</td>
-<td style="text-align:right;">
-11 (20)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+13 (7)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1307,22 +863,13 @@ Infections and infestations
 Injury, poisoning and procedural complications
 </td>
 <td style="text-align:right;">
-5 (2)
-</td>
-<td style="text-align:right;">
-3 (2)
-</td>
-<td style="text-align:right;">
-1 (1)
+4 (2)
 </td>
 <td style="text-align:right;">
 1 (2)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+4 (2)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1338,22 +885,13 @@ Injury, poisoning and procedural complications
 Investigations
 </td>
 <td style="text-align:right;">
-59 (21)
+34 (15)
 </td>
 <td style="text-align:right;">
-25 (19)
+12 (24)
 </td>
 <td style="text-align:right;">
-15 (17)
-</td>
-<td style="text-align:right;">
-12 (21)
-</td>
-<td style="text-align:right;">
-7 (70)
-</td>
-<td style="text-align:right;">
-0 (0)
+23 (12)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1369,22 +907,13 @@ Investigations
 Metabolism and nutrition disorders
 </td>
 <td style="text-align:right;">
-26 (9)
+25 (11)
 </td>
 <td style="text-align:right;">
-14 (11)
+3 (6)
 </td>
 <td style="text-align:right;">
-8 (9)
-</td>
-<td style="text-align:right;">
-4 (7)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+22 (11)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1400,22 +929,13 @@ Metabolism and nutrition disorders
 Musculoskeletal and connective tissue disorders
 </td>
 <td style="text-align:right;">
-8 (3)
-</td>
-<td style="text-align:right;">
-4 (3)
-</td>
-<td style="text-align:right;">
-4 (5)
+7 (3)
 </td>
 <td style="text-align:right;">
 0 (0)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+7 (4)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1437,16 +957,7 @@ Neoplasms benign, malignant and unspecified (incl cysts and polyps)
 0 (0)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-1 (2)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+1 (1)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1462,22 +973,13 @@ Neoplasms benign, malignant and unspecified (incl cysts and polyps)
 Nervous system disorders
 </td>
 <td style="text-align:right;">
-22 (8)
+20 (9)
 </td>
 <td style="text-align:right;">
-12 (9)
+3 (6)
 </td>
 <td style="text-align:right;">
-4 (5)
-</td>
-<td style="text-align:right;">
-5 (9)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-1 (50)
+18 (9)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1493,22 +995,13 @@ Nervous system disorders
 Psychiatric disorders
 </td>
 <td style="text-align:right;">
-5 (2)
-</td>
-<td style="text-align:right;">
-3 (2)
-</td>
-<td style="text-align:right;">
-2 (2)
+4 (2)
 </td>
 <td style="text-align:right;">
 0 (0)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+4 (2)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1527,19 +1020,10 @@ Renal and urinary disorders
 5 (2)
 </td>
 <td style="text-align:right;">
-5 (4)
-</td>
-<td style="text-align:right;">
 0 (0)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+5 (3)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1558,19 +1042,10 @@ Reproductive system and breast disorders
 1 (0)
 </td>
 <td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
 1 (1)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1586,22 +1061,13 @@ Reproductive system and breast disorders
 Respiratory, thoracic and mediastinal disorders
 </td>
 <td style="text-align:right;">
-27 (9)
+19 (8)
 </td>
 <td style="text-align:right;">
-13 (10)
+1 (2)
 </td>
 <td style="text-align:right;">
-5 (6)
-</td>
-<td style="text-align:right;">
-5 (9)
-</td>
-<td style="text-align:right;">
-3 (30)
-</td>
-<td style="text-align:right;">
-1 (50)
+18 (9)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1617,22 +1083,13 @@ Respiratory, thoracic and mediastinal disorders
 Skin and subcutaneous tissue disorders
 </td>
 <td style="text-align:right;">
-13 (5)
-</td>
-<td style="text-align:right;">
-11 (8)
-</td>
-<td style="text-align:right;">
-2 (2)
+13 (6)
 </td>
 <td style="text-align:right;">
 0 (0)
 </td>
 <td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+13 (7)
 </td>
 <td style="text-align:right;">
 </td>
@@ -1654,16 +1111,7 @@ Vascular disorders
 0 (0)
 </td>
 <td style="text-align:right;">
-5 (6)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
-</td>
-<td style="text-align:right;">
-0 (0)
+5 (3)
 </td>
 <td style="text-align:right;">
 </td>
