@@ -122,8 +122,9 @@ which case a data frame is returned
 Outputs a nested version of reportRmd::rm_covsum()
 }
 \examples{
-rm_covsum_nested(data = Milk, id = c("Cow"), covs = c("protein", "Time", 
-"Diet", "Yard"), maincov = "High_Protein")
+data(ae)
+rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), covs = c("AE_SEV_GD", 
+"AE_ONSET_DT_INT"), maincov = "CTC_AE_ATTR_SCALE")
 }
 \seealso{
 \code{\link{covsum}},\code{\link{fisher.test}},

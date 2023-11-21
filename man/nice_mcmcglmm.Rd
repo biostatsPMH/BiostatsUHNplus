@@ -2,7 +2,7 @@
 % Please edit documentation in R/nice_mcmcglmm.R
 \name{nice_mcmcglmm}
 \alias{nice_mcmcglmm}
-\title{Nice model output from MCMCglmm::MCMCglmm()}
+\title{Nice table of model output from MCMCglmm::MCMCglmm()}
 \usage{
 nice_mcmcglmm(mcmcglmm_object, dataset)
 }
@@ -12,10 +12,21 @@ nice_mcmcglmm(mcmcglmm_object, dataset)
 \item{data}{dataframe containing data}
 }
 \description{
-Nice model output from MCMCglmm::MCMCglmm()
+Nice table of model output from MCMCglmm::MCMCglmm()
 }
 \examples{
-mcmcglmm_mva <- nice_mcmcglmm(model1, Milk);
+data(ae)
+ae$AE_SEV_GD <- as.numeric(ae$AE_SEV_GD);
+ae$Drug_1_Attribution <- 0;
+ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE \%in\% c("Definite", "Probable", "Possible")] <- 1;
+ae$Drug_2_Attribution <- 0;
+ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 \%in\% c("Definite", "Probable", "Possible")] <- 1;
+prior2RE <- list(R = list(V = diag(1), fix = 1), G=list(G1=list(V=1, nu=0.02), 
+  G2=list(V=1, nu=0.02)));
+model1 <- MCMCglmm::MCMCglmm(Drug_1_Attribution ~ AE_SEV_GD + Drug_2_Attribution, 
+  random=~ae_detail + Subject, family="categorical", data=ae, saveX=TRUE, 
+  verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
+mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
 options(knitr.kable.NA = '');
 knitr::kable(mcmcglmm_mva);
 }

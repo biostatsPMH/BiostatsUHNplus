@@ -93,7 +93,7 @@ Outputs the three DSMB-CCRU AE summary tables in Excel format per UHN template
 }
 \examples{
 data("enrollment", "demography", "ineligibility", "ae");
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
   title="Phase X Study to Evaluate Treatments A-D",
   comp="COHORT",pi="Dr. Principal Investigator",
   presDate="30OCT2020",cutDate="31AUG2020",
@@ -101,7 +101,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd=".",
   baseline_datasets=list(enrollment,demography,ineligibility),
   ae_dataset=ae,ineligVar="INELIGIBILITY_STATUS",ineligVarText=c("Yes","Y"),
   genderVar="GENDER_CODE",enrolDtVar="ENROL_DATE_INT",ae_detailVar="ae_detail",
-  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD_STD",
+  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
   ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
   ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
   numSubj=c(2,4,5,6))

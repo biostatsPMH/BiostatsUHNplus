@@ -279,8 +279,9 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   \code{\link{chisq.test}}, \code{\link{wilcox.test}},
 #'   \code{\link{kruskal.test}}, \code{\link{anova}}, and \code{\link{outTable}}
 #' @examples
-#' rm_covsum_nested(data = Milk, id = c("Cow"), covs = c("protein", "Time", 
-#' "Diet", "Yard"), maincov = "High_Protein")
+#' data(ae)
+#' rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), covs = c("AE_SEV_GD", 
+#' "AE_ONSET_DT_INT"), maincov = "CTC_AE_ATTR_SCALE")
 rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
                              digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
                              pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp = FALSE,show.tests=TRUE,
