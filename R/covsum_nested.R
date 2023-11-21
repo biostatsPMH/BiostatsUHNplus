@@ -55,7 +55,6 @@ nicename <- utils::getFromNamespace("nicename", "reportRmd")
 #' @importFrom purrr modify_if 
 #' @importFrom rlang syms 
 #' @importFrom modeest mlv 
-#' @importFrom parallel detectCores makeCluster
 #' @importFrom afex mixed
 #' @importFrom utils getFromNamespace
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},

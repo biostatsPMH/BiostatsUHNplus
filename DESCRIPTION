@@ -34,7 +34,6 @@ Imports:
     ggstance,
     modeest,
     openxlsx,
-    parallel,
     plyr,
     purrr,
     reportRmd,
