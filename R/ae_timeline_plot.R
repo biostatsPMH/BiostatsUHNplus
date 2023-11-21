@@ -72,7 +72,6 @@
 #'                       attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),   
 #'                       attribSymbols=c(7,8,5,6),
 #'                       columnWidths=c(23))
-#' ggplot2::ggsave(paste("man/figures/ae_category_attribStart_timeline_plot", ".png", sep=""), p, width=4.2, height=5.4, device="png", scale = 1);
 
 ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
                       ae_attribVars,ae_attribVarsName=NULL,ae_attribVarText=NULL,

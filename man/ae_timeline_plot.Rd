@@ -21,7 +21,7 @@ ae_timeline_plot(
   ae_severityVar,
   ae_onsetDtVar,
   time_unit = c("day", "week", "month", "year"),
-  include_ae_detail = T,
+  include_ae_detail = TRUE,
   legendPerSpace = NULL,
   fonts = NULL,
   fontColours = NULL,
@@ -113,13 +113,12 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("01","11"),
                       ae_detailVar="ae_detail",
                       ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
                       ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
-                      include_ae_detail=F,
+                      include_ae_detail=FALSE,
                       fonts=c("Calibri","Albany AMT","Gadugi","French Script MT","Forte"),
                       fontColours=c("#FFE135"),
                       panelColours=c("#E52B50",NA,"#FFE4C4"),
                       attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),   
                       attribSymbols=c(7,8,5,6),
                       columnWidths=c(23))
-ggplot2::ggsave(paste("man/figures/ae_category_attribStart_timeline_plot", ".png", sep=""), p, width=4.2, height=5.4, device="png", scale = 1);
 }
 \keyword{plot}

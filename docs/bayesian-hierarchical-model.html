@@ -209,9 +209,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bayesian-hierarchical-model.html#cb14-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">MCMCglmm</span>(HP <span class="sc">~</span> Diet <span class="sc">+</span> Time, <span class="at">random=</span><span class="sc">~</span>Cow <span class="sc">+</span> Yard, <span class="at">family=</span><span class="st">&quot;categorical&quot;</span>, <span class="at">data=</span>Milk, <span class="at">saveX=</span><span class="cn">TRUE</span>, <span class="at">verbose=</span>F, <span class="at">burnin=</span><span class="dv">2000</span>, <span class="at">nitt=</span><span class="dv">10000</span>, <span class="at">thin=</span><span class="dv">10</span>, <span class="at">pr=</span><span class="cn">TRUE</span>, <span class="at">prior=</span>prior2RE);</span>
 <span id="cb14-2"><a href="bayesian-hierarchical-model.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="bayesian-hierarchical-model.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#autocorr.diag(model1$VCV); #use this to choose thinning interval, autocorrelation less than 0.01 ideally;</span></span>
-<span id="cb14-4"><a href="bayesian-hierarchical-model.html#cb14-4" aria-hidden="true" tabindex="-1"></a>mcmcglmm_mva <span class="ot">&lt;-</span> <span class="fu">nice_mcmcglmm</span>(model1, Milk);</span>
-<span id="cb14-5"><a href="bayesian-hierarchical-model.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
-<span id="cb14-6"><a href="bayesian-hierarchical-model.html#cb14-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mcmcglmm_mva);</span></code></pre></div>
+<span id="cb14-4"><a href="bayesian-hierarchical-model.html#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="bayesian-hierarchical-model.html#cb14-5" aria-hidden="true" tabindex="-1"></a>mcmcglmm_mva <span class="ot">&lt;-</span> <span class="fu">nice_mcmcglmm</span>(model1, Milk);</span>
+<span id="cb14-6"><a href="bayesian-hierarchical-model.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
+<span id="cb14-7"><a href="bayesian-hierarchical-model.html#cb14-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mcmcglmm_mva);</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -255,13 +256,13 @@ reference
 barley+lupins
 </td>
 <td style="text-align:left;">
-0.36 (0.16, 0.86)
+0.38 (0.18, 0.93)
 </td>
 <td style="text-align:left;">
-0.020
+0.025
 </td>
 <td style="text-align:left;">
-356.74
+622.81
 </td>
 </tr>
 <tr>
@@ -271,13 +272,13 @@ barley+lupins
 lupins
 </td>
 <td style="text-align:left;">
-0.19 (0.08, 0.41)
+0.19 (0.07, 0.41)
 </td>
 <td style="text-align:left;">
 0.001
 </td>
 <td style="text-align:left;">
-367.39
+456.88
 </td>
 </tr>
 <tr>
@@ -287,13 +288,13 @@ Time
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-0.96 (0.93, 0.99)
+0.96 (0.94, 0.99)
 </td>
 <td style="text-align:left;">
-0.032
+0.022
 </td>
 <td style="text-align:left;">
-152.02
+193.42
 </td>
 </tr>
 </tbody>
@@ -321,13 +322,13 @@ upper
 Cow
 </td>
 <td style="text-align:right;">
-0.5910827
+0.6227901
 </td>
 <td style="text-align:right;">
-0.5013579
+0.4912134
 </td>
 <td style="text-align:right;">
-0.743564
+0.7366196
 </td>
 </tr>
 <tr>
@@ -335,13 +336,13 @@ Cow
 Yard
 </td>
 <td style="text-align:right;">
-0.0044475
+0.0040267
 </td>
 <td style="text-align:right;">
-0.0007940
+0.0003991
 </td>
 <td style="text-align:right;">
-0.177358
+0.1650898
 </td>
 </tr>
 </tbody>
@@ -368,13 +369,13 @@ upper
 <td style="text-align:left;">
 </td>
 <td style="text-align:right;">
-0.149158
+0.1156625
 </td>
 <td style="text-align:right;">
-0.0519691
+0.0463812
 </td>
 <td style="text-align:right;">
-0.2785509
+0.2734877
 </td>
 </tr>
 </tbody>
@@ -401,13 +402,13 @@ upper
 <td style="text-align:left;">
 </td>
 <td style="text-align:right;">
-0.7282813
+0.6965011
 </td>
 <td style="text-align:right;">
-0.6148431
+0.6229429
 </td>
 <td style="text-align:right;">
-0.7911118
+0.7966127
 </td>
 </tr>
 </tbody>
