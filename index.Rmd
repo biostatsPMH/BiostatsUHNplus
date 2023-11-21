@@ -247,6 +247,7 @@ Below runs a logistic MCMCglmm model treating cow and yard as random effects for
 model1 <- MCMCglmm(HP ~ Diet + Time, random=~Cow + Yard, family="categorical", data=Milk, saveX=TRUE, verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
 
 #autocorr.diag(model1$VCV); #use this to choose thinning interval, autocorrelation less than 0.01 ideally;
+
 mcmcglmm_mva <- nice_mcmcglmm(model1, Milk);
 options(knitr.kable.NA = '');
 knitr::kable(mcmcglmm_mva);
