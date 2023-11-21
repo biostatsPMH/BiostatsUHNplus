@@ -1,5 +1,6 @@
 Package: BiostatsUHNplus
-Title: Nested Hierarchical Data Summary, DSMB Templates and AE Timeline Plots
+Title: Nested Hierarchical Data Summary, DSMB Templates and AE Timeline
+    Plots
 Version: 0.0.0.9000
 Authors@R: c(
     person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",
@@ -31,6 +32,7 @@ Imports:
     ggh4x,
     ggplot2,
     ggstance,
+    MCMCglmm,
     modeest,
     openxlsx,
     plyr,

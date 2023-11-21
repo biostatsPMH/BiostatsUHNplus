@@ -268,11 +268,10 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   which case a data frame is returned
 #' @importFrom stats lm sd
 #' @importFrom rstatix cramer_v eta_squared
-#' @importFrom dplyr select reframe summarise group_by filter across row_number
+#' @importFrom dplyr select reframe summarise group_by filter across row_number n
 #' @importFrom purrr modify_if 
 #' @importFrom rlang syms 
 #' @importFrom modeest mlv 
-#' @importFrom parallel detectCores makeCluster
 #' @importFrom afex mixed
 #' @export
 #' @seealso \code{\link{covsum}},\code{\link{fisher.test}},
