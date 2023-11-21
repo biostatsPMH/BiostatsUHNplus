@@ -46,7 +46,7 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
     varLevels$join <- paste(varLevels$Variable, varLevels$Levels, sep="");
   }, error=function(e){return(printErr <- NA)})
   
-  if (is.numeric(varLevels)) {
+  if (length(varLevels) == 1) {
     if (colSums(varLevels) == 0) {
       varLevels <- as.data.frame(cbind(mcmcglmm_ci$Variable, NA, mcmcglmm_ci$join))
     }
