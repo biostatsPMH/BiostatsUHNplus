@@ -16,7 +16,7 @@ Many of these functions build upon the features of
 ## Installation
 
 First, install the lastest version of **reportRmd** from
-[CRAN](https://cran.r-project.org/web/packages/reportRmd) with:
+[CRAN](https://cran.r-project.org/package=reportRmd) with:
 
 ``` r
 install.packages(c("reportRmd"), dependencies=TRUE);
