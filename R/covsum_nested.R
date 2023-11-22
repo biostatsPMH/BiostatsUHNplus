@@ -5,7 +5,7 @@ lpvalue <- utils::getFromNamespace("lpvalue", "reportRmd")
 niceNum <- utils::getFromNamespace("niceNum", "reportRmd")
 nicename <- utils::getFromNamespace("nicename", "reportRmd")
 
-#' Nested version of reportRmd:::covsum()
+#' Nested version of reportRmd covsum()
 #'
 #' @param data dataframe containing data
 #' @param covs character vector with the names of columns to include in table
@@ -146,8 +146,8 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
   #-#-#-#-#-#-#-#-#-#-#-#-#
   #obj1 <- reportRmd:::covsum(data = data1, covs = covs, maincov = maincov, dropLevels = FALSE, full = T)
   #obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL, dropLevels = FALSE, full = T)
-  obj1 <- reportRmd:::covsum(data = data1, covs = covs, dropLevels = FALSE, maincov = maincov, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels=excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
-  obj2 <- reportRmd:::covsum(data = data2, covs = covs, maincov = NULL, dropLevels = FALSE, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels=excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
+  obj1 <- covsum(data = data1, covs = covs, dropLevels = FALSE, maincov = maincov, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels=excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
+  obj2 <- covsum(data = data2, covs = covs, maincov = NULL, dropLevels = FALSE, digits=digits, numobs=numobs, markup=markup, sanitize=sanitize, nicenames=nicenames, IQR=IQR, all.stats=all.stats, pvalue=pvalue, effSize=effSize, show.tests=show.tests, excludeLevels=excludeLevels, full=full, digits.cat=digits.cat, testcont=testcont, testcat=testcat, include_missing=include_missing, percentage=percentage)
   
   objComb <- cbind(obj2, obj1[,-1]);
 
@@ -317,7 +317,7 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,id=NULL,caption=NULL,tableOn
     }
   }
 
-  if (nicenames) tab$Covariate <- reportRmd:::replaceLbl(argList$data, tab$Covariate)
+  if (nicenames) tab$Covariate <- replaceLbl(argList$data, tab$Covariate)
   names(tab)[1] <- covTitle
   if ("p-value" %in% names(tab)) {
     if (p.adjust!='none'){
@@ -326,7 +326,7 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,id=NULL,caption=NULL,tableOn
     }
     to_bold_p <- which(as.numeric(tab[["p-value"]]) < 0.05)
     p_vals <- tab[["p-value"]]
-    new_p <- sapply(p_vals, reportRmd:::formatp)
+    new_p <- sapply(p_vals, formatp)
     tab[["p-value"]] <- new_p
     if (length(to_bold_p) > 0)
       bold_cells <- rbind(bold_cells, matrix(cbind(to_bold_p,
@@ -334,14 +334,14 @@ rm_covsum_nested <- function(data,covs,maincov=NULL,id=NULL,caption=NULL,tableOn
   }
   if ("Effect Size" %in% names(tab)) {
     e_vals <- tab[["Effect Size"]]
-    new_e <- sapply(e_vals,reportRmd:::formatp)
+    new_e <- sapply(e_vals,formatp)
     tab[["Effect Size"]] <- new_e
   }
   if ('Nested p-value' %in% names(tab)) {
     # format p-values nicely
     to_bold_p <- which(!tab[["Nested p-value"]]=="" & as.numeric(tab[["Nested p-value"]])< 0.05)
     p_vals <- tab[['Nested p-value']]
-    new_p <- sapply(p_vals,reportRmd:::formatp)
+    new_p <- sapply(p_vals,formatp)
     tab[['Nested p-value']] <- new_p
     if (length(to_bold_p)>0)    
       bold_cells <- rbind(bold_cells,

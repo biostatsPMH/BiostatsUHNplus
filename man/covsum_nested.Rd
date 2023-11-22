@@ -2,7 +2,7 @@
 % Please edit documentation in R/covsum_nested.R
 \name{covsum_nested}
 \alias{covsum_nested}
-\title{Nested version of reportRmd:::covsum()}
+\title{Nested version of reportRmd covsum()}
 \usage{
 covsum_nested(
   data,
@@ -94,7 +94,7 @@ be included in statistical tests}
 \emph{column} (default) or \emph{row}}
 }
 \description{
-Nested version of reportRmd:::covsum()
+Nested version of reportRmd covsum()
 }
 \seealso{
 \code{\link{fisher.test}},\code{\link{chisq.test}},
