@@ -1,5 +1,5 @@
 #' Outputs related adverse event timeline plots including just system organ class 
-#' (AE category), or system organ class and lower level term (AE detail). This 
+#' (AE category), or system organ class and lowest level term (AE detail). This 
 #' function can fit up to 5 different attributions. Modify width, height and scale 
 #' parameters in ggsave() to customize fit for large plot.
 #'
@@ -19,7 +19,7 @@
 #'    it could be enrollment date or screening date. If more than one field given 
 #'    (unique names are required), each field is assumed to be specific start date 
 #'    for attribution in corresponding field order
-#' @param ae_detailVar field that denotes participant AE detail (lower-level term)
+#' @param ae_detailVar field that denotes participant AE detail (lowest level term)
 #' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
 #' @param ae_onsetDtVar field that denotes participant AE onset date
@@ -44,6 +44,7 @@
 #' @keywords plot
 #' @return ggplot object of AE timeline plot
 #' @importFrom plyr join_all rbind.fill
+#' @importFrom stats lm sd anova as.formula binomial median na.fail
 #' @importFrom purrr modify_if
 #' @importFrom dplyr select distinct mutate arrange summarise group_by filter across row_number n_distinct all_of right_join count ungroup coalesce
 #' @importFrom stringr str_detect str_wrap str_split
@@ -80,7 +81,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
                       include_ae_detail=TRUE,legendPerSpace=NULL,
                       fonts=NULL,fontColours=NULL,panelColours=NULL,
                       attribColours=NULL,attribSymbols=NULL,
-                      columnWidths=NULL,...){
+                      columnWidths=NULL){
   
   options(dplyr.summarise.inform = FALSE)
   if (is.null(ae_attribVarText)) {

@@ -50,7 +50,7 @@ z
 
 ### Summary statistics of adverse events nested by participant in cohort, stratified by first attribution
 
-Uses addendum fake study data. Interpret summary output and unnested or
+Uses addendum simulated study data. Interpret summary output and unnested or
 nested p-value with caution!
 
 Note that if participants were enrolled in more than cohort (crossover),
@@ -1123,7 +1123,7 @@ Vascular disorders
 
 ### Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template
 
-Uses addendum fake study data. DSMB-CCRU AE summary tables in below code
+Uses addendum simulated study data. DSMB-CCRU AE summary tables in below code
 example can be found in the *dsmb_ccru_tables* folder of
 **BiostatsUHNplus** package.
 
@@ -1178,7 +1178,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
 
 #### Example 1
 
-Uses addendum fake study data. Shows timeline for onset of related AE
+Uses addendum simulated study data. Shows timeline for onset of related AE
 after study enrollment. Can display up to 5 attributions. Time unit may
 be one of day, week, month or year.
 

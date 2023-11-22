@@ -49,7 +49,7 @@ nicename <- utils::getFromNamespace("nicename", "reportRmd")
 #' @param percentage choice of how percentages are presented ,one of
 #'   \emph{column} (default) or \emph{row}
 #' @keywords dataframe
-#' @importFrom stats lm sd
+#' @importFrom stats lm sd anova as.formula binomial median na.fail
 #' @importFrom rstatix cramer_v eta_squared
 #' @importFrom dplyr select reframe summarise group_by filter across row_number n
 #' @importFrom purrr modify_if 
@@ -63,7 +63,7 @@ nicename <- utils::getFromNamespace("nicename", "reportRmd")
 covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, numobs = NULL, 
                            markup = TRUE, sanitize = TRUE, nicenames = TRUE, IQR = FALSE, 
                            all.stats = FALSE, pvalue = TRUE, effSize = TRUE, show.tests = TRUE, excludeLevels = NULL, 
-                           full = TRUE, digits.cat = 0, testcont = c("rank-sum test", 
+                           dropLevels = TRUE, full = TRUE, digits.cat = 0, testcont = c("rank-sum test", 
                                                                      "ANOVA"), testcat = c("Chi-squared", "Fisher"), 
                            include_missing = FALSE, percentage = c("column", "row")) 
 {
@@ -262,11 +262,14 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   presented). Ignored if pvalue=FALSE.
 #' @param numobs named list overriding the number of people you expect to have
 #'   the covariate
+#' @param markup boolean indicating if you want latex markup
+#' @param sanitize boolean indicating if you want to sanitize all strings to not
+#'   break LaTeX
 #' @param chunk_label only used if output is to Word to allow cross-referencing
 #' @keywords dataframe
 #' @return A character vector of the table source code, unless tableOnly=TRUE in
 #'   which case a data frame is returned
-#' @importFrom stats lm sd
+#' @importFrom stats lm sd anova as.formula binomial median na.fail
 #' @importFrom rstatix cramer_v eta_squared
 #' @importFrom dplyr select reframe summarise group_by filter across row_number n
 #' @importFrom purrr modify_if 
@@ -281,13 +284,13 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' data(ae)
 #' rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), covs = c("AE_SEV_GD", 
 #' "AE_ONSET_DT_INT"), maincov = "CTC_AE_ATTR_SCALE")
-rm_covsum_nested <- function(data,covs,maincov=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
+rm_covsum_nested <- function(data,covs,maincov=NULL,id=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
                              digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
                              pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp = FALSE,show.tests=TRUE,
                              just.nested.pvalue=FALSE,testcont=c('rank-sum test','ANOVA'),
                              testcat=c('Chi-squared','Fisher'),full=TRUE,include_missing=FALSE,
-                             percentage=c('column','row'),excludeLevels=NULL,numobs=NULL,markup=TRUE, 
-                             sanitize= TRUE,chunk_label,...){
+                             percentage=c('column','row'),dropLevels=TRUE,excludeLevels=NULL,numobs=NULL,markup=TRUE, 
+                             sanitize= TRUE,chunk_label){
   
   if (unformattedp |p.adjust !='none')
     formatp <- function(x) {

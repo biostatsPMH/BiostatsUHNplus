@@ -1,7 +1,7 @@
 #' Nice table of model output from MCMCglmm::MCMCglmm()
 #' 
 #' @param mcmcglmm_object returned output from MCMCglmm()
-#' @param data dataframe containing data
+#' @param dataset dataframe containing data
 #' @keywords dataframe
 #' @importFrom tibble rownames_to_column 
 #' @importFrom plyr join_all 
@@ -22,8 +22,6 @@
 #'   random=~ae_detail + Subject, family="categorical", data=ae, saveX=TRUE, 
 #'   verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
 #' mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
-#' options(knitr.kable.NA = '');
-#' knitr::kable(mcmcglmm_mva);
 nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   cc <- summary(mcmcglmm_object)$solutions
   citab <- with(as.data.frame(cc),
@@ -55,7 +53,7 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   colnames(varLevels) <- c("Variable", "Levels", "join");
   
   opd_mcmcglmm <- plyr::join_all(list(varLevels, mcmcglmm_ci), by=c("join"), type='full');
-  opd_mcmcglmm <- opd_mcmcglmm |> purrr:::modify_if(is.factor, as.character);
+  opd_mcmcglmm <- opd_mcmcglmm |> purrr::modify_if(is.factor, as.character);
   
   origVar <- as.data.frame(all.vars(mcmcglmm_object$Fixed$formula)[-1]);
   colnames(origVar) <- "Variable";

@@ -19,7 +19,7 @@
 #'    for example, c("Yes", "Y") (if provided)
 #' @param genderVar field that denotes participant gender
 #' @param enrolDtVar field that denotes participant enrolment date (i.e. 10MAY2021)
-#' @param ae_detailVar field that denotes participant AE detail (lower-level term)
+#' @param ae_detailVar field that denotes participant AE detail (lowest level term)
 #' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
 #' @param ae_onsetDtVar field that denotes participant AE onset date
@@ -55,7 +55,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
                       ineligVar,ineligVarText=NULL,
                       genderVar,enrolDtVar,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,ae_detailOtherText=NULL,ae_detailOtherVar=NULL,
-                      ae_verbatimVar=NULL,numSubj=NULL,...){
+                      ae_verbatimVar=NULL,numSubj=NULL){
 
   #### Template style for tables;
   ##https://stackoverflow.com/questions/54322814/how-to-apply-thick-border-around-a-cell-range-using-the-openxlsx-package-in-r ;
