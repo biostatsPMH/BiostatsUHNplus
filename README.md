@@ -555,7 +555,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.55
