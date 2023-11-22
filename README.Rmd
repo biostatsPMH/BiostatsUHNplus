@@ -54,7 +54,6 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="main")
 library(BiostatsUHNplus);
 z <- as_numeric_parse(c(1:5, "String1",6:10,"String2"))
 z
-
 ```
 
 

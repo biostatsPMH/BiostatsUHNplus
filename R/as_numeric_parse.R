@@ -10,13 +10,12 @@
 as_numeric_parse <- function(x){
   # Arguments:
   # x = string or vector to coerce to numeric
-  # ... = additional arguments passed to as.numeric()
   
   if (!class(x) %in% c("logical","numeric","double","integer","character","Date")) {
     stop("Invalid data type")
   }
   
-  y <- suppressWarnings(as.numeric(x, ...))
+  y <- suppressWarnings(as.numeric(x))
   noparse <- x[!is.na(x) & is.na(y)]
   
   if (length(noparse) > 0) {
