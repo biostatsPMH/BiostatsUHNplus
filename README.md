@@ -50,8 +50,8 @@ z
 
 ### Summary statistics of adverse events nested by participant in cohort, stratified by first attribution
 
-Uses addendum simulated study data. Interpret summary output and unnested or
-nested p-value with caution!
+Uses addendum simulated study data. Interpret summary output and
+unnested or nested p-value with caution!
 
 Note that if participants were enrolled in more than cohort (crossover),
 or if repeat AEs in participant had different attribution, the total N
@@ -1123,8 +1123,8 @@ Vascular disorders
 
 ### Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template
 
-Uses addendum simulated study data. DSMB-CCRU AE summary tables in below code
-example can be found in the *dsmb_ccru_tables* folder of
+Uses addendum simulated study data. DSMB-CCRU AE summary tables in below
+code example can be found in the *man/tables* folder of
 **BiostatsUHNplus** package.
 
 ``` r
@@ -1132,7 +1132,7 @@ library(BiostatsUHNplus);
 data("enrollment", "demography", "ineligibility", "ae");
 
 ## This does summary for all participants;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
           title="Phase X Study to Evaluate Treatments A-D",
           comp=NULL,pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -1146,7 +1146,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
           numSubj=NULL)
 
 ## This does summary for each cohort;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
           title="Phase X Study to Evaluate Treatments A-D",
           comp="COHORT",pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -1160,7 +1160,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
           numSubj=NULL)
 
 ## Does same as above, but overrides number of subjects in cohorts;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
           title="Phase X Study to Evaluate Treatments A-D",
           comp="COHORT",pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -1178,9 +1178,9 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
 
 #### Example 1
 
-Uses addendum simulated study data. Shows timeline for onset of related AE
-after study enrollment. Can display up to 5 attributions. Time unit may
-be one of day, week, month or year.
+Uses addendum simulated study data. Shows timeline for onset of related
+AE after study enrollment. Can display up to 5 attributions. Time unit
+may be one of day, week, month or year.
 
 Note that if more than one field is given for *startDtVars* (unique
 names required), each field is assumed to be specific start date for
