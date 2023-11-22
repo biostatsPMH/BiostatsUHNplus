@@ -28,7 +28,8 @@ dsmb_ccru(
   ae_detailOtherText = NULL,
   ae_detailOtherVar = NULL,
   ae_verbatimVar = NULL,
-  numSubj = NULL
+  numSubj = NULL,
+  fileNameUnderscore = TRUE
 )
 }
 \arguments{
@@ -83,6 +84,8 @@ for example, c("Other, specify", "OTHER") (if provided)}
 \item{ae_verbatimVar}{field that denotes participant AE detail verbatim (if provided)}
 
 \item{numSubj}{vector to override value for number of participants in summary (if provided)}
+
+\item{fileNameUnderscore}{boolean that denotes if spaces should be underscore in filename}
 }
 \value{
 three Excel files containing DSMB-CCRU AE summary tables

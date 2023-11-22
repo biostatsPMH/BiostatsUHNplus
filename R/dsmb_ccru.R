@@ -28,6 +28,7 @@
 #' @param ae_detailOtherVar field that denotes participant AE detail other (if provided)
 #' @param ae_verbatimVar field that denotes participant AE detail verbatim (if provided)
 #' @param numSubj vector to override value for number of participants in summary (if provided)
+#' @param fileNameUnderscore boolean that denotes if spaces should be underscore in filename
 #' @keywords dataframe
 #' @return three Excel files containing DSMB-CCRU AE summary tables
 #' @importFrom openxlsx createStyle createWorkbook addWorksheet writeData mergeCells addStyle setRowHeights setColWidths saveWorkbook
@@ -55,7 +56,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
                       ineligVar,ineligVarText=NULL,
                       genderVar,enrolDtVar,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,ae_detailOtherText=NULL,ae_detailOtherVar=NULL,
-                      ae_verbatimVar=NULL,numSubj=NULL){
+                      ae_verbatimVar=NULL,numSubj=NULL,fileNameUnderscore=TRUE){
 
   #### Template style for tables;
   ##https://stackoverflow.com/questions/54322814/how-to-apply-thick-border-around-a-cell-range-using-the-openxlsx-package-in-r ;
@@ -242,6 +243,9 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     setRowHeights(wb, 1, rows = 9, heights = 82); 
     setColWidths(wb, 1, cols = c(1, 2, 3, 4, 5, 6), widths = c(34, 34, 15, 15, 15, 15));
     OutsideBorders(wb, sheet_ = 1, rows_ = 9:(length(table1_df[, 1])+9), cols_ = 1:6);
+    if (fileNameUnderscore == TRUE) {
+      table1_fn <- chartr(" ", "_", table1_fn);
+    }
     saveWorkbook(wb, paste(setwd, table1_fn, sep=""), overwrite = TRUE);
     
     #### Table 2; 
@@ -286,6 +290,9 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     setRowHeights(wb, 1, rows = 9, heights = 82); 
     setColWidths(wb, 1, cols = c(1, 2, 3, 4, 5), widths = c(34, 15, 15, 15, 15));
     OutsideBorders(wb, sheet_ = 1, rows_ = 9:(length(table2_df[, 1])+9), cols_ = 1:5);
+    if (fileNameUnderscore == TRUE) {
+      table2_fn <- chartr(" ", "_", table2_fn);
+    }
     saveWorkbook(wb, paste(setwd, table2_fn, sep=""), overwrite = TRUE);
     
     #### Table 3;
@@ -330,6 +337,10 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     setRowHeights(wb, 1, rows = 9, heights = 82); 
     setColWidths(wb, 1, cols = c(1, 2, 3, 4, 5), widths = c(34, 15, 15, 15, 15));
     OutsideBorders(wb, sheet_ = 1, rows_ = 9:(length(table3_df[, 1])+9), cols_ = 1:5);
+    trimws("dsmb_ccru_tables/category ByEvent EXAMPLE_STUDY Cohort D 30OCT2020.xlsx");
+    if (fileNameUnderscore == TRUE) {
+      table3_fn <- chartr(" ", "_", table3_fn);
+    }
     saveWorkbook(wb, paste(setwd, table3_fn, sep=""), overwrite = TRUE);
     
     #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#;
