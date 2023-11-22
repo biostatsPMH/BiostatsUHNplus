@@ -53,6 +53,7 @@
 #' @importFrom cowplot get_legend
 #' @importFrom ggstance geom_pointrangeh
 #' @import ggplot2
+#' @import lifecycle
 #' @export
 #' @examples
 #' data("drug1_admin", "drug2_admin", "ae");
