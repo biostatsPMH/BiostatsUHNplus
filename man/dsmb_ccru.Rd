@@ -92,7 +92,7 @@ Outputs the three DSMB-CCRU AE summary tables in Excel format per UHN template
 }
 \examples{
 data("enrollment", "demography", "ineligibility", "ae");
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
   title="Phase X Study to Evaluate Treatments A-D",
   comp="COHORT",pi="Dr. Principal Investigator",
   presDate="30OCT2020",cutDate="31AUG2020",

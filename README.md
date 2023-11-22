@@ -555,7 +555,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.55
@@ -1124,7 +1124,7 @@ Vascular disorders
 ### Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template
 
 Uses addendum simulated study data. DSMB-CCRU AE summary tables in below
-code example can be found in the *man/tables* folder of
+code example can be found in the *dsmb_ccru_tables* folder of
 **BiostatsUHNplus** package.
 
 ``` r
@@ -1132,7 +1132,7 @@ library(BiostatsUHNplus);
 data("enrollment", "demography", "ineligibility", "ae");
 
 ## This does summary for all participants;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
           title="Phase X Study to Evaluate Treatments A-D",
           comp=NULL,pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -1146,7 +1146,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
           numSubj=NULL)
 
 ## This does summary for each cohort;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
           title="Phase X Study to Evaluate Treatments A-D",
           comp="COHORT",pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
@@ -1160,7 +1160,7 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
           numSubj=NULL)
 
 ## Does same as above, but overrides number of subjects in cohorts;
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
+dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./dsmb_ccru_tables/",
           title="Phase X Study to Evaluate Treatments A-D",
           comp="COHORT",pi="Dr. Principal Investigator",
           presDate="30OCT2020",cutDate="31AUG2020",
