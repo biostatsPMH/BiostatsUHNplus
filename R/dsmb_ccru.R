@@ -34,6 +34,7 @@
 #' @importFrom plyr join_all
 #' @importFrom dplyr select distinct mutate arrange summarise group_by filter across row_number n_distinct
 #' @importFrom stringr str_detect
+#' @importFrom lifecycle :: :::
 #' @export
 #' @examples
 #' data("enrollment", "demography", "ineligibility", "ae");
