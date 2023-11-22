@@ -3,7 +3,7 @@
 \name{ae_timeline_plot}
 \alias{ae_timeline_plot}
 \title{Outputs related adverse event timeline plots including just system organ class
-(AE category), or system organ class and lower level term (AE detail). This
+(AE category), or system organ class and lowest level term (AE detail). This
 function can fit up to 5 different attributions. Modify width, height and scale
 parameters in ggsave() to customize fit for large plot.}
 \usage{
@@ -28,8 +28,7 @@ ae_timeline_plot(
   panelColours = NULL,
   attribColours = NULL,
   attribSymbols = NULL,
-  columnWidths = NULL,
-  ...
+  columnWidths = NULL
 )
 }
 \arguments{
@@ -57,7 +56,7 @@ it could be enrollment date or screening date. If more than one field given
 (unique names are required), each field is assumed to be specific start date
 for attribution in corresponding field order}
 
-\item{ae_detailVar}{field that denotes participant AE detail (lower-level term)}
+\item{ae_detailVar}{field that denotes participant AE detail (lowest level term)}
 
 \item{ae_categoryVar}{field that denotes participant AE category (system organ class)}
 
@@ -97,7 +96,7 @@ ggplot object of AE timeline plot
 }
 \description{
 Outputs related adverse event timeline plots including just system organ class
-(AE category), or system organ class and lower level term (AE detail). This
+(AE category), or system organ class and lowest level term (AE detail). This
 function can fit up to 5 different attributions. Modify width, height and scale
 parameters in ggsave() to customize fit for large plot.
 }

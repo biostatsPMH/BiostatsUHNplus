@@ -28,8 +28,7 @@ dsmb_ccru(
   ae_detailOtherText = NULL,
   ae_detailOtherVar = NULL,
   ae_verbatimVar = NULL,
-  numSubj = NULL,
-  ...
+  numSubj = NULL
 )
 }
 \arguments{
@@ -68,7 +67,7 @@ for example, c("Yes", "Y") (if provided)}
 
 \item{enrolDtVar}{field that denotes participant enrolment date (i.e. 10MAY2021)}
 
-\item{ae_detailVar}{field that denotes participant AE detail (lower-level term)}
+\item{ae_detailVar}{field that denotes participant AE detail (lowest level term)}
 
 \item{ae_categoryVar}{field that denotes participant AE category (system organ class)}
 

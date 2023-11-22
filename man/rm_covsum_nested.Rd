@@ -8,6 +8,7 @@ rm_covsum_nested(
   data,
   covs,
   maincov = NULL,
+  id = NULL,
   caption = NULL,
   tableOnly = FALSE,
   covTitle = "",
@@ -27,12 +28,12 @@ rm_covsum_nested(
   full = TRUE,
   include_missing = FALSE,
   percentage = c("column", "row"),
+  dropLevels = TRUE,
   excludeLevels = NULL,
   numobs = NULL,
   markup = TRUE,
   sanitize = TRUE,
-  chunk_label,
-  ...
+  chunk_label
 )
 }
 \arguments{
@@ -41,6 +42,8 @@ rm_covsum_nested(
 \item{covs}{character vector with the names of columns to include in table}
 
 \item{maincov}{covariate to stratify table by}
+
+\item{id}{covariates to nest summary by}
 
 \item{caption}{character containing table caption (default is no caption)}
 
@@ -98,6 +101,9 @@ be included in statistical tests}
 \item{percentage}{choice of how percentages are presented, one of
 \emph{column} (default) or \emph{row}}
 
+\item{dropLevels}{logical, indicating if empty factor levels be dropped from
+the output, default is TRUE.}
+
 \item{excludeLevels}{a named list of covariate levels to exclude from
 statistical tests in the form list(varname =c('level1','level2')). These
 levels will be excluded from association tests, but not the table. This can
@@ -107,12 +113,12 @@ presented). Ignored if pvalue=FALSE.}
 \item{numobs}{named list overriding the number of people you expect to have
 the covariate}
 
+\item{markup}{boolean indicating if you want latex markup}
+
+\item{sanitize}{boolean indicating if you want to sanitize all strings to not
+break LaTeX}
+
 \item{chunk_label}{only used if output is to Word to allow cross-referencing}
-
-\item{id}{covariates to nest summary by}
-
-\item{dropLevels}{logical, indicating if empty factor levels be dropped from
-the output, default is TRUE.}
 }
 \value{
 A character vector of the table source code, unless tableOnly=TRUE in

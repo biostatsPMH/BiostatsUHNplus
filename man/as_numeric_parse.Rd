@@ -5,7 +5,7 @@
 \title{Wrapper for the as.numeric function that prints entries that
 fail to parse}
 \usage{
-as_numeric_parse(x, ...)
+as_numeric_parse(x)
 }
 \arguments{
 \item{x}{string or vector to coerce to numeric}

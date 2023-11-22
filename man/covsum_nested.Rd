@@ -20,6 +20,7 @@ covsum_nested(
   effSize = TRUE,
   show.tests = TRUE,
   excludeLevels = NULL,
+  dropLevels = TRUE,
   full = TRUE,
   digits.cat = 0,
   testcont = c("rank-sum test", "ANOVA"),
@@ -71,6 +72,9 @@ levels will be excluded from association tests, but not the table. This can
 be useful for levels where there is a logical skip (ie not missing, but not
 presented). Ignored if pvalue=FALSE.}
 
+\item{dropLevels}{logical, indicating if empty factor levels be dropped from
+the output, default is TRUE.}
+
 \item{full}{boolean indicating if you want the full sample included in the
 table, ignored if maincov is NULL}
 
@@ -88,9 +92,6 @@ be included in statistical tests}
 
 \item{percentage}{choice of how percentages are presented ,one of
 \emph{column} (default) or \emph{row}}
-
-\item{dropLevels}{logical, indicating if empty factor levels be dropped from
-the output, default is TRUE.}
 }
 \description{
 Nested version of reportRmd:::covsum()
