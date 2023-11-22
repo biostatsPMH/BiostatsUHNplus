@@ -8,7 +8,6 @@
 #' @importFrom purrr modify_if 
 #' @importFrom dplyr select mutate arrange group_by 
 #' @importFrom MCMCglmm MCMCglmm 
-#' @importFrom lifecycle :: :::
 #' @export
 #' @examples
 #' data(ae)

@@ -58,7 +58,6 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @importFrom modeest mlv 
 #' @importFrom afex mixed
 #' @importFrom utils getFromNamespace
-#' @importFrom lifecycle :: :::
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
 #'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},and
 #'   \code{\link{anova}}
