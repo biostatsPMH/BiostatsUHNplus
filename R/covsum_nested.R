@@ -4,6 +4,7 @@ formatp <- utils::getFromNamespace("formatp", "reportRmd")
 lpvalue <- utils::getFromNamespace("lpvalue", "reportRmd")
 niceNum <- utils::getFromNamespace("niceNum", "reportRmd")
 nicename <- utils::getFromNamespace("nicename", "reportRmd")
+replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 
 #' Nested version of reportRmd covsum()
 #'
