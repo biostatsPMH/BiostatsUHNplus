@@ -52,6 +52,8 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Collate: 
+    'data.R'
+    'globals.R'
     'as_numeric_parse.R'
     'covsum_nested.R'
     'dsmb_ccru.R'
