@@ -65,20 +65,19 @@
 #'                       ae_detailVar="ae_detail",
 #'                       ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
 #'                       ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
-#'                       include_ae_detail=F,
+#'                       include_ae_detail=FALSE,
 #'                       fonts=c("Calibri","Albany AMT","Gadugi","French Script MT","Forte"),
 #'                       fontColours=c("#FFE135"),
 #'                       panelColours=c("#E52B50",NA,"#FFE4C4"),
 #'                       attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),   
 #'                       attribSymbols=c(7,8,5,6),
 #'                       columnWidths=c(23))
-#' ggplot2::ggsave(paste("ae_category_attribStart_timeline_plot", ".png", sep=""), p, width=4.2, height=5.4, device="png", scale = 1);
 
 ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
                       ae_attribVars,ae_attribVarsName=NULL,ae_attribVarText=NULL,
                       startDtVars,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,time_unit=c("day","week","month","year"),
-                      include_ae_detail=T,legendPerSpace=NULL,
+                      include_ae_detail=TRUE,legendPerSpace=NULL,
                       fonts=NULL,fontColours=NULL,panelColours=NULL,
                       attribColours=NULL,attribSymbols=NULL,
                       columnWidths=NULL,...){

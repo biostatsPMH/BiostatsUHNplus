@@ -1,26 +1,29 @@
 Package: BiostatsUHNplus
-Title: Nested hierarchical data summary, DSMB templates and AE timeline plots
-Version: 0.0.0.9000
+Title: Nested Hierarchical Data Summary, DSMB Templates and AE Timeline
+    Plots
+Version: 0.0.2
 Authors@R: c(
-    person(given="Lisa",family="Avery",email = "lisa.avery@uhn.ca",role=c("aut"),comment=c(ORCHID="0000-0002-8431-5143")),
-    person(given="Zeynep",family="Baskurt",email = "zeynep.baskurt@uhn.ca",role="aut"),
-    person(given="Osvaldo",family="Espin-Garcia",email = "osvaldo.espin-garcia@uhn.ca",role="aut"),
-    person(given="Katrina",family="Hueniken",email = "katrina.hueniken@uhn.ca",role="aut"),
-    person(given="Katherine",family="Lajkosz",email = "katherine.lajkosz@uhn.ca",role="aut",comment=c(ORCHID="0000-0003-3760-5401")),
-    person(given="Xuan",family="Li",email = "xuan.li@uhnresearch.ca",role="aut"),
-    person(given="Tyler",family="Pittman",email="tyler.pittman@uhn.ca",role=c("cre","aut"),comment=c(ORCHID="0000-0002-5013-6980")),
-    person(given="Anna",family="Santiago",email="anna.santiago@uhn.ca",role="aut",comment=c(ORCHID="0000-0002-0932-2386")),
-    person(given="Jessica",family="Weiss",email = "jessica.weiss@uhn.ca",role="aut"),    
-    person(given="Wei", family="Xu",email = "wei.xu@uhn.ca",role="aut"))
-Description: Miscellaneous code snippets and functions with pipes and multiple package dependencies used by Biostatistics@UHN for summarizing adverse events.
+    person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",
+           comment = c(ORCHID = "0000-0002-8431-5143")),
+    person("Zeynep", "Baskurt", , "zeynep.baskurt@uhn.ca", role = "aut"),
+    person("Osvaldo", "Espin-Garcia", , "osvaldo.espin-garcia@uhn.ca", role = "aut"),
+    person("Katrina", "Hueniken", , "katrina.hueniken@uhn.ca", role = "aut"),
+    person("Katherine", "Lajkosz", , "katherine.lajkosz@uhn.ca", role = "aut",
+           comment = c(ORCHID = "0000-0003-3760-5401")),
+    person("Xuan", "Li", , "xuan.li@uhnresearch.ca", role = "aut"),
+    person("Tyler", "Pittman", , "tyler.pittman@uhn.ca", role = c("cre", "aut"),
+           comment = c(ORCHID = "0000-0002-5013-6980")),
+    person("Anna", "Santiago", , "anna.santiago@uhn.ca", role = "aut",
+           comment = c(ORCHID = "0000-0002-0932-2386")),
+    person("Jessica", "Weiss", , "jessica.weiss@uhn.ca", role = "aut"),
+    person("Wei", "Xu", , "wei.xu@uhn.ca", role = "aut")
+  )
+Description: Miscellaneous code snippets and functions with pipes and
+    multiple package dependencies used by Biostatistics@UHN for
+    summarizing adverse events.
 License: MIT + file LICENSE
-Suggests: 
-    rmarkdown,
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+Depends: 
+    R (>= 4.2)
 Imports: 
     afex,
     cowplot,
@@ -29,18 +32,28 @@ Imports:
     ggh4x,
     ggplot2,
     ggstance,
+    MCMCglmm,
     modeest,
     openxlsx,
-    parallel,
     plyr,
     purrr,
+    reportRmd,
     rlang,
     rstatix,
     stats,
     stringr,
     tibble,
     utils
-Collate: 'as_numeric_parse.R' 'covsum_nested.R' 'dsmb_ccru.R' 'nice_mcmcglmm.R' 'ae_timeline_plot.R'
-Depends: 
-    R (>= 4.2)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Collate: 
+    'as_numeric_parse.R'
+    'covsum_nested.R'
+    'dsmb_ccru.R'
+    'nice_mcmcglmm.R'
+    'ae_timeline_plot.R'

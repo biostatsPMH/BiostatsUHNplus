@@ -16,7 +16,7 @@ Many of these functions build upon the features of
 ## Installation
 
 First, install the lastest version of **reportRmd** from
-[CRAN](https://cran.r-project.org/web/packages/reportRmd) with:
+[CRAN](https://cran.r-project.org/package=reportRmd) with:
 
 ``` r
 install.packages(c("reportRmd"), dependencies=TRUE);
@@ -127,7 +127,7 @@ Nested p-value
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.97
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -192,7 +192,6 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.68
 </td>
 </tr>
 <tr>
@@ -259,7 +258,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-0.95
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -370,7 +369,7 @@ Cohort D
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-0.63
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -499,7 +498,6 @@ Missing
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.64
 </td>
 </tr>
 <tr>
@@ -566,7 +564,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -1232,7 +1230,7 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test")
                  startDtVars=c("ENROL_DATE_INT"),ae_detailVar="ae_detail",
                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
-                 include_ae_detail=F,
+                 include_ae_detail=FALSE,
                  fonts=c("Forte","Gadugi","French Script MT","Albany AMT","Calibri"),
                  fontColours=c("#FF4F00","#FFDB58"),
                  panelColours=c("#AAF0D1",NA,"white"),
@@ -1268,7 +1266,7 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("01","11"),
                  ae_detailVar="ae_detail",
                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="month",
-                 include_ae_detail=F,
+                 include_ae_detail=FALSE,
                  fonts=c("Calibri","Albany AMT","Gadugi","French Script MT","Forte"),
                  fontColours=c("#FFE135"),
                  panelColours=c("#E52B50",NA,"#FFF5EE"),
