@@ -212,7 +212,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Use this function at your own risk. Please check output.
 ## Order of nested ids matter. For example, in c(&#39;id1&#39;,&#39;id2&#39;) id1 should be nested within id2, etc.</code></pre>
 <pre><code>## Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.
-## Nested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method=&#39;LRT&#39;)).</code></pre>
+## Nested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method=&#39;LRT&#39;)).
+## 
+## Using 8 processor(s) for parallel processing.</code></pre>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -329,7 +331,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+<span style="font-weight: bold;">0.024</span>
 </td>
 </tr>
 <tr>
@@ -396,7 +398,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+<span style="font-weight: bold;">&lt;0.001</span>
 </td>
 </tr>
 <tr>
@@ -479,13 +481,13 @@ lupins
 1.00
 </td>
 <td style="text-align:right;">
-0.024
+0.022
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.80
 </td>
 </tr>
 <tr>
@@ -499,7 +501,7 @@ Did not converge;<br>quasi or complete<br>category separation
 19 (24)
 </td>
 <td style="text-align:right;">
-17 (24)
+18 (25)
 </td>
 <td style="text-align:right;">
 </td>
@@ -515,13 +517,13 @@ Did not converge;<br>quasi or complete<br>category separation
 2
 </td>
 <td style="text-align:right;">
-14 (18)
+12 (15)
 </td>
 <td style="text-align:right;">
-14 (18)
+12 (15)
 </td>
 <td style="text-align:right;">
-14 (19)
+11 (15)
 </td>
 <td style="text-align:right;">
 </td>
@@ -537,32 +539,10 @@ Did not converge;<br>quasi or complete<br>category separation
 3
 </td>
 <td style="text-align:right;">
-17 (22)
+15 (19)
 </td>
 <td style="text-align:right;">
-17 (22)
-</td>
-<td style="text-align:right;">
-15 (21)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-4
-</td>
-<td style="text-align:right;">
-16 (20)
-</td>
-<td style="text-align:right;">
-16 (20)
+15 (19)
 </td>
 <td style="text-align:right;">
 14 (19)
@@ -578,16 +558,38 @@ Did not converge;<br>quasi or complete<br>category separation
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+4
+</td>
+<td style="text-align:right;">
+19 (24)
+</td>
+<td style="text-align:right;">
+19 (24)
+</td>
+<td style="text-align:right;">
+16 (22)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
 5
 </td>
 <td style="text-align:right;">
-13 (16)
+14 (18)
 </td>
 <td style="text-align:right;">
-13 (16)
+14 (18)
 </td>
 <td style="text-align:right;">
-12 (17)
+13 (18)
 </td>
 <td style="text-align:right;">
 </td>
@@ -721,7 +723,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+<span style="font-weight: bold;">0.024</span>
 </td>
 </tr>
 <tr>
@@ -788,7 +790,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+<span style="font-weight: bold;">&lt;0.001</span>
 </td>
 </tr>
 <tr>
