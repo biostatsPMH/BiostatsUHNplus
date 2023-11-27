@@ -190,7 +190,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       tryCatch({
         cl <- parallel::makeCluster(rep("localhost", nc)) # make cluster
         suppressWarnings({tryCatch({
-          out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(anova(afex::mixed(as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=cl, method="LRT"))[4]), silent=TRUE))
+          out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=cl, method="LRT"))[4]), silent=TRUE))
           #out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(anova(afex::mixed(as.formula(paste(maincov, '~', x, '+(', x, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, cl=cl, method="LRT"))[4]), silent=TRUE))
         }, error=function(e){})})
         try(stopCluster(cl), silent=TRUE)
