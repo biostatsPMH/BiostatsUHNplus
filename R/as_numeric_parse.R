@@ -7,6 +7,7 @@
 #' @examples
 #' z <- as_numeric_parse(c(1:5, "String1",6:10,"String2"))
 #' z
+#' \value{No return value, called for side effects} 
 as_numeric_parse <- function(x){
   # Arguments:
   # x = string or vector to coerce to numeric
