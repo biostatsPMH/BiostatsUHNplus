@@ -2,17 +2,20 @@
 % Please edit documentation in R/as_numeric_parse.R
 \name{as_numeric_parse}
 \alias{as_numeric_parse}
-\title{Wrapper for the as.numeric function that prints entries that
-fail to parse}
+\title{Modification of the as.numeric function that prints entries that
+fail to parse as a message}
 \usage{
 as_numeric_parse(x)
 }
 \arguments{
 \item{x}{string or vector to coerce to numeric}
 }
+\value{
+No return value, called for side effects
+}
 \description{
-Wrapper for the as.numeric function that prints entries that
-fail to parse
+Modification of the as.numeric function that prints entries that
+fail to parse as a message
 }
 \examples{
 z <- as_numeric_parse(c(1:5, "String1",6:10,"String2"))

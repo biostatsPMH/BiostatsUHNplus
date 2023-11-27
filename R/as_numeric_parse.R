@@ -1,5 +1,5 @@
-#' Wrapper for the as.numeric function that prints entries that 
-#' fail to parse 
+#' Modification of the as.numeric function that prints entries that 
+#' fail to parse as a message
 #' 
 #' @param x string or vector to coerce to numeric
 #' @keywords as.numeric
@@ -7,6 +7,7 @@
 #' @examples
 #' z <- as_numeric_parse(c(1:5, "String1",6:10,"String2"))
 #' z
+#' @returns No return value, called for side effects 
 as_numeric_parse <- function(x){
   # Arguments:
   # x = string or vector to coerce to numeric

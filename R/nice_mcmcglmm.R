@@ -3,6 +3,7 @@
 #' @param mcmcglmm_object returned output from MCMCglmm()
 #' @param dataset dataframe containing data
 #' @keywords dataframe
+#' @returns grouped_df
 #' @importFrom tibble rownames_to_column 
 #' @importFrom plyr join_all 
 #' @importFrom purrr modify_if 
@@ -80,5 +81,5 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   opd_mcmcglmm$Variable <- gsub("_", " ", opd_mcmcglmm$Variable);
   opd_mcmcglmm$Variable[duplicated(opd_mcmcglmm$Variable )] <- NA;
   opd_mcmcglmm$MCMCp[opd_mcmcglmm$MCMCp == "0.000"] <- "<0.001";
-  opd_mcmcglmm
+  return(opd_mcmcglmm)
 }

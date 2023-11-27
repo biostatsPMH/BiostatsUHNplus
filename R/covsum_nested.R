@@ -56,6 +56,7 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @importFrom purrr modify_if 
 #' @importFrom rlang syms 
 #' @importFrom modeest mlv 
+#' @importFrom parallel detectCores makeCluster
 #' @importFrom afex mixed
 #' @importFrom utils getFromNamespace
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
@@ -75,9 +76,9 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
   nested.pvalue=FALSE
   if (pvalue){ 
     nested.pvalue=TRUE
-    #nc <- parallel::detectCores() # number of cores
-    #warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).\n", "\nUsing ", nc, " processor(s) for parallel processing.\n", sep=""))
-    warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).", sep=""))
+    nc <- parallel::detectCores() # number of cores
+    warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).\n", "\nUsing ", nc, " processor(s) for parallel processing.\n", sep=""))
+    #warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).", sep=""))
   }
   options(dplyr.summarise.inform = FALSE)
   is.date <- function(x) inherits(x, 'Date')
@@ -181,22 +182,22 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
   }
   #------------# LRT glmer nested pvalues #------------#;
   ###https://search.r-project.org/CRAN/refmans/afex/html/mixed.html
-  if (nested.pvalue & !is.null(maincov) & !is.null(id)) {
+  if (nested.pvalue == TRUE & !is.null(maincov) & !is.null(id)) {
     objComb$cov <- "";
     objComb$cov[which(objComb[2] == "")] <- covs;
     objComb$'Nested p-value' <- "";
     suppressWarnings({
       tryCatch({
-        #cl <- parallel::makeCluster(rep("localhost", nc)) # make cluster
+        cl <- parallel::makeCluster(rep("localhost", nc)) # make cluster
         suppressWarnings({tryCatch({
           out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(anova(afex::mixed(as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=cl, method="LRT"))[4]), silent=TRUE))
           #out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(anova(afex::mixed(as.formula(paste(maincov, '~', x, '+(', x, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, cl=cl, method="LRT"))[4]), silent=TRUE))
         }, error=function(e){})})
-        #try(stopCluster(cl), silent=TRUE)
+        try(stopCluster(cl), silent=TRUE)
       }, error=function(e){})
       suppressWarnings({
         tryCatch({
-          #try(stopCluster(cl), silent=TRUE)
+          try(stopCluster(cl), silent=TRUE)
         }, error=function(e){})
       })
       out_glmer <- as.numeric(unlist(out_glmer));
