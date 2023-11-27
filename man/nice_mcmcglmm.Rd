@@ -11,6 +11,9 @@ nice_mcmcglmm(mcmcglmm_object, dataset)
 
 \item{dataset}{dataframe containing data}
 }
+\value{
+grouped_df
+}
 \description{
 Nice table of model output from MCMCglmm::MCMCglmm()
 }

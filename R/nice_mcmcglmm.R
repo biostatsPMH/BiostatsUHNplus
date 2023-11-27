@@ -3,6 +3,7 @@
 #' @param mcmcglmm_object returned output from MCMCglmm()
 #' @param dataset dataframe containing data
 #' @keywords dataframe
+#' @returns grouped_df
 #' @importFrom tibble rownames_to_column 
 #' @importFrom plyr join_all 
 #' @importFrom purrr modify_if 
