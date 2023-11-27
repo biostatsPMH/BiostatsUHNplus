@@ -23,6 +23,7 @@ rm_covsum_nested(
   unformattedp = FALSE,
   show.tests = TRUE,
   just.nested.pvalue = FALSE,
+  nCores = NULL,
   testcont = c("rank-sum test", "ANOVA"),
   testcat = c("Chi-squared", "Fisher"),
   full = TRUE,
@@ -85,6 +86,9 @@ be shown in a column beside the pvalues. Ignored if pvalue=FALSE.}
 \item{just.nested.pvalue}{boolean indicating if the just the nested p-value
 should be shown in a column, and not unnested p-value, unnested statistical
 tests and effect size. Overrides effSize and show.tests arguments.}
+
+\item{nCores}{number of cores to use for parallel processing if calculating
+the nested p-value (if provided).}
 
 \item{testcont}{test of choice for continuous variables,one of
 \emph{rank-sum} (default) or \emph{ANOVA}}
