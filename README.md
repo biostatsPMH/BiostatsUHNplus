@@ -53,7 +53,7 @@ z
 Uses addendum simulated study data. Interpret summary output and
 unnested or nested p-value with caution!
 
-Note that if participants were enrolled in more than cohort (crossover),
+Note that if participants were enrolled in more than one cohort (crossover),
 or if repeat AEs in participant had different attribution, the total N
 for Full Sample will be less than that of the total N of attribution for
 first study drug. Since total N for Full Sample (234) is less than total
