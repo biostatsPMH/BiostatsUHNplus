@@ -57,8 +57,8 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @importFrom rlang syms 
 #' @importFrom modeest mlv 
 #' @importFrom utils getFromNamespace
-#' @import parallel 
-#' @import afex
+#' @importFrom parallel detectCores makeCluster
+#' @importFrom afex mixed
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
 #'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},and
 #'   \code{\link{anova}}
