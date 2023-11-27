@@ -1,5 +1,6 @@
 Package: BiostatsUHNplus
-Title: Nested Data Summary and Adverse Events
+Title: Nested Hierarchical Data Summary, DSMB Templates and AE Timeline
+    Plots
 Version: 0.0.5
 Authors@R: c(
     person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",

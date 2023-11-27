@@ -127,7 +127,7 @@ Nested p-value
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.97
 </td>
 </tr>
 <tr>
@@ -192,6 +192,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
+0.68
 </td>
 </tr>
 <tr>
@@ -258,7 +259,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.95
 </td>
 </tr>
 <tr>
@@ -369,7 +370,7 @@ Cohort D
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.63
 </td>
 </tr>
 <tr>
@@ -498,6 +499,7 @@ Missing
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
+0.64
 </td>
 </tr>
 <tr>
@@ -564,7 +566,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
