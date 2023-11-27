@@ -88,8 +88,8 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
     else {
       nc <- 1
     }
-    warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).\n", "\nUsing ", nc, " processor(s) for parallel processing.\n", sep=""))
-    #warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).", sep=""))
+    #warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).\n", "\nUsing ", nc, " processor(s) for parallel processing.\n", sep=""))
+    warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).", sep=""))
   }
   options(dplyr.summarise.inform = FALSE)
   is.date <- function(x) inherits(x, 'Date')
