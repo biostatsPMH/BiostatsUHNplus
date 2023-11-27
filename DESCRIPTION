@@ -1,7 +1,7 @@
 Package: BiostatsUHNplus
 Title: Nested Hierarchical Data Summary, DSMB Templates and AE Timeline
     Plots
-Version: 0.0.3
+Version: 0.0.4
 Authors@R: c(
     person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",
            comment = c(ORCHID = "0000-0002-8431-5143")),
