@@ -1,5 +1,5 @@
-#' Wrapper for the as.numeric function that prints entries that 
-#' fail to parse 
+#' Modification of the as.numeric function that prints entries that 
+#' fail to parse as a message
 #' 
 #' @param x string or vector to coerce to numeric
 #' @keywords as.numeric
