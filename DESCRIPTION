@@ -1,5 +1,5 @@
 Package: BiostatsUHNplus
-Title: "Nested Data Summary of Adverse Events"
+Title: Nested Data Summary and Adverse Events
 Version: 0.0.3
 Authors@R: c(
     person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",
