@@ -34,12 +34,19 @@ First, install the lastest version of **reportRmd** from [CRAN](https://cran.r-p
 install.packages(c("reportRmd"), dependencies=TRUE);
 ```
 
-If version 0.1.0 or higher of **reportRmd** is installed, you can install **BiostatsUHNplus** from [GitHub](https://github.com/) with:
+Then install the lastest version of **BiostatsUHNplus** from [CRAN](https://cran.r-project.org/package=BiostatsUHNplus) with:
+
+
+``` r
+install.packages(c("BiostatsUHNplus"), dependencies=TRUE);
+```
+
+If version 0.1.0 or higher of **reportRmd** is installed, the development version of **BiostatsUHNplus** can be installed from [GitHub](https://github.com/) with:
 
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="main")
+devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="development")
 ```
 
 ## Documentation
@@ -61,7 +68,7 @@ z
 
 Uses addendum simulated study data. Interpret summary output and unnested or nested p-value with caution!
 
-Note that if participants were enrolled in more than cohort (crossover), or if repeat AEs in participant had different attribution, the total N for Full Sample will be less than that of the total N of attribution for first study drug. Since total N for Full Sample (234) is less than total N of the first study drug attribution categories (49 + 198), this suggests that there was instances of repeat AEs in participants having different attribution to first study drug.
+Note that if participants were enrolled in more than one cohort (crossover), or if repeat AEs in participant had different attribution, the total N for Full Sample will be less than that of the total N of attribution for first study drug. Since total N for Full Sample (234) is less than total N of the first study drug attribution categories (49 + 198), this suggests that there was instances of repeat AEs in participants having different attribution to first study drug.
 
 ```{r example2, message=F, warning=F}
 library(plyr);
