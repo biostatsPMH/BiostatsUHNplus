@@ -19,6 +19,7 @@ covsum_nested(
   pvalue = TRUE,
   effSize = TRUE,
   show.tests = TRUE,
+  nCores = NULL,
   excludeLevels = NULL,
   dropLevels = TRUE,
   full = TRUE,
@@ -65,6 +66,9 @@ table. Can only be obtained if pvalue is also requested.}
 
 \item{show.tests}{boolean indicating if the type of statistical used should
 be shown in a column beside the pvalues. Ignored if pvalue=FALSE.}
+
+\item{nCores}{number of cores to use for parallel processing if calculating
+the nested p-value (default: 1).}
 
 \item{excludeLevels}{a named list of covariate levels to exclude from
 statistical tests in the form list(varname =c('level1','level2')). These

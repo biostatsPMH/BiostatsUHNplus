@@ -1,7 +1,6 @@
 Package: BiostatsUHNplus
-Title: Nested Hierarchical Data Summary, DSMB Templates and AE Timeline
-    Plots
-Version: 0.0.5
+Title: Nested Data Summary and Adverse Events
+Version: 0.0.8
 Authors@R: c(
     person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",
            comment = c(ORCHID = "0000-0002-8431-5143")),
@@ -19,8 +18,8 @@ Authors@R: c(
     person("Wei", "Xu", , "wei.xu@uhn.ca", role = "aut")
   )
 Description: Miscellaneous code snippets and functions with pipes and
-    multiple package dependencies used by Biostatistics@UHN for
-    summarizing adverse events.
+    multiple package dependencies used for summarizing nested data and 
+    adverse events.
 License: MIT + file LICENSE
 Depends: 
     R (>= 4.2)
