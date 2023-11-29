@@ -296,9 +296,29 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   \code{\link{chisq.test}}, \code{\link{wilcox.test}},
 #'   \code{\link{kruskal.test}}, \code{\link{anova}}, and \code{\link{outTable}}
 #' @examples
+#' # Example 1
 #' data(ae)
 #' rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), covs = c("AE_SEV_GD", 
 #' "AE_ONSET_DT_INT"), maincov = "CTC_AE_ATTR_SCALE")
+#' 
+#' # Example 2: set variable labels and other options, save output with markup as 
+#'     both HTML and LaTeX table
+#' data("ae")
+#' lbls <- data.frame(c1=c('AE_SEV_GD','AE_ONSET_DT_INT'),
+#'     c2=c('Adverse event severity grade','Adverse event onset date'))
+#' ae$AE_SEV_GD <- as.numeric(ae$AE_SEV_GD)
+#' ae <- reportRmd::set_labels(ae, lbls)
+#' output_tab <- rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), 
+#'     covs = c("AE_SEV_GD", "AE_ONSET_DT_INT"), maincov = "CTC_AE_ATTR_SCALE", 
+#'     testcat = "Fisher", percentage = c("col"), show.tests = FALSE, pvalue = TRUE, 
+#'     effSize = FALSE, full = TRUE, IQR = FALSE, nicenames = TRUE, sanitize = TRUE, 
+#'     markup = TRUE, include_missing = TRUE, just.nested.pvalue = TRUE, 
+#'     tableOnly = TRUE)
+#' cat(reportRmd::outTable(tab=output_tab))
+#' cat(reportRmd::outTable(output_tab, format="html"), file = paste("./man/tables/", 
+#'     "output_tab.html", sep=""))
+#' cat(reportRmd::outTable(output_tab, format="latex"), file = paste("./man/tables/", 
+#'     "output_tab.tex", sep=""))
 rm_covsum_nested <- function(data,covs,maincov=NULL,id=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
                              digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
                              pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp = FALSE,show.tests=TRUE,

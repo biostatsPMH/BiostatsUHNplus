@@ -19,6 +19,15 @@ knitr::opts_chunk$set(
 ```
 
 # BiostatsUHNplus
+<!-- badges: start -->
+
+[![Lifecycle:
+Stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/BiostatsUHNplus)](https://CRAN.R-project.org/package=BiostatsUHNplus)
+[![metacran
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/BiostatsUHNplus)](https://cran.r-project.org/package=BiostatsUHNplus)
+<!-- badges: end -->
 
 The goal of **BiostatsUHNplus** is to house publicly available code functions and snippets (some with multiple package dependencies) 
 used by [Biostatistics@UHN](https://www.biostatsuhn.com/) in Toronto, Canada.
@@ -64,9 +73,9 @@ z
 ```
 
 
-### Summary statistics of adverse events nested by participant in cohort, stratified by first attribution
+### Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug
 
-Uses addendum simulated study data. Interpret summary output and unnested or nested p-value with caution!
+Uses addendum simulated study data and applies variable labels. Interpret summary output and unnested or nested p-value with caution!
 
 Note that if participants were enrolled in more than one cohort (crossover), or if repeat AEs in participant had different attribution, the total N for Full Sample will be less than that of the total N of attribution for first study drug. Since total N for Full Sample (234) is less than total N of the first study drug attribution categories (49 + 198), this suggests that there was instances of repeat AEs in participants having different attribution to first study drug.
 
@@ -82,9 +91,13 @@ clinT$Drug_1_Attribution <- "Unrelated";
 clinT$Drug_1_Attribution[clinT$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- "Related";
 clinT$Drug_2_Attribution <- "Unrelated";
 clinT$Drug_2_Attribution[clinT$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Related";
+lbls <- data.frame(c1=c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", 
+  "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution", "ae_category"),
+  c2=c("Adverse event severity grade", "Enrollment date", "Cohort", "Gender", "Ineligibility", "Adverse event onset date", "Attribution to second study drug", "Adverse event system organ class"));
+clinT <- reportRmd::set_labels(clinT, lbls);
 
 rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"), 
-  covs = c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution", "ae_category"), maincov = "Drug_1_Attribution");
+  covs = c("COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "ENROL_DATE_INT", "AE_SEV_GD", "Drug_2_Attribution", "AE_ONSET_DT_INT", "ae_category"), maincov = "Drug_1_Attribution");
 ```
 
 

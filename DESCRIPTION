@@ -3,17 +3,17 @@ Title: Nested Data Summary and Adverse Events
 Version: 0.0.8
 Authors@R: c(
     person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",
-           comment = c(ORCHID = "0000-0002-8431-5143")),
+           comment = c(ORCID = "0000-0002-8431-5143")),
     person("Zeynep", "Baskurt", , "zeynep.baskurt@uhn.ca", role = "aut"),
     person("Osvaldo", "Espin-Garcia", , "osvaldo.espin-garcia@uhn.ca", role = "aut"),
     person("Katrina", "Hueniken", , "katrina.hueniken@uhn.ca", role = "aut"),
     person("Katherine", "Lajkosz", , "katherine.lajkosz@uhn.ca", role = "aut",
-           comment = c(ORCHID = "0000-0003-3760-5401")),
+           comment = c(ORCID = "0000-0003-3760-5401")),
     person("Xuan", "Li", , "xuan.li@uhnresearch.ca", role = "aut"),
     person("Tyler", "Pittman", , "tyler.pittman@uhn.ca", role = c("cre", "aut"),
-           comment = c(ORCHID = "0000-0002-5013-6980")),
+           comment = c(ORCID = "0000-0002-5013-6980")),
     person("Anna", "Santiago", , "anna.santiago@uhn.ca", role = "aut",
-           comment = c(ORCHID = "0000-0002-0932-2386")),
+           comment = c(ORCID = "0000-0002-0932-2386")),
     person("Jessica", "Weiss", , "jessica.weiss@uhn.ca", role = "aut"),
     person("Wei", "Xu", , "wei.xu@uhn.ca", role = "aut")
   )

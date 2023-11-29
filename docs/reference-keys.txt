@@ -23,7 +23,7 @@ installation
 documentation
 examples
 a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error
-summary-statistics-of-adverse-events-nested-by-participant-in-cohort-stratified-by-first-attribution
+nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug
 outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template
 related-adverse-event-onset-timeline-plots
 example-1

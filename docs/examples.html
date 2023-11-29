@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>4.3</b> Examples</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="examples.html"><a href="examples.html#a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error"><i class="fa fa-check"></i><b>4.3.1</b> A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error</a></li>
-<li class="chapter" data-level="4.3.2" data-path="examples.html"><a href="examples.html#summary-statistics-of-adverse-events-nested-by-participant-in-cohort-stratified-by-first-attribution"><i class="fa fa-check"></i><b>4.3.2</b> Summary statistics of adverse events nested by participant in cohort, stratified by first attribution</a></li>
+<li class="chapter" data-level="4.3.2" data-path="examples.html"><a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug"><i class="fa fa-check"></i><b>4.3.2</b> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug</a></li>
 <li class="chapter" data-level="4.3.3" data-path="examples.html"><a href="examples.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
 <li class="chapter" data-level="4.3.4" data-path="examples.html"><a href="examples.html#related-adverse-event-onset-timeline-plots"><i class="fa fa-check"></i><b>4.3.4</b> Related adverse event onset timeline plots</a></li>
 </ul></li>
@@ -215,9 +215,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-6"><a href="examples.html#cb18-6" aria-hidden="true" tabindex="-1"></a>z</span>
 <span id="cb18-7"><a href="examples.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  1  2  3  4  5 NA  6  7  8  9 10 NA</span></span></code></pre></div>
 </div>
-<div id="summary-statistics-of-adverse-events-nested-by-participant-in-cohort-stratified-by-first-attribution" class="section level3 hasAnchor" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Summary statistics of adverse events nested by participant in cohort, stratified by first attribution<a href="examples.html#summary-statistics-of-adverse-events-nested-by-participant-in-cohort-stratified-by-first-attribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Uses addendum simulated study data. Interpret summary output and unnested or nested p-value with caution!</p>
+<div id="nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug<a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uses addendum simulated study data and applies variable labels. Interpret summary output and unnested or nested p-value with caution!</p>
 <p>Note that if participants were enrolled in more than one cohort (crossover), or if repeat AEs in participant had different attribution, the total N for Full Sample will be less than that of the total N of attribution for first study drug. Since total N for Full Sample (234) is less than total N of the first study drug attribution categories (49 + 198), this suggests that there was instances of repeat AEs in participants having different attribution to first study drug.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="examples.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr);</span>
 <span id="cb19-2"><a href="examples.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
@@ -230,9 +230,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-9"><a href="examples.html#cb19-9" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_1_Attribution[clinT<span class="sc">$</span>CTC_AE_ATTR_SCALE <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Related&quot;</span>;</span>
 <span id="cb19-10"><a href="examples.html#cb19-10" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_2_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;Unrelated&quot;</span>;</span>
 <span id="cb19-11"><a href="examples.html#cb19-11" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_2_Attribution[clinT<span class="sc">$</span>CTC_AE_ATTR_SCALE_1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Related&quot;</span>;</span>
-<span id="cb19-12"><a href="examples.html#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="examples.html#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> clinT, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;ae_detail&quot;</span>, <span class="st">&quot;Subject&quot;</span>, <span class="st">&quot;COHORT&quot;</span>), </span>
-<span id="cb19-14"><a href="examples.html#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, <span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;ae_category&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;Drug_1_Attribution&quot;</span>);</span></code></pre></div>
+<span id="cb19-12"><a href="examples.html#cb19-12" aria-hidden="true" tabindex="-1"></a>lbls <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">c1=</span><span class="fu">c</span>(<span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, <span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, </span>
+<span id="cb19-13"><a href="examples.html#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;ae_category&quot;</span>),</span>
+<span id="cb19-14"><a href="examples.html#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">c2=</span><span class="fu">c</span>(<span class="st">&quot;Adverse event severity grade&quot;</span>, <span class="st">&quot;Enrollment date&quot;</span>, <span class="st">&quot;Cohort&quot;</span>, <span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Ineligibility&quot;</span>, <span class="st">&quot;Adverse event onset date&quot;</span>, <span class="st">&quot;Attribution to second study drug&quot;</span>, <span class="st">&quot;Adverse event system organ class&quot;</span>));</span>
+<span id="cb19-15"><a href="examples.html#cb19-15" aria-hidden="true" tabindex="-1"></a>clinT <span class="ot">&lt;-</span> reportRmd<span class="sc">::</span><span class="fu">set_labels</span>(clinT, lbls);</span>
+<span id="cb19-16"><a href="examples.html#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="examples.html#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> clinT, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;ae_detail&quot;</span>, <span class="st">&quot;Subject&quot;</span>, <span class="st">&quot;COHORT&quot;</span>), </span>
+<span id="cb19-18"><a href="examples.html#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, <span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;ae_category&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;Drug_1_Attribution&quot;</span>);</span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -264,139 +268,7 @@ Nested p-value
 <tbody>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">AE SEV GD</span>
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-0.12
-</td>
-<td style="text-align:right;">
-0.098
-</td>
-<td style="text-align:right;">
-Wilcoxon Rank Sum, Wilcoxon r
-</td>
-<td style="text-align:right;">
-0.97
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Mean (sd)
-</td>
-<td style="text-align:right;">
-1.8 (0.8)
-</td>
-<td style="text-align:right;">
-2.0 (0.9)
-</td>
-<td style="text-align:right;">
-1.7 (0.8)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Median (Min,Max)
-</td>
-<td style="text-align:right;">
-1.5 (1.0, 5.0)
-</td>
-<td style="text-align:right;">
-2 (1, 4)
-</td>
-<td style="text-align:right;">
-1.5 (1.0, 5.0)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="font-weight: bold;">ENROL DATE INT</span>
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-Wilcoxon Rank Sum, Wilcoxon r
-</td>
-<td style="text-align:right;">
-0.68
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Mean (sd)
-</td>
-<td style="text-align:right;">
-2017-01-07 (301.8 days)
-</td>
-<td style="text-align:right;">
-2017-01-31 (322.7 days)
-</td>
-<td style="text-align:right;">
-2016-12-28 (294.3 days)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Median (Min,Max)
-</td>
-<td style="text-align:right;">
-2016-09-14 (2016-01-18, 2018-05-16)
-</td>
-<td style="text-align:right;">
-2017-02-07 (2016-01-18, 2018-05-16)
-</td>
-<td style="text-align:right;">
-2016-09-14 (2016-01-18, 2018-05-16)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="font-weight: bold;">COHORT</span>
+<span style="font-weight: bold;">Cohort</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -507,7 +379,7 @@ Cohort D
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">GENDER CODE</span>
+<span style="font-weight: bold;">Gender</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -574,7 +446,7 @@ Male
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">INELIGIBILITY STATUS</span>
+<span style="font-weight: bold;">Ineligibility</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -638,7 +510,7 @@ Missing
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">AE ONSET DT INT</span>
+<span style="font-weight: bold;">Enrollment date</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -654,7 +526,7 @@ Missing
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.64
+0.68
 </td>
 </tr>
 <tr>
@@ -662,13 +534,13 @@ Wilcoxon Rank Sum, Wilcoxon r
 Mean (sd)
 </td>
 <td style="text-align:right;">
-2017-11-03 (161.1 days)
+2017-01-07 (301.8 days)
 </td>
 <td style="text-align:right;">
-2017-10-01 (146.6 days)
+2017-01-31 (322.7 days)
 </td>
 <td style="text-align:right;">
-2017-11-10 (161.2 days)
+2016-12-28 (294.3 days)
 </td>
 <td style="text-align:right;">
 </td>
@@ -684,13 +556,13 @@ Mean (sd)
 Median (Min,Max)
 </td>
 <td style="text-align:right;">
-2017-10-05 (2016-05-02, 2019-01-13)
+2016-09-14 (2016-01-18, 2018-05-16)
 </td>
 <td style="text-align:right;">
-2017-09-07 (2017-03-18, 2018-11-24)
+2017-02-07 (2016-01-18, 2018-05-16)
 </td>
 <td style="text-align:right;">
-2017-10-15 (2016-05-02, 2019-01-13)
+2016-09-14 (2016-01-18, 2018-05-16)
 </td>
 <td style="text-align:right;">
 </td>
@@ -703,7 +575,74 @@ Median (Min,Max)
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">Drug 2 Attribution</span>
+<span style="font-weight: bold;">Adverse event severity grade</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.098
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Mean (sd)
+</td>
+<td style="text-align:right;">
+1.8 (0.8)
+</td>
+<td style="text-align:right;">
+2.0 (0.9)
+</td>
+<td style="text-align:right;">
+1.7 (0.8)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Median (Min,Max)
+</td>
+<td style="text-align:right;">
+1.5 (1.0, 5.0)
+</td>
+<td style="text-align:right;">
+2 (1, 4)
+</td>
+<td style="text-align:right;">
+1.5 (1.0, 5.0)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Attribution to second study drug</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -770,7 +709,72 @@ Unrelated
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">ae category</span>
+<span style="font-weight: bold;">Adverse event onset date</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Mean (sd)
+</td>
+<td style="text-align:right;">
+2017-11-03 (161.1 days)
+</td>
+<td style="text-align:right;">
+2017-10-01 (146.6 days)
+</td>
+<td style="text-align:right;">
+2017-11-10 (161.2 days)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Median (Min,Max)
+</td>
+<td style="text-align:right;">
+2017-10-05 (2016-05-02, 2019-01-13)
+</td>
+<td style="text-align:right;">
+2017-09-07 (2017-03-18, 2018-11-24)
+</td>
+<td style="text-align:right;">
+2017-10-15 (2016-05-02, 2019-01-13)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Adverse event system organ class</span>
 </td>
 <td style="text-align:right;">
 </td>

@@ -5,6 +5,7 @@ Note that the README.md document may need updating to change
 -->
 
 # BiostatsUHNplus
+
 <!-- badges: start -->
 
 [![Lifecycle:
@@ -65,10 +66,10 @@ z
 #>  [1]  1  2  3  4  5 NA  6  7  8  9 10 NA
 ```
 
-### Summary statistics of adverse events nested by participant in cohort, stratified by first attribution
+### Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug
 
-Uses addendum simulated study data. Interpret summary output and
-unnested or nested p-value with caution!
+Uses addendum simulated study data and applies variable labels.
+Interpret summary output and unnested or nested p-value with caution!
 
 Note that if participants were enrolled in more than one cohort
 (crossover), or if repeat AEs in participant had different attribution,
@@ -90,9 +91,13 @@ clinT$Drug_1_Attribution <- "Unrelated";
 clinT$Drug_1_Attribution[clinT$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- "Related";
 clinT$Drug_2_Attribution <- "Unrelated";
 clinT$Drug_2_Attribution[clinT$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Related";
+lbls <- data.frame(c1=c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", 
+  "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution", "ae_category"),
+  c2=c("Adverse event severity grade", "Enrollment date", "Cohort", "Gender", "Ineligibility", "Adverse event onset date", "Attribution to second study drug", "Adverse event system organ class"));
+clinT <- reportRmd::set_labels(clinT, lbls);
 
 rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"), 
-  covs = c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution", "ae_category"), maincov = "Drug_1_Attribution");
+  covs = c("COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "ENROL_DATE_INT", "AE_SEV_GD", "Drug_2_Attribution", "AE_ONSET_DT_INT", "ae_category"), maincov = "Drug_1_Attribution");
 ```
 
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
@@ -126,139 +131,7 @@ Nested p-value
 <tbody>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">AE SEV GD</span>
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-0.12
-</td>
-<td style="text-align:right;">
-0.098
-</td>
-<td style="text-align:right;">
-Wilcoxon Rank Sum, Wilcoxon r
-</td>
-<td style="text-align:right;">
-0.97
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Mean (sd)
-</td>
-<td style="text-align:right;">
-1.8 (0.8)
-</td>
-<td style="text-align:right;">
-2.0 (0.9)
-</td>
-<td style="text-align:right;">
-1.7 (0.8)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Median (Min,Max)
-</td>
-<td style="text-align:right;">
-1.5 (1.0, 5.0)
-</td>
-<td style="text-align:right;">
-2 (1, 4)
-</td>
-<td style="text-align:right;">
-1.5 (1.0, 5.0)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="font-weight: bold;">ENROL DATE INT</span>
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-Wilcoxon Rank Sum, Wilcoxon r
-</td>
-<td style="text-align:right;">
-0.68
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Mean (sd)
-</td>
-<td style="text-align:right;">
-2017-01-07 (301.8 days)
-</td>
-<td style="text-align:right;">
-2017-01-31 (322.7 days)
-</td>
-<td style="text-align:right;">
-2016-12-28 (294.3 days)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-Median (Min,Max)
-</td>
-<td style="text-align:right;">
-2016-09-14 (2016-01-18, 2018-05-16)
-</td>
-<td style="text-align:right;">
-2017-02-07 (2016-01-18, 2018-05-16)
-</td>
-<td style="text-align:right;">
-2016-09-14 (2016-01-18, 2018-05-16)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="font-weight: bold;">COHORT</span>
+<span style="font-weight: bold;">Cohort</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -369,7 +242,7 @@ Cohort D
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">GENDER CODE</span>
+<span style="font-weight: bold;">Gender</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -436,7 +309,7 @@ Male
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">INELIGIBILITY STATUS</span>
+<span style="font-weight: bold;">Ineligibility</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -500,7 +373,7 @@ Missing
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">AE ONSET DT INT</span>
+<span style="font-weight: bold;">Enrollment date</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -516,7 +389,7 @@ Missing
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.64
+0.68
 </td>
 </tr>
 <tr>
@@ -524,13 +397,13 @@ Wilcoxon Rank Sum, Wilcoxon r
 Mean (sd)
 </td>
 <td style="text-align:right;">
-2017-11-03 (161.1 days)
+2017-01-07 (301.8 days)
 </td>
 <td style="text-align:right;">
-2017-10-01 (146.6 days)
+2017-01-31 (322.7 days)
 </td>
 <td style="text-align:right;">
-2017-11-10 (161.2 days)
+2016-12-28 (294.3 days)
 </td>
 <td style="text-align:right;">
 </td>
@@ -546,13 +419,13 @@ Mean (sd)
 Median (Min,Max)
 </td>
 <td style="text-align:right;">
-2017-10-05 (2016-05-02, 2019-01-13)
+2016-09-14 (2016-01-18, 2018-05-16)
 </td>
 <td style="text-align:right;">
-2017-09-07 (2017-03-18, 2018-11-24)
+2017-02-07 (2016-01-18, 2018-05-16)
 </td>
 <td style="text-align:right;">
-2017-10-15 (2016-05-02, 2019-01-13)
+2016-09-14 (2016-01-18, 2018-05-16)
 </td>
 <td style="text-align:right;">
 </td>
@@ -565,7 +438,74 @@ Median (Min,Max)
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">Drug 2 Attribution</span>
+<span style="font-weight: bold;">Adverse event severity grade</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.098
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Mean (sd)
+</td>
+<td style="text-align:right;">
+1.8 (0.8)
+</td>
+<td style="text-align:right;">
+2.0 (0.9)
+</td>
+<td style="text-align:right;">
+1.7 (0.8)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Median (Min,Max)
+</td>
+<td style="text-align:right;">
+1.5 (1.0, 5.0)
+</td>
+<td style="text-align:right;">
+2 (1, 4)
+</td>
+<td style="text-align:right;">
+1.5 (1.0, 5.0)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Attribution to second study drug</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -632,7 +572,72 @@ Unrelated
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">ae category</span>
+<span style="font-weight: bold;">Adverse event onset date</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Mean (sd)
+</td>
+<td style="text-align:right;">
+2017-11-03 (161.1 days)
+</td>
+<td style="text-align:right;">
+2017-10-01 (146.6 days)
+</td>
+<td style="text-align:right;">
+2017-11-10 (161.2 days)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Median (Min,Max)
+</td>
+<td style="text-align:right;">
+2017-10-05 (2016-05-02, 2019-01-13)
+</td>
+<td style="text-align:right;">
+2017-09-07 (2017-03-18, 2018-11-24)
+</td>
+<td style="text-align:right;">
+2017-10-15 (2016-05-02, 2019-01-13)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Adverse event system organ class</span>
 </td>
 <td style="text-align:right;">
 </td>

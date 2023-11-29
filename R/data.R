@@ -1,5 +1,3 @@
-#'  Adverse event data 
-#'  
 #'  Simulated adverse events for patients receiving two study agents. 
 #'  
 #' @format A data frame with 394 rows and 9 variables:
@@ -16,8 +14,6 @@
 #' } 
 "ae" 
 
-#'  Demography data 
-#'  
 #'  Simulated demography for patients. 
 #'  
 #' @format A data frame with 12 rows and 2 variables:
@@ -39,8 +35,6 @@
 #' } 
 "enrollment" 
 
-#'  Ineligibility data 
-#'  
 #'  Simulated ineligibility for patients. 
 #'  
 #' @format A data frame with 11 rows and 2 variables:
@@ -50,9 +44,7 @@
 #' } 
 "ineligibility" 
 
-#'  Study agent 1 data 
-#'  
-#'  Simulated study agent for patients. 
+#'  Simulated study agent 1 for patients. 
 #'  
 #' @format A data frame with 12 rows and 2 variables:
 #' \describe{ 
@@ -61,9 +53,7 @@
 #' } 
 "drug1_admin" 
 
-#'  Study agent 2 data 
-#'  
-#'  Simulated study agent for patients. 
+#'  Simulated study agent 2 for patients. 
 #'  
 #' @format A data frame with 12 rows and 2 variables:
 #' \describe{ 
