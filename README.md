@@ -5,6 +5,7 @@ Note that the README.md document may need updating to change
 -->
 
 # BiostatsUHNplus
+[![](https://cranlogs.r-pkg.org/badges/BiostatsUHNplus)](https://cran.r-project.org/package=BiostatsUHNplus)
 
 The goal of **BiostatsUHNplus** is to house publicly available code
 functions and snippets (some with multiple package dependencies) used by
