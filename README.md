@@ -15,16 +15,6 @@ status](https://www.r-pkg.org/badges/version/BiostatsUHNplus)](https://CRAN.R-pr
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/BiostatsUHNplus)](https://cran.r-project.org/package=BiostatsUHNplus)
 <!-- badges: end -->
 
-<!-- badges: start -->
-
-[![Lifecycle:
-Stable](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/BiostatsUHNplus)](https://CRAN.R-project.org/package=BiostatsUHNplus)
-[![metacran
-downloads](https://cranlogs.r-pkg.org/badges/grand-total/BiostatsUHNplus)](https://cran.r-project.org/package=BiostatsUHNplus)
-<!-- badges: end -->
-
 The goal of **BiostatsUHNplus** is to house publicly available code
 functions and snippets (some with multiple package dependencies) used by
 [Biostatistics@UHN](https://www.biostatsuhn.com/) in Toronto, Canada.
