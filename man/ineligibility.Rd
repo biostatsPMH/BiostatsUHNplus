@@ -3,9 +3,7 @@
 \docType{data}
 \name{ineligibility}
 \alias{ineligibility}
-\title{Ineligibility data
-
-Simulated ineligibility for patients.}
+\title{Simulated ineligibility for patients.}
 \format{
 A data frame with 11 rows and 2 variables:
 \describe{
@@ -17,8 +15,6 @@ A data frame with 11 rows and 2 variables:
 ineligibility
 }
 \description{
-Ineligibility data
-
 Simulated ineligibility for patients.
 }
 \keyword{datasets}

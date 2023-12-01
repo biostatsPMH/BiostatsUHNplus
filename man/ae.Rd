@@ -3,9 +3,7 @@
 \docType{data}
 \name{ae}
 \alias{ae}
-\title{Adverse event data
-
-Simulated adverse events for patients receiving two study agents.}
+\title{Simulated adverse events for patients receiving two study agents.}
 \format{
 A data frame with 394 rows and 9 variables:
 \describe{
@@ -24,8 +22,6 @@ A data frame with 394 rows and 9 variables:
 ae
 }
 \description{
-Adverse event data
-
 Simulated adverse events for patients receiving two study agents.
 }
 \keyword{datasets}

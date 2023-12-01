@@ -20,6 +20,8 @@ covsum_nested(
   effSize = TRUE,
   show.tests = TRUE,
   nCores = NULL,
+  nested.test = NULL,
+  nsim = NULL,
   excludeLevels = NULL,
   dropLevels = TRUE,
   full = TRUE,
@@ -67,8 +69,16 @@ table. Can only be obtained if pvalue is also requested.}
 \item{show.tests}{boolean indicating if the type of statistical used should
 be shown in a column beside the pvalues. Ignored if pvalue=FALSE.}
 
-\item{nCores}{number of cores to use for parallel processing if calculating
-the nested p-value (default: 1).}
+\item{nCores}{if > 1, specifies number of cores to use for parallel processing
+for calculating the nested p-value (default: 1).}
+
+\item{nested.test}{specifies test used for calculating nested p-value from
+afex::mixed function. Either \emph{paramateric bootstrap} method
+or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap
+takes longer.}
+
+\item{nsim}{specifies number of simulations to use for calculating nested p-value
+with \emph{parametric bootstrap} method used for nested.test (default: 1000).}
 
 \item{excludeLevels}{a named list of covariate levels to exclude from
 statistical tests in the form list(varname =c('level1','level2')). These
@@ -102,7 +112,7 @@ Nested version of reportRmd covsum()
 }
 \seealso{
 \code{\link{fisher.test}},\code{\link{chisq.test}},
-\code{\link{wilcox.test}},\code{\link{kruskal.test}},and
-\code{\link{anova}}
+\code{\link{wilcox.test}},\code{\link{kruskal.test}},
+\code{\link{anova}, and \code{\link{afex::mixed}}
 }
 \keyword{dataframe}
