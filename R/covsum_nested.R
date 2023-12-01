@@ -221,16 +221,17 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
         suppressWarnings({tryCatch({
             if (nested.test == "PB") {
               if (length(unique(data[[maincov]])) == 2) {
-                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="PB", args_test=list(nsim=nsim,cl=cl)))[4]), silent=TRUE))
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="PB", args_test=list(nsim=nsim,cl=cl)))[4])}, error=function(e){}))
               } else { #modify different family here in future for categorical outcome with more than 2 levels, but is ANOVA Type III test;
-                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="PB", args_test=list(nsim=nsim,cl=cl)))[4]), silent=TRUE))
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="PB", args_test=list(nsim=nsim,cl=cl)))[4])}, error=function(e){}))
               }
             }
             if (nested.test == "LRT") {
               if (length(unique(data[[maincov]])) == 2) {
-                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4]), silent=TRUE))
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4])}, error=function(e){}))
               } else { #modify different family here in future for categorical outcome with more than 2 levels, but is ANOVA Type III test;
-                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4]), silent=TRUE))
+                #out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4]), silent=TRUE))
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4])}, error=function(e){}))
               }
             }
         }, error=function(e){})})
