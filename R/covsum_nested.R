@@ -217,7 +217,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
     suppressWarnings({
       tryCatch({
         cl <- parallel::makeCluster(nc, type="PSOCK") # make cluster
-        parallel::clusterExport(cl, list("maincov", "cov", "objComb", "id", "data", "cl", "nsim")) # send data and functions to cluster
+        parallel::clusterExport(cl, list("maincov", "cov", "objComb", "id", "data", "cl", "nsim", "out_glmer")) # send data and functions to cluster
         suppressWarnings({tryCatch({
             if (nested.test == "PB") {
               if (length(unique(data[[maincov]])) == 2) {
