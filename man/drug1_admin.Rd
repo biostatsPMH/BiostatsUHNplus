@@ -3,9 +3,7 @@
 \docType{data}
 \name{drug1_admin}
 \alias{drug1_admin}
-\title{Study agent 1 data
-
-Simulated study agent for patients.}
+\title{Simulated study agent 1 for patients.}
 \format{
 A data frame with 12 rows and 2 variables:
 \describe{
@@ -17,8 +15,6 @@ A data frame with 12 rows and 2 variables:
 drug1_admin
 }
 \description{
-Study agent 1 data
-
-Simulated study agent for patients.
+Simulated study agent 1 for patients.
 }
 \keyword{datasets}

@@ -3,9 +3,7 @@
 \docType{data}
 \name{demography}
 \alias{demography}
-\title{Demography data
-
-Simulated demography for patients.}
+\title{Simulated demography for patients.}
 \format{
 A data frame with 12 rows and 2 variables:
 \describe{
@@ -17,8 +15,6 @@ A data frame with 12 rows and 2 variables:
 demography
 }
 \description{
-Demography data
-
 Simulated demography for patients.
 }
 \keyword{datasets}

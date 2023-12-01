@@ -30,8 +30,14 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #'   table. Can only be obtained if pvalue is also requested.
 #' @param show.tests boolean indicating if the type of statistical used should
 #'   be shown in a column beside the pvalues. Ignored if pvalue=FALSE.
-#' @param nCores number of cores to use for parallel processing if calculating
-#'   the nested p-value (default: 1).
+#' @param nCores if > 1, specifies number of cores to use for parallel processing 
+#'  for calculating the nested p-value (default: 1).
+#' @param nested.test specifies test used for calculating nested p-value from 
+#'  afex::mixed function. Either \emph{paramateric bootstrap} method 
+#'  or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap 
+#'  takes longer.
+#' @param nsim specifies number of simulations to use for calculating nested p-value
+#'  with \emph{parametric bootstrap} method used for nested.test (default: 1000). 
 #' @param dropLevels logical, indicating if empty factor levels be dropped from
 #'   the output, default is TRUE.
 #' @param excludeLevels a named list of covariate levels to exclude from
@@ -59,15 +65,16 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @importFrom rlang syms 
 #' @importFrom modeest mlv 
 #' @importFrom utils getFromNamespace
-#' @importFrom parallel detectCores makeCluster
+#' @importFrom parallel detectCores makeCluster clusterExport parLapply
 #' @importFrom afex mixed
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
-#'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},and
-#'   \code{\link{anova}}
+#'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},
+#'   \code{\link{anova}, and \code{\link{afex::mixed}}
 covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, numobs = NULL, 
                            markup = TRUE, sanitize = TRUE, nicenames = TRUE, IQR = FALSE, 
                            all.stats = FALSE, pvalue = TRUE, effSize = TRUE, show.tests = TRUE, 
-                           nCores = NULL, excludeLevels = NULL, dropLevels = TRUE, full = TRUE, 
+                           nCores = NULL, nested.test = NULL, nsim = NULL, 
+                           excludeLevels = NULL, dropLevels = TRUE, full = TRUE, 
                            digits.cat = 0, testcont = c("rank-sum test", "ANOVA"), 
                            testcat = c("Chi-squared", "Fisher"), include_missing = FALSE, 
                            percentage = c("column", "row")) 
@@ -88,8 +95,6 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
     else {
       nc <- 1
     }
-    #warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).\n", "\nUsing ", nc, " processor(s) for parallel processing.\n", sep=""))
-    warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).", sep=""))
   }
   options(dplyr.summarise.inform = FALSE)
   is.date <- function(x) inherits(x, 'Date')
@@ -197,23 +202,50 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
     objComb$cov <- "";
     objComb$cov[which(objComb[2] == "")] <- covs;
     objComb$'Nested p-value' <- "";
+    if (is.null(nsim)) {
+      nsim <- 1000;
+    }
+    if (is.null(nested.test)) {
+      nested.test <- "LRT";
+    }
+    if (nested.test == "PB") {
+      warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='PB')).\nProcessing will take LONGER for parametric bootstrapping.", sep=""))
+    }
+    if (nested.test == "LRT") {
+      warning(paste("Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.\nNested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method='LRT')).", sep=""))
+    }
     suppressWarnings({
       tryCatch({
-        cl <- parallel::makeCluster(rep("localhost", nc)) # make cluster
+        cl <- parallel::makeCluster(nc, type="PSOCK") # make cluster
+        parallel::clusterExport(cl, list("maincov", "cov", "objComb", "id", "data", "cl", "nsim"), envir=environment()) # send data and functions to cluster
         suppressWarnings({tryCatch({
-          out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=cl, method="LRT"))[4]), silent=TRUE))
-          #out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(anova(afex::mixed(as.formula(paste(maincov, '~', x, '+(', x, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, cl=cl, method="LRT"))[4]), silent=TRUE))
+            if (nested.test == "PB") {
+              if (length(unique(data[[maincov]])) == 2) {
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="PB", args_test=list(nsim=nsim,cl=cl)))[4])}, error=function(e){NA}))
+              } else { #modify different family here in future for categorical outcome with more than 2 levels, but is ANOVA Type III test;
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="PB", args_test=list(nsim=nsim,cl=cl)))[4])}, error=function(e){NA}))
+              }
+            }
+            if (nested.test == "LRT") {
+              if (length(unique(data[[maincov]])) == 2) {
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4])}, error=function(e){NA}))
+              } else { #modify different family here in future for categorical outcome with more than 2 levels, but is ANOVA Type III test;
+                #out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4]), silent=TRUE))
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4])}, error=function(e){NA}))
+              }
+            }
         }, error=function(e){})})
-        try(stopCluster(cl), silent=TRUE)
+        try(parallel::stopCluster(cl), silent=TRUE)
       }, error=function(e){})
       suppressWarnings({
         tryCatch({
-          try(stopCluster(cl), silent=TRUE)
+          try(parallel::stopCluster(cl), silent=TRUE)
         }, error=function(e){})
       })
       out_glmer <- as.numeric(unlist(out_glmer));
       objComb$'Nested p-value'[which(objComb$cov != "")] <- unlist(out_glmer);
       objComb <- objComb[, which(names(objComb) != "cov")];
+      objComb$'Nested p-value'[which(objComb$'p-value' %in% c("", NA, "NaN"))] <- NA;
     })
     objComb;
   }
@@ -253,6 +285,14 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   tableOnly = T and outTable function. 
 #' @param show.tests boolean indicating if the type of statistical used should
 #'   be shown in a column beside the pvalues. Ignored if pvalue=FALSE.
+#' @param nCores if > 1, specifies number of cores to use for parallel processing 
+#'  for calculating the nested p-value (default: 1).
+#' @param nested.test specifies test used for calculating nested p-value from 
+#'  afex::mixed function. Either \emph{paramateric bootstrap} method 
+#'  or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap 
+#'  takes longer.
+#' @param nsim specifies number of simulations to use for calculating nested p-value
+#'  with \emph{parametric bootstrap} method used for nested.test (default: 1000). 
 #' @param just.nested.pvalue boolean indicating if the just the nested p-value
 #'   should be shown in a column, and not unnested p-value, unnested statistical
 #'   tests and effect size. Overrides effSize and show.tests arguments.
@@ -320,9 +360,10 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' cat(reportRmd::outTable(output_tab, format="latex"), file = paste("./man/tables/", 
 #'     "output_tab.tex", sep=""))
 rm_covsum_nested <- function(data,covs,maincov=NULL,id=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
-                             digits=1,digits.cat = 0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
-                             pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp = FALSE,show.tests=TRUE,
-                             just.nested.pvalue=FALSE,nCores=NULL,testcont=c('rank-sum test','ANOVA'),
+                             digits=1,digits.cat=0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
+                             pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp=FALSE,show.tests=TRUE,
+                             just.nested.pvalue=FALSE,nCores=NULL,nested.test=NULL,nsim=NULL, 
+                             testcont=c('rank-sum test','ANOVA'),
                              testcat=c('Chi-squared','Fisher'),full=TRUE,include_missing=FALSE,
                              percentage=c('column','row'),dropLevels=TRUE,excludeLevels=NULL,numobs=NULL,markup=TRUE, 
                              sanitize= TRUE,chunk_label){
