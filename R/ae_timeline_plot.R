@@ -101,7 +101,9 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     tryCatch({
       fontDetail <- na.fail(fonts[2]);
     }, error=function(e){})
+    tryCatch({
       fontAxis <- na.fail(fonts[3]);
+    }, error=function(e){})
     tryCatch({
       fontLegend <- na.fail(fonts[4]);
     }, error=function(e){})
