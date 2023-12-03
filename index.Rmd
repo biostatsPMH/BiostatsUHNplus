@@ -432,7 +432,7 @@ ggsave(paste("man/figures/caterpillar_plot_Yards_", "Model.png", sep=""),
 
 
 ### Caterpillar plot for random effect of cow
-Risk ratio of high protein milk among cows is below. Highest posterior density intervals are not necessarily symmetric, but should be close to symmetric upon running more model iterations. Note that cows L23 and L27 have a higher risk estimate for high protein milk in random effect, even though those cows were fed a diet of lupins and should in theory have lower protein milk. Cow B01 also has higher risk of high protein milk, but was always fed a better diet (barley).
+Odds ratio of high protein milk among cows is below. Highest posterior density intervals are not necessarily symmetric, but should be close to symmetric upon running more model iterations. Note that cows L23 and L27 have a higher odds estimate for high protein milk in random effect, even though those cows were fed a diet of lupins and should in theory have lower protein milk. Cow B01 also has higher odds of high protein milk, but was always fed a better diet (barley).
 
 ```{r ana22, echo=FALSE, out.width='100%'}
 knitr::include_graphics(paste("man/figures/caterpillar_plot_Cows_", "Model.png", sep=""))
@@ -440,7 +440,7 @@ knitr::include_graphics(paste("man/figures/caterpillar_plot_Cows_", "Model.png",
 
 
 ### Caterpillar plot for random effect of yard
-Risk ratio of high protein milk among yards is below. Highest posterior density intervals are not necessarily symmetric.
+Odds ratio of high protein milk among yards is below. Highest posterior density intervals are not necessarily symmetric.
 
 ```{r ana23, echo=FALSE, out.width='100%'}
 knitr::include_graphics(paste("man/figures/caterpillar_plot_Yards_", "Model.png", sep=""))

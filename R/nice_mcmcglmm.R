@@ -26,7 +26,7 @@
 nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   cc <- summary(mcmcglmm_object)$solutions
   citab <- with(as.data.frame(cc),
-                cbind(RR_HPDI_95 = paste0(trimws(format(round(exp(cc[,1]), 2), nsmall=2)), 
+                cbind(OR_HPDI_95 = paste0(trimws(format(round(exp(cc[,1]), 2), nsmall=2)), 
                                           " (", trimws(format(round(exp(cc[,2]), 2), nsmall=2)), ", ", 
                                           trimws(format(round(exp(cc[,3]), 2), nsmall=2)), ")", sep=""),
                       MCMCp = trimws(format(round(cc[,5], 3), nsmall=3)), eff_sample = trimws(format(round(cc[,4], 2), nsmall=2)) ))
@@ -35,7 +35,7 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   mcmcglmm_ci <- as.data.frame(mcmcglmm_ci);
   mcmcglmm_ci <- tibble::rownames_to_column(mcmcglmm_ci, "Variable");
   mcmcglmm_ci <- mcmcglmm_ci[-1,];
-  colnames(mcmcglmm_ci) <- c("Variable", "RR (95% HPDI)", "MCMCp", "eff.samp");
+  colnames(mcmcglmm_ci) <- c("Variable", "OR (95% HPDI)", "MCMCp", "eff.samp");
   mcmcglmm_ci$join <- mcmcglmm_ci$Variable;
   
   tryCatch({
@@ -64,7 +64,7 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   opd_mcmcglmm <- plyr::join_all(list(opd_mcmcglmm, origVar), by=c("Variable"), type='full');
   
   tryCatch({
-    opd_mcmcglmm[which(is.na(opd_mcmcglmm$"RR (95% HPDI)")), ]$"RR (95% HPDI)" <- "reference";
+    opd_mcmcglmm[which(is.na(opd_mcmcglmm$"OR (95% HPDI)")), ]$"OR (95% HPDI)" <- "reference";
   }, error=function(e){return(printErr <- NA)})
   opd_mcmcglmm <- opd_mcmcglmm |>
     dplyr::select(!join) |>
@@ -72,7 +72,7 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
     dplyr::group_by(Variable) |> 
     dplyr::mutate(instance = 1:dplyr::n())
   tryCatch({
-    opd_mcmcglmm[which(opd_mcmcglmm$"RR (95% HPDI)" == "reference"), ]$instance <- 0;
+    opd_mcmcglmm[which(opd_mcmcglmm$"OR (95% HPDI)" == "reference"), ]$instance <- 0;
   }, error=function(e){return(printErr <- NA)})
   opd_mcmcglmm <- opd_mcmcglmm |>
     dplyr::arrange(Variable, instance) |>

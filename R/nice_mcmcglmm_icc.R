@@ -3,7 +3,7 @@
 #' 
 #' @param mcmcglmm_object returned output from MCMCglmm()
 #' @param prob probability for highest posterior density interval, similar to a 
-#'    confidence interval. Defaul is 0.95 (if provided)
+#'    confidence interval. Default is 0.95 (if provided)
 #' @param decimals number of decimal places to use in estimates
 #' @keywords dataframe
 #' @returns grouped_df

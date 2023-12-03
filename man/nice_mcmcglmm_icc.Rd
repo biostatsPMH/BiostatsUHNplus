@@ -11,7 +11,7 @@ nice_mcmcglmm_icc(mcmcglmm_object, prob = NULL, decimals = NULL)
 \item{mcmcglmm_object}{returned output from MCMCglmm()}
 
 \item{prob}{probability for highest posterior density interval, similar to a
-confidence interval. Defaul is 0.95 (if provided)}
+confidence interval. Default is 0.95 (if provided)}
 
 \item{decimals}{number of decimal places to use in estimates}
 }

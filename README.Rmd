@@ -270,6 +270,7 @@ knitr::include_graphics(paste("man/figures/ae_category_attribStart_timeline_plot
 ### Summary functions for MCMCglmm object with binary outcome
 
 #### Model output for fixed effects
+Below runs a logistic MCMCglmm model on the odds of grade 3 or higher adverse event, controlling for attribution of first and second intervention drugs. Subject and system organ class are treated as random effects. Model has 800 posterior samples. Should specify burnin=125000, nitt=625000 and thin=100 for 5000 posterior samples with lower autocorrelation. Aim for effective sample sizes of at least 2000.
 
 ```{r example7a, message=F, warning=F}
 data("ae");
@@ -327,7 +328,7 @@ p <- caterpillar_plot(subjID = "ae_category",
   ncol = 4,
   binaryOutcomeVar = "G3Plus",
   subtitle = "System organ class (n, events)",
-  title = "Risk Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
+  title = "Odds Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
   fonts = c("Arial", "Arial", "Arial", "Arial"),
   break.label.summary = TRUE)
 ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 

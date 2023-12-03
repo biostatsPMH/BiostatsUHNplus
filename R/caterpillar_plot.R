@@ -67,7 +67,7 @@
 #'   ncol = 4,
 #'   binaryOutcomeVar = "G3Plus",
 #'   subtitle = "System organ class (n, event)",
-#'   title = "Risk Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
+#'   title = "Odds Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
 #'   fonts = c("Arial", "Arial", "Arial", "Arial"),
 #'   break.label.summary = TRUE)
 
@@ -109,7 +109,7 @@ caterpillar_plot <- function(subjID,
   }
   if (is.null(title) && no.title == FALSE) {
     tryCatch({
-      title <- paste("Risk Ratio with ", round(prob*100, 2), "% Highest Posterior Density Interval", sep="");
+      title <- paste("Odds Ratio with ", round(prob*100, 2), "% Highest Posterior Density Interval", sep="");
     }, error=function(e){})
   } 
   if (no.title == TRUE) {

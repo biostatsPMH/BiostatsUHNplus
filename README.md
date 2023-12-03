@@ -1363,13 +1363,13 @@ Drug 1 Attribution
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-2.79 (1.18, 7.23)
+2.78 (1.16, 7.19)
 </td>
 <td style="text-align:left;">
-0.030
+0.025
 </td>
 <td style="text-align:left;">
-204.14
+210.63
 </td>
 </tr>
 <tr>
@@ -1379,13 +1379,13 @@ Drug 2 Attribution
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-0.41 (0.14, 1.15)
+0.42 (0.14, 1.21)
 </td>
 <td style="text-align:left;">
-0.085
+0.130
 </td>
 <td style="text-align:left;">
-177.86
+182.51
 </td>
 </tr>
 </tbody>
@@ -1421,13 +1421,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0518
+0.0552
 </td>
 <td style="text-align:right;">
-0.0042
+0.0047
 </td>
 <td style="text-align:right;">
-0.3527
+0.3433
 </td>
 </tr>
 <tr>
@@ -1435,13 +1435,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.7668
+0.8494
 </td>
 <td style="text-align:right;">
-0.4898
+0.5124
 </td>
 <td style="text-align:right;">
-0.9496
+0.9603
 </td>
 </tr>
 <tr>
@@ -1449,19 +1449,19 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.1018
+0.0812
 </td>
 <td style="text-align:right;">
-0.0363
+0.0259
 </td>
 <td style="text-align:right;">
-0.2371
+0.2148
 </td>
 </tr>
 </tbody>
 </table>
 
-#### Caterpillar plots of random effects - Subject
+#### Caterpillar plots of random effects - participant
 
 ``` r
 p <- caterpillar_plot(subjID = "Subject",
