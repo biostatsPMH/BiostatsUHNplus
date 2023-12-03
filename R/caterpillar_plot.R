@@ -188,7 +188,7 @@ caterpillar_plot <- function(subjID,
     guides(color=FALSE) +
     scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
     facet_wrap(~facet, dir="v", scales="free", ncol=ncol) +
-    scale_y_continuous(limits = ~ c(0, ceiling(max(.x))), breaks = ~ c(0, floor(max(.x))), expand = c(0.10, 0.05)) +
+    scale_y_continuous(limits = ~ c(0, ceiling(max(.x))), breaks = ~ c(0, floor(max(.x))), expand = c(0.12, 0.05)) +
     coord_flip() + 
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
     theme(plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +

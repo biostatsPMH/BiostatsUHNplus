@@ -317,10 +317,16 @@ ggplot2::ggsave(paste("man/figures/caterpillar_plot_subject", ".png", sep=""),
        p, scale = 1.0, width=6.4, height=3.4, device="png");
 ```
 
+```{r example7d, echo=FALSE, out.width='100%'}
+knitr::include_graphics(paste("man/figures/caterpillar_plot_subject", ".png", sep=""))
+```
+
 
 #### Caterpillar plots of random effects - system organ class
+Highest posterior density intervals, also known as credible intervals, are not symmetric. Need to run model for more iterations with higher burnin.
 
-```{r example7d, message=F, warning=F}
+
+```{r example7e, message=F, warning=F}
 p <- caterpillar_plot(subjID = "ae_category",
   mcmcglmm_object = model1,
   prob = 0.95,
@@ -335,3 +341,6 @@ ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""
        p, scale = 1.0, width=6.4, height=4.0, device="png");
 ```
 
+```{r example7f, echo=FALSE, out.width='100%'}
+knitr::include_graphics(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""))
+```

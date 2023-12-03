@@ -1313,6 +1313,13 @@ ggplot2::ggsave(paste("man/figures/ae_category_attribStart_timeline_plot", ".png
 
 #### Model output for fixed effects
 
+Below runs a logistic MCMCglmm model on the odds of grade 3 or higher
+adverse event, controlling for attribution of first and second
+intervention drugs. Subject and system organ class are treated as random
+effects. Model has 800 posterior samples. Should specify burnin=125000,
+nitt=625000 and thin=100 for 5000 posterior samples with lower
+autocorrelation. Aim for effective sample sizes of at least 2000.
+
 ``` r
 data("ae");
 
@@ -1345,7 +1352,7 @@ Variable
 Levels
 </th>
 <th style="text-align:left;">
-RR (95% HPDI)
+OR (95% HPDI)
 </th>
 <th style="text-align:left;">
 MCMCp
@@ -1363,13 +1370,13 @@ Drug 1 Attribution
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-2.78 (1.16, 7.19)
+2.68 (1.11, 6.30)
 </td>
 <td style="text-align:left;">
-0.025
+0.018
 </td>
 <td style="text-align:left;">
-210.63
+184.69
 </td>
 </tr>
 <tr>
@@ -1379,13 +1386,13 @@ Drug 2 Attribution
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-0.42 (0.14, 1.21)
+0.40 (0.13, 1.13)
 </td>
 <td style="text-align:left;">
-0.130
+0.110
 </td>
 <td style="text-align:left;">
-182.51
+159.45
 </td>
 </tr>
 </tbody>
@@ -1421,13 +1428,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0552
+0.0768
 </td>
 <td style="text-align:right;">
-0.0047
+0.0049
 </td>
 <td style="text-align:right;">
-0.3433
+0.3369
 </td>
 </tr>
 <tr>
@@ -1435,13 +1442,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.8494
+0.8211
 </td>
 <td style="text-align:right;">
-0.5124
+0.4299
 </td>
 <td style="text-align:right;">
-0.9603
+0.9375
 </td>
 </tr>
 <tr>
@@ -1449,13 +1456,13 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.0812
+0.1275
 </td>
 <td style="text-align:right;">
-0.0259
+0.0367
 </td>
 <td style="text-align:right;">
-0.2148
+0.2850
 </td>
 </tr>
 </tbody>
@@ -1474,6 +1481,8 @@ ggplot2::ggsave(paste("man/figures/caterpillar_plot_subject", ".png", sep=""),
        p, scale = 1.0, width=6.4, height=3.4, device="png");
 ```
 
+<img src="man/figures/caterpillar_plot_subject.png" width="100%" />
+
 #### Caterpillar plots of random effects - system organ class
 
 ``` r
@@ -1484,9 +1493,11 @@ p <- caterpillar_plot(subjID = "ae_category",
   ncol = 4,
   binaryOutcomeVar = "G3Plus",
   subtitle = "System organ class (n, events)",
-  title = "Risk Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
+  title = "Odds Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
   fonts = c("Arial", "Arial", "Arial", "Arial"),
   break.label.summary = TRUE)
 ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
        p, scale = 1.0, width=6.4, height=4.0, device="png");
 ```
+
+<img src="man/figures/caterpillar_plot_ae_category.png" width="100%" />
