@@ -75,7 +75,7 @@ caterpillar_plot <- function(subjID,
                              fonts=NULL,columnTextWidth=NULL
                              ){
   
-
+  #https://rdrr.io/github/jbergenstrahle/STUtility/man/scale_override.html
   scale_override <- function(which, scale) {
     if(!is.numeric(which) || (length(which) != 1) || (which %% 1 != 0)) {
       stop("which must be an integer of length 1")
@@ -115,6 +115,7 @@ caterpillar_plot <- function(subjID,
       scales
     }
   )
+  #https://rdrr.io/github/jbergenstrahle/STUtility/man/facet_wrap_custom.html
   facet_wrap_custom <- function(..., scale_overrides = NULL) {
     # take advantage of the sanitizing that happens in facet_wrap
     facet_super <- facet_wrap(...)
@@ -238,7 +239,7 @@ caterpillar_plot <- function(subjID,
     #ggtitle(title) +
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
     theme(plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
-    theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines")) +
+    theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines"), axis.ticks.y=element_blank()) +
     labs(title=paste(title), subtitle=paste(subtitle), caption="");
   
   return(pPlot)
