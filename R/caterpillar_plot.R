@@ -28,9 +28,10 @@
 #' @keywords plot
 #' @return ggplot object of caterpillar plot
 #' @importFrom plyr join_all rbind.fill
-#' @importFrom MCMCglmm posterior.mode HPDinterval
-#' @importFrom coda modify_if
-#' @importFrom dplyr select rename group_by arrange filter row_number n()
+#' @importFrom MCMCglmm posterior.mode 
+#' @importFrom coda HPDinterval
+#' @importFrom purrr modify_if
+#' @importFrom dplyr select rename group_by arrange filter row_number n
 #' @importFrom stringr str_wrap
 #' @import ggplot2
 #' @import lifecycle
