@@ -16,6 +16,7 @@
 #'    confidence interval. Defaul is 0.95 (if provided)
 #' @param title title of the plot. Overrides default title (if provided)
 #' @param subtitle subtitle of the plot. Overrides default subtitle (if provided)
+#' @param ncol number of columns in plot. Default is 2 (if provided)
 #' @param no.title boolean that denotes if title should be outputted in plot. Default 
 #'    is TRUE (if provided)
 #' @param fonts character text that denotes font for title, subtitle, category labels,
@@ -26,6 +27,7 @@
 #' @importFrom MCMCglmm posterior.mode HPDinterval
 #' @importFrom coda modify_if
 #' @importFrom dplyr select rename group_by arrange filter row_number n()
+#' @importFrom stringr str_wrap
 #' @import ggplot2
 #' @import lifecycle
 #' @export
@@ -34,11 +36,15 @@
 #' 
 #' ae$G3Plus <- 0;
 #' ae$G3Plus[ae$AE_SEV_GD %in% c("3", "4", "5")] <- 1;
+#' ae$Drug_1_Attribution <- 0;
+#' ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- 1;
+#' ae$Drug_2_Attribution <- 0;
+#' ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- 1;
 #' 
 #' prior2RE <- list(R = list(V = diag(1), fix = 1),
 #'   G=list(G1=list(V=1, nu=0.02), G2=list(V=1, nu=0.02)));
 #'   
-#' model1 <- MCMCglmm(G3Plus ~ CTC_AE_ATTR_SCALE + CTC_AE_ATTR_SCALE_1, 
+#' model1 <- MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
 #'   random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
 #'   verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
 #'   
@@ -54,8 +60,8 @@ caterpillar_plot <- function(subjID,
                              mcmcglmm_model,orig_dataset,
                              binaryOutcomeVar,
                              prob=NULL,title=NULL,no.title=FALSE,
-                             subtitle=NULL,
-                             fonts=NULL
+                             subtitle=NULL,ncol=NULL,
+                             fonts=NULL,columnTextWidth=NULL
                              ){
   
 
@@ -115,7 +121,6 @@ caterpillar_plot <- function(subjID,
     )
   }
   
- 
   font.title <- "Bahnschrift";
   font.subtitle <- "Gungsuh";
   font.labels <- "Berlin Sans FB";
@@ -135,7 +140,12 @@ caterpillar_plot <- function(subjID,
     }, error=function(e){})
   }
   
-  
+  if (is.null(ncol)) {
+      ncol <- 2;
+  } 
+  if (is.null(columnTextWidth)) {
+    columnTextWidth <- 20;
+  }
   if (is.null(title) && no.title == FALSE) {
     tryCatch({
       title <- paste("Risk Ratio with ", round(prob*100, 2), "% Highest Posterior Density Interval", sep="");
@@ -166,36 +176,36 @@ caterpillar_plot <- function(subjID,
   ranefSubjs$ID <- rownames(ranefSubjs);
   ranefSubjs$term <- reorder(factor(rownames(ranefSubjs)), ranefSubjs$est);
   
-  instSubj <- orig_dataset %>% 
-    dplyr::rename(ID = subjID) %>%
-    dplyr::select(ID) %>%
-    dplyr::group_by(ID, .drop = FALSE) %>%  
+  instSubj <- orig_dataset |> 
+    dplyr::rename(ID = subjID) |>
+    dplyr::select(ID) |>
+    dplyr::group_by(ID, .drop = FALSE) |>  
     dplyr::count(name="instances", .drop=FALSE) 
-  hp_instSubj <- orig_dataset %>% 
-    dplyr::rename(ID = subjID) %>%
-    dplyr::select("ID", binaryOutcomeVar) %>%
-    dplyr::group_by(ID, .drop = FALSE) %>%  
-    dplyr::filter(get(binaryOutcomeVar) == 1) %>%
-    dplyr::count(get(binaryOutcomeVar), name="hp_instances") %>%
+  hp_instSubj <- orig_dataset |> 
+    dplyr::rename(ID = subjID) |>
+    dplyr::select("ID", binaryOutcomeVar) |>
+    dplyr::group_by(ID, .drop = FALSE) |>  
+    dplyr::filter(get(binaryOutcomeVar) == 1) |>
+    dplyr::count(get(binaryOutcomeVar), name="hp_instances") |>
     dplyr::select(-"get(binaryOutcomeVar)") 
   
   ranefSubjs <- plyr::join_all(list(ranefSubjs, instSubj[, c("ID", "instances")], hp_instSubj[, c("ID", "hp_instances")]), by=c("ID"), type='left', match = "first");
   ranefSubjs$instances[which(is.na(ranefSubjs$instances))] <- 0;
   ranefSubjs$hp_instances[which(is.na(ranefSubjs$hp_instances))] <- 0;
   ranefSubjs$term <- paste(ranefSubjs$term, " (", ranefSubjs$instances, ", ", ranefSubjs$hp_instances, ")", sep="");
+  ranefSubjs$term <- stringr::str_wrap(ranefSubjs$term, width = columnTextWidth);
   ranefSubjs$term <- reorder(factor(ranefSubjs$term), ranefSubjs$est);
-  num_groups <- 2;
-  ranefSubjs <- ranefSubjs %>%
-    dplyr::arrange(est) %>%
+  num_groups <- ncol;
+  ranefSubjs <- ranefSubjs |>
+    dplyr::arrange(est) |>
     dplyr::group_by(facet=(row_number()-1) %/% (n()/num_groups)+1)
   ranefSubjs$facet <- as.factor(ranefSubjs$facet);
-  ranefSubjs$facet <- ordered(ranefSubjs$facet, levels = c("2", "1"));
+  ranefSubjs$facet <- ordered(ranefSubjs$facet, levels = c(as.character(rev(seq(1:ncol)))));
   ranefSubjs$significance <- "normal";
   ranefSubjs$est <- as.numeric(format(round(ranefSubjs$est, 2), nsmall=2));
   ranefSubjs$lower <- as.numeric(format(round(ranefSubjs$lower, 2), nsmall=2));
   ranefSubjs$upper <- as.numeric(format(round(ranefSubjs$upper, 2), nsmall=2));
   ranefSubjs$significance[(ranefSubjs$lower >= 1.00 & ranefSubjs$upper >= 1.00) | (ranefSubjs$lower <= 1.00 & ranefSubjs$upper <= 1.00)] <- "different";
-  
   
   options(warn=-1); #suppress warning messages;
   pPlot <- 
@@ -209,8 +219,10 @@ caterpillar_plot <- function(subjID,
     geom_pointrange(aes(ymin=lower, ymax=upper, color=significance)) +
     guides(color=FALSE) +
     scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
-    scale_y_continuous(breaks=seq(1,max(ranefSubjs$upper),7)) + #check OR to set limit;
-    facet_wrap_custom(~facet, dir="h", scales="free", ncol=2, scale_overrides = list(scale_override(2, scale_y_continuous(breaks = c(0,0.5,1.0))))) + #check OR to set custom limit for second facet;
+    scale_y_continuous(breaks=seq(0,2,1)) +
+    facet_wrap_custom(~facet, dir="h", scales="free", ncol=ncol, 
+                      scale_overrides = list(scale_override(1, scale_y_continuous(breaks = 
+                            seq(1, floor(max(ranefSubjs$upper)), floor((max(ranefSubjs$upper)-1)/2)))))) + #check OR to set custom limit for second facet;
     coord_flip() + 
     #ggtitle(title) +
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
