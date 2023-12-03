@@ -3,12 +3,12 @@
 \name{caterpillar_plot}
 \alias{caterpillar_plot}
 \title{Caterpillar plot. Useful for plotting random effects from hierarchical models,
-such as MCMCglmm object, that have binary outcome.}
+such as MCMCglmm::MCMCglmm() object, that have binary outcome.}
 \usage{
 caterpillar_plot(
   subjID,
   remove.text.subjID = FALSE,
-  mcmcglmm_model,
+  mcmcglmm_object,
   orig_dataset,
   binaryOutcomeVar,
   prob = NULL,
@@ -29,7 +29,7 @@ removed from subjID in plot label. Note that this can only be used if there
 are non-duplicate participant IDs when non-numeric text is removed. Default
 is FALSE (if provided)}
 
-\item{mcmcglmm_model}{MCMCglmm model output}
+\item{mcmcglmm_object}{MCMCglmm model output}
 
 \item{orig_dataset}{data frame supplied to MCMCglmm function}
 
@@ -65,7 +65,7 @@ ggplot object of caterpillar plot
 }
 \description{
 Caterpillar plot. Useful for plotting random effects from hierarchical models,
-such as MCMCglmm object, that have binary outcome.
+such as MCMCglmm::MCMCglmm() object, that have binary outcome.
 }
 \examples{
 data("ae");
@@ -85,13 +85,13 @@ model1 <- MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution,
   verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
   
 p <- caterpillar_plot(subjID = "Subject",
-  mcmcglmm_model = model1,
+  mcmcglmm_object = model1,
   prob = 0.99,
   orig_dataset = ae,
   binaryOutcomeVar = "G3Plus")
   
 p <- caterpillar_plot(subjID = "ae_category",
-  mcmcglmm_model = model1,
+  mcmcglmm_object = model1,
   prob = 0.95,
   orig_dataset = ae,
   remove.text.subjID = FALSE,

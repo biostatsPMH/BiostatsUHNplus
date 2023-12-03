@@ -422,20 +422,21 @@ knitr::include_graphics(paste("man/figures/variance_pie_plot", ".png", sep=""))
 ```{r ana21, echo=F, warning=F, message=F, results='asis'}
 ###This part does caterpillar plots for random effects (Cow, Yard);
 p <- caterpillar_plot(subjID = "Cow",
-    mcmcglmm_model = model1,
+    mcmcglmm_object = model1,
     prob = 0.95,
     orig_dataset = Milk,
     binaryOutcomeVar = "HP")
 ggsave(paste("man/figures/caterpillar_plot_Cows_", "Model.png", sep=""), 
-       pRE_Cows, scale = 1.1, width=6.4, height=7.4, device="png");
+       p, scale = 1.0, width=6.4, height=7.4, device="png");
 
 p <- caterpillar_plot(subjID = "Yard",
-    mcmcglmm_model = model1,
+    mcmcglmm_object = model1,
     prob = 0.95,
     orig_dataset = Milk,
+    ncol = 1,
     binaryOutcomeVar = "HP")
 ggsave(paste("man/figures/caterpillar_plot_Yards_", "Model.png", sep=""), 
-       pRE_Yards, scale = 1.1, width=6.4, height=3.2, device="png");
+       p, scale = 1.0, width=5.4, height=3.2, device="png");
 ```
 
 

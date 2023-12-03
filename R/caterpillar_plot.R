@@ -1,12 +1,12 @@
 #' Caterpillar plot. Useful for plotting random effects from hierarchical models,
-#' such as MCMCglmm object, that have binary outcome.
+#' such as MCMCglmm::MCMCglmm() object, that have binary outcome.
 #'
 #' @param subjID key identifier field for participant ID in data sets
 #' @param remove.text.subjID boolean indiciating if non-numeric text should be 
 #'    removed from subjID in plot label. Note that this can only be used if there
 #'    are non-duplicate participant IDs when non-numeric text is removed. Default 
 #'    is FALSE (if provided)
-#' @param mcmcglmm_model MCMCglmm model output
+#' @param mcmcglmm_object MCMCglmm model output
 #' @param orig_dataset data frame supplied to MCMCglmm function
 #' @param ae_attribVars field(s) that denotes attribution to intervention under study,
 #'    for example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") (if provided)
@@ -54,13 +54,13 @@
 #'   verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
 #'   
 #' p <- caterpillar_plot(subjID = "Subject",
-#'   mcmcglmm_model = model1,
+#'   mcmcglmm_object = model1,
 #'   prob = 0.99,
 #'   orig_dataset = ae,
 #'   binaryOutcomeVar = "G3Plus")
 #'   
 #' p <- caterpillar_plot(subjID = "ae_category",
-#'   mcmcglmm_model = model1,
+#'   mcmcglmm_object = model1,
 #'   prob = 0.95,
 #'   orig_dataset = ae,
 #'   remove.text.subjID = FALSE,
@@ -73,7 +73,7 @@
 
 caterpillar_plot <- function(subjID,
                              remove.text.subjID=FALSE,
-                             mcmcglmm_model,orig_dataset,
+                             mcmcglmm_object,orig_dataset,
                              binaryOutcomeVar,
                              prob=NULL,title=NULL,no.title=FALSE,
                              subtitle=NULL,ncol=NULL,
@@ -121,7 +121,7 @@ caterpillar_plot <- function(subjID,
     }, error=function(e){})
   }
   
-  intSubjs <- mcmcglmm_model$Sol[, which(grepl(paste(subjID, '.*?', sep=""), colnames(mcmcglmm_model$Sol)))];
+  intSubjs <- mcmcglmm_object$Sol[, which(grepl(paste(subjID, '.*?', sep=""), colnames(mcmcglmm_object$Sol)))];
   
   ranefSubjs <- cbind(est = MCMCglmm::posterior.mode(intSubjs), CI = coda::HPDinterval(intSubjs, prob=prob)); 
   rownames(ranefSubjs) <- sub(paste(subjID, ".", sep=""), '', rownames(t(intSubjs)));
@@ -187,11 +187,8 @@ caterpillar_plot <- function(subjID,
     geom_pointrange(aes(ymin=lower, ymax=upper, color=significance)) +
     guides(color=FALSE) +
     scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
-    #scale_y_continuous(breaks=seq(0,2,1)) +
-    #facet_wrap_custom(~facet, dir="h", scales="free", ncol=ncol, scale_overrides = scale_overrides) +
     facet_wrap(~facet, dir="v", scales="free", ncol=ncol) +
-    #scale_y_continuous(limits = ~ c(min(.x), ceiling(max(.x))), breaks = ~ .x[2], expand = c(0, 0)) +
-    scale_y_continuous(limits = ~ c(min(.x), ceiling(max(.x))), breaks = ~ c(0, floor(max(.x))), expand = c(0.10, 0.05)) +
+    scale_y_continuous(limits = ~ c(0, ceiling(max(.x))), breaks = ~ c(0, floor(max(.x))), expand = c(0.10, 0.05)) +
     coord_flip() + 
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
     theme(plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
