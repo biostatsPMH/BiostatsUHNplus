@@ -1,5 +1,5 @@
 ---
-title: "Example nested reportRmd and Bayesian hierarchical model summary"
+title: "Example nested summary and Bayesian hierarchical model summary"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
@@ -421,193 +421,21 @@ knitr::include_graphics(paste("man/figures/variance_pie_plot", ".png", sep=""))
 
 ```{r ana21, echo=F, warning=F, message=F, results='asis'}
 ###This part does caterpillar plots for random effects (Cow, Yard);
-#colnames(model1$Sol); 
-intCows <- model1$Sol[, 5:83];
-intYards <- model1$Sol[, 84:88];
-#length(posterior.mode(intCows)); #79;  
-#length(posterior.mode(intYards)); #5;  
+p <- caterpillar_plot(subjID = "Cow",
+    mcmcglmm_model = model1,
+    prob = 0.95,
+    orig_dataset = Milk,
+    binaryOutcomeVar = "HP")
+ggsave(paste("man/figures/caterpillar_plot_Cows_", "Model.png", sep=""), 
+       pRE_Cows, scale = 1.1, width=6.4, height=7.4, device="png");
 
-ranefCows <- cbind(est = posterior.mode(intCows), CI = HPDinterval(intCows, prob=0.95)); #This does 95% highest posterior density interval;
-rownames(ranefCows) <- sub('Cow.', '', rownames(t(intCows)));
-ranefCows <- as.data.frame(ranefCows);
-ranefCows$est <- exp(ranefCows$est);
-ranefCows$lower <- exp(ranefCows$lower);
-ranefCows$upper <- exp(ranefCows$upper);
-#rownames(ranefCows) <- gsub("[^0-9]", "", rownames(ranefCows)); #This removes non-numerical text from cow identifier, may not want to do if there are duplicate numbers when removing text; 
-ranefCows$ID <- rownames(ranefCows);
-ranefCows$term <- reorder(factor(rownames(ranefCows)), ranefCows$est);
-
-ranefYards <- cbind(est = posterior.mode(intYards), CI = HPDinterval(intYards, prob=0.95)); #This does 95% highest posterior density interval;
-rownames(ranefYards) <- sub('Yard.', '', rownames(t(intYards)));
-ranefYards <- as.data.frame(ranefYards);
-ranefYards$est <- exp(ranefYards$est);
-ranefYards$lower <- exp(ranefYards$lower);
-ranefYards$upper <- exp(ranefYards$upper);
-#rownames(ranefYards) <- gsub("[^0-9]", "", rownames(ranefYards)); #This removes non-numerical text from yard identifier, may not want to do if there are duplicate numbers when removing text; 
-ranefYards$ID <- rownames(ranefYards);
-ranefYards$term <- reorder(factor(rownames(ranefYards)), ranefYards$est);
-
-
-###This part links random effect RRs to weekly instances and high protein instance count;
-instCow <- Milk |> 
-  dplyr::rename(ID = Cow) |>
-  dplyr::select(ID) |>
-  dplyr::group_by(ID, .drop = FALSE) |>  
-  dplyr::count(name="instances", .drop=FALSE) 
-hp_instCow <- Milk |> 
-  dplyr::rename(ID = Cow) |>
-  dplyr::select(ID, HP) |>
-  dplyr::filter(HP == 1) |>
-  dplyr::group_by(ID, .drop = FALSE) |>  
-  dplyr::count(HP, name="hp_instances") |>
-  dplyr::select(-HP) 
-ranefCows <- plyr::join_all(list(ranefCows, instCow[, c("ID", "instances")], hp_instCow[, c("ID", "hp_instances")]), by=c("ID"), type='left', match = "first");
-ranefCows$term <- paste(ranefCows$term, " (", ranefCows$instances, ", ", ranefCows$hp_instances, ")", sep="");
-ranefCows$term <- reorder(factor(ranefCows$term), ranefCows$est);
-num_groups <- 2;
-ranefCows <- ranefCows |>
-  dplyr::arrange(est) |>
-  dplyr::group_by(facet=(row_number()-1) %/% (n()/num_groups)+1)
-ranefCows$facet <- as.factor(ranefCows$facet);
-ranefCows$facet <- ordered(ranefCows$facet, levels = c("2", "1"));
-ranefCows$significance <- "normal";
-ranefCows$est <- as.numeric(format(round(ranefCows$est, 2), nsmall=2));
-ranefCows$lower <- as.numeric(format(round(ranefCows$lower, 2), nsmall=2));
-ranefCows$upper <- as.numeric(format(round(ranefCows$upper, 2), nsmall=2));
-ranefCows$significance[(ranefCows$lower >= 1.00 & ranefCows$upper >= 1.00) | (ranefCows$lower <= 1.00 & ranefCows$upper <= 1.00)] <- "different";
-
-instYard <- Milk |> 
-  dplyr::rename(ID = Yard) |>
-  dplyr::select(ID) |>
-  dplyr::group_by(ID, .drop = FALSE) |>  
-  dplyr::count(name="instances", .drop=FALSE) 
-hp_instYard <- Milk |> 
-  dplyr::rename(ID = Yard) |>
-  dplyr::select(ID, HP) |>
-  dplyr::filter(HP == 1) |>
-  dplyr::group_by(ID, .drop = FALSE) |>  
-  dplyr::count(HP, name="hp_instances") |>
-  dplyr::select(-HP) 
-ranefYards <- plyr::join_all(list(ranefYards, instYard[, c("ID", "instances")], hp_instYard[, c("ID", "hp_instances")]), by=c("ID"), type='left', match = "first");
-ranefYards$term <- paste(ranefYards$term, " (", ranefYards$instances, ", ", ranefYards$hp_instances, ")", sep="");
-ranefYards$term <- reorder(factor(ranefYards$term), ranefYards$est);
-num_groups <- 1;
-ranefYards <- ranefYards |>
-  dplyr::arrange(est) |>
-  dplyr::group_by(facet=(row_number()-1) %/% (n()/num_groups)+1)
-ranefYards$facet <- as.factor(ranefYards$facet);
-ranefYards$facet <- ordered(ranefYards$facet, levels = c("1"));
-ranefYards$significance <- "normal";
-ranefYards$est <- as.numeric(format(round(ranefYards$est, 2), nsmall=2));
-ranefYards$lower <- as.numeric(format(round(ranefYards$lower, 2), nsmall=2));
-ranefYards$upper <- as.numeric(format(round(ranefYards$upper, 2), nsmall=2));
-ranefYards$significance[(ranefYards$lower >= 1.00 & ranefYards$upper >= 1.00) | (ranefYards$lower <= 1.00 & ranefYards$upper <= 1.00)] <- "different";
-
-
-#-----------------------------#;
-###Below is a scale override function to use with ggplot facets;
-###https://dewey.dunnington.ca/post/2018/modifying-facet-scales-in-ggplot2/ ;
-scale_override <- function(which, scale) {
-  if(!is.numeric(which) || (length(which) != 1) || (which %% 1 != 0)) {
-    stop("which must be an integer of length 1")
-  }
-  if(is.null(scale$aesthetics) || !any(c("x", "y") %in% scale$aesthetics)) {
-    stop("scale must be an x or y position scale")
-  }
-  structure(list(which = which, scale = scale), class = "scale_override")
-}
-CustomFacetWrap <- ggproto(
-  "CustomFacetWrap", FacetWrap,
-  init_scales = function(self, layout, x_scale = NULL, y_scale = NULL, params) {
-    # make the initial x, y scales list
-    scales <- ggproto_parent(FacetWrap, self)$init_scales(layout, x_scale, y_scale, params)
-    if(is.null(params$scale_overrides)) return(scales)
-    max_scale_x <- length(scales$x)
-    max_scale_y <- length(scales$y)
-    # ... do some modification of the scales$x and scales$y here based on params$scale_overrides
-    for(scale_override in params$scale_overrides) {
-      which <- scale_override$which
-      scale <- scale_override$scale
-      if("x" %in% scale$aesthetics) {
-        if(!is.null(scales$x)) {
-          if(which < 0 || which > max_scale_x) stop("Invalid index of x scale: ", which)
-          scales$x[[which]] <- scale$clone()
-        }
-      } else if("y" %in% scale$aesthetics) {
-        if(!is.null(scales$y)) {
-          if(which < 0 || which > max_scale_y) stop("Invalid index of y scale: ", which)
-          scales$y[[which]] <- scale$clone()
-        }
-      } else {
-        stop("Invalid scale")
-      }
-    }
-    # return scales
-    scales
-  }
-)
-facet_wrap_custom <- function(..., scale_overrides = NULL) {
-  # take advantage of the sanitizing that happens in facet_wrap
-  facet_super <- facet_wrap(...)
-  # sanitize scale overrides
-  if(inherits(scale_overrides, "scale_override")) {
-    scale_overrides <- list(scale_overrides)
-  } else if(!is.list(scale_overrides) || 
-            !all(vapply(scale_overrides, inherits, "scale_override", FUN.VALUE = logical(1)))) {
-    stop("scale_overrides must be a scale_override object or a list of scale_override objects")
-  }
-  facet_super$params$scale_overrides <- scale_overrides
-  ggproto(NULL, CustomFacetWrap,
-    shrink = facet_super$shrink,
-    params = facet_super$params
-  )
-}
-#-----------------------------#;
-
-options(warn=-1); #suppress warning messages;
-pRE_Cows <- 
-	ggplot(ranefCows,aes(term,est)) +
-	geom_hline(yintercept=1, color="grey") +
-	theme_bw() +
-  	theme(panel.grid.major = element_blank(),
-    	panel.grid.minor = element_blank(),
-    	panel.border = element_blank(),
-    	panel.background = element_blank()) +
-    geom_pointrange(aes(ymin=lower, ymax=upper, color=significance)) +
-    guides(color=FALSE) +
-    scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
-    scale_y_continuous(breaks=seq(1,max(ranefCows$upper),7)) + #check OR to set limit;
-    facet_wrap_custom(~facet, dir="h", scales="free", ncol=2, scale_overrides = list(scale_override(2, scale_y_continuous(breaks = c(0,0.5,1.0))))) + #check OR to set custom limit for second facet;
-    coord_flip() + 
-    ggtitle("Risk Ratio for High Protein Milk with 95% Highest Posterior Density Interval") +
- 	theme(plot.title=element_text(family="FreeSans", face="bold", size=12, hjust=0), plot.subtitle=element_text(family="FreeSans", size=12), axis.text.y=element_text(size=8), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
-  theme(plot.title = element_text(hjust = 0.5), plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
-  theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines")) +
- 	labs(subtitle=paste("Cow (weekly samples, high protein samples)"), caption="") +
-  labs(y="Risk Ratio", x="Cow (weekly samples, high protein samples)");
-ggsave(paste("man/figures/caterpillar_plot_Cows_", "Model.png", sep=""), pRE_Cows, scale = 1.1, width=6.4, height=7.4, device="png");
-
-pRE_Yards <- 
-	ggplot(ranefYards,aes(term,est)) +
-	geom_hline(yintercept=1, color="grey") +
-	theme_bw() +
-  	theme(panel.grid.major = element_blank(),
-    	panel.grid.minor = element_blank(),
-    	panel.border = element_blank(),
-    	panel.background = element_blank()) +
-    geom_pointrange(aes(ymin=lower, ymax=upper, color=significance)) +
-    guides(color=FALSE) +
-    scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
-    scale_y_continuous(breaks=seq(0,max(ranefYards$upper),0.5)) + #check OR to set limit;
-    facet_wrap_custom(~facet, dir="h", scales="free", ncol=1, scale_overrides = list(scale_override(1, scale_y_continuous(breaks = c(0,0.5,1.0,1.5,2.0))))) + #check OR to set custom limit for second facet;
-    coord_flip() + 
-    ggtitle("Risk Ratio for High Protein Milk with 95% Highest Posterior Density Interval") +
- 	theme(plot.title=element_text(family="FreeSans", face="bold", size=12, hjust=0), plot.subtitle=element_text(family="FreeSans", size=12), axis.text.y=element_text(size=8), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
-  theme(plot.title = element_text(hjust = 0.5), plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
-  theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines")) +
- 	labs(subtitle=paste("Yard (weekly samples, high protein samples)"), caption="") +
-  labs(y="Risk Ratio", x="Yard (weekly samples, high protein samples)");
-ggsave(paste("man/figures/caterpillar_plot_Yards_", "Model.png", sep=""), pRE_Yards, scale = 1.1, width=6.4, height=3.2, device="png");
+p <- caterpillar_plot(subjID = "Yard",
+    mcmcglmm_model = model1,
+    prob = 0.95,
+    orig_dataset = Milk,
+    binaryOutcomeVar = "HP")
+ggsave(paste("man/figures/caterpillar_plot_Yards_", "Model.png", sep=""), 
+       pRE_Yards, scale = 1.1, width=6.4, height=3.2, device="png");
 ```
 
 
