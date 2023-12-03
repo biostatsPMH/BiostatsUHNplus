@@ -34,6 +34,6 @@ prior2RE <- list(R = list(V = diag(1), fix = 1), G=list(G1=list(V=1, nu=0.02),
 model1 <- MCMCglmm::MCMCglmm(Drug_1_Attribution ~ AE_SEV_GD + Drug_2_Attribution, 
   random=~ae_detail + Subject, family="categorical", data=ae, saveX=TRUE, 
   verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
-mcmcglmm_icc <- nice_mcmcglmm_icc(model1, ae);
+mcmcglmm_icc <- nice_mcmcglmm_icc(model1);
 }
 \keyword{dataframe}

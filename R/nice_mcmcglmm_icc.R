@@ -22,7 +22,7 @@
 #' model1 <- MCMCglmm::MCMCglmm(Drug_1_Attribution ~ AE_SEV_GD + Drug_2_Attribution, 
 #'   random=~ae_detail + Subject, family="categorical", data=ae, saveX=TRUE, 
 #'   verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
-#' mcmcglmm_icc <- nice_mcmcglmm_icc(model1, ae);
+#' mcmcglmm_icc <- nice_mcmcglmm_icc(model1);
 nice_mcmcglmm_icc <- function(mcmcglmm_object, prob=NULL, decimals=NULL) {
   
   if (is.null(prob)) {

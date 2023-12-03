@@ -264,3 +264,73 @@ ggplot2::ggsave(paste("man/figures/ae_category_attribStart_timeline_plot", ".png
 ```{r example6b, echo=FALSE, out.width='100%'}
 knitr::include_graphics(paste("man/figures/ae_category_attribStart_timeline_plot", ".png", sep=""))
 ```
+
+
+
+### Wrapper functions for MCMCglmm object with binary outcome
+
+#### Nice table of model summary output for fixed effects
+
+```{r example7a, message=F, warning=F}
+data("ae");
+
+ae$G3Plus <- 0;
+ae$G3Plus[ae$AE_SEV_GD %in% c("3", "4", "5")] <- 1;
+ae$Drug_1_Attribution <- 0;
+ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- 1;
+ae$Drug_2_Attribution <- 0;
+ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- 1;
+
+prior2RE <- list(R = list(V = diag(1), fix = 1),
+  G=list(G1=list(V=1, nu=0.02), G2=list(V=1, nu=0.02)));
+  
+model1 <- MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
+  random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
+  verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
+
+mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
+options(knitr.kable.NA = '');
+knitr::kable(mcmcglmm_mva);
+```
+
+
+#### Nice table of intraclass correlation coefficients
+
+```{r example7b, message=F, warning=F}
+mcmcglmm_icc <- nice_mcmcglmm_icc(model1, prob=0.95, decimals=4);
+options(knitr.kable.NA = '');
+knitr::kable(mcmcglmm_icc);
+```
+
+
+#### Caterpillar plots of random effects - Subject 
+
+```{r example7c, message=F, warning=F}
+p <- caterpillar_plot(subjID = "Subject",
+  mcmcglmm_object = model1,
+  prob = 0.95,
+  orig_dataset = ae,
+  ncol = 2,
+  binaryOutcomeVar = "G3Plus")
+ggsave(paste("man/figures/caterpillar_plot_subject", ".png", sep=""), 
+       p, scale = 1.0, width=6.4, height=3.4, device="png");
+```
+
+
+#### Caterpillar plots of random effects - system organ class
+
+```{r example7c, message=F, warning=F}
+p <- caterpillar_plot(subjID = "ae_category",
+  mcmcglmm_object = model1,
+  prob = 0.95,
+  orig_dataset = ae,
+  ncol = 4,
+  binaryOutcomeVar = "G3Plus",
+  subtitle = "System organ class (n, events)",
+  title = "Risk Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
+  fonts = c("Arial", "Arial", "Arial", "Arial"),
+  break.label.summary = TRUE)
+ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
+       p, scale = 1.0, width=6.4, height=4.0, device="png");
+```
+
