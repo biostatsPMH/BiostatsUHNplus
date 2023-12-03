@@ -267,9 +267,9 @@ knitr::include_graphics(paste("man/figures/ae_category_attribStart_timeline_plot
 
 
 
-### Wrapper functions for MCMCglmm object with binary outcome
+### Summary functions for MCMCglmm object with binary outcome
 
-#### Nice table of model summary output for fixed effects
+#### Model output for fixed effects
 
 ```{r example7a, message=F, warning=F}
 data("ae");
@@ -284,7 +284,7 @@ ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Pos
 prior2RE <- list(R = list(V = diag(1), fix = 1),
   G=list(G1=list(V=1, nu=0.02), G2=list(V=1, nu=0.02)));
   
-model1 <- MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
+model1 <- MCMCglmm::MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
   random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
   verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
 
@@ -294,7 +294,7 @@ knitr::kable(mcmcglmm_mva);
 ```
 
 
-#### Nice table of intraclass correlation coefficients
+#### Intraclass correlation coefficients 
 
 ```{r example7b, message=F, warning=F}
 mcmcglmm_icc <- nice_mcmcglmm_icc(model1, prob=0.95, decimals=4);
@@ -303,7 +303,7 @@ knitr::kable(mcmcglmm_icc);
 ```
 
 
-#### Caterpillar plots of random effects - Subject 
+#### Caterpillar plots of random effects - participant 
 
 ```{r example7c, message=F, warning=F}
 p <- caterpillar_plot(subjID = "Subject",
@@ -312,14 +312,14 @@ p <- caterpillar_plot(subjID = "Subject",
   orig_dataset = ae,
   ncol = 2,
   binaryOutcomeVar = "G3Plus")
-ggsave(paste("man/figures/caterpillar_plot_subject", ".png", sep=""), 
+ggplot2::ggsave(paste("man/figures/caterpillar_plot_subject", ".png", sep=""), 
        p, scale = 1.0, width=6.4, height=3.4, device="png");
 ```
 
 
 #### Caterpillar plots of random effects - system organ class
 
-```{r example7c, message=F, warning=F}
+```{r example7d, message=F, warning=F}
 p <- caterpillar_plot(subjID = "ae_category",
   mcmcglmm_object = model1,
   prob = 0.95,
@@ -330,7 +330,7 @@ p <- caterpillar_plot(subjID = "ae_category",
   title = "Risk Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
   fonts = c("Arial", "Arial", "Arial", "Arial"),
   break.label.summary = TRUE)
-ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
+ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
        p, scale = 1.0, width=6.4, height=4.0, device="png");
 ```
 
