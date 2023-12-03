@@ -54,6 +54,17 @@
 #'   orig_dataset = ae,
 #'   remove.text.subjID = FALSE,
 #'   binaryOutcomeVar = "G3Plus")
+#'   
+#' p <- caterpillar_plot(subjID = "ae_category",
+#'   mcmcglmm_model = model1,
+#'   prob = 0.95,
+#'   orig_dataset = ae,
+#'   remove.text.subjID = FALSE,
+#'   ncol = 4,
+#'   binaryOutcomeVar = "G3Plus",
+#'   subtitle = "System organ class (n, event)",
+#'   title = "Risk Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
+#'   fonts = c("Arial", "Arial", "Arial", "Arial"))
 
 caterpillar_plot <- function(subjID,
                              remove.text.subjID=FALSE,
