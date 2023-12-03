@@ -1,5 +1,5 @@
 #' Caterpillar plot. Useful for plotting random effects from hierarchical models,
-#' such as MCMCglmm object, with binary outcome.
+#' such as MCMCglmm object, that have binary outcome.
 #'
 #' @param subjID key identifier field for participant ID in data sets
 #' @param remove.text.subjID boolean indiciating if non-numeric text should be 
@@ -20,7 +20,11 @@
 #' @param no.title boolean that denotes if title should be outputted in plot. Default 
 #'    is TRUE (if provided)
 #' @param fonts character text that denotes font for title, subtitle, category labels,
-#'   x-axis plot labels (if provided)
+#'    x-axis plot labels (if provided)
+#' @param columnTextWidth numeric that denotes character width for label text before
+#'    breaking to start new line. Default is 20 characters (if provided)
+#' @param break.label.summary boolean to indicate if new line should start in label
+#'    before (n, event) summary. Default is FALSE
 #' @keywords plot
 #' @return ggplot object of caterpillar plot
 #' @importFrom plyr join_all rbind.fill
@@ -50,9 +54,8 @@
 #'   
 #' p <- caterpillar_plot(subjID = "Subject",
 #'   mcmcglmm_model = model1,
-#'   prob = 0.95,
+#'   prob = 0.99,
 #'   orig_dataset = ae,
-#'   remove.text.subjID = FALSE,
 #'   binaryOutcomeVar = "G3Plus")
 #'   
 #' p <- caterpillar_plot(subjID = "ae_category",
@@ -64,7 +67,8 @@
 #'   binaryOutcomeVar = "G3Plus",
 #'   subtitle = "System organ class (n, event)",
 #'   title = "Risk Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
-#'   fonts = c("Arial", "Arial", "Arial", "Arial"))
+#'   fonts = c("Arial", "Arial", "Arial", "Arial"),
+#'   break.label.summary = TRUE)
 
 caterpillar_plot <- function(subjID,
                              remove.text.subjID=FALSE,
@@ -72,7 +76,8 @@ caterpillar_plot <- function(subjID,
                              binaryOutcomeVar,
                              prob=NULL,title=NULL,no.title=FALSE,
                              subtitle=NULL,ncol=NULL,
-                             fonts=NULL,columnTextWidth=NULL
+                             fonts=NULL,columnTextWidth=NULL,
+                             break.label.summary=FALSE
                              ){
   
   #https://rdrr.io/github/jbergenstrahle/STUtility/man/scale_override.html
@@ -204,8 +209,15 @@ caterpillar_plot <- function(subjID,
   ranefSubjs <- plyr::join_all(list(ranefSubjs, instSubj[, c("ID", "instances")], hp_instSubj[, c("ID", "hp_instances")]), by=c("ID"), type='left', match = "first");
   ranefSubjs$instances[which(is.na(ranefSubjs$instances))] <- 0;
   ranefSubjs$hp_instances[which(is.na(ranefSubjs$hp_instances))] <- 0;
-  ranefSubjs$term <- paste(ranefSubjs$term, " (", ranefSubjs$instances, ", ", ranefSubjs$hp_instances, ")", sep="");
-  ranefSubjs$term <- stringr::str_wrap(ranefSubjs$term, width = columnTextWidth);
+  
+  if (break.label.summary == TRUE) {
+    ranefSubjs$term <- stringr::str_wrap(ranefSubjs$term, width = columnTextWidth);
+    ranefSubjs$term <- paste(ranefSubjs$term, "\n(", ranefSubjs$instances, ", ", ranefSubjs$hp_instances, ")", sep="");
+  } else {
+    ranefSubjs$term <- paste(ranefSubjs$term, " (", ranefSubjs$instances, ", ", ranefSubjs$hp_instances, ")", sep="");
+    ranefSubjs$term <- stringr::str_wrap(ranefSubjs$term, width = columnTextWidth);
+  }
+  
   ranefSubjs$term <- reorder(factor(ranefSubjs$term), ranefSubjs$est);
   num_groups <- ncol;
   ranefSubjs <- ranefSubjs |>
@@ -219,6 +231,18 @@ caterpillar_plot <- function(subjID,
   ranefSubjs$upper <- as.numeric(format(round(ranefSubjs$upper, 2), nsmall=2));
   ranefSubjs$significance[(ranefSubjs$lower >= 1.00 & ranefSubjs$upper >= 1.00) | (ranefSubjs$lower <= 1.00 & ranefSubjs$upper <= 1.00)] <- "different";
   
+  ## Does scale override for facets;
+  scale_overrides <- list(scale_override(1, scale_y_continuous(breaks = 
+                        seq(1, floor(max(ranefSubjs$upper)), floor((max(ranefSubjs$upper)-1)/2)))))
+  #i <- 2;
+  for (i in 2:(ncol)) {
+    #j <- 2:(ncol)[i]
+    scale_overrides0 <- list(scale_override(i, scale_y_continuous(
+      breaks = c(0, floor(max(ranefSubjs[which(ranefSubjs$facet == i),]$upper))))))
+    #breaks = c(0, 1, floor(max(ranefSubjs[which(ranefSubjs$facet == j),]$upper)))
+    scale_overrides <- append(scale_overrides, scale_overrides0)
+  }
+  
   options(warn=-1); #suppress warning messages;
   pPlot <- 
     ggplot(ranefSubjs,aes(term,est)) +
@@ -231,15 +255,15 @@ caterpillar_plot <- function(subjID,
     geom_pointrange(aes(ymin=lower, ymax=upper, color=significance)) +
     guides(color=FALSE) +
     scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
-    scale_y_continuous(breaks=seq(0,2,1)) +
-    facet_wrap_custom(~facet, dir="h", scales="free", ncol=ncol, 
-                      scale_overrides = list(scale_override(1, scale_y_continuous(breaks = 
-                            seq(1, floor(max(ranefSubjs$upper)), floor((max(ranefSubjs$upper)-1)/2)))))) + #check OR to set custom limit for second facet;
+    #scale_y_continuous(breaks=seq(0,2,1)) +
+    #facet_wrap_custom(~facet, dir="h", scales="free", ncol=ncol, scale_overrides = scale_overrides) +
+    facet_wrap(~facet, dir="v", scales="free", ncol=ncol) +
+    #scale_y_continuous(limits = ~ c(min(.x), ceiling(max(.x))), breaks = ~ .x[2], expand = c(0, 0)) +
+    scale_y_continuous(limits = ~ c(min(.x), ceiling(max(.x))), breaks = ~ c(0, floor(max(.x))), expand = c(0.10, 0.05)) +
     coord_flip() + 
-    #ggtitle(title) +
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
     theme(plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
-    theme(strip.text = element_blank(), panel.margin.y = unit(-0.5, "lines"), axis.ticks.y=element_blank()) +
+    theme(strip.text = element_blank(), panel.margin.y = unit(-0, "lines"), axis.ticks.y=element_blank()) +
     labs(title=paste(title), subtitle=paste(subtitle), caption="");
   
   return(pPlot)

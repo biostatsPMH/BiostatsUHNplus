@@ -3,7 +3,7 @@
 \name{caterpillar_plot}
 \alias{caterpillar_plot}
 \title{Caterpillar plot. Useful for plotting random effects from hierarchical models,
-such as MCMCglmm object, with binary outcome.}
+such as MCMCglmm object, that have binary outcome.}
 \usage{
 caterpillar_plot(
   subjID,
@@ -15,7 +15,10 @@ caterpillar_plot(
   title = NULL,
   no.title = FALSE,
   subtitle = NULL,
-  fonts = NULL
+  ncol = NULL,
+  fonts = NULL,
+  columnTextWidth = NULL,
+  break.label.summary = FALSE
 )
 }
 \arguments{
@@ -43,8 +46,16 @@ is TRUE (if provided)}
 
 \item{subtitle}{subtitle of the plot. Overrides default subtitle (if provided)}
 
+\item{ncol}{number of columns in plot. Default is 2 (if provided)}
+
 \item{fonts}{character text that denotes font for title, subtitle, category labels,
 x-axis plot labels (if provided)}
+
+\item{columnTextWidth}{numeric that denotes character width for label text before
+breaking to start new line. Default is 20 characters (if provided)}
+
+\item{break.label.summary}{boolean to indicate if new line should start in label
+before (n, event) summary. Default is FALSE}
 
 \item{ae_attribVars}{field(s) that denotes attribution to intervention under study,
 for example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") (if provided)}
@@ -54,26 +65,41 @@ ggplot object of caterpillar plot
 }
 \description{
 Caterpillar plot. Useful for plotting random effects from hierarchical models,
-such as MCMCglmm object, with binary outcome.
+such as MCMCglmm object, that have binary outcome.
 }
 \examples{
 data("ae");
 
 ae$G3Plus <- 0;
 ae$G3Plus[ae$AE_SEV_GD \%in\% c("3", "4", "5")] <- 1;
+ae$Drug_1_Attribution <- 0;
+ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE \%in\% c("Definite", "Probable", "Possible")] <- 1;
+ae$Drug_2_Attribution <- 0;
+ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 \%in\% c("Definite", "Probable", "Possible")] <- 1;
 
 prior2RE <- list(R = list(V = diag(1), fix = 1),
   G=list(G1=list(V=1, nu=0.02), G2=list(V=1, nu=0.02)));
   
-model1 <- MCMCglmm(G3Plus ~ CTC_AE_ATTR_SCALE + CTC_AE_ATTR_SCALE_1, 
+model1 <- MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
   random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
   verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
   
 p <- caterpillar_plot(subjID = "Subject",
   mcmcglmm_model = model1,
+  prob = 0.99,
+  orig_dataset = ae,
+  binaryOutcomeVar = "G3Plus")
+  
+p <- caterpillar_plot(subjID = "ae_category",
+  mcmcglmm_model = model1,
   prob = 0.95,
   orig_dataset = ae,
   remove.text.subjID = FALSE,
-  binaryOutcomeVar = "G3Plus")
+  ncol = 4,
+  binaryOutcomeVar = "G3Plus",
+  subtitle = "System organ class (n, event)",
+  title = "Risk Ratio for G3+ Severity with 95\% Highest Posterior Density Interval",
+  fonts = c("Arial", "Arial", "Arial", "Arial"),
+  break.label.summary = TRUE)
 }
 \keyword{plot}
