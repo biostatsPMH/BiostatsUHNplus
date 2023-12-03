@@ -296,6 +296,7 @@ knitr::kable(mcmcglmm_mva);
 
 
 #### Intraclass correlation coefficients 
+Most of the observed variation in grade 3 or higher adverse event status is attributable to adverse event category, also known as system organ class.
 
 ```{r example7b, message=F, warning=F}
 mcmcglmm_icc <- nice_mcmcglmm_icc(model1, prob=0.95, decimals=4);
@@ -305,6 +306,7 @@ knitr::kable(mcmcglmm_icc);
 
 
 #### Caterpillar plots of random effects - participant 
+After controlling for first and second drug attributions, subject 01 has a higher odds for grade 3 or higher adverse event than the average of study participants.
 
 ```{r example7c, message=F, warning=F}
 p <- caterpillar_plot(subjID = "Subject",

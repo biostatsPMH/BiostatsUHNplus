@@ -1370,13 +1370,13 @@ Drug 1 Attribution
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-2.68 (1.11, 6.30)
+2.81 (1.04, 6.55)
 </td>
 <td style="text-align:left;">
-0.018
+0.025
 </td>
 <td style="text-align:left;">
-184.69
+177.85
 </td>
 </tr>
 <tr>
@@ -1386,19 +1386,23 @@ Drug 2 Attribution
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-0.40 (0.13, 1.13)
+0.44 (0.15, 1.18)
 </td>
 <td style="text-align:left;">
-0.110
+0.115
 </td>
 <td style="text-align:left;">
-159.45
+202.79
 </td>
 </tr>
 </tbody>
 </table>
 
 #### Intraclass correlation coefficients
+
+Most of the observed variation in grade 3 or higher adverse event status
+is attributable to adverse event category, also known as system organ
+class.
 
 ``` r
 mcmcglmm_icc <- nice_mcmcglmm_icc(model1, prob=0.95, decimals=4);
@@ -1428,13 +1432,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0768
+0.1018
 </td>
 <td style="text-align:right;">
-0.0049
+0.0121
 </td>
 <td style="text-align:right;">
-0.3369
+0.3827
 </td>
 </tr>
 <tr>
@@ -1442,13 +1446,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.8211
+0.8127
 </td>
 <td style="text-align:right;">
-0.4299
+0.4156
 </td>
 <td style="text-align:right;">
-0.9375
+0.9217
 </td>
 </tr>
 <tr>
@@ -1456,19 +1460,23 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.1275
+0.1052
 </td>
 <td style="text-align:right;">
-0.0367
+0.0274
 </td>
 <td style="text-align:right;">
-0.2850
+0.2821
 </td>
 </tr>
 </tbody>
 </table>
 
 #### Caterpillar plots of random effects - participant
+
+After controlling for first and second drug attributions, subject 01 has
+a higher odds for grade 3 or higher adverse event than the average of
+study participants.
 
 ``` r
 p <- caterpillar_plot(subjID = "Subject",
@@ -1484,6 +1492,10 @@ ggplot2::ggsave(paste("man/figures/caterpillar_plot_subject", ".png", sep=""),
 <img src="man/figures/caterpillar_plot_subject.png" width="100%" />
 
 #### Caterpillar plots of random effects - system organ class
+
+Highest posterior density intervals, also known as credible intervals,
+are not symmetric. Need to run model for more iterations with higher
+burnin.
 
 ``` r
 p <- caterpillar_plot(subjID = "ae_category",
