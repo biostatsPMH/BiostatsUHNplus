@@ -24,7 +24,7 @@ caterpillar_plot(
 \arguments{
 \item{subjID}{key identifier field for participant ID in data sets}
 
-\item{remove.text.subjID}{boolean indiciating if non-numeric text should be
+\item{remove.text.subjID}{boolean indicating if non-numeric text should be
 removed from subjID in plot label. Note that this can only be used if there
 are non-duplicate participant IDs when non-numeric text is removed. Default
 is FALSE (if provided)}
@@ -37,7 +37,7 @@ is FALSE (if provided)}
 in MCMCglmm model}
 
 \item{prob}{probability for highest posterior density interval, similar to a
-confidence interval. Defaul is 0.95 (if provided)}
+confidence interval. Default is 0.95 (if provided)}
 
 \item{title}{title of the plot. Overrides default title (if provided)}
 

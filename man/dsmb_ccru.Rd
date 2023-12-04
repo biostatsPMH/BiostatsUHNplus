@@ -66,7 +66,7 @@ for example, c("Yes", "Y") (if provided)}
 
 \item{genderVar}{field that denotes participant gender}
 
-\item{enrolDtVar}{field that denotes participant enrolment date (i.e. 10MAY2021)}
+\item{enrolDtVar}{field that denotes participant enrollment date (i.e. 10MAY2021)}
 
 \item{ae_detailVar}{field that denotes participant AE detail (lowest level term)}
 
@@ -76,7 +76,7 @@ for example, c("Yes", "Y") (if provided)}
 
 \item{ae_onsetDtVar}{field that denotes participant AE onset date}
 
-\item{ae_detailOtherText}{character text that denotes referencing vebatim AE field,
+\item{ae_detailOtherText}{character text that denotes referencing verbatim AE field,
 for example, c("Other, specify", "OTHER") (if provided)}
 
 \item{ae_detailOtherVar}{field that denotes participant AE detail other (if provided)}

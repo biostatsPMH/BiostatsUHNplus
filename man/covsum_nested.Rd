@@ -67,13 +67,13 @@ min,max on a separate line) should be displayed. Overrides IQR.}
 table. Can only be obtained if pvalue is also requested.}
 
 \item{show.tests}{boolean indicating if the type of statistical used should
-be shown in a column beside the pvalues. Ignored if pvalue=FALSE.}
+be shown in a column beside the p-values. Ignored if pvalue=FALSE.}
 
 \item{nCores}{if > 1, specifies number of cores to use for parallel processing
 for calculating the nested p-value (default: 1).}
 
 \item{nested.test}{specifies test used for calculating nested p-value from
-afex::mixed function. Either \emph{paramateric bootstrap} method
+afex::mixed function. Either \emph{parametric bootstrap} method
 or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap
 takes longer.}
 

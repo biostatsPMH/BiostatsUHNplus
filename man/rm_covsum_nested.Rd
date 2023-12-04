@@ -83,7 +83,7 @@ returned unformatted (ie not rounded or prefixed with '<'). Best used with
 tableOnly = T and outTable function.}
 
 \item{show.tests}{boolean indicating if the type of statistical used should
-be shown in a column beside the pvalues. Ignored if pvalue=FALSE.}
+be shown in a column beside the p-values. Ignored if pvalue=FALSE.}
 
 \item{just.nested.pvalue}{boolean indicating if the just the nested p-value
 should be shown in a column, and not unnested p-value, unnested statistical
