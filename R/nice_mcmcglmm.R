@@ -12,17 +12,23 @@
 #' @export
 #' @examples
 #' data(ae)
+#' 
 #' ae$AE_SEV_GD <- as.numeric(ae$AE_SEV_GD);
-#' ae$Drug_1_Attribution <- 0;
-#' ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- 1;
-#' ae$Drug_2_Attribution <- 0;
-#' ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- 1;
+#' ae$Drug_1_Attribution <- "No";
+#' ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- "Yes";
+#' ae$Drug_1_Attribution <- as.factor(ae$Drug_1_Attribution);
+#' ae$Drug_2_Attribution <- "No";
+#' ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Yes";
+#' ae$Drug_2_Attribution <- as.factor(ae$Drug_2_Attribution);
+#' 
 #' prior2RE <- list(R = list(V = diag(1), fix = 1), G=list(G1=list(V=1, nu=0.02), 
-#'   G2=list(V=1, nu=0.02)));
+#'           G2=list(V=1, nu=0.02)));
+#' 
 #' model1 <- MCMCglmm::MCMCglmm(Drug_1_Attribution ~ AE_SEV_GD + Drug_2_Attribution, 
-#'   random=~ae_detail + Subject, family="categorical", data=ae, saveX=TRUE, 
-#'   verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
-#' mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
+#'           random=~ae_detail + Subject, family="categorical", data=ae, saveX=TRUE, 
+#'           verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
+
+mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
 nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   cc <- summary(mcmcglmm_object)$solutions
   citab <- with(as.data.frame(cc),
@@ -48,7 +54,11 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
     t1 <- as.data.frame(t1);
     varLevels <- do.call(rbind, lapply(t1, data.frame))
   }, error=function(e){})
-  
+  # tryCatch({
+  #   dataset <- dataset |> purrr::modify_if(is.character, as.factor);
+  #   varLevels <- do.call(rbind, lapply(sapply(dataset[, c(all.vars(mcmcglmm_object$Fixed$formula)[-1])], levels), data.frame));
+  # }, error=function(e){})
+
   tryCatch({
     varLevels <- tibble::rownames_to_column(varLevels, "Variable");
     colnames(varLevels) <- c("Variable", "Levels");
@@ -60,6 +70,9 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
     if (colSums(varLevels) == 0) {
       varLevels <- as.data.frame(cbind(mcmcglmm_ci$Variable, NA, mcmcglmm_ci$join))
     }
+  }
+  if (length(varLevels) == 0) {
+    stop("Try converting indicator variables to factors and run again.")
   }
   colnames(varLevels) <- c("Variable", "Levels", "join");
   
@@ -91,5 +104,9 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   opd_mcmcglmm$Variable <- gsub("_", " ", opd_mcmcglmm$Variable);
   opd_mcmcglmm$Variable[duplicated(opd_mcmcglmm$Variable )] <- NA;
   opd_mcmcglmm$MCMCp[opd_mcmcglmm$MCMCp == "0.000"] <- "<0.001";
+
+  if (nrow(opd_mcmcglmm[which(is.na(opd_mcmcglmm$Levels) & opd_mcmcglmm$"OR (95% HPDI)" == "reference"), ]) >= 1) {
+    stop("Try converting indicator variables to factors in dataset and run again.")
+  }
   return(opd_mcmcglmm)
 }

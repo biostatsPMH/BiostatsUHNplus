@@ -79,7 +79,7 @@ prior2RE <- list(R = list(V = diag(1), fix = 1),
   
 model1 <- MCMCglmm::MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
   random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
-  verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
+  verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
   
 p <- caterpillar_plot(subjID = "Subject",
   mcmcglmm_object = model1,
