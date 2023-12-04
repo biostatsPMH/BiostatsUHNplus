@@ -519,7 +519,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 <td style="text-align:right;">
 0.55
@@ -528,7 +528,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+<span style="font-weight: bold;">\<0.001</span>
 </td>
 </tr>
 <tr>
@@ -1368,7 +1368,6 @@ eff.samp
 Drug 1 Attribution
 </td>
 <td style="text-align:left;">
-No
 </td>
 <td style="text-align:left;">
 reference
@@ -1376,22 +1375,6 @@ reference
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-2.59 (0.99, 6.29)
-</td>
-<td style="text-align:left;">
-0.038
-</td>
-<td style="text-align:left;">
-173.31
 </td>
 </tr>
 <tr>
@@ -1399,6 +1382,20 @@ Yes
 Drug 2 Attribution
 </td>
 <td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
 No
 </td>
 <td style="text-align:left;">
@@ -1411,18 +1408,79 @@ reference
 </tr>
 <tr>
 <td style="text-align:left;">
+2
 </td>
 <td style="text-align:left;">
 Yes
 </td>
 <td style="text-align:left;">
-0.42 (0.15, 1.21)
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Drug 1 AttributionYes
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+2.92 (1.17, 6.92)
+</td>
+<td style="text-align:left;">
+0.012
+</td>
+<td style="text-align:left;">
+210.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Drug 2 AttributionYes
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+0.44 (0.17, 1.28)
 </td>
 <td style="text-align:left;">
 0.130
 </td>
 <td style="text-align:left;">
-152.32
+154.92
 </td>
 </tr>
 </tbody>
@@ -1462,13 +1520,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0665
+0.0362
 </td>
 <td style="text-align:right;">
-0.0059
+0.0115
 </td>
 <td style="text-align:right;">
-0.2959
+0.3428
 </td>
 </tr>
 <tr>
@@ -1476,13 +1534,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.7488
+0.8711
 </td>
 <td style="text-align:right;">
-0.5508
+0.4999
 </td>
 <td style="text-align:right;">
-0.9413
+0.9483
 </td>
 </tr>
 <tr>
@@ -1490,13 +1548,13 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.0867
+0.0971
 </td>
 <td style="text-align:right;">
-0.0379
+0.0268
 </td>
 <td style="text-align:right;">
-0.2219
+0.2322
 </td>
 </tr>
 </tbody>

@@ -321,6 +321,14 @@ knitr::kable(rs_c);
 ### Variance piechart
 ```{r ana19, echo=F, warning=F, message=F, results='asis'}
 #colnames(model1$Sol);
+ICC_1 <- model1$VCV[, 1]/(rowSums(model1$VCV)); 
+ICC_2 <- model1$VCV[, 2]/(rowSums(model1$VCV)); 
+ICC_unit <- model1$VCV[, 3]/(rowSums(model1$VCV)); 
+dft1 <- cbind(ICC = posterior.mode(ICC_1), CI = HPDinterval(ICC_1));
+dft2 <- cbind(ICC = posterior.mode(ICC_2), CI = HPDinterval(ICC_2));
+dft3 <- cbind(ICC = posterior.mode(ICC_unit), CI = HPDinterval(ICC_unit));
+dft1 <- rbind(dft1, dft2);
+row.names(dft1) <- c("Cow", "Yard");
 
 mFixedDiet <- mean(model1$Sol[ ,2]) * model1$X[,2] + mean(model1$Sol[,3]) * model1$X[,3];
 mFixedDiet <- var(mFixedDiet);
