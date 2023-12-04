@@ -1,6 +1,6 @@
 Package: BiostatsUHNplus
 Title: Nested Data Summary and Adverse Events
-Version: 0.0.9
+Version: 0.0.10
 Authors@R: c(
     person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",
            comment = c(ORCID = "0000-0002-8431-5143")),
