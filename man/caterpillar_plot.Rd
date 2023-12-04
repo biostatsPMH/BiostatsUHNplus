@@ -56,9 +56,6 @@ breaking to start new line. Default is 20 characters (if provided)}
 
 \item{break.label.summary}{boolean to indicate if new line should start in label
 before (n, event) summary. Default is FALSE}
-
-\item{ae_attribVars}{field(s) that denotes attribution to intervention under study,
-for example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") (if provided)}
 }
 \value{
 ggplot object of caterpillar plot
@@ -80,7 +77,7 @@ ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 \%in\% c("Definite", "Probable", "P
 prior2RE <- list(R = list(V = diag(1), fix = 1),
   G=list(G1=list(V=1, nu=0.02), G2=list(V=1, nu=0.02)));
   
-model1 <- MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
+model1 <- MCMCglmm::MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
   random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
   verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
   

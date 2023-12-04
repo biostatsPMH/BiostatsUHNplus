@@ -68,7 +68,7 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @importFrom afex mixed
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
 #'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},
-#'   \code{\link{anova}},\code{\link{afex::mixed}}
+#'   \code{\link{anova}} and \code{\link{mixed}}
 covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, numobs = NULL, 
                            markup = TRUE, sanitize = TRUE, nicenames = TRUE, IQR = FALSE, 
                            all.stats = FALSE, pvalue = TRUE, effSize = TRUE, show.tests = TRUE, 
@@ -333,15 +333,15 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' @export
 #' @seealso \code{\link{covsum}},\code{\link{fisher.test}},
 #'   \code{\link{chisq.test}}, \code{\link{wilcox.test}},
-#'   \code{\link{kruskal.test}}, \code{\link{anova}}, and \code{\link{outTable}}
+#'   \code{\link{kruskal.test}}, \code{\link{anova}}, 
+#'   \code{\link{mixed}} and \code{\link{outTable}}
 #' @examples
 #' # Example 1
 #' data(ae)
 #' rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), covs = c("AE_SEV_GD", 
 #' "AE_ONSET_DT_INT"), maincov = "CTC_AE_ATTR_SCALE")
 #' 
-#' # Example 2: set variable labels and other options, save output with markup as 
-#'     both HTML and LaTeX table
+#' # Example 2: set variable labels and other options, save output with markup
 #' data("ae")
 #' lbls <- data.frame(c1=c('AE_SEV_GD','AE_ONSET_DT_INT'),
 #'     c2=c('Adverse event severity grade','Adverse event onset date'))

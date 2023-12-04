@@ -8,8 +8,6 @@
 #'    is FALSE (if provided)
 #' @param mcmcglmm_object MCMCglmm model output
 #' @param orig_dataset data frame supplied to MCMCglmm function
-#' @param ae_attribVars field(s) that denotes attribution to intervention under study,
-#'    for example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") (if provided)
 #' @param binaryOutcomeVar name of binary variable (0,1) that denotes outcome 
 #'    in MCMCglmm model
 #' @param prob probability for highest posterior density interval, similar to a 
@@ -49,7 +47,7 @@
 #' prior2RE <- list(R = list(V = diag(1), fix = 1),
 #'   G=list(G1=list(V=1, nu=0.02), G2=list(V=1, nu=0.02)));
 #'   
-#' model1 <- MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
+#' model1 <- MCMCglmm::MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
 #'   random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
 #'   verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
 #'   

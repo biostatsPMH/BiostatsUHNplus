@@ -113,5 +113,5 @@ Nested version of reportRmd covsum()
 \seealso{
 \code{\link{fisher.test}},\code{\link{chisq.test}},
 \code{\link{wilcox.test}},\code{\link{kruskal.test}},
-\code{\link{anova}},\code{\link{afex::mixed}}
+\code{\link{anova}} and \code{\link{mixed}}
 }
