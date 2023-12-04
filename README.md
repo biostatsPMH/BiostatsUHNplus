@@ -31,7 +31,7 @@ First, install the latest version of **reportRmd** from
 install.packages(c("reportRmd"), dependencies=TRUE);
 ```
 
-Then install the lastest version of **BiostatsUHNplus** from
+Then install the latest version of **BiostatsUHNplus** from
 [CRAN](https://cran.r-project.org/package=BiostatsUHNplus) with:
 
 ``` r
