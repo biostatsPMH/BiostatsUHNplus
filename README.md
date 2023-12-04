@@ -25,7 +25,7 @@ Many of these functions build upon the features of
 
 ## Installation
 
-First, install the lastest version of **reportRmd** from
+First, install the latest version of **reportRmd** from
 [CRAN](https://cran.r-project.org/package=reportRmd) with:
 
 ``` r
