@@ -277,10 +277,10 @@ data("ae");
 
 ae$G3Plus <- 0;
 ae$G3Plus[ae$AE_SEV_GD %in% c("3", "4", "5")] <- 1;
-ae$Drug_1_Attribution <- 0;
-ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- 1;
-ae$Drug_2_Attribution <- 0;
-ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- 1;
+ae$Drug_1_Attribution <- "No";
+ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- "Yes";
+ae$Drug_2_Attribution <- "No";
+ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Yes";
 
 prior2RE <- list(R = list(V = diag(1), fix = 1),
   G=list(G1=list(V=1, nu=0.02), G2=list(V=1, nu=0.02)));

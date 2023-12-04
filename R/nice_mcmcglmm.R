@@ -39,7 +39,11 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   mcmcglmm_ci$join <- mcmcglmm_ci$Variable;
   
   tryCatch({
-    varLevels <- do.call(rbind, lapply(sapply(dataset[, c(all.vars(mcmcglmm_object$Fixed$formula)[-1])], levels), data.frame))
+    dataset <- dataset %>% purrr::modify_if(is.character, as.factor);
+    t1 <- sapply(dataset[, c(all.vars(mcmcglmm_object$Fixed$formula)[-1])], levels);
+    t1 <- as.data.frame(t1);
+    varLevels <- do.call(rbind, lapply(t1, data.frame))
+    #varLevels <- do.call(rbind, lapply(sapply(dataset[, c(all.vars(mcmcglmm_object$Fixed$formula)[-1])], levels), data.frame))
     varLevels <- tibble::rownames_to_column(varLevels, "Variable");
     colnames(varLevels) <- c("Variable", "Levels");
     varLevels$Variable <- gsub("(.*)\\.(.*)", "\\1", varLevels$Variable);
