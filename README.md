@@ -1385,13 +1385,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-2.59 (1.16, 6.54)
+2.59 (0.99, 6.29)
 </td>
 <td style="text-align:left;">
-0.040
+0.038
 </td>
 <td style="text-align:left;">
-248.15
+173.31
 </td>
 </tr>
 <tr>
@@ -1416,13 +1416,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-0.46 (0.14, 1.22)
+0.42 (0.15, 1.21)
 </td>
 <td style="text-align:left;">
 0.130
 </td>
 <td style="text-align:left;">
-168.89
+152.32
 </td>
 </tr>
 </tbody>
@@ -1462,13 +1462,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0378
+0.0665
 </td>
 <td style="text-align:right;">
-0.0042
+0.0059
 </td>
 <td style="text-align:right;">
-0.2993
+0.2959
 </td>
 </tr>
 <tr>
@@ -1476,13 +1476,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.8494
+0.7488
 </td>
 <td style="text-align:right;">
-0.5200
+0.5508
 </td>
 <td style="text-align:right;">
-0.9536
+0.9413
 </td>
 </tr>
 <tr>
@@ -1490,13 +1490,13 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.0603
+0.0867
 </td>
 <td style="text-align:right;">
-0.0248
+0.0379
 </td>
 <td style="text-align:right;">
-0.2426
+0.2219
 </td>
 </tr>
 </tbody>

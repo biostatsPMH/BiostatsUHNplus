@@ -38,14 +38,16 @@ nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   colnames(mcmcglmm_ci) <- c("Variable", "OR (95% HPDI)", "MCMCp", "eff.samp");
   mcmcglmm_ci$join <- mcmcglmm_ci$Variable;
 
+  ## Have to do tryCatc() in this order for combination of variable factors and numeric;
   tryCatch({
     dataset <- dataset |> purrr::modify_if(is.character, as.factor);
     t1 <- sapply(dataset[, c(all.vars(mcmcglmm_object$Fixed$formula)[-1])], levels);
     t1 <- as.data.frame(t1);
     varLevels <- do.call(rbind, lapply(t1, data.frame))
-  }, error=function(e){
+  }, error=function(e){})
+  tryCatch({
     varLevels <- do.call(rbind, lapply(sapply(dataset[, c(all.vars(mcmcglmm_object$Fixed$formula)[-1])], levels), data.frame));
-  })
+  }, error=function(e){}) 
   
   tryCatch({
     varLevels <- tibble::rownames_to_column(varLevels, "Variable");
