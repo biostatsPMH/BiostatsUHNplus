@@ -353,11 +353,13 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'     effSize = FALSE, full = TRUE, IQR = FALSE, nicenames = TRUE, sanitize = TRUE, 
 #'     markup = TRUE, include_missing = TRUE, just.nested.pvalue = TRUE, 
 #'     tableOnly = TRUE)
+#' \dontrun{
 #' cat(reportRmd::outTable(tab=output_tab))
 #' cat(reportRmd::outTable(output_tab, format="html"), file = paste("./man/tables/", 
 #'     "output_tab.html", sep=""))
 #' cat(reportRmd::outTable(output_tab, format="latex"), file = paste("./man/tables/", 
 #'     "output_tab.tex", sep=""))
+#' }
 rm_covsum_nested <- function(data,covs,maincov=NULL,id=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
                              digits=1,digits.cat=0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
                              pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp=FALSE,show.tests=TRUE,

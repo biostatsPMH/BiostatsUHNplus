@@ -159,11 +159,13 @@ output_tab <- rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"),
     effSize = FALSE, full = TRUE, IQR = FALSE, nicenames = TRUE, sanitize = TRUE, 
     markup = TRUE, include_missing = TRUE, just.nested.pvalue = TRUE, 
     tableOnly = TRUE)
+\dontrun{
 cat(reportRmd::outTable(tab=output_tab))
 cat(reportRmd::outTable(output_tab, format="html"), file = paste("./man/tables/", 
     "output_tab.html", sep=""))
 cat(reportRmd::outTable(output_tab, format="latex"), file = paste("./man/tables/", 
     "output_tab.tex", sep=""))
+}
 }
 \seealso{
 \code{\link{covsum}},\code{\link{fisher.test}},
