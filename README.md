@@ -519,7 +519,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.55
@@ -528,7 +528,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -1325,10 +1325,10 @@ data("ae");
 
 ae$G3Plus <- 0;
 ae$G3Plus[ae$AE_SEV_GD %in% c("3", "4", "5")] <- 1;
-ae$Drug_1_Attribution <- 0;
-ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- 1;
-ae$Drug_2_Attribution <- 0;
-ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- 1;
+ae$Drug_1_Attribution <- "No";
+ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- "Yes";
+ae$Drug_2_Attribution <- "No";
+ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Yes";
 
 prior2RE <- list(R = list(V = diag(1), fix = 1),
   G=list(G1=list(V=1, nu=0.02), G2=list(V=1, nu=0.02)));
@@ -1368,15 +1368,30 @@ eff.samp
 Drug 1 Attribution
 </td>
 <td style="text-align:left;">
+No
 </td>
 <td style="text-align:left;">
-2.81 (1.04, 6.55)
+reference
 </td>
 <td style="text-align:left;">
-0.025
 </td>
 <td style="text-align:left;">
-177.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+2.82 (1.16, 7.07)
+</td>
+<td style="text-align:left;">
+0.022
+</td>
+<td style="text-align:left;">
+201.46
 </td>
 </tr>
 <tr>
@@ -1384,15 +1399,30 @@ Drug 1 Attribution
 Drug 2 Attribution
 </td>
 <td style="text-align:left;">
+No
 </td>
 <td style="text-align:left;">
-0.44 (0.15, 1.18)
+reference
 </td>
 <td style="text-align:left;">
-0.115
 </td>
 <td style="text-align:left;">
-202.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+0.40 (0.13, 1.17)
+</td>
+<td style="text-align:left;">
+0.090
+</td>
+<td style="text-align:left;">
+208.13
 </td>
 </tr>
 </tbody>
@@ -1432,13 +1462,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.1018
+0.1047
 </td>
 <td style="text-align:right;">
-0.0121
+0.0140
 </td>
 <td style="text-align:right;">
-0.3827
+0.3278
 </td>
 </tr>
 <tr>
@@ -1446,13 +1476,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.8127
+0.7349
 </td>
 <td style="text-align:right;">
-0.4156
+0.4789
 </td>
 <td style="text-align:right;">
-0.9217
+0.9377
 </td>
 </tr>
 <tr>
@@ -1460,13 +1490,13 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.1052
+0.1094
 </td>
 <td style="text-align:right;">
-0.0274
+0.0305
 </td>
 <td style="text-align:right;">
-0.2821
+0.2449
 </td>
 </tr>
 </tbody>
