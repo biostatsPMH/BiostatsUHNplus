@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.3 Examples | Example nested reportRmd and Bayesian hierarchical model summary</title>
-  <meta name="description" content="4.3 Examples | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <title>4.3 Examples | Example nested summary and Bayesian hierarchical model summary</title>
+  <meta name="description" content="4.3 Examples | Example nested summary and Bayesian hierarchical model summary" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.3 Examples | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta property="og:title" content="4.3 Examples | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.3 Examples | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta name="twitter:title" content="4.3 Examples | Example nested summary and Bayesian hierarchical model summary" />
   
   
   
@@ -184,6 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.2" data-path="examples.html"><a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug"><i class="fa fa-check"></i><b>4.3.2</b> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug</a></li>
 <li class="chapter" data-level="4.3.3" data-path="examples.html"><a href="examples.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
 <li class="chapter" data-level="4.3.4" data-path="examples.html"><a href="examples.html#related-adverse-event-onset-timeline-plots"><i class="fa fa-check"></i><b>4.3.4</b> Related adverse event onset timeline plots</a></li>
+<li class="chapter" data-level="4.3.5" data-path="examples.html"><a href="examples.html#summary-functions-for-mcmcglmm-object-with-binary-outcome"><i class="fa fa-check"></i><b>4.3.5</b> Summary functions for MCMCglmm object with binary outcome</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -195,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Example nested reportRmd and Bayesian hierarchical model summary</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Example nested summary and Bayesian hierarchical model summary</a>
           </h1>
         </div>
 
@@ -227,16 +228,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-6"><a href="examples.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">&quot;Subject&quot;</span>, <span class="at">type =</span> <span class="st">&quot;full&quot;</span>);</span>
 <span id="cb19-7"><a href="examples.html#cb19-7" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>AE_SEV_GD <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(clinT<span class="sc">$</span>AE_SEV_GD);</span>
 <span id="cb19-8"><a href="examples.html#cb19-8" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_1_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;Unrelated&quot;</span>;</span>
-<span id="cb19-9"><a href="examples.html#cb19-9" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_1_Attribution[clinT<span class="sc">$</span>CTC_AE_ATTR_SCALE <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Related&quot;</span>;</span>
-<span id="cb19-10"><a href="examples.html#cb19-10" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_2_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;Unrelated&quot;</span>;</span>
-<span id="cb19-11"><a href="examples.html#cb19-11" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_2_Attribution[clinT<span class="sc">$</span>CTC_AE_ATTR_SCALE_1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Related&quot;</span>;</span>
-<span id="cb19-12"><a href="examples.html#cb19-12" aria-hidden="true" tabindex="-1"></a>lbls <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">c1=</span><span class="fu">c</span>(<span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, <span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, </span>
-<span id="cb19-13"><a href="examples.html#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;ae_category&quot;</span>),</span>
-<span id="cb19-14"><a href="examples.html#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">c2=</span><span class="fu">c</span>(<span class="st">&quot;Adverse event severity grade&quot;</span>, <span class="st">&quot;Enrollment date&quot;</span>, <span class="st">&quot;Cohort&quot;</span>, <span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Ineligibility&quot;</span>, <span class="st">&quot;Adverse event onset date&quot;</span>, <span class="st">&quot;Attribution to second study drug&quot;</span>, <span class="st">&quot;Adverse event system organ class&quot;</span>));</span>
-<span id="cb19-15"><a href="examples.html#cb19-15" aria-hidden="true" tabindex="-1"></a>clinT <span class="ot">&lt;-</span> reportRmd<span class="sc">::</span><span class="fu">set_labels</span>(clinT, lbls);</span>
-<span id="cb19-16"><a href="examples.html#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-17"><a href="examples.html#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> clinT, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;ae_detail&quot;</span>, <span class="st">&quot;Subject&quot;</span>, <span class="st">&quot;COHORT&quot;</span>), </span>
-<span id="cb19-18"><a href="examples.html#cb19-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, <span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;ae_category&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;Drug_1_Attribution&quot;</span>);</span></code></pre></div>
+<span id="cb19-9"><a href="examples.html#cb19-9" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_1_Attribution[clinT<span class="sc">$</span>CTC_AE_ATTR_SCALE <span class="sc">%in%</span> </span>
+<span id="cb19-10"><a href="examples.html#cb19-10" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Related&quot;</span>;</span>
+<span id="cb19-11"><a href="examples.html#cb19-11" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_2_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;Unrelated&quot;</span>;</span>
+<span id="cb19-12"><a href="examples.html#cb19-12" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_2_Attribution[clinT<span class="sc">$</span>CTC_AE_ATTR_SCALE_1 <span class="sc">%in%</span> </span>
+<span id="cb19-13"><a href="examples.html#cb19-13" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Related&quot;</span>;</span>
+<span id="cb19-14"><a href="examples.html#cb19-14" aria-hidden="true" tabindex="-1"></a>lbls <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">c1=</span><span class="fu">c</span>(<span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, <span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, </span>
+<span id="cb19-15"><a href="examples.html#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;ae_category&quot;</span>),</span>
+<span id="cb19-16"><a href="examples.html#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">c2=</span><span class="fu">c</span>(<span class="st">&quot;Adverse event severity grade&quot;</span>, <span class="st">&quot;Enrollment date&quot;</span>, <span class="st">&quot;Cohort&quot;</span>, <span class="st">&quot;Gender&quot;</span>, </span>
+<span id="cb19-17"><a href="examples.html#cb19-17" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;Ineligibility&quot;</span>, <span class="st">&quot;Adverse event onset date&quot;</span>, <span class="st">&quot;Attribution to second study drug&quot;</span>,</span>
+<span id="cb19-18"><a href="examples.html#cb19-18" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;Adverse event system organ class&quot;</span>));</span>
+<span id="cb19-19"><a href="examples.html#cb19-19" aria-hidden="true" tabindex="-1"></a>clinT <span class="ot">&lt;-</span> reportRmd<span class="sc">::</span><span class="fu">set_labels</span>(clinT, lbls);</span>
+<span id="cb19-20"><a href="examples.html#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="examples.html#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> clinT, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;ae_detail&quot;</span>, <span class="st">&quot;Subject&quot;</span>, <span class="st">&quot;COHORT&quot;</span>), </span>
+<span id="cb19-22"><a href="examples.html#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, </span>
+<span id="cb19-23"><a href="examples.html#cb19-23" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;ae_category&quot;</span>), </span>
+<span id="cb19-24"><a href="examples.html#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">maincov =</span> <span class="st">&quot;Drug_1_Attribution&quot;</span>);</span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -526,7 +533,6 @@ Missing
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.68
 </td>
 </tr>
 <tr>
@@ -725,7 +731,6 @@ Unrelated
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.64
 </td>
 </tr>
 <tr>
@@ -1350,7 +1355,8 @@ Vascular disorders
 <span id="cb21-11"><a href="examples.html#cb21-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">startDtVars=</span><span class="fu">c</span>(<span class="st">&quot;ENROL_DATE_INT&quot;</span>),<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
 <span id="cb21-12"><a href="examples.html#cb21-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
 <span id="cb21-13"><a href="examples.html#cb21-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">time_unit=</span><span class="st">&quot;week&quot;</span>)</span>
-<span id="cb21-14"><a href="examples.html#cb21-14" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_detail_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), p, <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="dv">10</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="fl">1.15</span>);</span></code></pre></div>
+<span id="cb21-14"><a href="examples.html#cb21-14" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_detail_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), p, </span>
+<span id="cb21-15"><a href="examples.html#cb21-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="dv">10</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="fl">1.15</span>);</span></code></pre></div>
 <p><img src="man/figures/ae_detail_timeline_plot.png" width="100%" /></p>
 </div>
 <div id="example-2" class="section level4 hasAnchor" number="4.3.4.2">
@@ -1378,7 +1384,8 @@ Vascular disorders
 <span id="cb22-19"><a href="examples.html#cb22-19" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;#01796F&quot;</span>,<span class="st">&quot;#FFA343&quot;</span>,<span class="st">&quot;#CC7722&quot;</span>,<span class="st">&quot;#E0B0FF&quot;</span>,<span class="st">&quot;#5A4FCF&quot;</span>),</span>
 <span id="cb22-20"><a href="examples.html#cb22-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">attribSymbols=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>),</span>
 <span id="cb22-21"><a href="examples.html#cb22-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">columnWidths=</span><span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">15</span>))</span>
-<span id="cb22-22"><a href="examples.html#cb22-22" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_category_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), p, <span class="at">width=</span><span class="fl">3.6</span>, <span class="at">height=</span><span class="fl">5.4</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="dv">1</span>);</span></code></pre></div>
+<span id="cb22-22"><a href="examples.html#cb22-22" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_category_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), p, </span>
+<span id="cb22-23"><a href="examples.html#cb22-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">width=</span><span class="fl">3.6</span>, <span class="at">height=</span><span class="fl">5.4</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="dv">1</span>);</span></code></pre></div>
 <p><img src="man/figures/ae_category_timeline_plot.png" width="100%" /></p>
 </div>
 <div id="example-3" class="section level4 hasAnchor" number="4.3.4.3">
@@ -1406,8 +1413,218 @@ Vascular disorders
 <span id="cb23-19"><a href="examples.html#cb23-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">attribColours=</span><span class="fu">c</span>(<span class="st">&quot;#9AB973&quot;</span>,<span class="st">&quot;#01796F&quot;</span>,<span class="st">&quot;#FFA343&quot;</span>,<span class="st">&quot;#CC7722&quot;</span>),   </span>
 <span id="cb23-20"><a href="examples.html#cb23-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">attribSymbols=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">6</span>),</span>
 <span id="cb23-21"><a href="examples.html#cb23-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">columnWidths=</span><span class="fu">c</span>(<span class="dv">23</span>))</span>
-<span id="cb23-22"><a href="examples.html#cb23-22" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_category_attribStart_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), p, <span class="at">width=</span><span class="fl">4.2</span>, <span class="at">height=</span><span class="fl">5.4</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="dv">1</span>);</span></code></pre></div>
+<span id="cb23-22"><a href="examples.html#cb23-22" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_category_attribStart_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), </span>
+<span id="cb23-23"><a href="examples.html#cb23-23" aria-hidden="true" tabindex="-1"></a>                p, <span class="at">width=</span><span class="fl">4.2</span>, <span class="at">height=</span><span class="fl">5.4</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="dv">1</span>);</span></code></pre></div>
 <p><img src="man/figures/ae_category_attribStart_timeline_plot.png" width="100%" /></p>
+</div>
+</div>
+<div id="summary-functions-for-mcmcglmm-object-with-binary-outcome" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Summary functions for MCMCglmm object with binary outcome<a href="examples.html#summary-functions-for-mcmcglmm-object-with-binary-outcome" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="model-output-for-fixed-effects" class="section level4 hasAnchor" number="4.3.5.1">
+<h4><span class="header-section-number">4.3.5.1</span> Model output for fixed effects<a href="examples.html#model-output-for-fixed-effects" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Below runs a logistic MCMCglmm model on the odds of grade 3 or higher adverse event, controlling for attribution of first and second intervention drugs. Subject and system organ class are treated as random effects. Model has 800 posterior samples. Should specify burnin=125000, nitt=625000 and thin=100 for 5000 posterior samples with lower autocorrelation. Aim for effective sample sizes of at least 2000.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="examples.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb24-2"><a href="examples.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="examples.html#cb24-3" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>G3Plus <span class="ot">&lt;-</span> <span class="dv">0</span>;</span>
+<span id="cb24-4"><a href="examples.html#cb24-4" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>G3Plus[ae<span class="sc">$</span>AE_SEV_GD <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>)] <span class="ot">&lt;-</span> <span class="dv">1</span>;</span>
+<span id="cb24-5"><a href="examples.html#cb24-5" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>Drug_1_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;No&quot;</span>;</span>
+<span id="cb24-6"><a href="examples.html#cb24-6" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>Drug_1_Attribution[ae<span class="sc">$</span>CTC_AE_ATTR_SCALE <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Yes&quot;</span>;</span>
+<span id="cb24-7"><a href="examples.html#cb24-7" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>Drug_2_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;No&quot;</span>;</span>
+<span id="cb24-8"><a href="examples.html#cb24-8" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>Drug_2_Attribution[ae<span class="sc">$</span>CTC_AE_ATTR_SCALE_1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Yes&quot;</span>;</span>
+<span id="cb24-9"><a href="examples.html#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="examples.html#cb24-10" aria-hidden="true" tabindex="-1"></a>prior2RE <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">R =</span> <span class="fu">list</span>(<span class="at">V =</span> <span class="fu">diag</span>(<span class="dv">1</span>), <span class="at">fix =</span> <span class="dv">1</span>),</span>
+<span id="cb24-11"><a href="examples.html#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">G=</span><span class="fu">list</span>(<span class="at">G1=</span><span class="fu">list</span>(<span class="at">V=</span><span class="dv">1</span>, <span class="at">nu=</span><span class="fl">0.02</span>), <span class="at">G2=</span><span class="fu">list</span>(<span class="at">V=</span><span class="dv">1</span>, <span class="at">nu=</span><span class="fl">0.02</span>)));</span>
+<span id="cb24-12"><a href="examples.html#cb24-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-13"><a href="examples.html#cb24-13" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> MCMCglmm<span class="sc">::</span><span class="fu">MCMCglmm</span>(G3Plus <span class="sc">~</span> Drug_1_Attribution <span class="sc">+</span> Drug_2_Attribution, </span>
+<span id="cb24-14"><a href="examples.html#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">random=</span><span class="sc">~</span>Subject <span class="sc">+</span> ae_category, <span class="at">family=</span><span class="st">&quot;categorical&quot;</span>, <span class="at">data=</span>ae, <span class="at">saveX=</span><span class="cn">TRUE</span>, </span>
+<span id="cb24-15"><a href="examples.html#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose=</span>F, <span class="at">burnin=</span><span class="dv">2000</span>, <span class="at">nitt=</span><span class="dv">10000</span>, <span class="at">thin=</span><span class="dv">10</span>, <span class="at">pr=</span><span class="cn">TRUE</span>, <span class="at">prior=</span>prior2RE);</span>
+<span id="cb24-16"><a href="examples.html#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="examples.html#cb24-17" aria-hidden="true" tabindex="-1"></a>mcmcglmm_mva <span class="ot">&lt;-</span> <span class="fu">nice_mcmcglmm</span>(model1, ae);</span>
+<span id="cb24-18"><a href="examples.html#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
+<span id="cb24-19"><a href="examples.html#cb24-19" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mcmcglmm_mva);</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:left;">
+Levels
+</th>
+<th style="text-align:left;">
+OR (95% HPDI)
+</th>
+<th style="text-align:left;">
+MCMCp
+</th>
+<th style="text-align:left;">
+eff.samp
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Drug 1 Attribution
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+2.71 (1.01, 6.98)
+</td>
+<td style="text-align:left;">
+0.045
+</td>
+<td style="text-align:left;">
+174.68
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Drug 2 Attribution
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+0.45 (0.14, 1.27)
+</td>
+<td style="text-align:left;">
+0.170
+</td>
+<td style="text-align:left;">
+158.52
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="intraclass-correlation-coefficients" class="section level4 hasAnchor" number="4.3.5.2">
+<h4><span class="header-section-number">4.3.5.2</span> Intraclass correlation coefficients<a href="examples.html#intraclass-correlation-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Most of the observed variation in grade 3 or higher adverse event status is attributable to adverse event category, also known as system organ class.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="examples.html#cb25-1" aria-hidden="true" tabindex="-1"></a>mcmcglmm_icc <span class="ot">&lt;-</span> <span class="fu">nice_mcmcglmm_icc</span>(model1, <span class="at">prob=</span><span class="fl">0.95</span>, <span class="at">decimals=</span><span class="dv">4</span>);</span>
+<span id="cb25-2"><a href="examples.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
+<span id="cb25-3"><a href="examples.html#cb25-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mcmcglmm_icc);</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+ICC
+</th>
+<th style="text-align:right;">
+lower
+</th>
+<th style="text-align:right;">
+upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Subject
+</td>
+<td style="text-align:right;">
+0.0627
+</td>
+<td style="text-align:right;">
+0.0057
+</td>
+<td style="text-align:right;">
+0.3494
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ae_category
+</td>
+<td style="text-align:right;">
+0.7664
+</td>
+<td style="text-align:right;">
+0.4568
+</td>
+<td style="text-align:right;">
+0.9356
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+units
+</td>
+<td style="text-align:right;">
+0.1258
+</td>
+<td style="text-align:right;">
+0.0390
+</td>
+<td style="text-align:right;">
+0.2490
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="caterpillar-plots-of-random-effects---participant" class="section level4 hasAnchor" number="4.3.5.3">
+<h4><span class="header-section-number">4.3.5.3</span> Caterpillar plots of random effects - participant<a href="examples.html#caterpillar-plots-of-random-effects---participant" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>After controlling for first and second drug attributions, subject 01 has a higher odds for grade 3 or higher adverse event than the average of study participants.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="examples.html#cb26-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">caterpillar_plot</span>(<span class="at">subjID =</span> <span class="st">&quot;Subject&quot;</span>,</span>
+<span id="cb26-2"><a href="examples.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mcmcglmm_object =</span> model1,</span>
+<span id="cb26-3"><a href="examples.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob =</span> <span class="fl">0.95</span>,</span>
+<span id="cb26-4"><a href="examples.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">orig_dataset =</span> ae,</span>
+<span id="cb26-5"><a href="examples.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb26-6"><a href="examples.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">binaryOutcomeVar =</span> <span class="st">&quot;G3Plus&quot;</span>)</span>
+<span id="cb26-7"><a href="examples.html#cb26-7" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/caterpillar_plot_subject&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), </span>
+<span id="cb26-8"><a href="examples.html#cb26-8" aria-hidden="true" tabindex="-1"></a>       p, <span class="at">scale =</span> <span class="fl">1.0</span>, <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="fl">3.4</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>);</span></code></pre></div>
+<p><img src="man/figures/caterpillar_plot_subject.png" width="100%" /></p>
+</div>
+<div id="caterpillar-plots-of-random-effects---system-organ-class" class="section level4 hasAnchor" number="4.3.5.4">
+<h4><span class="header-section-number">4.3.5.4</span> Caterpillar plots of random effects - system organ class<a href="examples.html#caterpillar-plots-of-random-effects---system-organ-class" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Highest posterior density intervals, also known as credible intervals, are not symmetric. Need to run model for more iterations with higher burnin.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="examples.html#cb27-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">caterpillar_plot</span>(<span class="at">subjID =</span> <span class="st">&quot;ae_category&quot;</span>,</span>
+<span id="cb27-2"><a href="examples.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mcmcglmm_object =</span> model1,</span>
+<span id="cb27-3"><a href="examples.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob =</span> <span class="fl">0.95</span>,</span>
+<span id="cb27-4"><a href="examples.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">orig_dataset =</span> ae,</span>
+<span id="cb27-5"><a href="examples.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">4</span>,</span>
+<span id="cb27-6"><a href="examples.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">binaryOutcomeVar =</span> <span class="st">&quot;G3Plus&quot;</span>,</span>
+<span id="cb27-7"><a href="examples.html#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;System organ class (n, events)&quot;</span>,</span>
+<span id="cb27-8"><a href="examples.html#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Odds Ratio for G3+ Severity with 95% Highest Posterior Density Interval&quot;</span>,</span>
+<span id="cb27-9"><a href="examples.html#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">fonts =</span> <span class="fu">c</span>(<span class="st">&quot;Arial&quot;</span>, <span class="st">&quot;Arial&quot;</span>, <span class="st">&quot;Arial&quot;</span>, <span class="st">&quot;Arial&quot;</span>),</span>
+<span id="cb27-10"><a href="examples.html#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">break.label.summary =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-11"><a href="examples.html#cb27-11" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/caterpillar_plot_ae_category&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), </span>
+<span id="cb27-12"><a href="examples.html#cb27-12" aria-hidden="true" tabindex="-1"></a>       p, <span class="at">scale =</span> <span class="fl">1.0</span>, <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="fl">4.0</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>);</span></code></pre></div>
+<p><img src="man/figures/caterpillar_plot_ae_category.png" width="100%" /></p>
 
 </div>
 </div>

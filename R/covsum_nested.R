@@ -55,9 +55,8 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #'   \emph{Chi-squared} (default) or \emph{Fisher}
 #' @param include_missing Option to include NA values of maincov. NAs will not
 #'   be included in statistical tests
-#' @param percentage choice of how percentages are presented ,one of
+#' @param percentage choice of how percentages are presented, one of
 #'   \emph{column} (default) or \emph{row}
-#' @keywords dataframe
 #' @importFrom stats lm sd anova as.formula binomial median na.fail
 #' @importFrom rstatix cramer_v eta_squared
 #' @importFrom dplyr select reframe summarise group_by filter across row_number n
@@ -69,7 +68,7 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @importFrom afex mixed
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
 #'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},
-#'   \code{\link{anova}, and \code{\link{afex::mixed}}
+#'   \code{\link{anova}} and \code{\link{mixed}}
 covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, numobs = NULL, 
                            markup = TRUE, sanitize = TRUE, nicenames = TRUE, IQR = FALSE, 
                            all.stats = FALSE, pvalue = TRUE, effSize = TRUE, show.tests = TRUE, 
@@ -334,15 +333,15 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' @export
 #' @seealso \code{\link{covsum}},\code{\link{fisher.test}},
 #'   \code{\link{chisq.test}}, \code{\link{wilcox.test}},
-#'   \code{\link{kruskal.test}}, \code{\link{anova}}, and \code{\link{outTable}}
+#'   \code{\link{kruskal.test}}, \code{\link{anova}}, 
+#'   \code{\link{mixed}} and \code{\link{outTable}}
 #' @examples
 #' # Example 1
 #' data(ae)
 #' rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), covs = c("AE_SEV_GD", 
 #' "AE_ONSET_DT_INT"), maincov = "CTC_AE_ATTR_SCALE")
 #' 
-#' # Example 2: set variable labels and other options, save output with markup as 
-#'     both HTML and LaTeX table
+#' # Example 2: set variable labels and other options, save output with markup
 #' data("ae")
 #' lbls <- data.frame(c1=c('AE_SEV_GD','AE_ONSET_DT_INT'),
 #'     c2=c('Adverse event severity grade','Adverse event onset date'))
@@ -354,11 +353,13 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'     effSize = FALSE, full = TRUE, IQR = FALSE, nicenames = TRUE, sanitize = TRUE, 
 #'     markup = TRUE, include_missing = TRUE, just.nested.pvalue = TRUE, 
 #'     tableOnly = TRUE)
+#' \dontrun{
 #' cat(reportRmd::outTable(tab=output_tab))
 #' cat(reportRmd::outTable(output_tab, format="html"), file = paste("./man/tables/", 
 #'     "output_tab.html", sep=""))
 #' cat(reportRmd::outTable(output_tab, format="latex"), file = paste("./man/tables/", 
 #'     "output_tab.tex", sep=""))
+#' }
 rm_covsum_nested <- function(data,covs,maincov=NULL,id=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
                              digits=1,digits.cat=0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
                              pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp=FALSE,show.tests=TRUE,

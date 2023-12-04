@@ -87,16 +87,22 @@ clinT <- plyr::join_all(list(enrollment, demography, ineligibility, ae),
   by = "Subject", type = "full");
 clinT$AE_SEV_GD <- as.numeric(clinT$AE_SEV_GD);
 clinT$Drug_1_Attribution <- "Unrelated";
-clinT$Drug_1_Attribution[clinT$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- "Related";
+clinT$Drug_1_Attribution[clinT$CTC_AE_ATTR_SCALE %in% 
+                           c("Definite", "Probable", "Possible")] <- "Related";
 clinT$Drug_2_Attribution <- "Unrelated";
-clinT$Drug_2_Attribution[clinT$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Related";
+clinT$Drug_2_Attribution[clinT$CTC_AE_ATTR_SCALE_1 %in% 
+                           c("Definite", "Probable", "Possible")] <- "Related";
 lbls <- data.frame(c1=c("AE_SEV_GD", "ENROL_DATE_INT", "COHORT", "GENDER_CODE", 
   "INELIGIBILITY_STATUS", "AE_ONSET_DT_INT", "Drug_2_Attribution", "ae_category"),
-  c2=c("Adverse event severity grade", "Enrollment date", "Cohort", "Gender", "Ineligibility", "Adverse event onset date", "Attribution to second study drug", "Adverse event system organ class"));
+  c2=c("Adverse event severity grade", "Enrollment date", "Cohort", "Gender", 
+       "Ineligibility", "Adverse event onset date", "Attribution to second study drug",
+       "Adverse event system organ class"));
 clinT <- reportRmd::set_labels(clinT, lbls);
 
 rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"), 
-  covs = c("COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "ENROL_DATE_INT", "AE_SEV_GD", "Drug_2_Attribution", "AE_ONSET_DT_INT", "ae_category"), maincov = "Drug_1_Attribution");
+  covs = c("COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "ENROL_DATE_INT", 
+           "AE_SEV_GD", "Drug_2_Attribution", "AE_ONSET_DT_INT", "ae_category"), 
+  maincov = "Drug_1_Attribution");
 ```
 
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
@@ -388,7 +394,6 @@ Missing
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.68
 </td>
 </tr>
 <tr>
@@ -587,7 +592,6 @@ Unrelated
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.64
 </td>
 </tr>
 <tr>
@@ -1226,7 +1230,8 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test")
                  startDtVars=c("ENROL_DATE_INT"),ae_detailVar="ae_detail",
                  ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
                  ae_onsetDtVar="AE_ONSET_DT_INT",time_unit="week")
-ggplot2::ggsave(paste("man/figures/ae_detail_timeline_plot", ".png", sep=""), p, width=6.4, height=10, device="png", scale = 1.15);
+ggplot2::ggsave(paste("man/figures/ae_detail_timeline_plot", ".png", sep=""), p, 
+                width=6.4, height=10, device="png", scale = 1.15);
 ```
 
 <img src="man/figures/ae_detail_timeline_plot.png" width="100%" />
@@ -1261,7 +1266,8 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("New Subject","Test")
                                  "#01796F","#FFA343","#CC7722","#E0B0FF","#5A4FCF"),
                  attribSymbols=c(5,6,7,8,15,16,17,18,19,20),
                  columnWidths=c(23,15))
-ggplot2::ggsave(paste("man/figures/ae_category_timeline_plot", ".png", sep=""), p, width=3.6, height=5.4, device="png", scale = 1);
+ggplot2::ggsave(paste("man/figures/ae_category_timeline_plot", ".png", sep=""), p, 
+                width=3.6, height=5.4, device="png", scale = 1);
 ```
 
 <img src="man/figures/ae_category_timeline_plot.png" width="100%" />
@@ -1296,7 +1302,243 @@ p <- ae_timeline_plot(subjID="Subject",subjID_ineligText=c("01","11"),
                  attribColours=c("#9AB973","#01796F","#FFA343","#CC7722"),   
                  attribSymbols=c(7,8,5,6),
                  columnWidths=c(23))
-ggplot2::ggsave(paste("man/figures/ae_category_attribStart_timeline_plot", ".png", sep=""), p, width=4.2, height=5.4, device="png", scale = 1);
+ggplot2::ggsave(paste("man/figures/ae_category_attribStart_timeline_plot", ".png", sep=""), 
+                p, width=4.2, height=5.4, device="png", scale = 1);
 ```
 
 <img src="man/figures/ae_category_attribStart_timeline_plot.png" width="100%" />
+
+### Summary functions for MCMCglmm object with binary outcome
+
+#### Model output for fixed effects
+
+Below runs a logistic MCMCglmm model on the odds of grade 3 or higher
+adverse event, controlling for attribution of first and second
+intervention drugs. Subject and system organ class are treated as random
+effects. Model has 800 posterior samples. Should specify burnin=125000,
+nitt=625000 and thin=100 for 5000 posterior samples with lower
+autocorrelation. Aim for effective sample sizes of at least 2000.
+
+``` r
+data("ae");
+
+ae$G3Plus <- 0;
+ae$G3Plus[ae$AE_SEV_GD %in% c("3", "4", "5")] <- 1;
+ae$Drug_1_Attribution <- "No";
+ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE %in% c("Definite", "Probable", "Possible")] <- "Yes";
+ae$Drug_2_Attribution <- "No";
+ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 %in% c("Definite", "Probable", "Possible")] <- "Yes";
+
+prior2RE <- list(R = list(V = diag(1), fix = 1),
+  G=list(G1=list(V=1, nu=0.02), G2=list(V=1, nu=0.02)));
+  
+model1 <- MCMCglmm::MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
+  random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
+  verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
+
+mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
+options(knitr.kable.NA = '');
+knitr::kable(mcmcglmm_mva);
+```
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:left;">
+Levels
+</th>
+<th style="text-align:left;">
+OR (95% HPDI)
+</th>
+<th style="text-align:left;">
+MCMCp
+</th>
+<th style="text-align:left;">
+eff.samp
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Drug 1 Attribution
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+2.77 (1.22, 6.93)
+</td>
+<td style="text-align:left;">
+0.022
+</td>
+<td style="text-align:left;">
+193.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Drug 2 Attribution
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+0.45 (0.16, 1.35)
+</td>
+<td style="text-align:left;">
+0.145
+</td>
+<td style="text-align:left;">
+156.40
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Intraclass correlation coefficients
+
+Most of the observed variation in grade 3 or higher adverse event status
+is attributable to adverse event category, also known as system organ
+class.
+
+``` r
+mcmcglmm_icc <- nice_mcmcglmm_icc(model1, prob=0.95, decimals=4);
+options(knitr.kable.NA = '');
+knitr::kable(mcmcglmm_icc);
+```
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+ICC
+</th>
+<th style="text-align:right;">
+lower
+</th>
+<th style="text-align:right;">
+upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Subject
+</td>
+<td style="text-align:right;">
+0.0583
+</td>
+<td style="text-align:right;">
+0.0068
+</td>
+<td style="text-align:right;">
+0.3010
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ae_category
+</td>
+<td style="text-align:right;">
+0.8144
+</td>
+<td style="text-align:right;">
+0.5145
+</td>
+<td style="text-align:right;">
+0.9572
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+units
+</td>
+<td style="text-align:right;">
+0.0725
+</td>
+<td style="text-align:right;">
+0.0272
+</td>
+<td style="text-align:right;">
+0.2458
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Caterpillar plots of random effects - participant
+
+After controlling for first and second drug attributions, subject 01 has
+a higher odds for grade 3 or higher adverse event than the average of
+study participants.
+
+``` r
+p <- caterpillar_plot(subjID = "Subject",
+  mcmcglmm_object = model1,
+  prob = 0.95,
+  orig_dataset = ae,
+  ncol = 2,
+  binaryOutcomeVar = "G3Plus")
+ggplot2::ggsave(paste("man/figures/caterpillar_plot_subject", ".png", sep=""), 
+       p, scale = 1.0, width=6.4, height=3.4, device="png");
+```
+
+<img src="man/figures/caterpillar_plot_subject.png" width="100%" />
+
+#### Caterpillar plots of random effects - system organ class
+
+Highest posterior density intervals, also known as credible intervals,
+are not symmetric. Need to run model for more iterations with higher
+burnin.
+
+``` r
+p <- caterpillar_plot(subjID = "ae_category",
+  mcmcglmm_object = model1,
+  prob = 0.95,
+  orig_dataset = ae,
+  ncol = 4,
+  binaryOutcomeVar = "G3Plus",
+  subtitle = "System organ class (n, events)",
+  title = "Odds Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
+  fonts = c("Arial", "Arial", "Arial", "Arial"),
+  break.label.summary = TRUE)
+ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
+       p, scale = 1.0, width=6.4, height=4.0, device="png");
+```
+
+<img src="man/figures/caterpillar_plot_ae_category.png" width="100%" />

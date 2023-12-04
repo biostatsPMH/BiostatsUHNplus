@@ -104,7 +104,7 @@ categorical data (default: 0)}
 \item{include_missing}{Option to include NA values of maincov. NAs will not
 be included in statistical tests}
 
-\item{percentage}{choice of how percentages are presented ,one of
+\item{percentage}{choice of how percentages are presented, one of
 \emph{column} (default) or \emph{row}}
 }
 \description{
@@ -113,6 +113,5 @@ Nested version of reportRmd covsum()
 \seealso{
 \code{\link{fisher.test}},\code{\link{chisq.test}},
 \code{\link{wilcox.test}},\code{\link{kruskal.test}},
-\code{\link{anova}, and \code{\link{afex::mixed}}
+\code{\link{anova}} and \code{\link{mixed}}
 }
-\keyword{dataframe}

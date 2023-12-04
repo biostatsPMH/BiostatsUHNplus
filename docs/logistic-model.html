@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.2 Logistic model | Example nested reportRmd and Bayesian hierarchical model summary</title>
-  <meta name="description" content="3.2 Logistic model | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <title>3.2 Logistic model | Example nested summary and Bayesian hierarchical model summary</title>
+  <meta name="description" content="3.2 Logistic model | Example nested summary and Bayesian hierarchical model summary" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.2 Logistic model | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta property="og:title" content="3.2 Logistic model | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.2 Logistic model | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta name="twitter:title" content="3.2 Logistic model | Example nested summary and Bayesian hierarchical model summary" />
   
   
   
@@ -184,6 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.2" data-path="examples.html"><a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug"><i class="fa fa-check"></i><b>4.3.2</b> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug</a></li>
 <li class="chapter" data-level="4.3.3" data-path="examples.html"><a href="examples.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
 <li class="chapter" data-level="4.3.4" data-path="examples.html"><a href="examples.html#related-adverse-event-onset-timeline-plots"><i class="fa fa-check"></i><b>4.3.4</b> Related adverse event onset timeline plots</a></li>
+<li class="chapter" data-level="4.3.5" data-path="examples.html"><a href="examples.html#summary-functions-for-mcmcglmm-object-with-binary-outcome"><i class="fa fa-check"></i><b>4.3.5</b> Summary functions for MCMCglmm object with binary outcome</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -195,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Example nested reportRmd and Bayesian hierarchical model summary</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Example nested summary and Bayesian hierarchical model summary</a>
           </h1>
         </div>
 
@@ -249,7 +250,7 @@ VIF
 386
 </td>
 <td style="text-align:right;">
-1.03
+1.02
 </td>
 </tr>
 <tr>
@@ -275,7 +276,7 @@ Reference
 barley+lupins
 </td>
 <td style="text-align:right;">
-0.50 (0.37, 0.67)
+0.49 (0.36, 0.65)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -294,7 +295,7 @@ barley+lupins
 lupins
 </td>
 <td style="text-align:right;">
-0.35 (0.25, 0.49)
+0.33 (0.24, 0.45)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -315,7 +316,7 @@ lupins
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">&lt;0.001</span>
+<span style="font-weight: bold;">0.039</span>
 </td>
 <td style="text-align:right;">
 1337
@@ -324,7 +325,7 @@ lupins
 386
 </td>
 <td style="text-align:right;">
-1.02
+1.01
 </td>
 </tr>
 <tr>
@@ -337,10 +338,10 @@ Reference
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-214
+267
 </td>
 <td style="text-align:right;">
-58
+85
 </td>
 <td style="text-align:right;">
 </td>
@@ -350,16 +351,16 @@ Reference
 2
 </td>
 <td style="text-align:right;">
-1.02 (0.69, 1.52)
+1.12 (0.76, 1.65)
 </td>
 <td style="text-align:right;">
-0.91
+0.58
 </td>
 <td style="text-align:right;">
-323
+237
 </td>
 <td style="text-align:right;">
-97
+73
 </td>
 <td style="text-align:right;">
 </td>
@@ -369,16 +370,16 @@ Reference
 3
 </td>
 <td style="text-align:right;">
-0.59 (0.39, 0.89)
+1.21 (0.85, 1.72)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.013</span>
+0.29
 </td>
 <td style="text-align:right;">
-323
+319
 </td>
 <td style="text-align:right;">
-69
+116
 </td>
 <td style="text-align:right;">
 </td>
@@ -388,16 +389,16 @@ Reference
 4
 </td>
 <td style="text-align:right;">
-1.87 (1.21, 2.89)
+0.70 (0.47, 1.03)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.005</span>
+0.073
 </td>
 <td style="text-align:right;">
-205
+307
 </td>
 <td style="text-align:right;">
-104
+62
 </td>
 <td style="text-align:right;">
 </td>
@@ -407,16 +408,16 @@ Reference
 5
 </td>
 <td style="text-align:right;">
-0.72 (0.47, 1.10)
+0.84 (0.55, 1.29)
 </td>
 <td style="text-align:right;">
-0.13
+0.44
 </td>
 <td style="text-align:right;">
-272
+207
 </td>
 <td style="text-align:right;">
-58
+50
 </td>
 <td style="text-align:right;">
 </td>
@@ -426,10 +427,10 @@ Reference
 <span style="font-weight: bold;">Time</span>
 </td>
 <td style="text-align:right;">
-0.98 (0.95, 1.00)
+0.97 (0.95, 1.00)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.041</span>
+<span style="font-weight: bold;">0.030</span>
 </td>
 <td style="text-align:right;">
 1337

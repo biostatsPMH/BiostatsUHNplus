@@ -25,6 +25,7 @@ Depends:
     R (>= 4.2)
 Imports: 
     afex,
+    coda,
     cowplot,
     dplyr,
     forcats,
@@ -58,4 +59,6 @@ Collate:
     'covsum_nested.R'
     'dsmb_ccru.R'
     'nice_mcmcglmm.R'
+    'nice_mcmcglmm_icc.R'
     'ae_timeline_plot.R'
+    'caterpillar_plot.R'

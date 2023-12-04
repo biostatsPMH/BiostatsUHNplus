@@ -147,8 +147,7 @@ data(ae)
 rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), covs = c("AE_SEV_GD", 
 "AE_ONSET_DT_INT"), maincov = "CTC_AE_ATTR_SCALE")
 
-# Example 2: set variable labels and other options, save output with markup as 
-    both HTML and LaTeX table
+# Example 2: set variable labels and other options, save output with markup
 data("ae")
 lbls <- data.frame(c1=c('AE_SEV_GD','AE_ONSET_DT_INT'),
     c2=c('Adverse event severity grade','Adverse event onset date'))
@@ -160,15 +159,18 @@ output_tab <- rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"),
     effSize = FALSE, full = TRUE, IQR = FALSE, nicenames = TRUE, sanitize = TRUE, 
     markup = TRUE, include_missing = TRUE, just.nested.pvalue = TRUE, 
     tableOnly = TRUE)
+\dontrun{
 cat(reportRmd::outTable(tab=output_tab))
 cat(reportRmd::outTable(output_tab, format="html"), file = paste("./man/tables/", 
     "output_tab.html", sep=""))
 cat(reportRmd::outTable(output_tab, format="latex"), file = paste("./man/tables/", 
     "output_tab.tex", sep=""))
 }
+}
 \seealso{
 \code{\link{covsum}},\code{\link{fisher.test}},
 \code{\link{chisq.test}}, \code{\link{wilcox.test}},
-\code{\link{kruskal.test}}, \code{\link{anova}}, and \code{\link{outTable}}
+\code{\link{kruskal.test}}, \code{\link{anova}},
+\code{\link{mixed}} and \code{\link{outTable}}
 }
 \keyword{dataframe}
