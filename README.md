@@ -5,6 +5,7 @@ Note that the README.md document may need updating to change
 -->
 
 # BiostatsUHNplus
+
 <!-- badges: start -->
 
 [![Lifecycle:
@@ -1384,13 +1385,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-2.77 (1.22, 6.93)
+2.69 (1.06, 7.01)
 </td>
 <td style="text-align:left;">
-0.022
+0.035
 </td>
 <td style="text-align:left;">
-193.23
+172.94
 </td>
 </tr>
 <tr>
@@ -1415,13 +1416,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-0.45 (0.16, 1.35)
+0.42 (0.15, 1.26)
 </td>
 <td style="text-align:left;">
-0.145
+0.102
 </td>
 <td style="text-align:left;">
-156.40
+168.45
 </td>
 </tr>
 </tbody>
@@ -1461,13 +1462,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0583
+0.0996
 </td>
 <td style="text-align:right;">
-0.0068
+0.0115
 </td>
 <td style="text-align:right;">
-0.3010
+0.3634
 </td>
 </tr>
 <tr>
@@ -1475,13 +1476,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.8144
+0.6686
 </td>
 <td style="text-align:right;">
-0.5145
+0.4432
 </td>
 <td style="text-align:right;">
-0.9572
+0.9571
 </td>
 </tr>
 <tr>
@@ -1489,13 +1490,13 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.0725
+0.1142
 </td>
 <td style="text-align:right;">
-0.0272
+0.0254
 </td>
 <td style="text-align:right;">
-0.2458
+0.2815
 </td>
 </tr>
 </tbody>
