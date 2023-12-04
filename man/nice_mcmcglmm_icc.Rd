@@ -23,6 +23,7 @@ Nice table of intraclass correlation coefficients from MCMCglmm::MCMCglmm()
 model output
 }
 \examples{
+\dontrun{
 data(ae)
 ae$AE_SEV_GD <- as.numeric(ae$AE_SEV_GD);
 ae$Drug_1_Attribution <- 0;
@@ -30,10 +31,11 @@ ae$Drug_1_Attribution[ae$CTC_AE_ATTR_SCALE \%in\% c("Definite", "Probable", "Pos
 ae$Drug_2_Attribution <- 0;
 ae$Drug_2_Attribution[ae$CTC_AE_ATTR_SCALE_1 \%in\% c("Definite", "Probable", "Possible")] <- 1;
 prior2RE <- list(R = list(V = diag(1), fix = 1), G=list(G1=list(V=1, nu=0.02), 
-                                                        G2=list(V=1, nu=0.02)));
+   G2=list(V=1, nu=0.02)));
 model1 <- MCMCglmm::MCMCglmm(Drug_1_Attribution ~ AE_SEV_GD + Drug_2_Attribution, 
-                             random=~ae_detail + Subject, family="categorical", data=ae, saveX=TRUE, 
-                             verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
+   random=~ae_detail + Subject, family="categorical", data=ae, saveX=TRUE, 
+   verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
 mcmcglmm_icc <- nice_mcmcglmm_icc(model1);
+}
 }
 \keyword{dataframe}

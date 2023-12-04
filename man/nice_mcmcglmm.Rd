@@ -18,6 +18,7 @@ grouped_df
 Nice table of model output from MCMCglmm::MCMCglmm()
 }
 \examples{
+\dontrun{
 data(ae)
 
 ae$AE_SEV_GD <- as.numeric(ae$AE_SEV_GD);
@@ -36,5 +37,6 @@ model1 <- MCMCglmm::MCMCglmm(Drug_1_Attribution ~ AE_SEV_GD + Drug_2_Attribution
           verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
 
 mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
+}
 }
 \keyword{dataframe}

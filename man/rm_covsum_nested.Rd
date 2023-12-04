@@ -142,6 +142,7 @@ which case a data frame is returned
 Outputs a nested version of reportRmd::rm_covsum()
 }
 \examples{
+\dontrun{
 # Example 1
 data(ae)
 rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), covs = c("AE_SEV_GD", 
@@ -159,7 +160,6 @@ output_tab <- rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"),
     effSize = FALSE, full = TRUE, IQR = FALSE, nicenames = TRUE, sanitize = TRUE, 
     markup = TRUE, include_missing = TRUE, just.nested.pvalue = TRUE, 
     tableOnly = TRUE)
-\dontrun{
 cat(reportRmd::outTable(tab=output_tab))
 cat(reportRmd::outTable(output_tab, format="html"), file = paste("./man/tables/", 
     "output_tab.html", sep=""))

@@ -336,6 +336,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   \code{\link{kruskal.test}}, \code{\link{anova}}, 
 #'   \code{\link{mixed}} and \code{\link{outTable}}
 #' @examples
+#' \dontrun{
 #' # Example 1
 #' data(ae)
 #' rm_covsum_nested(data = ae, id = c("ae_detail", "Subject"), covs = c("AE_SEV_GD", 
@@ -353,7 +354,6 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'     effSize = FALSE, full = TRUE, IQR = FALSE, nicenames = TRUE, sanitize = TRUE, 
 #'     markup = TRUE, include_missing = TRUE, just.nested.pvalue = TRUE, 
 #'     tableOnly = TRUE)
-#' \dontrun{
 #' cat(reportRmd::outTable(tab=output_tab))
 #' cat(reportRmd::outTable(output_tab, format="html"), file = paste("./man/tables/", 
 #'     "output_tab.html", sep=""))
