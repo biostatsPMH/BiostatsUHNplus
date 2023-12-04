@@ -29,11 +29,11 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @param effSize boolean indicating if you want effect sizes included in the 
 #'   table. Can only be obtained if pvalue is also requested.
 #' @param show.tests boolean indicating if the type of statistical used should
-#'   be shown in a column beside the pvalues. Ignored if pvalue=FALSE.
+#'   be shown in a column beside the p-values. Ignored if pvalue=FALSE.
 #' @param nCores if > 1, specifies number of cores to use for parallel processing 
 #'  for calculating the nested p-value (default: 1).
 #' @param nested.test specifies test used for calculating nested p-value from 
-#'  afex::mixed function. Either \emph{paramateric bootstrap} method 
+#'  afex::mixed function. Either \emph{parametric bootstrap} method 
 #'  or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap 
 #'  takes longer.
 #' @param nsim specifies number of simulations to use for calculating nested p-value
@@ -195,7 +195,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       colnames(objComb)[2] <- paste("Full Sample (", colnames(objComb)[2], ")", sep="");
     }
   }
-  #------------# LRT glmer nested pvalues #------------#;
+  #------------# LRT glmer nested p-values #------------#;
   ###https://search.r-project.org/CRAN/refmans/afex/html/mixed.html
   if (nested.pvalue == TRUE & !is.null(maincov) & !is.null(id)) {
     objComb$cov <- "";
@@ -283,7 +283,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   returned unformatted (ie not rounded or prefixed with '<'). Best used with
 #'   tableOnly = T and outTable function. 
 #' @param show.tests boolean indicating if the type of statistical used should
-#'   be shown in a column beside the pvalues. Ignored if pvalue=FALSE.
+#'   be shown in a column beside the p-values. Ignored if pvalue=FALSE.
 #' @param nCores if > 1, specifies number of cores to use for parallel processing 
 #'  for calculating the nested p-value (default: 1).
 #' @param nested.test specifies test used for calculating nested p-value from 

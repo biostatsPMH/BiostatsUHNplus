@@ -2,7 +2,7 @@
 #' such as MCMCglmm::MCMCglmm() object, that have binary outcome.
 #'
 #' @param subjID key identifier field for participant ID in data sets
-#' @param remove.text.subjID boolean indiciating if non-numeric text should be 
+#' @param remove.text.subjID boolean indicating if non-numeric text should be 
 #'    removed from subjID in plot label. Note that this can only be used if there
 #'    are non-duplicate participant IDs when non-numeric text is removed. Default 
 #'    is FALSE (if provided)
@@ -11,7 +11,7 @@
 #' @param binaryOutcomeVar name of binary variable (0,1) that denotes outcome 
 #'    in MCMCglmm model
 #' @param prob probability for highest posterior density interval, similar to a 
-#'    confidence interval. Defaul is 0.95 (if provided)
+#'    confidence interval. Default is 0.95 (if provided)
 #' @param title title of the plot. Overrides default title (if provided)
 #' @param subtitle subtitle of the plot. Overrides default subtitle (if provided)
 #' @param ncol number of columns in plot. Default is 2 (if provided)

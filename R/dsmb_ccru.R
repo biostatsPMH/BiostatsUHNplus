@@ -18,12 +18,12 @@
 #' @param ineligVarText character text that denotes participant ineligibility,
 #'    for example, c("Yes", "Y") (if provided)
 #' @param genderVar field that denotes participant gender
-#' @param enrolDtVar field that denotes participant enrolment date (i.e. 10MAY2021)
+#' @param enrolDtVar field that denotes participant enrollment date (i.e. 10MAY2021)
 #' @param ae_detailVar field that denotes participant AE detail (lowest level term)
 #' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
 #' @param ae_onsetDtVar field that denotes participant AE onset date
-#' @param ae_detailOtherText character text that denotes referencing vebatim AE field, 
+#' @param ae_detailOtherText character text that denotes referencing verbatim AE field, 
 #'   for example, c("Other, specify", "OTHER") (if provided)
 #' @param ae_detailOtherVar field that denotes participant AE detail other (if provided)
 #' @param ae_verbatimVar field that denotes participant AE detail verbatim (if provided)
