@@ -83,7 +83,7 @@ with \emph{parametric bootstrap} method used for nested.test (default: 1000).}
 \item{excludeLevels}{a named list of covariate levels to exclude from
 statistical tests in the form list(varname =c('level1','level2')). These
 levels will be excluded from association tests, but not the table. This can
-be useful for levels where there is a logical skip (ie not missing, but not
+be useful for levels where there is a logical skip (i.e. not missing, but not
 presented). Ignored if pvalue=FALSE.}
 
 \item{dropLevels}{logical, indicating if empty factor levels be dropped from

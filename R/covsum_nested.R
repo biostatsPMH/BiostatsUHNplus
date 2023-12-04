@@ -43,7 +43,7 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @param excludeLevels a named list of covariate levels to exclude from
 #'   statistical tests in the form list(varname =c('level1','level2')). These
 #'   levels will be excluded from association tests, but not the table. This can
-#'   be useful for levels where there is a logical skip (ie not missing, but not
+#'   be useful for levels where there is a logical skip (i.e. not missing, but not
 #'   presented). Ignored if pvalue=FALSE.
 #' @param full boolean indicating if you want the full sample included in the
 #'   table, ignored if maincov is NULL
@@ -287,7 +287,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' @param nCores if > 1, specifies number of cores to use for parallel processing 
 #'  for calculating the nested p-value (default: 1).
 #' @param nested.test specifies test used for calculating nested p-value from 
-#'  afex::mixed function. Either \emph{paramateric bootstrap} method 
+#'  afex::mixed function. Either \emph{parametric bootstrap} method 
 #'  or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap 
 #'  takes longer.
 #' @param nsim specifies number of simulations to use for calculating nested p-value

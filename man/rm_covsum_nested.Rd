@@ -93,7 +93,7 @@ tests and effect size. Overrides effSize and show.tests arguments.}
 the nested p-value (if provided).}
 
 \item{nested.test}{specifies test used for calculating nested p-value from
-afex::mixed function. Either \emph{paramateric bootstrap} method
+afex::mixed function. Either \emph{parametric bootstrap} method
 or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap
 takes longer.}
 
