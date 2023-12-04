@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.1 Summary of high protein status | Example nested reportRmd and Bayesian hierarchical model summary</title>
-  <meta name="description" content="2.1 Summary of high protein status | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <title>2.1 Summary of high protein status | Example nested summary and Bayesian hierarchical model summary</title>
+  <meta name="description" content="2.1 Summary of high protein status | Example nested summary and Bayesian hierarchical model summary" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.1 Summary of high protein status | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta property="og:title" content="2.1 Summary of high protein status | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.1 Summary of high protein status | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta name="twitter:title" content="2.1 Summary of high protein status | Example nested summary and Bayesian hierarchical model summary" />
   
   
   
@@ -184,6 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.2" data-path="examples.html"><a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug"><i class="fa fa-check"></i><b>4.3.2</b> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug</a></li>
 <li class="chapter" data-level="4.3.3" data-path="examples.html"><a href="examples.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
 <li class="chapter" data-level="4.3.4" data-path="examples.html"><a href="examples.html#related-adverse-event-onset-timeline-plots"><i class="fa fa-check"></i><b>4.3.4</b> Related adverse event onset timeline plots</a></li>
+<li class="chapter" data-level="4.3.5" data-path="examples.html"><a href="examples.html#summary-functions-for-mcmcglmm-object-with-binary-outcome"><i class="fa fa-check"></i><b>4.3.5</b> Summary functions for MCMCglmm object with binary outcome</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -195,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Example nested reportRmd and Bayesian hierarchical model summary</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Example nested summary and Bayesian hierarchical model summary</a>
           </h1>
         </div>
 
@@ -468,6 +469,135 @@ Cow
 1
 </td>
 <td style="text-align:left;">
+B04
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+B09
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
 B12
 </td>
 <td style="text-align:left;">
@@ -526,13 +656,388 @@ N
 1
 </td>
 <td style="text-align:left;">
-B15
+B16
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+B17
 </td>
 <td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
 Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+B21
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+B23
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+BL10
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+BL17
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+BL21
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
 N
@@ -587,7 +1092,10 @@ N
 1
 </td>
 <td style="text-align:left;">
-B24
+BL23
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -612,6 +1120,62 @@ Y
 </td>
 <td style="text-align:left;">
 N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+BL27
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
 </td>
 <td style="text-align:left;">
 N
@@ -652,7 +1216,27 @@ N
 1
 </td>
 <td style="text-align:left;">
-BL04
+L12
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
 Y
@@ -661,28 +1245,7 @@ Y
 Y
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
+N
 </td>
 <td style="text-align:left;">
 N
@@ -712,37 +1275,7 @@ N
 1
 </td>
 <td style="text-align:left;">
-BL06
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
+L13
 </td>
 <td style="text-align:left;">
 N
@@ -760,42 +1293,10 @@ N
 N
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-BL25
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
 N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
 </td>
 <td style="text-align:left;">
 Y
@@ -828,73 +1329,6 @@ N
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-L02
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
 </td>
 </tr>
 <tr>
@@ -960,72 +1394,7 @@ N
 1
 </td>
 <td style="text-align:left;">
-L19
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-L20
+L22
 </td>
 <td style="text-align:left;">
 Y
@@ -1043,34 +1412,15 @@ N
 N
 </td>
 <td style="text-align:left;">
-N
+Y
+</td>
+<td style="text-align:left;">
 </td>
 <td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -1084,55 +1434,8 @@ N
 <td style="text-align:left;">
 Y
 </td>
-</tr>
-<tr>
 <td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-L21
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -1155,88 +1458,7 @@ N
 1
 </td>
 <td style="text-align:left;">
-L25
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-L26
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+L23
 </td>
 <td style="text-align:left;">
 Y
@@ -1248,12 +1470,6 @@ Y
 Y
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
@@ -1263,51 +1479,13 @@ Y
 Y
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-B03
-</td>
-<td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -1340,13 +1518,28 @@ N
 2
 </td>
 <td style="text-align:left;">
-B06
+B11
 </td>
 <td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
 Y
+</td>
+<td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
 N
@@ -1379,7 +1572,57 @@ Y
 Y
 </td>
 <td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+B14
+</td>
+<td style="text-align:left;">
 Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
 N
@@ -1400,7 +1643,7 @@ N
 2
 </td>
 <td style="text-align:left;">
-B07
+B15
 </td>
 <td style="text-align:left;">
 Y
@@ -1415,25 +1658,16 @@ N
 N
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
-Y
+N
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
+N
 </td>
 <td style="text-align:left;">
 Y
@@ -1455,6 +1689,12 @@ N
 </td>
 <td style="text-align:left;">
 N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
 </td>
 <td style="text-align:left;">
 </td>
@@ -1464,7 +1704,7 @@ N
 2
 </td>
 <td style="text-align:left;">
-B17
+B19
 </td>
 <td style="text-align:left;">
 Y
@@ -1473,43 +1713,13 @@ Y
 Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 Y
@@ -1521,7 +1731,37 @@ Y
 N
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
 </td>
 </tr>
 <tr>
@@ -1529,45 +1769,31 @@ N
 2
 </td>
 <td style="text-align:left;">
-B20
+BL04
 </td>
 <td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 Y
@@ -1586,6 +1812,16 @@ N
 </td>
 <td style="text-align:left;">
 N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
 </td>
 </tr>
 <tr>
@@ -1653,72 +1889,7 @@ N
 2
 </td>
 <td style="text-align:left;">
-BL07
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL08
-</td>
-<td style="text-align:left;">
-Y
+BL16
 </td>
 <td style="text-align:left;">
 N
@@ -1746,166 +1917,6 @@ N
 </td>
 <td style="text-align:left;">
 N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL15
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL17
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL19
 </td>
 <td style="text-align:left;">
 N
@@ -1932,33 +1943,10 @@ N
 N
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
 N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
 </td>
 </tr>
 <tr>
@@ -2026,7 +2014,40 @@ N
 2
 </td>
 <td style="text-align:left;">
-BL26
+BL22
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
 Y
@@ -2048,102 +2069,6 @@ N
 </td>
 <td style="text-align:left;">
 N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL27
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
 </td>
 <td style="text-align:left;">
 N
@@ -2219,10 +2144,10 @@ N
 2
 </td>
 <td style="text-align:left;">
-L03
+L02
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -2284,7 +2209,7 @@ N
 2
 </td>
 <td style="text-align:left;">
-L06
+L05
 </td>
 <td style="text-align:left;">
 Y
@@ -2296,7 +2221,7 @@ Y
 Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -2329,14 +2254,19 @@ N
 N
 </td>
 <td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
+N
 </td>
 </tr>
 <tr>
@@ -2344,7 +2274,7 @@ N
 2
 </td>
 <td style="text-align:left;">
-L11
+L20
 </td>
 <td style="text-align:left;">
 Y
@@ -2389,14 +2319,19 @@ N
 N
 </td>
 <td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
+Y
 </td>
 </tr>
 <tr>
@@ -2404,30 +2339,7 @@ N
 2
 </td>
 <td style="text-align:left;">
-L12
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
+L25
 </td>
 <td style="text-align:left;">
 Y
@@ -2448,49 +2360,13 @@ N
 N
 </td>
 <td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-L23
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
+N
 </td>
 <td style="text-align:left;">
 N
@@ -2523,7 +2399,81 @@ N
 3
 </td>
 <td style="text-align:left;">
-B02
+B01
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+B05
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -2535,40 +2485,31 @@ N
 N
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -2588,7 +2529,10 @@ N
 3
 </td>
 <td style="text-align:left;">
-B04
+B08
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 Y
@@ -2600,7 +2544,7 @@ N
 N
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -2609,42 +2553,39 @@ N
 N
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
+Y
 </td>
 </tr>
 <tr>
@@ -2717,135 +2658,12 @@ Y
 3
 </td>
 <td style="text-align:left;">
-B14
+B20
 </td>
 <td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-B16
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-B18
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
 </td>
 <td style="text-align:left;">
 N
@@ -2875,122 +2693,6 @@ N
 Y
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-B23
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-BL01
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
@@ -2998,15 +2700,6 @@ N
 </td>
 <td style="text-align:left;">
 Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
 </td>
 <td style="text-align:left;">
 Y
@@ -3029,7 +2722,7 @@ N
 3
 </td>
 <td style="text-align:left;">
-BL03
+B22
 </td>
 <td style="text-align:left;">
 Y
@@ -3044,40 +2737,40 @@ N
 N
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -3094,16 +2787,7 @@ N
 3
 </td>
 <td style="text-align:left;">
-BL09
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+B24
 </td>
 <td style="text-align:left;">
 N
@@ -3124,6 +2808,80 @@ N
 N
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+B25
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
@@ -3139,6 +2897,7 @@ N
 N
 </td>
 <td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
 </td>
@@ -3147,6 +2906,71 @@ N
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+BL08
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
 </td>
 </tr>
 <tr>
@@ -3219,71 +3043,6 @@ Y
 3
 </td>
 <td style="text-align:left;">
-BL14
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
 BL18
 </td>
 <td style="text-align:left;">
@@ -3347,10 +3106,320 @@ N
 3
 </td>
 <td style="text-align:left;">
-L07
+BL24
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+BL25
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+BL26
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+L10
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+L14
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+L16
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -3412,220 +3481,72 @@ N
 3
 </td>
 <td style="text-align:left;">
-L08
+L19
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
 N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-3
+4
 </td>
 <td style="text-align:left;">
-L13
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-L15
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-L18
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
+B03
 </td>
 <td style="text-align:left;">
 Y
@@ -3649,45 +3570,10 @@ N
 N
 </td>
 <td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-L27
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
+N
 </td>
 <td style="text-align:left;">
 N
@@ -3699,7 +3585,7 @@ N
 N
 </td>
 <td style="text-align:left;">
-Y
+N
 </td>
 <td style="text-align:left;">
 N
@@ -3720,75 +3606,7 @@ N
 4
 </td>
 <td style="text-align:left;">
-B01
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B05
-</td>
-<td style="text-align:left;">
-Y
+B06
 </td>
 <td style="text-align:left;">
 Y
@@ -3800,10 +3618,7 @@ Y
 N
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 Y
@@ -3836,142 +3651,14 @@ Y
 N
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B08
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
 </td>
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-Y
 </td>
 <td style="text-align:left;">
-Y
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B11
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
 </td>
 </tr>
 <tr>
@@ -4039,22 +3726,7 @@ N
 4
 </td>
 <td style="text-align:left;">
-B19
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
+B18
 </td>
 <td style="text-align:left;">
 Y
@@ -4066,19 +3738,34 @@ Y
 N
 </td>
 <td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 Y
@@ -4104,7 +3791,140 @@ Y
 4
 </td>
 <td style="text-align:left;">
-B25
+BL01
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+BL03
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+BL07
+</td>
+<td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
 N
@@ -4125,6 +3945,12 @@ N
 N
 </td>
 <td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
@@ -4132,6 +3958,439 @@ N
 </td>
 <td style="text-align:left;">
 Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+BL14
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+BL15
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+L03
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+L06
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+L07
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+L09
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+L15
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
 </td>
 <td style="text-align:left;">
 N
@@ -4163,6 +4422,392 @@ N
 <tr>
 <td style="text-align:left;">
 4
+</td>
+<td style="text-align:left;">
+L18
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+L21
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+L24
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+L26
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+B02
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+B07
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
 </td>
 <td style="text-align:left;">
 BL02
@@ -4227,266 +4872,13 @@ Y
 </tr>
 <tr>
 <td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-BL10
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-BL21
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-BL23
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-L04
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 5
 </td>
 <td style="text-align:left;">
-B09
+BL06
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -4519,6 +4911,15 @@ N
 N
 </td>
 <td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
@@ -4528,10 +4929,7 @@ Y
 Y
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
+N
 </td>
 <td style="text-align:left;">
 Y
@@ -4542,13 +4940,7 @@ Y
 5
 </td>
 <td style="text-align:left;">
-B21
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+BL09
 </td>
 <td style="text-align:left;">
 Y
@@ -4572,12 +4964,6 @@ N
 N
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
@@ -4593,75 +4979,20 @@ N
 N
 </td>
 <td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-B22
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
-Y
 </td>
 <td style="text-align:left;">
-N
 </td>
 <td style="text-align:left;">
-Y
 </td>
 <td style="text-align:left;">
-N
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
 </td>
 </tr>
 <tr>
@@ -4799,34 +5130,7 @@ N
 5
 </td>
 <td style="text-align:left;">
-BL16
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
+BL19
 </td>
 <td style="text-align:left;">
 N
@@ -4853,308 +5157,10 @@ N
 N
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-BL22
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
 Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-BL24
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L05
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L09
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L10
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
 </td>
 <td style="text-align:left;">
 N
@@ -5185,10 +5191,139 @@ N
 5
 </td>
 <td style="text-align:left;">
-L14
+L04
 </td>
 <td style="text-align:left;">
 N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+L08
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+N
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+L11
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 N
@@ -5245,7 +5380,19 @@ N
 5
 </td>
 <td style="text-align:left;">
-L16
+L27
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
+</td>
+<td style="text-align:left;">
+Y
 </td>
 <td style="text-align:left;">
 Y
@@ -5254,86 +5401,10 @@ Y
 N
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L22
-</td>
-<td style="text-align:left;">
 Y
 </td>
 <td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
 Y
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
 </td>
 <td style="text-align:left;">
 Y
@@ -5351,87 +5422,17 @@ N
 Y
 </td>
 <td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
 N
 </td>
 <td style="text-align:left;">
-N
 </td>
 <td style="text-align:left;">
-N
 </td>
 <td style="text-align:left;">
-N
 </td>
 <td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
 </td>
 <td style="text-align:left;">
-L24
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
 </td>
 </tr>
 </tbody>

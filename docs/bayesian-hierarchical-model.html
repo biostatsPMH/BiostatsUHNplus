@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.4 Bayesian hierarchical model | Example nested reportRmd and Bayesian hierarchical model summary</title>
-  <meta name="description" content="3.4 Bayesian hierarchical model | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <title>3.4 Bayesian hierarchical model | Example nested summary and Bayesian hierarchical model summary</title>
+  <meta name="description" content="3.4 Bayesian hierarchical model | Example nested summary and Bayesian hierarchical model summary" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.4 Bayesian hierarchical model | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta property="og:title" content="3.4 Bayesian hierarchical model | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.4 Bayesian hierarchical model | Example nested reportRmd and Bayesian hierarchical model summary" />
+  <meta name="twitter:title" content="3.4 Bayesian hierarchical model | Example nested summary and Bayesian hierarchical model summary" />
   
   
   
@@ -184,6 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.2" data-path="examples.html"><a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug"><i class="fa fa-check"></i><b>4.3.2</b> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug</a></li>
 <li class="chapter" data-level="4.3.3" data-path="examples.html"><a href="examples.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
 <li class="chapter" data-level="4.3.4" data-path="examples.html"><a href="examples.html#related-adverse-event-onset-timeline-plots"><i class="fa fa-check"></i><b>4.3.4</b> Related adverse event onset timeline plots</a></li>
+<li class="chapter" data-level="4.3.5" data-path="examples.html"><a href="examples.html#summary-functions-for-mcmcglmm-object-with-binary-outcome"><i class="fa fa-check"></i><b>4.3.5</b> Summary functions for MCMCglmm object with binary outcome</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -195,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Example nested reportRmd and Bayesian hierarchical model summary</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Example nested summary and Bayesian hierarchical model summary</a>
           </h1>
         </div>
 
@@ -223,7 +224,7 @@ Variable
 Levels
 </th>
 <th style="text-align:left;">
-RR (95% HPDI)
+OR (95% HPDI)
 </th>
 <th style="text-align:left;">
 MCMCp
@@ -256,13 +257,13 @@ reference
 barley+lupins
 </td>
 <td style="text-align:left;">
-0.39 (0.16, 0.83)
+0.36 (0.16, 0.86)
 </td>
 <td style="text-align:left;">
 0.022
 </td>
 <td style="text-align:left;">
-460.34
+681.11
 </td>
 </tr>
 <tr>
@@ -272,13 +273,13 @@ barley+lupins
 lupins
 </td>
 <td style="text-align:left;">
-0.21 (0.10, 0.51)
+0.19 (0.08, 0.48)
 </td>
 <td style="text-align:left;">
 0.001
 </td>
 <td style="text-align:left;">
-343.45
+329.94
 </td>
 </tr>
 <tr>
@@ -288,13 +289,13 @@ Time
 <td style="text-align:left;">
 </td>
 <td style="text-align:left;">
-0.96 (0.94, 0.99)
+0.96 (0.93, 0.99)
 </td>
 <td style="text-align:left;">
-0.007
+0.018
 </td>
 <td style="text-align:left;">
-240.17
+189.32
 </td>
 </tr>
 </tbody>
@@ -322,13 +323,13 @@ upper
 Cow
 </td>
 <td style="text-align:right;">
-0.6226976
+0.6312
 </td>
 <td style="text-align:right;">
-0.3728302
+0.5203
 </td>
 <td style="text-align:right;">
-0.7267584
+0.7463
 </td>
 </tr>
 <tr>
@@ -336,13 +337,27 @@ Cow
 Yard
 </td>
 <td style="text-align:right;">
-0.0065489
+0.0045
 </td>
 <td style="text-align:right;">
-0.0008589
+0.0009
 </td>
 <td style="text-align:right;">
-0.3263387
+0.1466
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+units
+</td>
+<td style="text-align:right;">
+0.3494
+</td>
+<td style="text-align:right;">
+0.2403
+</td>
+<td style="text-align:right;">
+0.4516
 </td>
 </tr>
 </tbody>
@@ -369,13 +384,13 @@ upper
 <td style="text-align:left;">
 </td>
 <td style="text-align:right;">
-0.1395401
+0.1371529
 </td>
 <td style="text-align:right;">
-0.0340786
+0.0467478
 </td>
 <td style="text-align:right;">
-0.2493275
+0.2757676
 </td>
 </tr>
 </tbody>
@@ -402,13 +417,13 @@ upper
 <td style="text-align:left;">
 </td>
 <td style="text-align:right;">
-0.6917402
+0.7139808
 </td>
 <td style="text-align:right;">
-0.5973491
+0.6341543
 </td>
 <td style="text-align:right;">
-0.8059768
+0.8001147
 </td>
 </tr>
 </tbody>
@@ -419,12 +434,12 @@ upper
 </div>
 <div id="caterpillar-plot-for-random-effect-of-cow" class="section level3 hasAnchor" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Caterpillar plot for random effect of cow<a href="bayesian-hierarchical-model.html#caterpillar-plot-for-random-effect-of-cow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Risk ratio of high protein milk among cows is below. Highest posterior density intervals are not necessarily symmetric, but should be close to symmetric upon running more model iterations. Note that cows L23 and L27 have a higher risk estimate for high protein milk in random effect, even though those cows were fed a diet of lupins and should in theory have lower protein milk. Cow B01 also has higher risk of high protein milk, but was always fed a better diet (barley).</p>
+<p>Odds ratio of high protein milk among cows is below. Highest posterior density intervals are not necessarily symmetric, but should be close to symmetric upon running more model iterations. Note that cows L23 and L27 have a higher odds estimate for high protein milk in random effect, even though those cows were fed a diet of lupins and should in theory have lower protein milk. Cow B01 also has higher odds of high protein milk, but was always fed a better diet (barley).</p>
 <p><img src="man/figures/caterpillar_plot_Cows_Model.png" width="100%" /></p>
 </div>
 <div id="caterpillar-plot-for-random-effect-of-yard" class="section level3 hasAnchor" number="3.4.3">
 <h3><span class="header-section-number">3.4.3</span> Caterpillar plot for random effect of yard<a href="bayesian-hierarchical-model.html#caterpillar-plot-for-random-effect-of-yard" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Risk ratio of high protein milk among yards is below. Highest posterior density intervals are not necessarily symmetric.</p>
+<p>Odds ratio of high protein milk among yards is below. Highest posterior density intervals are not necessarily symmetric.</p>
 <p><img src="man/figures/caterpillar_plot_Yards_Model.png" width="100%" /></p>
 
 <!-- This file is used to create README.md
