@@ -1385,13 +1385,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-2.90 (1.16, 7.37)
+2.64 (1.04, 6.48)
 </td>
 <td style="text-align:left;">
-0.022
+0.050
 </td>
 <td style="text-align:left;">
-152.92
+200.79
 </td>
 </tr>
 <tr>
@@ -1416,13 +1416,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-0.42 (0.12, 1.10)
+0.41 (0.14, 1.27)
 </td>
 <td style="text-align:left;">
-0.095
+0.105
 </td>
 <td style="text-align:left;">
-148.43
+90.75
 </td>
 </tr>
 </tbody>
@@ -1462,13 +1462,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0537
+0.0544
 </td>
 <td style="text-align:right;">
-0.0122
+0.0104
 </td>
 <td style="text-align:right;">
-0.3631
+0.3907
 </td>
 </tr>
 <tr>
@@ -1476,13 +1476,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.8572
+0.8177
 </td>
 <td style="text-align:right;">
-0.4710
+0.4325
 </td>
 <td style="text-align:right;">
-0.9442
+0.9207
 </td>
 </tr>
 <tr>
@@ -1490,13 +1490,13 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.0911
+0.0834
 </td>
 <td style="text-align:right;">
-0.0328
+0.0334
 </td>
 <td style="text-align:right;">
-0.2377
+0.2639
 </td>
 </tr>
 </tbody>
@@ -1533,13 +1533,14 @@ p <- caterpillar_plot(subjID = "ae_category",
   prob = 0.95,
   orig_dataset = ae,
   ncol = 4,
+  columnTextWidth = 22,
   binaryOutcomeVar = "G3Plus",
   subtitle = "System organ class (n, events)",
   title = "Odds Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
   fonts = c("Arial", "Arial", "Arial", "Arial"),
   break.label.summary = TRUE)
 ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
-       p, scale = 1.0, width=6.4, height=4.2, device="png");
+       p, scale = 1.1, width=6.4, height=3.8, device="png");
 ```
 
 <img src="man/figures/caterpillar_plot_ae_category.png" width="100%" />

@@ -334,13 +334,14 @@ p <- caterpillar_plot(subjID = "ae_category",
   prob = 0.95,
   orig_dataset = ae,
   ncol = 4,
+  columnTextWidth = 22,
   binaryOutcomeVar = "G3Plus",
   subtitle = "System organ class (n, events)",
   title = "Odds Ratio for G3+ Severity with 95% Highest Posterior Density Interval",
   fonts = c("Arial", "Arial", "Arial", "Arial"),
   break.label.summary = TRUE)
 ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
-       p, scale = 1.0, width=6.4, height=4.2, device="png");
+       p, scale = 1.1, width=6.4, height=3.8, device="png");
 ```
 
 ```{r example7f, echo=FALSE, out.width='100%'}
