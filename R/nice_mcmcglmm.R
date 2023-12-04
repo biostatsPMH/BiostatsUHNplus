@@ -27,8 +27,8 @@
 #' model1 <- MCMCglmm::MCMCglmm(Drug_1_Attribution ~ AE_SEV_GD + Drug_2_Attribution, 
 #'           random=~ae_detail + Subject, family="categorical", data=ae, saveX=TRUE, 
 #'           verbose=FALSE, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
-
-mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
+#'
+#' mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
 nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   cc <- summary(mcmcglmm_object)$solutions
   citab <- with(as.data.frame(cc),
