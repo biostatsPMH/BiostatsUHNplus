@@ -340,7 +340,7 @@ p <- caterpillar_plot(subjID = "ae_category",
   fonts = c("Arial", "Arial", "Arial", "Arial"),
   break.label.summary = TRUE)
 ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
-       p, scale = 1.0, width=6.4, height=4.0, device="png");
+       p, scale = 1.0, width=6.4, height=4.2, device="png");
 ```
 
 ```{r example7f, echo=FALSE, out.width='100%'}
