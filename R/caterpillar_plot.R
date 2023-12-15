@@ -2,6 +2,8 @@
 #' such as MCMCglmm::MCMCglmm() object, that have binary outcome.
 #'
 #' @param subjID key identifier field for participant ID in data sets
+#' @param subjLabel text label field in dataset to replace key identifier field for 
+#'    participant ID with in plot (if provided)
 #' @param remove.text.subjID boolean indicating if non-numeric text should be 
 #'    removed from subjID in plot label. Note that this can only be used if there
 #'    are non-duplicate participant IDs when non-numeric text is removed. Default 
@@ -69,7 +71,7 @@
 #'   fonts = c("Arial", "Arial", "Arial", "Arial"),
 #'   break.label.summary = TRUE)
 
-caterpillar_plot <- function(subjID,
+caterpillar_plot <- function(subjID,subjLabel=NULL,
                              remove.text.subjID=FALSE,
                              mcmcglmm_object,orig_dataset,
                              binaryOutcomeVar,
@@ -135,23 +137,41 @@ caterpillar_plot <- function(subjID,
   ranefSubjs$ID <- rownames(ranefSubjs);
   ranefSubjs$term <- reorder(factor(rownames(ranefSubjs)), ranefSubjs$est);
   
+  if (is.null(subjLabel)) {
+    tryCatch({
+      subjLabel <- subjID;
+    }, error=function(e){})
+  }
+  
   instSubj <- orig_dataset |> 
-    dplyr::rename(ID = subjID) |>
-    dplyr::select(ID) |>
-    dplyr::group_by(ID, .drop = FALSE) |>  
-    dplyr::count(name="instances", .drop=FALSE) 
+    dplyr::mutate(ID = get(subjID), ID_label = as.character(get(subjLabel))) |>
+    dplyr::select("ID", "ID_label") |>
+    dplyr::group_by(ID, ID_label, .drop = FALSE) |>  
+    dplyr::count(name="instances", .drop = FALSE) 
   hp_instSubj <- orig_dataset |> 
-    dplyr::rename(ID = subjID) |>
-    dplyr::select("ID", binaryOutcomeVar) |>
-    dplyr::group_by(ID, .drop = FALSE) |>  
+    dplyr::mutate(ID = get(subjID), ID_label = as.character(get(subjLabel))) |>
+    dplyr::select(ID, ID_label, binaryOutcomeVar) |>
+    dplyr::group_by(ID, ID_label, .drop = FALSE) |>  
     dplyr::filter(get(binaryOutcomeVar) == 1) |>
-    dplyr::count(get(binaryOutcomeVar), name="hp_instances") |>
+    dplyr::count(get(binaryOutcomeVar), name="hp_instances", .drop=FALSE) |>
     dplyr::select(-"get(binaryOutcomeVar)") 
   
-  ranefSubjs <- plyr::join_all(list(ranefSubjs, instSubj[, c("ID", "instances")], hp_instSubj[, c("ID", "hp_instances")]), by=c("ID"), type='left', match = "first");
+  instSubj <- as.data.frame(instSubj);
+  hp_instSubj <- as.data.frame(hp_instSubj);
+  ranefSubjs <- plyr::join_all(list(ranefSubjs, instSubj[, c("ID", "ID_label", "instances")], hp_instSubj[, c("ID", "ID_label", "hp_instances")]), by=c("ID"), type='left', match = "first");
   ranefSubjs$instances[which(is.na(ranefSubjs$instances))] <- 0;
   ranefSubjs$hp_instances[which(is.na(ranefSubjs$hp_instances))] <- 0;
+  #str(ranefSubjs);
   
+  if (!is.null(subjLabel)) {
+    tryCatch({
+      ranefSubjs$term <- as.character(ranefSubjs$ID_label);
+    }, error=function(e){})
+  }
+  
+  ranefSubjs <- ranefSubjs |>
+    dplyr::select(ID, est, lower, upper, term, instances, hp_instances)
+
   if (break.label.summary == TRUE) {
     ranefSubjs$term <- stringr::str_wrap(ranefSubjs$term, width = columnTextWidth);
     ranefSubjs$term <- paste(ranefSubjs$term, "\n(", ranefSubjs$instances, ", ", ranefSubjs$hp_instances, ")", sep="");

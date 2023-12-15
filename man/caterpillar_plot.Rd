@@ -7,6 +7,7 @@ such as MCMCglmm::MCMCglmm() object, that have binary outcome.}
 \usage{
 caterpillar_plot(
   subjID,
+  subjLabel = NULL,
   remove.text.subjID = FALSE,
   mcmcglmm_object,
   orig_dataset,
@@ -23,6 +24,9 @@ caterpillar_plot(
 }
 \arguments{
 \item{subjID}{key identifier field for participant ID in data sets}
+
+\item{subjLabel}{text label field in dataset to replace key identifier field for
+participant ID with in plot (if provided)}
 
 \item{remove.text.subjID}{boolean indicating if non-numeric text should be
 removed from subjID in plot label. Note that this can only be used if there
