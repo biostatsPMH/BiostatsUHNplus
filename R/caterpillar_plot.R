@@ -150,7 +150,7 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     dplyr::count(name="instances", .drop = FALSE) 
   hp_instSubj <- orig_dataset |> 
     dplyr::mutate(ID = get(subjID), ID_label = as.character(get(subjLabel))) |>
-    dplyr::select(ID, ID_label, binaryOutcomeVar) |>
+    dplyr::select(ID, ID_label, all_of(binaryOutcomeVar)) |>
     dplyr::group_by(ID, ID_label, .drop = FALSE) |>  
     dplyr::filter(get(binaryOutcomeVar) == 1) |>
     dplyr::count(get(binaryOutcomeVar), name="hp_instances", .drop=FALSE) |>
