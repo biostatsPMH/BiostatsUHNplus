@@ -287,7 +287,7 @@ prior2RE <- list(R = list(V = diag(1), fix = 1),
   
 model1 <- MCMCglmm::MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
   random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
-  verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
+  verbose=F, burnin=4000, nitt=12000, thin=10, pr=TRUE, prior=prior2RE);
 
 mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
 options(knitr.kable.NA = '');

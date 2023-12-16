@@ -1335,7 +1335,7 @@ prior2RE <- list(R = list(V = diag(1), fix = 1),
   
 model1 <- MCMCglmm::MCMCglmm(G3Plus ~ Drug_1_Attribution + Drug_2_Attribution, 
   random=~Subject + ae_category, family="categorical", data=ae, saveX=TRUE, 
-  verbose=F, burnin=2000, nitt=10000, thin=10, pr=TRUE, prior=prior2RE);
+  verbose=F, burnin=4000, nitt=12000, thin=10, pr=TRUE, prior=prior2RE);
 
 mcmcglmm_mva <- nice_mcmcglmm(model1, ae);
 options(knitr.kable.NA = '');
@@ -1385,13 +1385,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-2.64 (1.04, 6.48)
+2.69 (1.17, 6.71)
 </td>
 <td style="text-align:left;">
-0.050
+0.035
 </td>
 <td style="text-align:left;">
-200.79
+214.57
 </td>
 </tr>
 <tr>
@@ -1416,13 +1416,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-0.41 (0.14, 1.27)
+0.43 (0.18, 1.09)
 </td>
 <td style="text-align:left;">
-0.105
+0.092
 </td>
 <td style="text-align:left;">
-90.75
+195.88
 </td>
 </tr>
 </tbody>
@@ -1462,13 +1462,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0544
+0.0395
 </td>
 <td style="text-align:right;">
-0.0104
+0.0038
 </td>
 <td style="text-align:right;">
-0.3907
+0.3205
 </td>
 </tr>
 <tr>
@@ -1476,13 +1476,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.8177
+0.7090
 </td>
 <td style="text-align:right;">
-0.4325
+0.5157
 </td>
 <td style="text-align:right;">
-0.9207
+0.9599
 </td>
 </tr>
 <tr>
@@ -1490,13 +1490,13 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.0834
+0.1178
 </td>
 <td style="text-align:right;">
-0.0334
+0.0285
 </td>
 <td style="text-align:right;">
-0.2639
+0.2331
 </td>
 </tr>
 </tbody>
@@ -1540,7 +1540,7 @@ p <- caterpillar_plot(subjID = "ae_category",
   fonts = c("Arial", "Arial", "Arial", "Arial"),
   break.label.summary = TRUE)
 ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
-       p, scale = 1.1, width=6.4, height=3.8, device="png");
+       p, scale = 1.0, width=6.4, height=3.8, device="png");
 ```
 
 <img src="man/figures/caterpillar_plot_ae_category.png" width="100%" />

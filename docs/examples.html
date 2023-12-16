@@ -1437,7 +1437,7 @@ Vascular disorders
 <span id="cb24-12"><a href="examples.html#cb24-12" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb24-13"><a href="examples.html#cb24-13" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> MCMCglmm<span class="sc">::</span><span class="fu">MCMCglmm</span>(G3Plus <span class="sc">~</span> Drug_1_Attribution <span class="sc">+</span> Drug_2_Attribution, </span>
 <span id="cb24-14"><a href="examples.html#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">random=</span><span class="sc">~</span>Subject <span class="sc">+</span> ae_category, <span class="at">family=</span><span class="st">&quot;categorical&quot;</span>, <span class="at">data=</span>ae, <span class="at">saveX=</span><span class="cn">TRUE</span>, </span>
-<span id="cb24-15"><a href="examples.html#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose=</span>F, <span class="at">burnin=</span><span class="dv">2000</span>, <span class="at">nitt=</span><span class="dv">10000</span>, <span class="at">thin=</span><span class="dv">10</span>, <span class="at">pr=</span><span class="cn">TRUE</span>, <span class="at">prior=</span>prior2RE);</span>
+<span id="cb24-15"><a href="examples.html#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose=</span>F, <span class="at">burnin=</span><span class="dv">4000</span>, <span class="at">nitt=</span><span class="dv">12000</span>, <span class="at">thin=</span><span class="dv">10</span>, <span class="at">pr=</span><span class="cn">TRUE</span>, <span class="at">prior=</span>prior2RE);</span>
 <span id="cb24-16"><a href="examples.html#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-17"><a href="examples.html#cb24-17" aria-hidden="true" tabindex="-1"></a>mcmcglmm_mva <span class="ot">&lt;-</span> <span class="fu">nice_mcmcglmm</span>(model1, ae);</span>
 <span id="cb24-18"><a href="examples.html#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
@@ -1485,13 +1485,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-2.75 (1.06, 6.67)
+2.67 (1.15, 7.06)
 </td>
 <td style="text-align:left;">
-0.028
+0.042
 </td>
 <td style="text-align:left;">
-200.87
+224.84
 </td>
 </tr>
 <tr>
@@ -1516,13 +1516,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-0.42 (0.14, 1.11)
+0.43 (0.15, 1.12)
 </td>
 <td style="text-align:left;">
-0.098
+0.105
 </td>
 <td style="text-align:left;">
-236.97
+192.95
 </td>
 </tr>
 </tbody>
@@ -1556,13 +1556,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0643
+0.0812
 </td>
 <td style="text-align:right;">
-0.0097
+0.0064
 </td>
 <td style="text-align:right;">
-0.3171
+0.3546
 </td>
 </tr>
 <tr>
@@ -1570,13 +1570,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.8044
+0.8117
 </td>
 <td style="text-align:right;">
-0.5252
+0.4521
 </td>
 <td style="text-align:right;">
-0.9434
+0.9334
 </td>
 </tr>
 <tr>
@@ -1584,13 +1584,13 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.1155
+0.0739
 </td>
 <td style="text-align:right;">
-0.0357
+0.0333
 </td>
 <td style="text-align:right;">
-0.2330
+0.2809
 </td>
 </tr>
 </tbody>
@@ -1624,7 +1624,7 @@ units
 <span id="cb27-10"><a href="examples.html#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fonts =</span> <span class="fu">c</span>(<span class="st">&quot;Arial&quot;</span>, <span class="st">&quot;Arial&quot;</span>, <span class="st">&quot;Arial&quot;</span>, <span class="st">&quot;Arial&quot;</span>),</span>
 <span id="cb27-11"><a href="examples.html#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">break.label.summary =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb27-12"><a href="examples.html#cb27-12" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/caterpillar_plot_ae_category&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), </span>
-<span id="cb27-13"><a href="examples.html#cb27-13" aria-hidden="true" tabindex="-1"></a>       p, <span class="at">scale =</span> <span class="fl">1.1</span>, <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="fl">3.8</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>);</span></code></pre></div>
+<span id="cb27-13"><a href="examples.html#cb27-13" aria-hidden="true" tabindex="-1"></a>       p, <span class="at">scale =</span> <span class="fl">1.0</span>, <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="fl">3.8</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>);</span></code></pre></div>
 <p><img src="man/figures/caterpillar_plot_ae_category.png" width="100%" /></p>
 
 </div>
