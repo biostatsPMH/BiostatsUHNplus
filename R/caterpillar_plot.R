@@ -213,7 +213,7 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
           panel.grid.minor = element_blank(),
           panel.border = element_blank(),
           panel.background = element_blank()) +
-    geom_pointrange(aes(ymin=lower, ymax=upper, color=significance)) +
+    geom_pointrange(aes(ymin=lower, ymax=upper, color=significance), fatten=2) +
     guides(color=FALSE) +
     scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
     facet_wrap(~facet, dir="v", scales="free", ncol=ncol) +
