@@ -193,6 +193,17 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
   ranefSubjs$upper <- as.numeric(format(round(ranefSubjs$upper, 2), nsmall=2));
   ranefSubjs$significance[(ranefSubjs$lower >= 1.00 & ranefSubjs$upper >= 1.00) | (ranefSubjs$lower <= 1.00 & ranefSubjs$upper <= 1.00)] <- "different";
   
+  my_breaks <- function(x) {
+    min_x=round(min(x),1)
+    max_x=round(max(x),1)
+    if (min_x < 0.0) {
+      min_x <- 0.0
+    }
+    my_pretty=c(min_x, max_x)
+    my_pretty
+    
+  } 
+  
   options(warn=-1); #suppress warning messages;
   pPlot <- 
     ggplot(ranefSubjs,aes(term,est)) +
@@ -206,11 +217,12 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     guides(color=FALSE) +
     scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
     facet_wrap(~facet, dir="v", scales="free", ncol=ncol) +
-    scale_y_continuous(limits = ~ c(0, ceiling(max(.x))), breaks = ~ c(0, floor(max(.x))), expand = c(0.12, 0.05)) +
+    #scale_y_continuous(limits = ~ c(round(min(.x),digits=1), round(max(.x),digits=1)) ) +
+    scale_y_continuous(limits = ~ c(round(min(.x),digits=1), round(max(.x),digits=1)), breaks = ~ my_breaks(.x) ) +
     coord_flip() + 
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
     theme(plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
-    theme(strip.text = element_blank(), panel.margin.y = unit(-0, "lines"), axis.ticks.y=element_blank()) +
+    theme(strip.text = element_blank(), panel.margin.y = unit(0.5, "lines"), axis.ticks.y=element_blank()) +
     labs(title=paste(title), subtitle=paste(subtitle), caption="");
   
   return(pPlot)
