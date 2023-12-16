@@ -184,7 +184,7 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
   num_groups <- ncol;
   ranefSubjs <- ranefSubjs |>
     dplyr::arrange(est) |>
-    dplyr::group_by(facet=(row_number()-1) %/% (n()/num_groups)+1)
+    dplyr::group_by(facet=(dplyr::row_number()-1) %/% (dplyr::n()/num_groups)+1)
   ranefSubjs$facet <- as.factor(ranefSubjs$facet);
   ranefSubjs$facet <- ordered(ranefSubjs$facet, levels = c(as.character(rev(seq(1:ncol)))));
   ranefSubjs$significance <- "normal";
@@ -194,8 +194,10 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
   ranefSubjs$significance[(ranefSubjs$lower >= 1.00 & ranefSubjs$upper >= 1.00) | (ranefSubjs$lower <= 1.00 & ranefSubjs$upper <= 1.00)] <- "different";
   
   my_breaks <- function(x) {
-    min_x=round(min(x),1)
-    max_x=round(max(x),1)
+    #min_x=round(min(x),1)
+    #max_x=round(max(x),1)
+    min_x=min(x)
+    max_x=max(x)
     if (min_x < 0.0) {
       min_x <- 0.0
     }
@@ -203,6 +205,8 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     my_pretty
     
   } 
+  
+  scaleFUN <- function(x) sprintf("%.1f", x)
   
   options(warn=-1); #suppress warning messages;
   pPlot <- 
@@ -218,7 +222,7 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
     facet_wrap(~facet, dir="v", scales="free", ncol=ncol) +
     #scale_y_continuous(limits = ~ c(round(min(.x),digits=1), round(max(.x),digits=1)) ) +
-    scale_y_continuous(limits = ~ c(round(min(.x),digits=1), round(max(.x),digits=1)), breaks = ~ my_breaks(.x) ) +
+    scale_y_continuous(limits = ~ c(round(min(.x),digits=1), round(max(.x),digits=1)), breaks = ~ my_breaks(.x), labels=scaleFUN ) +
     coord_flip() + 
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
     theme(plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
