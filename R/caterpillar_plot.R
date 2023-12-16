@@ -222,7 +222,7 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     coord_flip() + 
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
     theme(plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
-    theme(strip.text = element_blank(), plot.margin=unit(c(0,0,0,0),"lines"), axis.ticks.length = unit(0.0, "lines"), axis.ticks=element_blank(), panel.margin.y = unit(0.5, "lines"), axis.ticks.y=element_blank()) +
+    theme(strip.text = element_blank(), plot.margin=unit(c(0,0,0,0.5),"lines"), axis.ticks.length = unit(0.0, "lines"), axis.ticks=element_blank(), panel.margin.y = unit(0.5, "lines"), axis.ticks.y=element_blank()) +
     labs(title=paste(title), subtitle=paste(subtitle), caption="");
   
   return(pPlot)
