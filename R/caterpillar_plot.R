@@ -218,7 +218,7 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
           panel.border = element_blank(),
           panel.background = element_blank()) +
     geom_pointrange(aes(ymin=lower, ymax=upper, color=significance), fatten=2) +
-    guides(color=FALSE) +
+    guides(color="none") +
     scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
     facet_wrap(~facet, dir="v", scales="free", ncol=ncol) +
     #scale_y_continuous(limits = ~ c(round(min(.x),digits=1), round(max(.x),digits=1)) ) +
@@ -226,7 +226,7 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     coord_flip() + 
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
     theme(plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
-    theme(strip.text = element_blank(), plot.margin=unit(c(0,1,0,0),"lines"), axis.ticks.length = unit(0.0, "lines"), axis.ticks=element_blank(), panel.margin.y = unit(1.0, "lines"), axis.ticks.y=element_blank()) +
+    theme(strip.text = element_blank(), plot.margin=unit(c(0,1,0,0),"lines"), axis.ticks.length = unit(0.0, "lines"), axis.ticks=element_blank(), panel.spacing.y = unit(1.0, "lines"), axis.ticks.y=element_blank()) +
     labs(title=paste(title), subtitle=paste(subtitle), caption="");
   
   return(pPlot)
