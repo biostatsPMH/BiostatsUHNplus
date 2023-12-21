@@ -33,6 +33,7 @@
 #' }
 nice_mcmcglmm <- function(mcmcglmm_object, dataset) {
   cc <- summary(mcmcglmm_object)$solutions
+  dataset <- droplevels(dataset);
   citab <- with(as.data.frame(cc),
                 cbind(OR_HPDI_95 = paste0(trimws(format(round(exp(cc[,1]), 2), nsmall=2)), 
                                           " (", trimws(format(round(exp(cc[,2]), 2), nsmall=2)), ", ", 
