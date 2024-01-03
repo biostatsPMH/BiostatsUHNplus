@@ -9,6 +9,9 @@
 #'    for example, c("New Subject") (if provided)
 #' @param subjID_eligPattern character text that denotes pattern for participant 
 #'    IDs to include, for example, c("^Site_A") (if provided)
+#' @param varFilter field to use for filtering data (if provided)
+#' @param varFilter_eligPattern character text that denotes pattern for filter 
+#'    variable to include, for example, c("^Arm_A") (if provided)
 #' @param setWD_files directory where the both raw and label REDCap export .csv
 #'    files are stored, following the convention for file names of 
 #'    1_DATA.csv, 1_DATA_LABELs.csv, 2_DATA.csv, 2_DATA_LABELs.csv, etc
@@ -27,9 +30,12 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' redcap_data_out(protocol="Example_Study",pullDate="2023_12_21",
-#     subjID=c("registry_id_no"),subjID_ineligText=c("test"),
+#' redcap_data_out(protocol="Example_Study",pullDate="2024_01_03",
+#     subjID=c("registry_id_no"),
+#     subjID_ineligText=c("test"),
 #     subjID_eligPattern=c("^Site_A"),
+#     varFilter=c("redcap_event_name"),
+#     varFilter_eligPattern=c("Arm A"),
 #     setWD_files="./man/tables/",
 #     setWD_dataDict="./man/tables/",
 #     outDir="./man/tables/")
@@ -37,6 +43,7 @@
 #' 
 redcap_data_out <- function(protocol,pullDate=NULL,
                             subjID,subjID_ineligText=NULL,subjID_eligPattern=NULL,
+                            varFilter=NULL,varFilter_eligPattern=NULL,
                             setWD_files,setWD_dataDict=NULL,outDir) {
   
   if (is.null(pullDate)) {
@@ -44,6 +51,12 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   }
   if (is.null(subjID_eligPattern)) {
     subjID_eligPattern <- "^";
+  }
+  if (is.null(varFilter)) {
+    varFilter <- subjID;
+  }
+  if (is.null(varFilter_eligPattern)) {
+    varFilter_eligPattern <- "^";
   }
 
   fileList1 <- list.files(path=setWD_files, pattern="LABEL", all.files=FALSE, full.names=FALSE, 
@@ -223,6 +236,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   ##Below filters instrument datasets by participant characteristics;
   list_of_datasets2 <- lapply(list_of_datasets, function(df) df |>
                                 dplyr::filter(!get(subjID) %in% subjID_ineligText) |>
+                                dplyr::filter(stringr::str_detect(get(varFilter), varFilter_eligPattern)) |>
                                 dplyr::filter(stringr::str_detect(get(subjID), subjID_eligPattern)));
   names(list_of_datasets2) <- make.unique(names(list_of_datasets2), sep = '_')
   openxlsx::write.xlsx(list_of_datasets2, paste(outDir, "\\", protocol, "_participants_data_pull_", 

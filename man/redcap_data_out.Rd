@@ -12,6 +12,8 @@ redcap_data_out(
   subjID,
   subjID_ineligText = NULL,
   subjID_eligPattern = NULL,
+  varFilter = NULL,
+  varFilter_eligPattern = NULL,
   setWD_files,
   setWD_dataDict = NULL,
   outDir
@@ -29,6 +31,11 @@ for example, c("New Subject") (if provided)}
 
 \item{subjID_eligPattern}{character text that denotes pattern for participant
 IDs to include, for example, c("^Site_A") (if provided)}
+
+\item{varFilter}{field to use for filtering data (if provided)}
+
+\item{varFilter_eligPattern}{character text that denotes pattern for filter
+variable to include, for example, c("^Arm_A") (if provided)}
 
 \item{setWD_files}{directory where the both raw and label REDCap export .csv
 files are stored, following the convention for file names of
@@ -51,7 +58,7 @@ row per participant
 }
 \examples{
 \dontrun{
-redcap_data_out(protocol="Example_Study",pullDate="2023_12_21",
+redcap_data_out(protocol="Example_Study",pullDate="2024_01_03",
 }
 
 }
