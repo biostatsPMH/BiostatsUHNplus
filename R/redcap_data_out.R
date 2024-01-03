@@ -210,10 +210,12 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   
   joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument"))];
   joinNames <- sort(joinNames, decreasing = FALSE); #sort table name alphabetically;
-  list_of_datasets <- lapply(joinNames, get);
-  names(list_of_datasets) <- c(joinNames);
   
-  ###Below only keep instrument dataset if registry_id_no field exists in it;
+  list_of_datasets <- lapply(joinNames, get, envir=sys.frame(sys.parent(0)));
+  names(list_of_datasets) <- c(joinNames);
+
+  
+  ###Below only keep instrument dataset if subjID field exists in it;
   list_of_datasets <- lapply(list_of_datasets, function(df){if(subjID %in% colnames(df)){df}});
   list_of_datasets <- Filter(function(x) nrow(x) > 0, list_of_datasets); 
   list_of_datasets <- Filter(Negate(is.null), list_of_datasets);
@@ -224,5 +226,5 @@ redcap_data_out <- function(protocol,pullDate=NULL,
                                 dplyr::filter(stringr::str_detect(get(subjID), subjID_eligPattern)));
   names(list_of_datasets2) <- make.unique(names(list_of_datasets2), sep = '_')
   openxlsx::write.xlsx(list_of_datasets2, paste(outDir, "\\", protocol, "_participants_data_pull_", 
-                                            pullDate, ".xlsx", sep=""));
+                                           pullDate, ".xlsx", sep=""));
 }
