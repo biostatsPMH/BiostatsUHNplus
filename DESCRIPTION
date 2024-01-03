@@ -17,9 +17,8 @@ Authors@R: c(
     person("Jessica", "Weiss", , "jessica.weiss@uhn.ca", role = "aut"),
     person("Wei", "Xu", , "wei.xu@uhn.ca", role = "aut")
   )
-Description: Miscellaneous code snippets and functions with pipes and
-    multiple package dependencies used for transforming REDCap data, working
-    with adverse events and summarizing nested data.
+Description: Tools and code snippets for summarizing nested data, adverse events 
+  and REDCap study information.
 License: MIT + file LICENSE
 Depends: 
     R (>= 4.2)
