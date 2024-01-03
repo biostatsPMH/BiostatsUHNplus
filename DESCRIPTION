@@ -1,5 +1,5 @@
 Package: BiostatsUHNplus
-Title: Nested Data Summary and Adverse Events
+Title: Nested Data Summary, Adverse Events and REDCap
 Version: 0.0.10
 Authors@R: c(
     person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",
@@ -18,8 +18,8 @@ Authors@R: c(
     person("Wei", "Xu", , "wei.xu@uhn.ca", role = "aut")
   )
 Description: Miscellaneous code snippets and functions with pipes and
-    multiple package dependencies used for summarizing nested data and 
-    adverse events.
+    multiple package dependencies used for transforming REDCap data, working
+    with adverse events and summarizing nested data.
 License: MIT + file LICENSE
 Depends: 
     R (>= 4.2)
@@ -42,6 +42,7 @@ Imports:
     rlang,
     rstatix,
     stats,
+    stringi,
     stringr,
     tibble,
     utils
@@ -62,3 +63,4 @@ Collate:
     'nice_mcmcglmm_icc.R'
     'ae_timeline_plot.R'
     'caterpillar_plot.R'
+    'redcap_data_out.R'
