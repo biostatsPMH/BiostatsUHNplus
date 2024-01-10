@@ -87,13 +87,13 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     tmp4 <- read.csv(paste(setWD_files, "\\", fileList2[j], sep=""), header = F, nrows = 1);
     tmp4 <- as.data.frame(tmp4);
     if (is.null(tmp2$redcap_repeat_instrument)) {
-      tmp1$redcap_repeat_instrument <- "Extra Sheet";
+      tmp1$redcap_repeat_instrument <- "extra sheet";
     }
     if (is.null(tmp2$redcap_repeat_instrument)) {
-      tmp2$redcap_repeat_instrument <- "Extra Sheet";
+      tmp2$redcap_repeat_instrument <- "extra sheet";
     }
     if (is.null(tmp3$redcap_repeat_instrument)) {
-      tmp3$redcap_repeat_instrument <- "Extra Sheet";
+      tmp3$redcap_repeat_instrument <- "extra sheet";
       tmp3$redcap_repeat_instrument[1] <- "Repeat Instrument";
     }
     if (is.null(tmp4$redcap_repeat_instrument)) {
