@@ -24,13 +24,14 @@ redcap_data_out(
 
 \item{pullDate}{date of data pull, for example, 2024_01_02 (if provided)}
 
-\item{subjID}{key identifier field for participant ID in data sets}
+\item{subjID}{key identifier field(s) for participant ID in data sets}
 
-\item{subjID_ineligText}{character text that denotes participant IDs to exclude,
-for example, c("New Subject") (if provided)}
+\item{subjID_ineligText}{character text that denotes participant IDs to exclude
+using first key identifier field. For example, c("New Subject") (if provided)}
 
 \item{subjID_eligPattern}{character text that denotes pattern for participant
-IDs to include, for example, c("^Site_A") (if provided)}
+IDs to include using first key identifier field. For example, c("^Site_A")
+(if provided)}
 
 \item{varFilter}{field to use for filtering data (if provided)}
 

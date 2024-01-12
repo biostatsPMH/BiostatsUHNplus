@@ -4,11 +4,12 @@
 #' 
 #' @param protocol study protocol name (i.e. Example_Study)
 #' @param pullDate date of data pull, for example, 2024_01_02 (if provided) 
-#' @param subjID key identifier field for participant ID in data sets
-#' @param subjID_ineligText character text that denotes participant IDs to exclude,
-#'    for example, c("New Subject") (if provided)
+#' @param subjID key identifier field(s) for participant ID in data sets
+#' @param subjID_ineligText character text that denotes participant IDs to exclude
+#'    using first key identifier field. For example, c("New Subject") (if provided)
 #' @param subjID_eligPattern character text that denotes pattern for participant 
-#'    IDs to include, for example, c("^Site_A") (if provided)
+#'    IDs to include using first key identifier field. For example, c("^Site_A") 
+#'    (if provided)
 #' @param varFilter field to use for filtering data (if provided)
 #' @param varFilter_eligPattern character text that denotes pattern for filter 
 #'    variable to include, for example, c("^Arm_A") (if provided)
@@ -23,7 +24,7 @@
 #' @returns two Excel files, one containing variable names and labels and the 
 #'    other containing REDCap survey instrument data by sheet
 #' @importFrom plyr rbind.fill
-#' @importFrom dplyr select select_if filter 
+#' @importFrom dplyr select select_if filter any_of everything left_join distinct_all ungroup
 #' @importFrom stringr str_trunc str_replace str_detect
 #' @importFrom stringi stri_trans_general
 #' @importFrom openxlsx write.xlsx 
@@ -53,11 +54,12 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     subjID_eligPattern <- "^";
   }
   if (is.null(varFilter)) {
-    varFilter <- subjID;
+    varFilter <- subjID[1];
   }
   if (is.null(varFilter_eligPattern)) {
     varFilter_eligPattern <- "^";
   }
+  first_subjID <- subjID[1];
 
   fileList1 <- list.files(path=setWD_files, pattern="LABEL", all.files=FALSE, full.names=FALSE, 
                           recursive=FALSE, ignore.case=FALSE, include.dirs=FALSE, no..=FALSE);
@@ -227,17 +229,41 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   list_of_datasets <- lapply(joinNames, get, envir=sys.frame(sys.parent(0)));
   names(list_of_datasets) <- c(joinNames);
 
+
+  #### Below only keep instrument dataset if subjID field exists in it;
+  #-#-#-#-#-#
+  #if(!is.null(dplyr::filter(list_of_datasets[[1]],
+  #            any(subjID %in% colnames(list_of_datasets[[1]]))))){list_of_datasets[[1]]}
+  ##Below also works for condition;
+  #if(!is.null(dplyr::select(list_of_datasets[[1]], dplyr::any_of(subjID)))){list_of_datasets[[1]]}
+  #-#-#-#-#-#
   
-  ###Below only keep instrument dataset if subjID field exists in it;
-  list_of_datasets <- lapply(list_of_datasets, function(df){if(subjID %in% colnames(df)){df}});
+  #list_of_datasets <- lapply(list_of_datasets, function(df){if(subjID %in% colnames(df)){df}});
+  list_of_datasets <- lapply(list_of_datasets, function(df){if(!is.null(dplyr::filter(df,
+                                                        any(subjID %in% colnames(df))))){df}});
   list_of_datasets <- Filter(function(x) nrow(x) > 0, list_of_datasets); 
   list_of_datasets <- Filter(Negate(is.null), list_of_datasets);
   
+  ##Find distinct and complete subjID key identifiers from longest dataset;
+  keyIdentifiers <- lapply(list_of_datasets, function(df) df |>
+                            dplyr::select(dplyr::any_of(subjID)));
+  keyIdentifiers <- Filter(function(x) ncol(x) == length(subjID), keyIdentifiers); 
+  lengths <- lapply(keyIdentifiers, nrow);
+  longest <- which.max(lengths);
+  keyIdentifiers <- keyIdentifiers[[longest]]; 
+  keyIdentifiers <- keyIdentifiers |>
+    dplyr::distinct_all()
+  
   ##Below filters instrument datasets by participant characteristics;
   list_of_datasets2 <- lapply(list_of_datasets, function(df) df |>
-                                dplyr::filter(!get(subjID) %in% subjID_ineligText) |>
-                                dplyr::filter(stringr::str_detect(get(varFilter), varFilter_eligPattern)) |>
-                                dplyr::filter(stringr::str_detect(get(subjID), subjID_eligPattern)));
+            dplyr::left_join(keyIdentifiers) |>
+            dplyr::select(subjID, dplyr::everything()) |>
+            dplyr::ungroup() |>
+            dplyr::filter(!get(first_subjID) %in% subjID_ineligText) |>
+            dplyr::filter(stringr::str_detect(get(varFilter), varFilter_eligPattern)) |>
+            dplyr::filter(stringr::str_detect(get(first_subjID), subjID_eligPattern)));
+  list_of_datasets2 <- Filter(function(x) nrow(x) > 0, list_of_datasets2); 
+  list_of_datasets2 <- Filter(Negate(is.null), list_of_datasets2);
   names(list_of_datasets2) <- make.unique(names(list_of_datasets2), sep = '_')
   openxlsx::write.xlsx(list_of_datasets2, paste(outDir, "\\", protocol, "_participants_data_pull_", 
                                            pullDate, ".xlsx", sep=""));

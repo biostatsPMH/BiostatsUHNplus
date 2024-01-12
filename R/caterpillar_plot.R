@@ -31,7 +31,7 @@
 #' @importFrom MCMCglmm posterior.mode 
 #' @importFrom coda HPDinterval
 #' @importFrom purrr modify_if
-#' @importFrom dplyr select rename group_by arrange filter row_number n
+#' @importFrom dplyr select rename group_by arrange filter row_number n all_of
 #' @importFrom stringr str_wrap
 #' @import ggplot2
 #' @import lifecycle
@@ -150,7 +150,7 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     dplyr::count(name="instances", .drop = FALSE) 
   hp_instSubj <- orig_dataset |> 
     dplyr::mutate(ID = get(subjID), ID_label = as.character(get(subjLabel))) |>
-    dplyr::select(ID, ID_label, all_of(binaryOutcomeVar)) |>
+    dplyr::select(ID, ID_label, dplyr::all_of(binaryOutcomeVar)) |>
     dplyr::group_by(ID, ID_label, .drop = FALSE) |>  
     dplyr::filter(get(binaryOutcomeVar) == 1) |>
     dplyr::count(get(binaryOutcomeVar), name="hp_instances", .drop=FALSE) |>
