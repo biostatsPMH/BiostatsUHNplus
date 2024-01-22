@@ -14,7 +14,7 @@
 #' @param baseline_datasets list of data frames that contain baseline participant characteristics,
 #'    for example, list(enrollment_DF,demography_DF,ineligibility_DF)
 #' @param ae_dataset data frame that contains subject AEs
-#' @param ineligVar field that denotes participant ineligibility
+#' @param ineligVar field that denotes participant ineligibility (if provided)
 #' @param ineligVarText character text that denotes participant ineligibility,
 #'    for example, c("Yes", "Y") (if provided)
 #' @param genderVar field that denotes participant gender
@@ -53,7 +53,7 @@
 
 dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDate=NULL,
                       subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
-                      ineligVar,ineligVarText=NULL,
+                      ineligVar=NULL,ineligVarText=NULL,
                       genderVar,enrolDtVar,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,ae_detailOtherText=NULL,ae_detailOtherVar=NULL,
                       ae_verbatimVar=NULL,numSubj=NULL,fileNameUnderscore=TRUE){
@@ -133,6 +133,12 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
   }
   if (is.null(ae_detailOtherText)) {
     ae_detailOtherText <- "Other, specify";
+  }
+  if (is.null(ineligVar)) {
+    ineligVar <- subjID;
+  }
+  if (is.null(ineligVarText)) {
+    ineligVarText <- "Not using this";
   }
   if (is.null(comp)) {
     subjectsKeep_DF <- plyr::join_all(baseline_datasets, by = subjID, type = "full") |>
