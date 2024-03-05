@@ -130,9 +130,9 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
   ranefSubjs$lower <- exp(ranefSubjs$lower);
   ranefSubjs$upper <- exp(ranefSubjs$upper);
   
-  if (remove.text.subjID == TRUE) {
-    rownames(ranefSubjs) <- gsub("[^0-9]", "", rownames(ranefSubjs)); #This removes non-numerical text from cow identifier, may not want to do if there are duplicate numbers when removing text; 
-  }
+  # if (remove.text.subjID == TRUE) {
+  #   rownames(ranefSubjs) <- gsub("[^0-9]", "", rownames(ranefSubjs)); #This removes non-numerical text from cow identifier, may not want to do if there are duplicate numbers when removing text;
+  # }
   
   ranefSubjs$ID <- rownames(ranefSubjs);
   ranefSubjs$term <- reorder(factor(rownames(ranefSubjs)), ranefSubjs$est);
@@ -155,9 +155,17 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     dplyr::filter(get(binaryOutcomeVar) == 1) |>
     dplyr::count(get(binaryOutcomeVar), name="hp_instances", .drop=FALSE) |>
     dplyr::select(-"get(binaryOutcomeVar)") 
+  hp_instSubj$ID_label[which(is.na(hp_instSubj$ID_label))] <- as.character(hp_instSubj$ID[which(is.na(hp_instSubj$ID_label))]);
   
   instSubj <- as.data.frame(instSubj);
   hp_instSubj <- as.data.frame(hp_instSubj);
+  ranefSubjs$ID <- as.character(ranefSubjs$ID);
+  instSubj$ID <- as.character(instSubj$ID);
+  instSubj$ID_label <- as.character(instSubj$ID_label);
+  instSubj$instances <- as.integer(instSubj$instances);
+  hp_instSubj$ID <- as.character(hp_instSubj$ID);
+  hp_instSubj$ID_label <- as.character(hp_instSubj$ID_label);
+  hp_instSubj$hp_instances <- as.integer(hp_instSubj$hp_instances);
   ranefSubjs <- plyr::join_all(list(ranefSubjs, instSubj[, c("ID", "ID_label", "instances")], hp_instSubj[, c("ID", "ID_label", "hp_instances")]), by=c("ID"), type='left', match = "first");
   ranefSubjs$instances[which(is.na(ranefSubjs$instances))] <- 0;
   ranefSubjs$hp_instances[which(is.na(ranefSubjs$hp_instances))] <- 0;
@@ -167,6 +175,10 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     tryCatch({
       ranefSubjs$term <- as.character(ranefSubjs$ID_label);
     }, error=function(e){})
+  }
+  
+  if (remove.text.subjID == TRUE) {
+    ranefSubjs$term <- gsub("[^0-9]", "", ranefSubjs$term); #This removes non-numerical text from cow identifier, may not want to do if there are duplicate numbers when removing text;
   }
   
   ranefSubjs <- ranefSubjs |>
@@ -221,8 +233,9 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     guides(color="none") +
     scale_color_manual(values=c("normal"="darkgrey", "different"="black")) +
     facet_wrap(~facet, dir="v", scales="free", ncol=ncol) +
+    scale_y_continuous(breaks = ~ my_breaks(.x), labels=scaleFUN ) +
     #scale_y_continuous(limits = ~ c(round(min(.x),digits=1), round(max(.x),digits=1)) ) +
-    scale_y_continuous(limits = ~ c(round(min(.x),digits=1), round(max(.x),digits=1)), breaks = ~ my_breaks(.x), labels=scaleFUN ) +
+    #scale_y_continuous(limits = ~ c(round(min(.x),digits=1), round(max(.x),digits=1)), breaks = ~ my_breaks(.x), labels=scaleFUN ) +
     coord_flip() + 
     theme(plot.title=element_text(family=font.title, size=14, hjust=0.5), plot.subtitle=element_text(family=font.subtitle, size=12), axis.text.y=element_text(family=font.labels, size=8), axis.text.x=element_text(family=font.axis), axis.title.x=element_blank(), axis.title.y=element_blank()) + 
     theme(plot.title.position = "plot", plot.subtitle = element_text(hjust = 0.5), strip.background = element_blank(), strip.text.x = element_blank()) +
