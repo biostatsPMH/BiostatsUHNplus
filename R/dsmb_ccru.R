@@ -343,7 +343,6 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     setRowHeights(wb, 1, rows = 9, heights = 82); 
     setColWidths(wb, 1, cols = c(1, 2, 3, 4, 5), widths = c(34, 15, 15, 15, 15));
     OutsideBorders(wb, sheet_ = 1, rows_ = 9:(length(table3_df[, 1])+9), cols_ = 1:5);
-    trimws("dsmb_ccru_tables/category ByEvent EXAMPLE_STUDY Cohort D 30OCT2020.xlsx");
     if (fileNameUnderscore == TRUE) {
       table3_fn <- chartr(" ", "_", table3_fn);
     }
