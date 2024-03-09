@@ -1385,13 +1385,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-2.69 (1.17, 6.71)
+2.71 (1.04, 6.97)
 </td>
 <td style="text-align:left;">
-0.035
+0.030
 </td>
 <td style="text-align:left;">
-214.57
+133.07
 </td>
 </tr>
 <tr>
@@ -1416,13 +1416,13 @@ reference
 Yes
 </td>
 <td style="text-align:left;">
-0.43 (0.18, 1.09)
+0.42 (0.16, 1.38)
 </td>
 <td style="text-align:left;">
-0.092
+0.117
 </td>
 <td style="text-align:left;">
-195.88
+146.58
 </td>
 </tr>
 </tbody>
@@ -1462,13 +1462,13 @@ upper
 Subject
 </td>
 <td style="text-align:right;">
-0.0395
+0.0340
 </td>
 <td style="text-align:right;">
-0.0038
+0.0073
 </td>
 <td style="text-align:right;">
-0.3205
+0.3487
 </td>
 </tr>
 <tr>
@@ -1476,13 +1476,13 @@ Subject
 ae_category
 </td>
 <td style="text-align:right;">
-0.7090
+0.8109
 </td>
 <td style="text-align:right;">
-0.5157
+0.4432
 </td>
 <td style="text-align:right;">
-0.9599
+0.9310
 </td>
 </tr>
 <tr>
@@ -1490,13 +1490,13 @@ ae_category
 units
 </td>
 <td style="text-align:right;">
-0.1178
+0.0759
 </td>
 <td style="text-align:right;">
-0.0285
+0.0300
 </td>
 <td style="text-align:right;">
-0.2331
+0.2658
 </td>
 </tr>
 </tbody>
@@ -1540,7 +1540,7 @@ p <- caterpillar_plot(subjID = "ae_category",
   fonts = c("Arial", "Arial", "Arial", "Arial"),
   break.label.summary = TRUE)
 ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""), 
-       p, scale = 1.0, width=6.4, height=3.8, device="png");
+       p, scale = 1.3, width=6.4, height=3.8, device="png");
 ```
 
 <img src="man/figures/caterpillar_plot_ae_category.png" width="100%" />

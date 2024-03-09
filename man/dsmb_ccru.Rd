@@ -17,7 +17,7 @@ dsmb_ccru(
   subjID_ineligText = NULL,
   baseline_datasets,
   ae_dataset,
-  ineligVar,
+  ineligVar = NULL,
   ineligVarText = NULL,
   genderVar,
   enrolDtVar,
@@ -59,7 +59,7 @@ for example, list(enrollment_DF,demography_DF,ineligibility_DF)}
 
 \item{ae_dataset}{data frame that contains subject AEs}
 
-\item{ineligVar}{field that denotes participant ineligibility}
+\item{ineligVar}{field that denotes participant ineligibility (if provided)}
 
 \item{ineligVarText}{character text that denotes participant ineligibility,
 for example, c("Yes", "Y") (if provided)}
