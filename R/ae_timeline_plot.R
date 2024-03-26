@@ -51,7 +51,6 @@
 #' @importFrom ggh4x strip_nested facet_nested elem_list_text elem_list_rect force_panelsizes
 #' @importFrom forcats fct_rev
 #' @importFrom cowplot get_legend
-#' @importFrom ggstance geom_pointrangeh
 #' @import ggplot2
 #' @import lifecycle
 #' @export
@@ -415,7 +414,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     plotData$group <- as.factor(plotData$group);
     
     p1_with_legend <- ggplot(plotData, aes(xmin=time_min, xmax=time_max, y=forcats::fct_rev(group))) + 
-      ggstance::geom_pointrangeh(aes(x=time_median, shape=group, color=group), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), fatten=2) +
+      ggplot2::geom_pointrange(aes(x=time_median, shape=group, color=group), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), fatten=2) +
+      #ggstance::geom_pointrangeh(aes(x=time_median, shape=group, color=group), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), fatten=2) +
       geom_text(aes(x=time_max, color=group, label=label), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), size=2.6, hjust=-0.2, show.legend = FALSE, family=fontPlotLabels) +
       scale_color_manual(name=NULL, values=c(attribColours1, attribColours2, attribColours3, attribColours4, attribColours5, attribColours6, attribColours7, attribColours8, attribColours9, attribColours10)) +
       scale_shape_manual(name=NULL, values=c(attribSymbols1, attribSymbols2, attribSymbols3, attribSymbols4, attribSymbols5, attribSymbols6, attribSymbols7, attribSymbols8, attribSymbols9, attribSymbols10)) +
@@ -593,7 +593,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     plotData$group <- as.factor(plotData$group);
     
     p1_with_legend <- ggplot(plotData, aes(xmin=time_min, xmax=time_max, y=forcats::fct_rev(group))) + 
-      ggstance::geom_pointrangeh(aes(x=time_median, shape=group, color=group), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), fatten=2) +
+      ggplot2::geom_pointrange(aes(x=time_median, shape=group, color=group), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), fatten=2) +
+      #ggstance::geom_pointrangeh(aes(x=time_median, shape=group, color=group), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), fatten=2) +
       geom_text(aes(x=time_max, color=group, label=label), position=position_dodge2(width = 0, preserve = "single", padding = -1.5), size=2.6, hjust=-0.2, show.legend = FALSE, family=fontPlotLabels) +
       scale_color_manual(name=NULL, values=c(attribColours1, attribColours2, attribColours3, attribColours4, attribColours5, attribColours6, attribColours7, attribColours8, attribColours9, attribColours10)) +
       scale_shape_manual(name=NULL, values=c(attribSymbols1, attribSymbols2, attribSymbols3, attribSymbols4, attribSymbols5, attribSymbols6, attribSymbols7, attribSymbols8, attribSymbols9, attribSymbols10)) +
