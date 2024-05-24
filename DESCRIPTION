@@ -30,7 +30,6 @@ Imports:
     forcats,
     ggh4x,
     ggplot2,
-    ggstance,
     lifecycle,
     MCMCglmm,
     modeest,
