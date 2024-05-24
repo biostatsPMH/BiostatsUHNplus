@@ -24,10 +24,11 @@
 #' @returns two Excel files, one containing variable names and labels and the 
 #'    other containing REDCap survey instrument data by sheet
 #' @importFrom plyr rbind.fill
-#' @importFrom dplyr select select_if filter any_of everything left_join distinct_all ungroup
+#' @importFrom dplyr contains select select_if filter any_of everything left_join distinct_all ungroup
 #' @importFrom stringr str_trunc str_replace str_detect
 #' @importFrom stringi stri_trans_general
 #' @importFrom openxlsx write.xlsx 
+#' @importFrom utils read.csv 
 #' @export
 #' @examples
 #' \dontrun{
