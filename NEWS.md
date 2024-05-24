@@ -1,6 +1,6 @@
 # BiostatsUHNplus 0.0.10
 
-* Revised redcap_data_out() to do better filtering
+* Revised redcap_data_out() to do more complex filtering
 * Revised caterpillar_plot() axis scale
 * Revised nice_mcmcglmm() 
 
