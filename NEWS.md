@@ -1,3 +1,5 @@
+# BiostatsUHNplus 0.0.11
+
 # BiostatsUHNplus 0.0.10
 
 * Revised redcap_data_out() to do more complex filtering
