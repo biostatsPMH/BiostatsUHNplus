@@ -28,6 +28,7 @@
 #' @importFrom stringr str_trunc str_replace str_detect
 #' @importFrom stringi stri_trans_general
 #' @importFrom openxlsx write.xlsx 
+#' @importFrom utils read.csv 
 #' @export
 #' @examples
 #' \dontrun{

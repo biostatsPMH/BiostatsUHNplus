@@ -1,5 +1,9 @@
 # BiostatsUHNplus 0.0.10
 
+* Revised redcap_data_out() to do better filtering
+* Revised caterpillar_plot() axis scale
+* Revised nice_mcmcglmm() 
+
 # BiostatsUHNplus 0.0.9
 
 * Added functionality to include parametric bootstrapping for nested p-value in summary tables with parallel processing (PSOCK cluster) 
