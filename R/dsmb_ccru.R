@@ -169,11 +169,11 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
   
   aeKeep_DF <- ae_dataset |>
     #### --------------------------------------------- ####
-  #### Just modify the below line for variable names ####
-  dplyr::mutate(Subject = eval(parse(text=subjID)), ae_grade_code_dyn_std = eval(parse(text=ae_severityVar)), CTCAE5_LLT_NM = eval(parse(text=ae_detailOtherVar)), AE_VERBATIM_TRM_TXT = eval(parse(text=ae_verbatimVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar))) |>
+    #### Just modify the below line for variable names ####
+    dplyr::mutate(Subject = eval(parse(text=subjID)), ae_grade_code_dyn_std = eval(parse(text=ae_severityVar)), CTCAE5_LLT_NM = eval(parse(text=ae_detailOtherVar)), AE_VERBATIM_TRM_TXT = eval(parse(text=ae_verbatimVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar))) |>
     dplyr::select(Subject, ae_grade_code_dyn_std, CTCAE5_LLT_NM, AE_VERBATIM_TRM_TXT, AE_ONSET_DT_INT, ae_detail, ae_category) |>
     #### --------------------------------------------- ####
-  dplyr::mutate(ae_detail = toupper(ifelse(stringr::str_detect(ae_detail, ae_detailOtherText), trimws(AE_VERBATIM_TRM_TXT), ae_detail)), AE_ONSET_DT_INT = toupper(format(as.Date(AE_ONSET_DT_INT, tz = "UTC"), "%d%b%Y")), ae_category = toupper(ae_category)) |>
+    dplyr::mutate(ae_detail = toupper(ifelse(stringr::str_detect(ae_detail, ae_detailOtherText), trimws(AE_VERBATIM_TRM_TXT), ae_detail)), AE_ONSET_DT_INT = toupper(format(as.Date(AE_ONSET_DT_INT, tz = "UTC"), "%d%b%Y")), ae_category = toupper(ae_category)) |>
     dplyr::mutate(ae_detail = toupper(ifelse(is.na(ae_detail), CTCAE5_LLT_NM, ae_detail))) 
   
   #i <- 1;
@@ -191,6 +191,9 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       dplyr::arrange(Subject) |>
       dplyr::filter(as.Date(PARTIC_ENROL_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y"), as.Date(AE_ONSET_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y"), !is.na(ae_detail)) |>
       dplyr::distinct(Subject, AE_ONSET_DT_INT, ae_detail, ae_category, ae_grade_code_dyn_std, PARTIC_ENROL_DT_INT) |>
+      dplyr::filter(!ae_detail == "") |>
+      dplyr::filter(!ae_category == "") |>
+      dplyr::filter(!ae_grade_code_dyn_std == "") |>
       dplyr::mutate(ae_grade_code_dyn_std = as.numeric(gsub("[^0-9.-]", "", ae_grade_code_dyn_std))) 
     #write.xlsx(aes1_DF, file=paste("aes1_DF", ".xlsx", sep=""), sheetName="AEs check", col.names=TRUE, row.names=FALSE, append=TRUE, showNA=FALSE);
     #unique(aes1_DF$ae_detail);
@@ -201,7 +204,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       #dplyr::filter(ae_grade_code_dyn_std == max(ae_grade_code_dyn_std)) |>
       dplyr::arrange(Subject) 
     
-    total_subj_count <- length(unique(subjects_DF$Subject));
+    total_subj_count <- length(unique(aes1_DF$Subject));
     if (!is.null(numSubj)) {
       total_subj_count <- numSubj[i];
     }
