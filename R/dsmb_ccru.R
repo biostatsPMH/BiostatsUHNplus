@@ -57,7 +57,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
                       genderVar,enrolDtVar,ae_detailVar,ae_categoryVar,
                       ae_severityVar,ae_onsetDtVar,ae_detailOtherText=NULL,ae_detailOtherVar=NULL,
                       ae_verbatimVar=NULL,numSubj=NULL,fileNameUnderscore=TRUE){
-
+  
   #### Template style for tables;
   ##https://stackoverflow.com/questions/54322814/how-to-apply-thick-border-around-a-cell-range-using-the-openxlsx-package-in-r ;
   OutsideBorders <-
@@ -119,7 +119,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
                                wrapText = TRUE)
   
   #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#;
-
+  
   #setwd(setwd);
   
   if (is.null(boundDate)) {
@@ -143,26 +143,26 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
   if (is.null(comp)) {
     subjectsKeep_DF <- plyr::join_all(baseline_datasets, by = subjID, type = "full") |>
       #### --------------------------------------------- ####
-      #### Just modify the below line for variable names ####
-      dplyr::mutate(Subject = eval(parse(text=subjID)), comp = "", gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
+    #### Just modify the below line for variable names ####
+    dplyr::mutate(Subject = eval(parse(text=subjID)), comp = "", gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
       dplyr::select(Subject, comp, gender_code, PT_ELIG_IND_3, PARTIC_ENROL_DT_INT) |>
       dplyr::group_by(Subject) |>
       dplyr::summarise(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
       #### --------------------------------------------- ####
-      dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
+    dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
       dplyr::filter(!PT_ELIG_IND_3 %in% ineligVarText, !Subject %in% subjID_ineligText) |>
       dplyr::arrange(Subject)
   }
   if (!is.null(comp)) {
     subjectsKeep_DF <- plyr::join_all(baseline_datasets, by = subjID, type = "full") |>
       #### --------------------------------------------- ####
-      #### Just modify the below line for variable names ####
-      dplyr::mutate(Subject = eval(parse(text=subjID)), comp = eval(parse(text=comp)), gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
+    #### Just modify the below line for variable names ####
+    dplyr::mutate(Subject = eval(parse(text=subjID)), comp = eval(parse(text=comp)), gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
       dplyr::select(Subject, comp, gender_code, PT_ELIG_IND_3, PARTIC_ENROL_DT_INT) |>
       dplyr::group_by(Subject) |>
       dplyr::summarise(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
       #### --------------------------------------------- ####
-      dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
+    dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
       dplyr::filter(!PT_ELIG_IND_3 %in% ineligVarText, !Subject %in% subjID_ineligText) |>
       dplyr::arrange(Subject)
   }
@@ -191,6 +191,9 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       dplyr::arrange(Subject) |>
       dplyr::filter(as.Date(PARTIC_ENROL_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y"), as.Date(AE_ONSET_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y"), !is.na(ae_detail)) |>
       dplyr::distinct(Subject, AE_ONSET_DT_INT, ae_detail, ae_category, ae_grade_code_dyn_std, PARTIC_ENROL_DT_INT) |>
+      dplyr::filter(!ae_detail == "") |>
+      dplyr::filter(!ae_category == "") |>
+      dplyr::filter(!ae_grade_code_dyn_std == "") |>
       dplyr::mutate(ae_grade_code_dyn_std = as.numeric(gsub("[^0-9.-]", "", ae_grade_code_dyn_std))) 
     #write.xlsx(aes1_DF, file=paste("aes1_DF", ".xlsx", sep=""), sheetName="AEs check", col.names=TRUE, row.names=FALSE, append=TRUE, showNA=FALSE);
     #unique(aes1_DF$ae_detail);
@@ -201,7 +204,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       #dplyr::filter(ae_grade_code_dyn_std == max(ae_grade_code_dyn_std)) |>
       dplyr::arrange(Subject) 
     
-    total_subj_count <- length(unique(subjects_DF$Subject));
+    total_subj_count <- length(unique(aes1_DF$Subject));
     if (!is.null(numSubj)) {
       total_subj_count <- numSubj[i];
     }
