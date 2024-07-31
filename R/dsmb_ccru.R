@@ -164,7 +164,8 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       #### --------------------------------------------- ####
     dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
       dplyr::filter(!PT_ELIG_IND_3 %in% ineligVarText, !Subject %in% subjID_ineligText) |>
-      dplyr::arrange(Subject)
+      dplyr::arrange(Subject) |>
+      dplyr::filter(!is.na(comp))
   }
   
   aeKeep_DF <- ae_dataset |>
@@ -174,9 +175,11 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     dplyr::select(Subject, ae_grade_code_dyn_std, CTCAE5_LLT_NM, AE_VERBATIM_TRM_TXT, AE_ONSET_DT_INT, ae_detail, ae_category) |>
     #### --------------------------------------------- ####
   dplyr::mutate(ae_detail = toupper(ifelse(stringr::str_detect(ae_detail, ae_detailOtherText), trimws(AE_VERBATIM_TRM_TXT), ae_detail)), AE_ONSET_DT_INT = toupper(format(as.Date(AE_ONSET_DT_INT, tz = "UTC"), "%d%b%Y")), ae_category = toupper(ae_category)) |>
-    dplyr::mutate(ae_detail = toupper(ifelse(is.na(ae_detail), CTCAE5_LLT_NM, ae_detail))) 
+    dplyr::mutate(ae_detail = toupper(ifelse(is.na(ae_detail), CTCAE5_LLT_NM, ae_detail))) |>
+    dplyr::arrange(Subject)
   
   #i <- 1;
+  #i <- 2;
   for (i in 1:length(unique(subjectsKeep_DF[["comp"]]))) {
     comp <- unique(subjectsKeep_DF[["comp"]])[i]
     tryCatch({
@@ -189,11 +192,13 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       dplyr::left_join(aeKeep_DF, by = "Subject") |>
       dplyr::select(Subject, AE_ONSET_DT_INT, ae_detail, ae_category, ae_grade_code_dyn_std, PARTIC_ENROL_DT_INT, CTCAE5_LLT_NM, AE_VERBATIM_TRM_TXT) |>
       dplyr::arrange(Subject) |>
-      dplyr::filter(as.Date(PARTIC_ENROL_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y"), as.Date(AE_ONSET_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y"), !is.na(ae_detail)) |>
+      #dplyr::filter(as.Date(PARTIC_ENROL_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y"), as.Date(AE_ONSET_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y"), !is.na(ae_detail)) |>
+      dplyr::filter(is.na(PARTIC_ENROL_DT_INT) | as.Date(PARTIC_ENROL_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y")) |>
+      dplyr::filter(is.na(AE_ONSET_DT_INT) | as.Date(AE_ONSET_DT_INT, "%d%b%Y") <= as.Date(cutDate, "%d%b%Y")) |>
       dplyr::distinct(Subject, AE_ONSET_DT_INT, ae_detail, ae_category, ae_grade_code_dyn_std, PARTIC_ENROL_DT_INT) |>
       dplyr::filter(!ae_detail == "") |>
       dplyr::filter(!ae_category == "") |>
-      dplyr::filter(!ae_grade_code_dyn_std == "") |>
+      #dplyr::filter(!ae_grade_code_dyn_std == "") |>
       dplyr::mutate(ae_grade_code_dyn_std = as.numeric(gsub("[^0-9.-]", "", ae_grade_code_dyn_std))) 
     #write.xlsx(aes1_DF, file=paste("aes1_DF", ".xlsx", sep=""), sheetName="AEs check", col.names=TRUE, row.names=FALSE, append=TRUE, showNA=FALSE);
     #unique(aes1_DF$ae_detail);
@@ -204,7 +209,10 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       #dplyr::filter(ae_grade_code_dyn_std == max(ae_grade_code_dyn_std)) |>
       dplyr::arrange(Subject) 
     
-    total_subj_count <- length(unique(aes1_DF$Subject));
+    total_subj_count <- length(unique(subjects_DF[which(!is.na(subjects_DF$gender_code)), ]$Subject));
+    #total_subj_count <- length(unique(subjects_DF[which(!is.na(subjects_DF$PARTIC_ENROL_DT_INT)), ]$Subject));
+    #total_subj_count <- length(unique(subjects_DF$Subject));
+    #total_subj_count <- length(unique(aes1_DF$Subject));
     if (!is.null(numSubj)) {
       total_subj_count <- numSubj[i];
     }
