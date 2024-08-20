@@ -122,8 +122,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
 
   ###If a REDCap repeat instrument exists, then do below;
   if (!is.null(data$redcap_repeat_instrument)) {
-    data$redcap_repeat_instrument <- stringr::str_trunc(as.character(data$redcap_repeat_instrument), 31, 
-                                    ellipsis=""); #sheet name has to be 31 characters or less;
+    data$redcap_repeat_instrument <- stringr::str_trunc(as.character(data$redcap_repeat_instrument), 28, 
+                                    ellipsis=""); #sheet name has to be 28 characters or less (append rn_ for 31 max);
     data$redcap_repeat_instrument <- gsub(" ", "_", gsub("[[:punct:]]", "", 
                                     tolower(data$redcap_repeat_instrument)));
     data$redcap_repeat_instrument <- stringi::stri_trans_general(data$redcap_repeat_instrument, 
@@ -187,8 +187,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
                                         full.names = TRUE));
       newestFile <- rownames(fileList3)[which.max(fileList3$mtime)];
       data_dictionary <- read.csv(newestFile, header=TRUE); 
-      data_dictionary[,2] <- stringr::str_trunc(as.character(data_dictionary[,2]), 31, ellipsis=""); 
-      #sheet name has to be 31 characters or less;
+      data_dictionary[,2] <- stringr::str_trunc(as.character(data_dictionary[,2]), 28, ellipsis=""); 
+      #sheet name has to be 28 characters or less (append rn_ for 31 max);
       
       joinNamesNRI <- NULL;
       #i <- 1;
