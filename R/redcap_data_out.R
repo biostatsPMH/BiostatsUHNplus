@@ -130,7 +130,9 @@ redcap_data_out <- function(protocol,pullDate=NULL,
                                       "latin-ascii");
     data$redcap_repeat_instrument <- stringr::str_replace(data$redcap_repeat_instrument, "__", "_"); 
     
-    data[which(data$redcap_repeat_instrument %in% c("")), ]$redcap_repeat_instrument <- "non_repeat_instrument";
+    if (length(which(data$redcap_repeat_instrument %in% c(""))) > 0) {
+      data[which(data$redcap_repeat_instrument %in% c("")), ]$redcap_repeat_instrument <- "non_repeat_instrument";
+    }
     tables <- unique(data$redcap_repeat_instrument);
     tables <- tables[which(!is.na(tables))];
     data$redcap_repeat_instrument <- as.factor(data$redcap_repeat_instrument);
