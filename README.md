@@ -16,9 +16,8 @@ status](https://www.r-pkg.org/badges/version/BiostatsUHNplus)](https://CRAN.R-pr
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/BiostatsUHNplus)](https://cran.r-project.org/package=BiostatsUHNplus)
 <!-- badges: end -->
 
-The goal of **BiostatsUHNplus** is to house publicly available code
-functions and snippets (some with multiple package dependencies) used by
-[Biostatistics@UHN](https://www.biostatsuhn.com/) in Toronto, Canada.
+The goal of **BiostatsUHNplus** is to house publicly available code snippets and functions (some with multiple package dependencies) used by
+[Biostatistics@UHN](https://biostats.uhnresearch.ca/) in Toronto, Canada.
 
 Many of these functions build upon the features of
 [**reportRmd**](https://github.com/biostatsPMH/reportRmd).
