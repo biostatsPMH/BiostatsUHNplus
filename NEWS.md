@@ -1,6 +1,6 @@
-# BiostatsUHNplus 0.0.11
+# BiostatsUHNplus 1.0.1
 
-* Revised dsmb_ccru() for better filtering with missing field values
+* Revised dsmb_ccru() for better filtering with missing field values 
 
 # BiostatsUHNplus 0.0.10
 

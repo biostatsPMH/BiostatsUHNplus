@@ -42,8 +42,9 @@ for example, list(enrollment_DF,demography_DF,ineligibility_DF)}
 
 \item{ae_dataset}{data frame that contains subject AEs}
 
-\item{ae_attribVars}{field(s) that denotes attribution to intervention under study,
-for example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") (if provided)}
+\item{ae_attribVars}{field(s) that denotes attribution to intervention
+under study, for example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1")
+(if provided)}
 
 \item{ae_attribVarsName}{character text that denotes name of interventions under study,
 for example, c("Drug 1", "Drug 2") (if provided)}

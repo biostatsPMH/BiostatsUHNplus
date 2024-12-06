@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.3 Examples | Example nested summary and Bayesian hierarchical model summary</title>
+  <meta name="description" content="4.3 Examples | Example nested summary and Bayesian hierarchical model summary" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.3 Examples | Example nested summary and Bayesian hierarchical model summary" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.3 Examples | Example nested summary and Bayesian hierarchical model summary" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="documentation.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li> &nbsp;&nbsp; BiostatsUHNplus    </li>
+<li> &nbsp;&nbsp; Biostatistics@UHN</li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Overview</a></li>
+<li class="chapter" data-level="2" data-path="exploratory-analysis.html"><a href="exploratory-analysis.html"><i class="fa fa-check"></i><b>2</b> Exploratory analysis</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="summary-of-high-protein-status.html"><a href="summary-of-high-protein-status.html"><i class="fa fa-check"></i><b>2.1</b> Summary of high protein status</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="summary-of-high-protein-status.html"><a href="summary-of-high-protein-status.html#by-data-record-row"><i class="fa fa-check"></i><b>2.1.1</b> By data record (row):</a></li>
+<li class="chapter" data-level="2.1.2" data-path="summary-of-high-protein-status.html"><a href="summary-of-high-protein-status.html#by-cow-in-yard-at-observation-instance"><i class="fa fa-check"></i><b>2.1.2</b> By cow in yard at observation instance:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="nested-summary-of-high-protein-status.html"><a href="nested-summary-of-high-protein-status.html"><i class="fa fa-check"></i><b>2.2</b> Nested summary of high protein status</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="nested-summary-of-high-protein-status.html"><a href="nested-summary-of-high-protein-status.html#by-cow"><i class="fa fa-check"></i><b>2.2.1</b> By cow:</a></li>
+<li class="chapter" data-level="2.2.2" data-path="nested-summary-of-high-protein-status.html"><a href="nested-summary-of-high-protein-status.html#by-cow-nested-in-yard"><i class="fa fa-check"></i><b>2.2.2</b> By cow nested in yard:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="nested-summary-of-yard.html"><a href="nested-summary-of-yard.html"><i class="fa fa-check"></i><b>2.3</b> Nested summary of yard</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="nested-summary-of-yard.html"><a href="nested-summary-of-yard.html#by-cow-1"><i class="fa fa-check"></i><b>2.3.1</b> By cow:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="nested-summary-of-diet.html"><a href="nested-summary-of-diet.html"><i class="fa fa-check"></i><b>2.4</b> Nested summary of diet</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="nested-summary-of-diet.html"><a href="nested-summary-of-diet.html#by-cow-2"><i class="fa fa-check"></i><b>2.4.1</b> By cow:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="inferential-analysis.html"><a href="inferential-analysis.html"><i class="fa fa-check"></i><b>3</b> Inferential analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="kaplan-meier-survival-curve.html"><a href="kaplan-meier-survival-curve.html"><i class="fa fa-check"></i><b>3.1</b> Kaplan-Meier survival curve</a></li>
+<li class="chapter" data-level="3.2" data-path="logistic-model.html"><a href="logistic-model.html"><i class="fa fa-check"></i><b>3.2</b> Logistic model</a></li>
+<li class="chapter" data-level="3.3" data-path="generalized-estimating-equations-model.html"><a href="generalized-estimating-equations-model.html"><i class="fa fa-check"></i><b>3.3</b> Generalized estimating equations model</a></li>
+<li class="chapter" data-level="3.4" data-path="bayesian-hierarchical-model.html"><a href="bayesian-hierarchical-model.html"><i class="fa fa-check"></i><b>3.4</b> Bayesian hierarchical model</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="bayesian-hierarchical-model.html"><a href="bayesian-hierarchical-model.html#variance-piechart"><i class="fa fa-check"></i><b>3.4.1</b> Variance piechart</a></li>
+<li class="chapter" data-level="3.4.2" data-path="bayesian-hierarchical-model.html"><a href="bayesian-hierarchical-model.html#caterpillar-plot-for-random-effect-of-cow"><i class="fa fa-check"></i><b>3.4.2</b> Caterpillar plot for random effect of cow</a></li>
+<li class="chapter" data-level="3.4.3" data-path="bayesian-hierarchical-model.html"><a href="bayesian-hierarchical-model.html#caterpillar-plot-for-random-effect-of-yard"><i class="fa fa-check"></i><b>3.4.3</b> Caterpillar plot for random effect of yard</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="biostatsuhnplus.html"><a href="biostatsuhnplus.html"><i class="fa fa-check"></i><b>4</b> BiostatsUHNplus</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>4.1</b> Installation</a></li>
+<li class="chapter" data-level="4.2" data-path="documentation.html"><a href="documentation.html"><i class="fa fa-check"></i><b>4.2</b> Documentation</a></li>
+<li class="chapter" data-level="4.3" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>4.3</b> Examples</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="examples.html"><a href="examples.html#a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error"><i class="fa fa-check"></i><b>4.3.1</b> A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error</a></li>
+<li class="chapter" data-level="4.3.2" data-path="examples.html"><a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug"><i class="fa fa-check"></i><b>4.3.2</b> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug</a></li>
+<li class="chapter" data-level="4.3.3" data-path="examples.html"><a href="examples.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
+<li class="chapter" data-level="4.3.4" data-path="examples.html"><a href="examples.html#related-adverse-event-onset-timeline-plots"><i class="fa fa-check"></i><b>4.3.4</b> Related adverse event onset timeline plots</a></li>
+<li class="chapter" data-level="4.3.5" data-path="examples.html"><a href="examples.html#summary-functions-for-mcmcglmm-object-with-binary-outcome"><i class="fa fa-check"></i><b>4.3.5</b> Summary functions for MCMCglmm object with binary outcome</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Example nested summary and Bayesian hierarchical model summary</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="examples" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Examples<a href="examples.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error<a href="examples.html#a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="examples.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
+<span id="cb18-2"><a href="examples.html#cb18-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">as_numeric_parse</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="st">&quot;String1&quot;</span>,<span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>,<span class="st">&quot;String2&quot;</span>))</span>
+<span id="cb18-3"><a href="examples.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following entries were converted to NA values:</span></span>
+<span id="cb18-4"><a href="examples.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Entry 6, &#39;String1&#39;</span></span>
+<span id="cb18-5"><a href="examples.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Entry 12, &#39;String2&#39;</span></span>
+<span id="cb18-6"><a href="examples.html#cb18-6" aria-hidden="true" tabindex="-1"></a>z</span>
+<span id="cb18-7"><a href="examples.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  1  2  3  4  5 NA  6  7  8  9 10 NA</span></span></code></pre></div>
+</div>
+<div id="nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug<a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uses addendum simulated study data and applies variable labels. Interpret summary output and unnested or nested p-value with caution!</p>
+<p>Note that if participants were enrolled in more than one cohort (crossover), or if repeat AEs in participant had different attribution, the total N for Full Sample will be less than that of the total N of attribution for first study drug. Since total N for Full Sample (234) is less than total N of the first study drug attribution categories (49 + 198), this suggests that there was instances of repeat AEs in participants having different attribution to first study drug.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="examples.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plyr);</span>
+<span id="cb19-2"><a href="examples.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
+<span id="cb19-3"><a href="examples.html#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="examples.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;enrollment&quot;</span>, <span class="st">&quot;demography&quot;</span>, <span class="st">&quot;ineligibility&quot;</span>, <span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb19-5"><a href="examples.html#cb19-5" aria-hidden="true" tabindex="-1"></a>clinT <span class="ot">&lt;-</span> plyr<span class="sc">::</span><span class="fu">join_all</span>(<span class="fu">list</span>(enrollment, demography, ineligibility, ae), </span>
+<span id="cb19-6"><a href="examples.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">&quot;Subject&quot;</span>, <span class="at">type =</span> <span class="st">&quot;full&quot;</span>);</span>
+<span id="cb19-7"><a href="examples.html#cb19-7" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>AE_SEV_GD <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(clinT<span class="sc">$</span>AE_SEV_GD);</span>
+<span id="cb19-8"><a href="examples.html#cb19-8" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_1_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;Unrelated&quot;</span>;</span>
+<span id="cb19-9"><a href="examples.html#cb19-9" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_1_Attribution[clinT<span class="sc">$</span>CTC_AE_ATTR_SCALE <span class="sc">%in%</span> </span>
+<span id="cb19-10"><a href="examples.html#cb19-10" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Related&quot;</span>;</span>
+<span id="cb19-11"><a href="examples.html#cb19-11" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_2_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;Unrelated&quot;</span>;</span>
+<span id="cb19-12"><a href="examples.html#cb19-12" aria-hidden="true" tabindex="-1"></a>clinT<span class="sc">$</span>Drug_2_Attribution[clinT<span class="sc">$</span>CTC_AE_ATTR_SCALE_1 <span class="sc">%in%</span> </span>
+<span id="cb19-13"><a href="examples.html#cb19-13" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Related&quot;</span>;</span>
+<span id="cb19-14"><a href="examples.html#cb19-14" aria-hidden="true" tabindex="-1"></a>lbls <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">c1=</span><span class="fu">c</span>(<span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, <span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, </span>
+<span id="cb19-15"><a href="examples.html#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;ae_category&quot;</span>),</span>
+<span id="cb19-16"><a href="examples.html#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">c2=</span><span class="fu">c</span>(<span class="st">&quot;Adverse event severity grade&quot;</span>, <span class="st">&quot;Enrollment date&quot;</span>, <span class="st">&quot;Cohort&quot;</span>, <span class="st">&quot;Gender&quot;</span>, </span>
+<span id="cb19-17"><a href="examples.html#cb19-17" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;Ineligibility&quot;</span>, <span class="st">&quot;Adverse event onset date&quot;</span>, <span class="st">&quot;Attribution to second study drug&quot;</span>,</span>
+<span id="cb19-18"><a href="examples.html#cb19-18" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;Adverse event system organ class&quot;</span>));</span>
+<span id="cb19-19"><a href="examples.html#cb19-19" aria-hidden="true" tabindex="-1"></a>clinT <span class="ot">&lt;-</span> reportRmd<span class="sc">::</span><span class="fu">set_labels</span>(clinT, lbls);</span>
+<span id="cb19-20"><a href="examples.html#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="examples.html#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> clinT, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;ae_detail&quot;</span>, <span class="st">&quot;Subject&quot;</span>, <span class="st">&quot;COHORT&quot;</span>), </span>
+<span id="cb19-22"><a href="examples.html#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, </span>
+<span id="cb19-23"><a href="examples.html#cb19-23" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;ae_category&quot;</span>), </span>
+<span id="cb19-24"><a href="examples.html#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">maincov =</span> <span class="st">&quot;Drug_1_Attribution&quot;</span>);</span></code></pre></div>
+<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Full Sample (n=234)
+</th>
+<th style="text-align:right;">
+Related (n=49)
+</th>
+<th style="text-align:right;">
+Unrelated (n=198)
+</th>
+<th style="text-align:right;">
+Unnested p-value
+</th>
+<th style="text-align:right;">
+Unnested Effect Size
+</th>
+<th style="text-align:right;">
+Unnested StatTest
+</th>
+<th style="text-align:right;">
+Nested p-value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Cohort</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+<td style="text-align:right;">
+0.081
+</td>
+<td style="text-align:right;">
+Chi Sq, Cramer’s V
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cohort A
+</td>
+<td style="text-align:right;">
+59 (25)
+</td>
+<td style="text-align:right;">
+13 (27)
+</td>
+<td style="text-align:right;">
+49 (25)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cohort B
+</td>
+<td style="text-align:right;">
+83 (35)
+</td>
+<td style="text-align:right;">
+14 (29)
+</td>
+<td style="text-align:right;">
+74 (37)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cohort C
+</td>
+<td style="text-align:right;">
+37 (16)
+</td>
+<td style="text-align:right;">
+10 (20)
+</td>
+<td style="text-align:right;">
+30 (15)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cohort D
+</td>
+<td style="text-align:right;">
+55 (24)
+</td>
+<td style="text-align:right;">
+12 (24)
+</td>
+<td style="text-align:right;">
+45 (23)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Gender</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+0.093
+</td>
+<td style="text-align:right;">
+Chi Sq, Cramer’s V
+</td>
+<td style="text-align:right;">
+0.63
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Female
+</td>
+<td style="text-align:right;">
+51 (22)
+</td>
+<td style="text-align:right;">
+15 (31)
+</td>
+<td style="text-align:right;">
+39 (20)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Male
+</td>
+<td style="text-align:right;">
+183 (78)
+</td>
+<td style="text-align:right;">
+34 (69)
+</td>
+<td style="text-align:right;">
+159 (80)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Ineligibility</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Chi Sq, Cramer’s V
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+No
+</td>
+<td style="text-align:right;">
+215 (100)
+</td>
+<td style="text-align:right;">
+46 (100)
+</td>
+<td style="text-align:right;">
+181 (100)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Missing
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+17
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Enrollment date</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Mean (sd)
+</td>
+<td style="text-align:right;">
+2017-01-07 (301.8 days)
+</td>
+<td style="text-align:right;">
+2017-01-31 (322.7 days)
+</td>
+<td style="text-align:right;">
+2016-12-28 (294.3 days)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Median (Min,Max)
+</td>
+<td style="text-align:right;">
+2016-09-14 (2016-01-18, 2018-05-16)
+</td>
+<td style="text-align:right;">
+2017-02-07 (2016-01-18, 2018-05-16)
+</td>
+<td style="text-align:right;">
+2016-09-14 (2016-01-18, 2018-05-16)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Adverse event severity grade</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.098
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Mean (sd)
+</td>
+<td style="text-align:right;">
+1.8 (0.8)
+</td>
+<td style="text-align:right;">
+2.0 (0.9)
+</td>
+<td style="text-align:right;">
+1.7 (0.8)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Median (Min,Max)
+</td>
+<td style="text-align:right;">
+1.5 (1.0, 5.0)
+</td>
+<td style="text-align:right;">
+2 (1, 4)
+</td>
+<td style="text-align:right;">
+1.5 (1.0, 5.0)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Attribution to second study drug</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span style="font-weight: bold;">&lt;0.001</span>
+</td>
+<td style="text-align:right;">
+0.55
+</td>
+<td style="text-align:right;">
+Chi Sq, Cramer’s V
+</td>
+<td style="text-align:right;">
+<span style="font-weight: bold;">&lt;0.001</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Related
+</td>
+<td style="text-align:right;">
+37 (16)
+</td>
+<td style="text-align:right;">
+28 (57)
+</td>
+<td style="text-align:right;">
+11 (6)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Unrelated
+</td>
+<td style="text-align:right;">
+197 (84)
+</td>
+<td style="text-align:right;">
+21 (43)
+</td>
+<td style="text-align:right;">
+187 (94)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Adverse event onset date</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+Wilcoxon Rank Sum, Wilcoxon r
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Mean (sd)
+</td>
+<td style="text-align:right;">
+2017-11-03 (161.1 days)
+</td>
+<td style="text-align:right;">
+2017-10-01 (146.6 days)
+</td>
+<td style="text-align:right;">
+2017-11-10 (161.2 days)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Median (Min,Max)
+</td>
+<td style="text-align:right;">
+2017-10-05 (2016-05-02, 2019-01-13)
+</td>
+<td style="text-align:right;">
+2017-09-07 (2017-03-18, 2018-11-24)
+</td>
+<td style="text-align:right;">
+2017-10-15 (2016-05-02, 2019-01-13)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="font-weight: bold;">Adverse event system organ class</span>
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+<span style="font-weight: bold;">0.003</span>
+</td>
+<td style="text-align:right;">
+0.42
+</td>
+<td style="text-align:right;">
+Chi Sq, Cramer’s V
+</td>
+<td style="text-align:right;">
+Did not converge;<br>quasi or complete<br>category separation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Blood and lymphatic system disorders
+</td>
+<td style="text-align:right;">
+15 (6)
+</td>
+<td style="text-align:right;">
+6 (12)
+</td>
+<td style="text-align:right;">
+10 (5)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Cardiac disorders
+</td>
+<td style="text-align:right;">
+6 (3)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+6 (3)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Ear and labyrinth disorders
+</td>
+<td style="text-align:right;">
+1 (0)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+1 (1)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Endocrine disorders
+</td>
+<td style="text-align:right;">
+1 (0)
+</td>
+<td style="text-align:right;">
+1 (2)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Eye disorders
+</td>
+<td style="text-align:right;">
+4 (2)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+4 (2)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Gastrointestinal disorders
+</td>
+<td style="text-align:right;">
+32 (14)
+</td>
+<td style="text-align:right;">
+16 (33)
+</td>
+<td style="text-align:right;">
+22 (11)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+General disorders and administration site conditions
+</td>
+<td style="text-align:right;">
+19 (8)
+</td>
+<td style="text-align:right;">
+1 (2)
+</td>
+<td style="text-align:right;">
+18 (9)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Hepatobiliary disorders
+</td>
+<td style="text-align:right;">
+2 (1)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+2 (1)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Immune system disorders
+</td>
+<td style="text-align:right;">
+1 (0)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+1 (1)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Infections and infestations
+</td>
+<td style="text-align:right;">
+15 (6)
+</td>
+<td style="text-align:right;">
+5 (10)
+</td>
+<td style="text-align:right;">
+13 (7)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Injury, poisoning and procedural complications
+</td>
+<td style="text-align:right;">
+4 (2)
+</td>
+<td style="text-align:right;">
+1 (2)
+</td>
+<td style="text-align:right;">
+4 (2)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Investigations
+</td>
+<td style="text-align:right;">
+34 (15)
+</td>
+<td style="text-align:right;">
+12 (24)
+</td>
+<td style="text-align:right;">
+23 (12)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Metabolism and nutrition disorders
+</td>
+<td style="text-align:right;">
+25 (11)
+</td>
+<td style="text-align:right;">
+3 (6)
+</td>
+<td style="text-align:right;">
+22 (11)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Musculoskeletal and connective tissue disorders
+</td>
+<td style="text-align:right;">
+7 (3)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+7 (4)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Neoplasms benign, malignant and unspecified (incl cysts and polyps)
+</td>
+<td style="text-align:right;">
+1 (0)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+1 (1)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Nervous system disorders
+</td>
+<td style="text-align:right;">
+20 (9)
+</td>
+<td style="text-align:right;">
+3 (6)
+</td>
+<td style="text-align:right;">
+18 (9)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Psychiatric disorders
+</td>
+<td style="text-align:right;">
+4 (2)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+4 (2)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Renal and urinary disorders
+</td>
+<td style="text-align:right;">
+5 (2)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+5 (3)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Reproductive system and breast disorders
+</td>
+<td style="text-align:right;">
+1 (0)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+1 (1)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Respiratory, thoracic and mediastinal disorders
+</td>
+<td style="text-align:right;">
+19 (8)
+</td>
+<td style="text-align:right;">
+1 (2)
+</td>
+<td style="text-align:right;">
+18 (9)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Skin and subcutaneous tissue disorders
+</td>
+<td style="text-align:right;">
+13 (6)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+13 (7)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+Vascular disorders
+</td>
+<td style="text-align:right;">
+5 (2)
+</td>
+<td style="text-align:right;">
+0 (0)
+</td>
+<td style="text-align:right;">
+5 (3)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template<a href="examples.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Uses addendum simulated study data. DSMB-CCRU AE summary tables in below code example can be found in the <em>man/tables</em> folder of <strong>BiostatsUHNplus</strong> package.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="examples.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
+<span id="cb20-2"><a href="examples.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;enrollment&quot;</span>, <span class="st">&quot;demography&quot;</span>, <span class="st">&quot;ineligibility&quot;</span>, <span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb20-3"><a href="examples.html#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="examples.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="do">## This does summary for all participants;</span></span>
+<span id="cb20-5"><a href="examples.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dsmb_ccru</span>(<span class="at">protocol=</span><span class="st">&quot;EXAMPLE_STUDY&quot;</span>,<span class="at">setwd=</span><span class="st">&quot;./man/tables/&quot;</span>,</span>
+<span id="cb20-6"><a href="examples.html#cb20-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">title=</span><span class="st">&quot;Phase X Study to Evaluate Treatments A-D&quot;</span>,</span>
+<span id="cb20-7"><a href="examples.html#cb20-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">comp=</span><span class="cn">NULL</span>,<span class="at">pi=</span><span class="st">&quot;Dr. Principal Investigator&quot;</span>,</span>
+<span id="cb20-8"><a href="examples.html#cb20-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">presDate=</span><span class="st">&quot;30OCT2020&quot;</span>,<span class="at">cutDate=</span><span class="st">&quot;31AUG2020&quot;</span>,</span>
+<span id="cb20-9"><a href="examples.html#cb20-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">boundDate=</span><span class="cn">NULL</span>,<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;New Subject&quot;</span>,<span class="st">&quot;Test&quot;</span>),</span>
+<span id="cb20-10"><a href="examples.html#cb20-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment,demography,ineligibility),</span>
+<span id="cb20-11"><a href="examples.html#cb20-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_dataset=</span>ae,<span class="at">ineligVar=</span><span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>,<span class="at">ineligVarText=</span><span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Y&quot;</span>),</span>
+<span id="cb20-12"><a href="examples.html#cb20-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">genderVar=</span><span class="st">&quot;GENDER_CODE&quot;</span>,<span class="at">enrolDtVar=</span><span class="st">&quot;ENROL_DATE_INT&quot;</span>,<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb20-13"><a href="examples.html#cb20-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
+<span id="cb20-14"><a href="examples.html#cb20-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">ae_detailOtherText=</span><span class="st">&quot;Other, specify&quot;</span>,</span>
+<span id="cb20-15"><a href="examples.html#cb20-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_detailOtherVar=</span><span class="st">&quot;CTCAE5_LLT_NM&quot;</span>,<span class="at">ae_verbatimVar=</span><span class="st">&quot;AE_VERBATIM_TRM_TXT&quot;</span>,</span>
+<span id="cb20-16"><a href="examples.html#cb20-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">numSubj=</span><span class="cn">NULL</span>)</span>
+<span id="cb20-17"><a href="examples.html#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="examples.html#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="do">## This does summary for each cohort;</span></span>
+<span id="cb20-19"><a href="examples.html#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="fu">dsmb_ccru</span>(<span class="at">protocol=</span><span class="st">&quot;EXAMPLE_STUDY&quot;</span>,<span class="at">setwd=</span><span class="st">&quot;./man/tables/&quot;</span>,</span>
+<span id="cb20-20"><a href="examples.html#cb20-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">title=</span><span class="st">&quot;Phase X Study to Evaluate Treatments A-D&quot;</span>,</span>
+<span id="cb20-21"><a href="examples.html#cb20-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">comp=</span><span class="st">&quot;COHORT&quot;</span>,<span class="at">pi=</span><span class="st">&quot;Dr. Principal Investigator&quot;</span>,</span>
+<span id="cb20-22"><a href="examples.html#cb20-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">presDate=</span><span class="st">&quot;30OCT2020&quot;</span>,<span class="at">cutDate=</span><span class="st">&quot;31AUG2020&quot;</span>,</span>
+<span id="cb20-23"><a href="examples.html#cb20-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">boundDate=</span><span class="cn">NULL</span>,<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;New Subject&quot;</span>,<span class="st">&quot;Test&quot;</span>),</span>
+<span id="cb20-24"><a href="examples.html#cb20-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment,demography,ineligibility),</span>
+<span id="cb20-25"><a href="examples.html#cb20-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_dataset=</span>ae,<span class="at">ineligVar=</span><span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>,<span class="at">ineligVarText=</span><span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Y&quot;</span>),</span>
+<span id="cb20-26"><a href="examples.html#cb20-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">genderVar=</span><span class="st">&quot;GENDER_CODE&quot;</span>,<span class="at">enrolDtVar=</span><span class="st">&quot;ENROL_DATE_INT&quot;</span>,<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb20-27"><a href="examples.html#cb20-27" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
+<span id="cb20-28"><a href="examples.html#cb20-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">ae_detailOtherText=</span><span class="st">&quot;Other, specify&quot;</span>,</span>
+<span id="cb20-29"><a href="examples.html#cb20-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_detailOtherVar=</span><span class="st">&quot;CTCAE5_LLT_NM&quot;</span>,<span class="at">ae_verbatimVar=</span><span class="st">&quot;AE_VERBATIM_TRM_TXT&quot;</span>,</span>
+<span id="cb20-30"><a href="examples.html#cb20-30" aria-hidden="true" tabindex="-1"></a>          <span class="at">numSubj=</span><span class="cn">NULL</span>)</span>
+<span id="cb20-31"><a href="examples.html#cb20-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-32"><a href="examples.html#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Does same as above, but overrides number of subjects in cohorts;</span></span>
+<span id="cb20-33"><a href="examples.html#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="fu">dsmb_ccru</span>(<span class="at">protocol=</span><span class="st">&quot;EXAMPLE_STUDY&quot;</span>,<span class="at">setwd=</span><span class="st">&quot;./man/tables/&quot;</span>,</span>
+<span id="cb20-34"><a href="examples.html#cb20-34" aria-hidden="true" tabindex="-1"></a>          <span class="at">title=</span><span class="st">&quot;Phase X Study to Evaluate Treatments A-D&quot;</span>,</span>
+<span id="cb20-35"><a href="examples.html#cb20-35" aria-hidden="true" tabindex="-1"></a>          <span class="at">comp=</span><span class="st">&quot;COHORT&quot;</span>,<span class="at">pi=</span><span class="st">&quot;Dr. Principal Investigator&quot;</span>,</span>
+<span id="cb20-36"><a href="examples.html#cb20-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">presDate=</span><span class="st">&quot;30OCT2020&quot;</span>,<span class="at">cutDate=</span><span class="st">&quot;31AUG2020&quot;</span>,</span>
+<span id="cb20-37"><a href="examples.html#cb20-37" aria-hidden="true" tabindex="-1"></a>          <span class="at">boundDate=</span><span class="cn">NULL</span>,<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;New Subject&quot;</span>,<span class="st">&quot;Test&quot;</span>),</span>
+<span id="cb20-38"><a href="examples.html#cb20-38" aria-hidden="true" tabindex="-1"></a>          <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment,demography,ineligibility),</span>
+<span id="cb20-39"><a href="examples.html#cb20-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_dataset=</span>ae,<span class="at">ineligVar=</span><span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>,<span class="at">ineligVarText=</span><span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>,<span class="st">&quot;Y&quot;</span>),</span>
+<span id="cb20-40"><a href="examples.html#cb20-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">genderVar=</span><span class="st">&quot;GENDER_CODE&quot;</span>,<span class="at">enrolDtVar=</span><span class="st">&quot;ENROL_DATE_INT&quot;</span>,<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb20-41"><a href="examples.html#cb20-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
+<span id="cb20-42"><a href="examples.html#cb20-42" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">ae_detailOtherText=</span><span class="st">&quot;Other, specify&quot;</span>,</span>
+<span id="cb20-43"><a href="examples.html#cb20-43" aria-hidden="true" tabindex="-1"></a>          <span class="at">ae_detailOtherVar=</span><span class="st">&quot;CTCAE5_LLT_NM&quot;</span>,<span class="at">ae_verbatimVar=</span><span class="st">&quot;AE_VERBATIM_TRM_TXT&quot;</span>,</span>
+<span id="cb20-44"><a href="examples.html#cb20-44" aria-hidden="true" tabindex="-1"></a>          <span class="at">numSubj=</span><span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code></pre></div>
+</div>
+<div id="related-adverse-event-onset-timeline-plots" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Related adverse event onset timeline plots<a href="examples.html#related-adverse-event-onset-timeline-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="example-1" class="section level4 hasAnchor" number="4.3.4.1">
+<h4><span class="header-section-number">4.3.4.1</span> Example 1<a href="examples.html#example-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Uses addendum simulated study data. Shows timeline for onset of related AE after study enrollment. Can display up to 5 attributions. Time unit may be one of day, week, month or year.</p>
+<p>Note that if more than one field is given for <em>startDtVars</em> (unique names required), each field is assumed to be specific start date for attribution in corresponding field order.</p>
+<p>The below plot includes both AE category and AE detail in default colour and font scheme.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="examples.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2);</span>
+<span id="cb21-2"><a href="examples.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
+<span id="cb21-3"><a href="examples.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;enrollment&quot;</span>, <span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb21-4"><a href="examples.html#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="examples.html#cb21-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ae_timeline_plot</span>(<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;New Subject&quot;</span>,<span class="st">&quot;Test&quot;</span>),</span>
+<span id="cb21-6"><a href="examples.html#cb21-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment),</span>
+<span id="cb21-7"><a href="examples.html#cb21-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_dataset=</span>ae,</span>
+<span id="cb21-8"><a href="examples.html#cb21-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVars=</span><span class="fu">c</span>(<span class="st">&quot;CTC_AE_ATTR_SCALE&quot;</span>,<span class="st">&quot;CTC_AE_ATTR_SCALE_1&quot;</span>),</span>
+<span id="cb21-9"><a href="examples.html#cb21-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarsName=</span><span class="fu">c</span>(<span class="st">&quot;Drug 1&quot;</span>,<span class="st">&quot;Drug 2&quot;</span>),</span>
+<span id="cb21-10"><a href="examples.html#cb21-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarText=</span><span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>),</span>
+<span id="cb21-11"><a href="examples.html#cb21-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">startDtVars=</span><span class="fu">c</span>(<span class="st">&quot;ENROL_DATE_INT&quot;</span>),<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb21-12"><a href="examples.html#cb21-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
+<span id="cb21-13"><a href="examples.html#cb21-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">time_unit=</span><span class="st">&quot;week&quot;</span>)</span>
+<span id="cb21-14"><a href="examples.html#cb21-14" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_detail_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), p, </span>
+<span id="cb21-15"><a href="examples.html#cb21-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="dv">10</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="fl">1.15</span>);</span></code></pre></div>
+<p><img src="man/figures/ae_detail_timeline_plot.png" width="100%" /></p>
+</div>
+<div id="example-2" class="section level4 hasAnchor" number="4.3.4.2">
+<h4><span class="header-section-number">4.3.4.2</span> Example 2<a href="examples.html#example-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The next plot summarizes timeline by AE category. Fonts, colours, symbols, column widths (character length) and time unit are customized.</p>
+<p>The <em>width</em>, <em>height</em> and <em>scale</em> parameters in ggsave() can also be modified to fit a large plot.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="examples.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2);</span>
+<span id="cb22-2"><a href="examples.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
+<span id="cb22-3"><a href="examples.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;enrollment&quot;</span>, <span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb22-4"><a href="examples.html#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="examples.html#cb22-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ae_timeline_plot</span>(<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;New Subject&quot;</span>,<span class="st">&quot;Test&quot;</span>),</span>
+<span id="cb22-6"><a href="examples.html#cb22-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">baseline_datasets=</span><span class="fu">list</span>(enrollment),</span>
+<span id="cb22-7"><a href="examples.html#cb22-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_dataset=</span>ae,</span>
+<span id="cb22-8"><a href="examples.html#cb22-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVars=</span><span class="fu">c</span>(<span class="st">&quot;CTC_AE_ATTR_SCALE&quot;</span>,<span class="st">&quot;CTC_AE_ATTR_SCALE_1&quot;</span>),</span>
+<span id="cb22-9"><a href="examples.html#cb22-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarsName=</span><span class="fu">c</span>(<span class="st">&quot;Drug 1&quot;</span>,<span class="st">&quot;Drug 2&quot;</span>),</span>
+<span id="cb22-10"><a href="examples.html#cb22-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarText=</span><span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>),</span>
+<span id="cb22-11"><a href="examples.html#cb22-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">startDtVars=</span><span class="fu">c</span>(<span class="st">&quot;ENROL_DATE_INT&quot;</span>),<span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb22-12"><a href="examples.html#cb22-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
+<span id="cb22-13"><a href="examples.html#cb22-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">time_unit=</span><span class="st">&quot;month&quot;</span>,</span>
+<span id="cb22-14"><a href="examples.html#cb22-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">include_ae_detail=</span><span class="cn">FALSE</span>,</span>
+<span id="cb22-15"><a href="examples.html#cb22-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fonts=</span><span class="fu">c</span>(<span class="st">&quot;Forte&quot;</span>,<span class="st">&quot;Gadugi&quot;</span>,<span class="st">&quot;French Script MT&quot;</span>,<span class="st">&quot;Albany AMT&quot;</span>,<span class="st">&quot;Calibri&quot;</span>),</span>
+<span id="cb22-16"><a href="examples.html#cb22-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fontColours=</span><span class="fu">c</span>(<span class="st">&quot;#FF4F00&quot;</span>,<span class="st">&quot;#FFDB58&quot;</span>),</span>
+<span id="cb22-17"><a href="examples.html#cb22-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panelColours=</span><span class="fu">c</span>(<span class="st">&quot;#AAF0D1&quot;</span>,<span class="cn">NA</span>,<span class="st">&quot;white&quot;</span>),</span>
+<span id="cb22-18"><a href="examples.html#cb22-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">attribColours=</span><span class="fu">c</span>(<span class="st">&quot;#F6ADC6&quot;</span>,<span class="st">&quot;#C54B8C&quot;</span>,<span class="st">&quot;#A4DDED&quot;</span>,<span class="st">&quot;#0077BE&quot;</span>,<span class="st">&quot;#9AB973&quot;</span>,</span>
+<span id="cb22-19"><a href="examples.html#cb22-19" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">&quot;#01796F&quot;</span>,<span class="st">&quot;#FFA343&quot;</span>,<span class="st">&quot;#CC7722&quot;</span>,<span class="st">&quot;#E0B0FF&quot;</span>,<span class="st">&quot;#5A4FCF&quot;</span>),</span>
+<span id="cb22-20"><a href="examples.html#cb22-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">attribSymbols=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">15</span>,<span class="dv">16</span>,<span class="dv">17</span>,<span class="dv">18</span>,<span class="dv">19</span>,<span class="dv">20</span>),</span>
+<span id="cb22-21"><a href="examples.html#cb22-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">columnWidths=</span><span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">15</span>))</span>
+<span id="cb22-22"><a href="examples.html#cb22-22" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_category_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), p, </span>
+<span id="cb22-23"><a href="examples.html#cb22-23" aria-hidden="true" tabindex="-1"></a>                <span class="at">width=</span><span class="fl">3.6</span>, <span class="at">height=</span><span class="fl">5.4</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="dv">1</span>);</span></code></pre></div>
+<p><img src="man/figures/ae_category_timeline_plot.png" width="100%" /></p>
+</div>
+<div id="example-3" class="section level4 hasAnchor" number="4.3.4.3">
+<h4><span class="header-section-number">4.3.4.3</span> Example 3<a href="examples.html#example-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If available, specific start date for attribution in corresponding field order (unique field name required) can be used. Drug start date is closer to AE onset than enrollment date.</p>
+<p>Below, subjects 01 and 11 are excluded.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="examples.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2);</span>
+<span id="cb23-2"><a href="examples.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BiostatsUHNplus);</span>
+<span id="cb23-3"><a href="examples.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;drug1_admin&quot;</span>, <span class="st">&quot;drug2_admin&quot;</span>, <span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb23-4"><a href="examples.html#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="examples.html#cb23-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ae_timeline_plot</span>(<span class="at">subjID=</span><span class="st">&quot;Subject&quot;</span>,<span class="at">subjID_ineligText=</span><span class="fu">c</span>(<span class="st">&quot;01&quot;</span>,<span class="st">&quot;11&quot;</span>),</span>
+<span id="cb23-6"><a href="examples.html#cb23-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">baseline_datasets=</span><span class="fu">list</span>(drug1_admin, drug2_admin),</span>
+<span id="cb23-7"><a href="examples.html#cb23-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_dataset=</span>ae,</span>
+<span id="cb23-8"><a href="examples.html#cb23-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVars=</span><span class="fu">c</span>(<span class="st">&quot;CTC_AE_ATTR_SCALE&quot;</span>,<span class="st">&quot;CTC_AE_ATTR_SCALE_1&quot;</span>),</span>
+<span id="cb23-9"><a href="examples.html#cb23-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarsName=</span><span class="fu">c</span>(<span class="st">&quot;Drug 1&quot;</span>,<span class="st">&quot;Drug 2&quot;</span>),</span>
+<span id="cb23-10"><a href="examples.html#cb23-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_attribVarText=</span><span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>),</span>
+<span id="cb23-11"><a href="examples.html#cb23-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">startDtVars=</span><span class="fu">c</span>(<span class="st">&quot;TX1_DATE_INT&quot;</span>,<span class="st">&quot;TX2_DATE_INT&quot;</span>),</span>
+<span id="cb23-12"><a href="examples.html#cb23-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_detailVar=</span><span class="st">&quot;ae_detail&quot;</span>,</span>
+<span id="cb23-13"><a href="examples.html#cb23-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_categoryVar=</span><span class="st">&quot;ae_category&quot;</span>,<span class="at">ae_severityVar=</span><span class="st">&quot;AE_SEV_GD&quot;</span>,</span>
+<span id="cb23-14"><a href="examples.html#cb23-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ae_onsetDtVar=</span><span class="st">&quot;AE_ONSET_DT_INT&quot;</span>,<span class="at">time_unit=</span><span class="st">&quot;month&quot;</span>,</span>
+<span id="cb23-15"><a href="examples.html#cb23-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">include_ae_detail=</span><span class="cn">FALSE</span>,</span>
+<span id="cb23-16"><a href="examples.html#cb23-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fonts=</span><span class="fu">c</span>(<span class="st">&quot;Calibri&quot;</span>,<span class="st">&quot;Albany AMT&quot;</span>,<span class="st">&quot;Gadugi&quot;</span>,<span class="st">&quot;French Script MT&quot;</span>,<span class="st">&quot;Forte&quot;</span>),</span>
+<span id="cb23-17"><a href="examples.html#cb23-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fontColours=</span><span class="fu">c</span>(<span class="st">&quot;#FFE135&quot;</span>),</span>
+<span id="cb23-18"><a href="examples.html#cb23-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">panelColours=</span><span class="fu">c</span>(<span class="st">&quot;#E52B50&quot;</span>,<span class="cn">NA</span>,<span class="st">&quot;#FFF5EE&quot;</span>),</span>
+<span id="cb23-19"><a href="examples.html#cb23-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">attribColours=</span><span class="fu">c</span>(<span class="st">&quot;#9AB973&quot;</span>,<span class="st">&quot;#01796F&quot;</span>,<span class="st">&quot;#FFA343&quot;</span>,<span class="st">&quot;#CC7722&quot;</span>),   </span>
+<span id="cb23-20"><a href="examples.html#cb23-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">attribSymbols=</span><span class="fu">c</span>(<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">5</span>,<span class="dv">6</span>),</span>
+<span id="cb23-21"><a href="examples.html#cb23-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">columnWidths=</span><span class="fu">c</span>(<span class="dv">23</span>))</span>
+<span id="cb23-22"><a href="examples.html#cb23-22" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/ae_category_attribStart_timeline_plot&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), </span>
+<span id="cb23-23"><a href="examples.html#cb23-23" aria-hidden="true" tabindex="-1"></a>                p, <span class="at">width=</span><span class="fl">4.2</span>, <span class="at">height=</span><span class="fl">5.4</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>, <span class="at">scale =</span> <span class="dv">1</span>);</span></code></pre></div>
+<p><img src="man/figures/ae_category_attribStart_timeline_plot.png" width="100%" /></p>
+</div>
+</div>
+<div id="summary-functions-for-mcmcglmm-object-with-binary-outcome" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Summary functions for MCMCglmm object with binary outcome<a href="examples.html#summary-functions-for-mcmcglmm-object-with-binary-outcome" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="model-output-for-fixed-effects" class="section level4 hasAnchor" number="4.3.5.1">
+<h4><span class="header-section-number">4.3.5.1</span> Model output for fixed effects<a href="examples.html#model-output-for-fixed-effects" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Below runs a logistic MCMCglmm model on the odds of grade 3 or higher adverse event, controlling for attribution of first and second intervention drugs. Subject and system organ class are treated as random effects. Model has 800 posterior samples. Should specify burnin=125000, nitt=625000 and thin=100 for 5000 posterior samples with lower autocorrelation. Aim for effective sample sizes of at least 2000.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="examples.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;ae&quot;</span>);</span>
+<span id="cb24-2"><a href="examples.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="examples.html#cb24-3" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>G3Plus <span class="ot">&lt;-</span> <span class="dv">0</span>;</span>
+<span id="cb24-4"><a href="examples.html#cb24-4" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>G3Plus[ae<span class="sc">$</span>AE_SEV_GD <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;3&quot;</span>, <span class="st">&quot;4&quot;</span>, <span class="st">&quot;5&quot;</span>)] <span class="ot">&lt;-</span> <span class="dv">1</span>;</span>
+<span id="cb24-5"><a href="examples.html#cb24-5" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>Drug_1_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;No&quot;</span>;</span>
+<span id="cb24-6"><a href="examples.html#cb24-6" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>Drug_1_Attribution[ae<span class="sc">$</span>CTC_AE_ATTR_SCALE <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Yes&quot;</span>;</span>
+<span id="cb24-7"><a href="examples.html#cb24-7" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>Drug_2_Attribution <span class="ot">&lt;-</span> <span class="st">&quot;No&quot;</span>;</span>
+<span id="cb24-8"><a href="examples.html#cb24-8" aria-hidden="true" tabindex="-1"></a>ae<span class="sc">$</span>Drug_2_Attribution[ae<span class="sc">$</span>CTC_AE_ATTR_SCALE_1 <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Definite&quot;</span>, <span class="st">&quot;Probable&quot;</span>, <span class="st">&quot;Possible&quot;</span>)] <span class="ot">&lt;-</span> <span class="st">&quot;Yes&quot;</span>;</span>
+<span id="cb24-9"><a href="examples.html#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="examples.html#cb24-10" aria-hidden="true" tabindex="-1"></a>prior2RE <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">R =</span> <span class="fu">list</span>(<span class="at">V =</span> <span class="fu">diag</span>(<span class="dv">1</span>), <span class="at">fix =</span> <span class="dv">1</span>),</span>
+<span id="cb24-11"><a href="examples.html#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">G=</span><span class="fu">list</span>(<span class="at">G1=</span><span class="fu">list</span>(<span class="at">V=</span><span class="dv">1</span>, <span class="at">nu=</span><span class="fl">0.02</span>), <span class="at">G2=</span><span class="fu">list</span>(<span class="at">V=</span><span class="dv">1</span>, <span class="at">nu=</span><span class="fl">0.02</span>)));</span>
+<span id="cb24-12"><a href="examples.html#cb24-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-13"><a href="examples.html#cb24-13" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> MCMCglmm<span class="sc">::</span><span class="fu">MCMCglmm</span>(G3Plus <span class="sc">~</span> Drug_1_Attribution <span class="sc">+</span> Drug_2_Attribution, </span>
+<span id="cb24-14"><a href="examples.html#cb24-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">random=</span><span class="sc">~</span>Subject <span class="sc">+</span> ae_category, <span class="at">family=</span><span class="st">&quot;categorical&quot;</span>, <span class="at">data=</span>ae, <span class="at">saveX=</span><span class="cn">TRUE</span>, </span>
+<span id="cb24-15"><a href="examples.html#cb24-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose=</span>F, <span class="at">burnin=</span><span class="dv">4000</span>, <span class="at">nitt=</span><span class="dv">12000</span>, <span class="at">thin=</span><span class="dv">10</span>, <span class="at">pr=</span><span class="cn">TRUE</span>, <span class="at">prior=</span>prior2RE);</span>
+<span id="cb24-16"><a href="examples.html#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-17"><a href="examples.html#cb24-17" aria-hidden="true" tabindex="-1"></a>mcmcglmm_mva <span class="ot">&lt;-</span> <span class="fu">nice_mcmcglmm</span>(model1, ae);</span>
+<span id="cb24-18"><a href="examples.html#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
+<span id="cb24-19"><a href="examples.html#cb24-19" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mcmcglmm_mva);</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:left;">
+Levels
+</th>
+<th style="text-align:left;">
+OR (95% HPDI)
+</th>
+<th style="text-align:left;">
+MCMCp
+</th>
+<th style="text-align:left;">
+eff.samp
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Drug 1 Attribution
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+2.70 (1.02, 6.98)
+</td>
+<td style="text-align:left;">
+0.062
+</td>
+<td style="text-align:left;">
+152.86
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Drug 2 Attribution
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+0.41 (0.15, 1.26)
+</td>
+<td style="text-align:left;">
+0.130
+</td>
+<td style="text-align:left;">
+127.70
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="intraclass-correlation-coefficients" class="section level4 hasAnchor" number="4.3.5.2">
+<h4><span class="header-section-number">4.3.5.2</span> Intraclass correlation coefficients<a href="examples.html#intraclass-correlation-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Most of the observed variation in grade 3 or higher adverse event status is attributable to adverse event category, also known as system organ class.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="examples.html#cb25-1" aria-hidden="true" tabindex="-1"></a>mcmcglmm_icc <span class="ot">&lt;-</span> <span class="fu">nice_mcmcglmm_icc</span>(model1, <span class="at">prob=</span><span class="fl">0.95</span>, <span class="at">decimals=</span><span class="dv">4</span>);</span>
+<span id="cb25-2"><a href="examples.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
+<span id="cb25-3"><a href="examples.html#cb25-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mcmcglmm_icc);</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+ICC
+</th>
+<th style="text-align:right;">
+lower
+</th>
+<th style="text-align:right;">
+upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Subject
+</td>
+<td style="text-align:right;">
+0.0360
+</td>
+<td style="text-align:right;">
+0.0045
+</td>
+<td style="text-align:right;">
+0.3004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ae_category
+</td>
+<td style="text-align:right;">
+0.9005
+</td>
+<td style="text-align:right;">
+0.5377
+</td>
+<td style="text-align:right;">
+0.9599
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+units
+</td>
+<td style="text-align:right;">
+0.0707
+</td>
+<td style="text-align:right;">
+0.0283
+</td>
+<td style="text-align:right;">
+0.2189
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="caterpillar-plots-of-random-effects---participant" class="section level4 hasAnchor" number="4.3.5.3">
+<h4><span class="header-section-number">4.3.5.3</span> Caterpillar plots of random effects - participant<a href="examples.html#caterpillar-plots-of-random-effects---participant" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>After controlling for first and second drug attributions, subject 01 has a higher odds for grade 3 or higher adverse event than the average of study participants.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="examples.html#cb26-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">caterpillar_plot</span>(<span class="at">subjID =</span> <span class="st">&quot;Subject&quot;</span>,</span>
+<span id="cb26-2"><a href="examples.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mcmcglmm_object =</span> model1,</span>
+<span id="cb26-3"><a href="examples.html#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob =</span> <span class="fl">0.95</span>,</span>
+<span id="cb26-4"><a href="examples.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">orig_dataset =</span> ae,</span>
+<span id="cb26-5"><a href="examples.html#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">2</span>,</span>
+<span id="cb26-6"><a href="examples.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">binaryOutcomeVar =</span> <span class="st">&quot;G3Plus&quot;</span>)</span>
+<span id="cb26-7"><a href="examples.html#cb26-7" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/caterpillar_plot_subject&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), </span>
+<span id="cb26-8"><a href="examples.html#cb26-8" aria-hidden="true" tabindex="-1"></a>       p, <span class="at">scale =</span> <span class="fl">1.0</span>, <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="fl">3.4</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>);</span></code></pre></div>
+<p><img src="man/figures/caterpillar_plot_subject.png" width="100%" /></p>
+</div>
+<div id="caterpillar-plots-of-random-effects---system-organ-class" class="section level4 hasAnchor" number="4.3.5.4">
+<h4><span class="header-section-number">4.3.5.4</span> Caterpillar plots of random effects - system organ class<a href="examples.html#caterpillar-plots-of-random-effects---system-organ-class" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Highest posterior density intervals, also known as credible intervals, are not symmetric. Need to run model for more iterations with higher burnin.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="examples.html#cb27-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">caterpillar_plot</span>(<span class="at">subjID =</span> <span class="st">&quot;ae_category&quot;</span>,</span>
+<span id="cb27-2"><a href="examples.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">mcmcglmm_object =</span> model1,</span>
+<span id="cb27-3"><a href="examples.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">prob =</span> <span class="fl">0.95</span>,</span>
+<span id="cb27-4"><a href="examples.html#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">orig_dataset =</span> ae,</span>
+<span id="cb27-5"><a href="examples.html#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">4</span>,</span>
+<span id="cb27-6"><a href="examples.html#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">columnTextWidth =</span> <span class="dv">22</span>,</span>
+<span id="cb27-7"><a href="examples.html#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">binaryOutcomeVar =</span> <span class="st">&quot;G3Plus&quot;</span>,</span>
+<span id="cb27-8"><a href="examples.html#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">subtitle =</span> <span class="st">&quot;System organ class (n, events)&quot;</span>,</span>
+<span id="cb27-9"><a href="examples.html#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;Odds Ratio for G3+ Severity with 95% Highest Posterior Density Interval&quot;</span>,</span>
+<span id="cb27-10"><a href="examples.html#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">fonts =</span> <span class="fu">c</span>(<span class="st">&quot;Arial&quot;</span>, <span class="st">&quot;Arial&quot;</span>, <span class="st">&quot;Arial&quot;</span>, <span class="st">&quot;Arial&quot;</span>),</span>
+<span id="cb27-11"><a href="examples.html#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">break.label.summary =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-12"><a href="examples.html#cb27-12" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="fu">paste</span>(<span class="st">&quot;man/figures/caterpillar_plot_ae_category&quot;</span>, <span class="st">&quot;.png&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>), </span>
+<span id="cb27-13"><a href="examples.html#cb27-13" aria-hidden="true" tabindex="-1"></a>       p, <span class="at">scale =</span> <span class="fl">1.3</span>, <span class="at">width=</span><span class="fl">6.4</span>, <span class="at">height=</span><span class="fl">3.8</span>, <span class="at">device=</span><span class="st">&quot;png&quot;</span>);</span></code></pre></div>
+<p><img src="man/figures/caterpillar_plot_ae_category.png" width="100%" /></p>
+
+</div>
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="documentation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": null,
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none",
+"toc_depth": 3,
+"scroll_highlight": true
+},
+"info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

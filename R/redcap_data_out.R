@@ -122,15 +122,17 @@ redcap_data_out <- function(protocol,pullDate=NULL,
 
   ###If a REDCap repeat instrument exists, then do below;
   if (!is.null(data$redcap_repeat_instrument)) {
-    data$redcap_repeat_instrument <- stringr::str_trunc(as.character(data$redcap_repeat_instrument), 31, 
-                                    ellipsis=""); #sheet name has to be 31 characters or less;
+    data$redcap_repeat_instrument <- stringr::str_trunc(as.character(data$redcap_repeat_instrument), 28, 
+                                    ellipsis=""); #sheet name has to be 28 characters or less (append rn_ for 31 max);
     data$redcap_repeat_instrument <- gsub(" ", "_", gsub("[[:punct:]]", "", 
                                     tolower(data$redcap_repeat_instrument)));
     data$redcap_repeat_instrument <- stringi::stri_trans_general(data$redcap_repeat_instrument, 
                                       "latin-ascii");
     data$redcap_repeat_instrument <- stringr::str_replace(data$redcap_repeat_instrument, "__", "_"); 
     
-    data[which(data$redcap_repeat_instrument %in% c("")), ]$redcap_repeat_instrument <- "non_repeat_instrument";
+    if (length(which(data$redcap_repeat_instrument %in% c(""))) > 0) {
+      data[which(data$redcap_repeat_instrument %in% c("")), ]$redcap_repeat_instrument <- "non_repeat_instrument";
+    }
     tables <- unique(data$redcap_repeat_instrument);
     tables <- tables[which(!is.na(tables))];
     data$redcap_repeat_instrument <- as.factor(data$redcap_repeat_instrument);
@@ -187,8 +189,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
                                         full.names = TRUE));
       newestFile <- rownames(fileList3)[which.max(fileList3$mtime)];
       data_dictionary <- read.csv(newestFile, header=TRUE); 
-      data_dictionary[,2] <- stringr::str_trunc(as.character(data_dictionary[,2]), 31, ellipsis=""); 
-      #sheet name has to be 31 characters or less;
+      data_dictionary[,2] <- stringr::str_trunc(as.character(data_dictionary[,2]), 28, ellipsis=""); 
+      #sheet name has to be 28 characters or less (append rn_ for 31 max);
       
       joinNamesNRI <- NULL;
       #i <- 1;
@@ -198,7 +200,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
           varKeep <- data_dictionary[which(data_dictionary[,2] %in% c(unique(data_dictionary[,2])[i])), 1];
           varKeep <- c(varKeep, data_dictionary[1,1], subjID, "redcap_event_name", "redcap_repeat_instrument", 
                        "redcap_repeat_instance");
-          dataNRI <- data[which(data$redcap_repeat_instrument == "non_repeat_instrument"), ];
+          dataNRI <- data[which(data$redcap_repeat_instrument %in% c("non_repeat_instrument", "extra_sheet")), ];
           dataNRI$redcap_repeat_instrument <- NA;
           tmp <- dataNRI[, which(colnames(dataNRI) %in% c(varKeep))];
           tryCatch({
