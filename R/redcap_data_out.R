@@ -199,7 +199,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
           tmpTN <- paste(unique(data_dictionary[,2])[i], sep="");
           varKeep <- data_dictionary[which(data_dictionary[,2] %in% c(unique(data_dictionary[,2])[i])), 1];
           varKeep <- c(varKeep, data_dictionary[1,1], subjID, "redcap_event_name", "redcap_repeat_instrument", 
-                       "redcap_repeat_instance");
+                       "redcap_repeat_instance", "redcap_data_access_group");
           dataNRI <- data[which(data$redcap_repeat_instrument %in% c("non_repeat_instrument", "extra_sheet")), ];
           dataNRI$redcap_repeat_instrument <- NA;
           tmp <- dataNRI[, which(colnames(dataNRI) %in% c(varKeep))];
