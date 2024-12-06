@@ -67,8 +67,8 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @importFrom parallel detectCores makeCluster clusterExport parLapply
 #' @importFrom afex mixed
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
-#'   \code{\link{wilcox.test}},\code{\link{kruskal.test}},
-#'   \code{\link{anova}} and \code{\link{mixed}}
+#'   \code{\link{wilcox.test}},\code{\link{kruskal.test}}, and
+#'   \code{\link{anova}} 
 covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, numobs = NULL, 
                            markup = TRUE, sanitize = TRUE, nicenames = TRUE, IQR = FALSE, 
                            all.stats = FALSE, pvalue = TRUE, effSize = TRUE, show.tests = TRUE, 
@@ -331,10 +331,9 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' @importFrom modeest mlv 
 #' @importFrom afex mixed
 #' @export
-#' @seealso \code{\link{covsum}},\code{\link{fisher.test}},
+#' @seealso \code{\link{fisher.test}},
 #'   \code{\link{chisq.test}}, \code{\link{wilcox.test}},
-#'   \code{\link{kruskal.test}}, \code{\link{anova}}, 
-#'   \code{\link{mixed}} and \code{\link{outTable}}
+#'   \code{\link{kruskal.test}}, and \code{\link{anova}} 
 #' @examples
 #' \dontrun{
 #' # Example 1
