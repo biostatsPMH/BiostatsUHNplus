@@ -1,3 +1,7 @@
+# BiostatsUHNplus 1.0.2
+
+* Revised dsmb_ccru() for enhanced formatting with REDCap data dictionary
+
 # BiostatsUHNplus 1.0.1
 
 * Revised dsmb_ccru() for better filtering with missing field values 
