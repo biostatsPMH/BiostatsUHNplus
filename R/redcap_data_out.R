@@ -229,7 +229,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument"))];
   joinNames <- sort(joinNames, decreasing = FALSE); #sort table name alphabetically;
   
-  list_of_datasets <- lapply(joinNames, function(x) get(x, mode="list"), envir=sys.frame(sys.parent(0)));
+  #list_of_datasets <- lapply(joinNames, function(x) get(x, mode="list"), envir=sys.frame(sys.parent(0)));
+  list_of_datasets <- lapply(joinNames, function(x) get(x, mode="list"));
   names(list_of_datasets) <- c(joinNames);
 
 
