@@ -168,9 +168,8 @@ cat(reportRmd::outTable(output_tab, format="latex"), file = paste("./man/tables/
 }
 }
 \seealso{
-\code{\link{covsum}},\code{\link{fisher.test}},
+\code{\link{fisher.test}},
 \code{\link{chisq.test}}, \code{\link{wilcox.test}},
-\code{\link{kruskal.test}}, \code{\link{anova}},
-\code{\link{mixed}} and \code{\link{outTable}}
+\code{\link{kruskal.test}}, and \code{\link{anova}}
 }
 \keyword{dataframe}
