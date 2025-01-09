@@ -185,7 +185,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   ###Get REDCap instrument from data dictionary, if provided for non-repeat instruments;
   tryCatch({
     if (length(data$redcap_repeat_instrument == "non_repeat_instrument") > 0) {
-      fileList3 <- file.info(list.files(pattern = c("DataDictionary"), path = setWD_dataDict, 
+      fileList3 <- file.info(list.files(pattern = c("Dictionary"), path = setWD_dataDict, 
                                         full.names = TRUE));
       newestFile <- rownames(fileList3)[which.max(fileList3$mtime)];
       data_dictionary <- read.csv(newestFile, header=TRUE); 
@@ -193,7 +193,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       #sheet name has to be 28 characters or less (append rn_ for 31 max);
       
       joinNamesNRI <- NULL;
-      #i <- 1;
+      #i <- 21;
       for (i in 1:length(unique(data_dictionary[,2]))) {
         if (!unique(data_dictionary[,2])[i] %in% tables) {
           tmpTN <- paste(unique(data_dictionary[,2])[i], sep="");
@@ -209,7 +209,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
                       "redcap_repeat_instance"))])) != ncol(tmp[, which(!colnames(tmp) %in% 
                       c(subjID,"redcap_event_name","redcap_repeat_instance"))]), ]; 
             tmp$redcap_repeat_instrument <- tmpTN;
-            tmp$redcap_repeat_instance <- 1;
+            #tmp$redcap_repeat_instance <- 1;
+            tmp$redcap_repeat_instance[is.na(tmp$redcap_repeat_instance)] <- 1;
             tmp <- as.data.frame(tmp);
             assign(tmpTN, tmp);
             joinNamesNRI[i] <- tmpTN;
