@@ -17,8 +17,8 @@
 #'    files are stored, following the convention for file names of 
 #'    1_DATA.csv, 1_DATA_LABELs.csv, 2_DATA.csv, 2_DATA_LABELs.csv, etc
 #' @param setWD_dataDict directory where the REDCap .csv data dictionary is stored. 
-#'    Make sure that file is saved as basic .csv file in Excel, and not UTF-8.
-#'    Must contain "DataDictionary" in file name (if provided)
+#'    Make sure that file is saved as CSV UTF-8 comma delimited.
+#'    Must contain "ictionary" in file name (if provided)
 #' @param outDir output directory where the Excel files are saved 
 #' @keywords dataframe
 #' @returns two Excel files, one containing variable names and labels and the 
