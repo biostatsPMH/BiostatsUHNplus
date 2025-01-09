@@ -185,7 +185,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   ###Get REDCap instrument from data dictionary, if provided for non-repeat instruments;
   tryCatch({
     if (length(data$redcap_repeat_instrument == "non_repeat_instrument") > 0) {
-      fileList3 <- file.info(list.files(pattern = c("Dictionary"), path = setWD_dataDict, 
+      fileList3 <- file.info(list.files(pattern = c("ictionary"), path = setWD_dataDict, 
                                         full.names = TRUE));
       newestFile <- rownames(fileList3)[which.max(fileList3$mtime)];
       data_dictionary <- read.csv(newestFile, header=TRUE); 
@@ -203,6 +203,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
           dataNRI <- data[which(data$redcap_repeat_instrument %in% c("non_repeat_instrument", "extra_sheet")), ];
           dataNRI$redcap_repeat_instrument <- NA;
           tmp <- dataNRI[, which(colnames(dataNRI) %in% c(varKeep))];
+          non_repeat_instrument <- non_repeat_instrument[, which(colnames(non_repeat_instrument) %in% c(varKeep))];
           tryCatch({
             tmp[tmp == ""] <- NA;
             tmp <- tmp[rowSums(is.na(tmp[, which(!colnames(tmp) %in% c(subjID,"redcap_event_name",
