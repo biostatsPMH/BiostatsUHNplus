@@ -3,7 +3,7 @@
 #' @param protocol study protocol name (uppercase, no spaces permitted)
 #' @param setwd directory to write Excel summary files to
 #' @param title full character vector with name of study
-#' @param comp baseline comparison group, for example, cohort (if provided)
+#' @param comp baseline comparison group. For example, cohort (if provided)
 #' @param pi character vector name of study principal investigator
 #' @param presDate presentation date (i.e. 17NOV2023) for DSMB
 #' @param cutDate recent cutoff date for AEs (i.e. 31AUG2023)

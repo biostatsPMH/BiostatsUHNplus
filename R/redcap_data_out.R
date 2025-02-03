@@ -3,7 +3,7 @@
 #'  row per participant
 #' 
 #' @param protocol study protocol name (i.e. Example_Study)
-#' @param pullDate date of data pull, for example, 2024_01_02 (if provided) 
+#' @param pullDate date of data pull. For example, 2024_01_02 (if provided) 
 #' @param subjID key identifier field(s) for participant ID in data sets
 #' @param subjID_ineligText character text that denotes participant IDs to exclude
 #'    using first key identifier field. For example, c("New Subject") (if provided)
@@ -12,7 +12,7 @@
 #'    (if provided)
 #' @param varFilter field to use for filtering data (if provided)
 #' @param varFilter_eligPattern character text that denotes pattern for filter 
-#'    variable to include, for example, c("^Arm_A") (if provided)
+#'    variable to include. For example, c("^Arm_A") (if provided)
 #' @param setWD_files directory where the both raw and label REDCap export .csv
 #'    files are stored, following the convention for file names of 
 #'    1_DATA.csv, 1_DATA_LABELs.csv, 2_DATA.csv, 2_DATA_LABELs.csv, etc
