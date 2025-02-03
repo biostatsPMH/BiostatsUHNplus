@@ -13,7 +13,7 @@ covsum_nested(
   numobs = NULL,
   markup = TRUE,
   sanitize = TRUE,
-  nicenames = TRUE,
+  nicenames = FALSE,
   IQR = FALSE,
   all.stats = FALSE,
   pvalue = TRUE,

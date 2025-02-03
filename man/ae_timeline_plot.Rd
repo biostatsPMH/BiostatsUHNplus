@@ -34,22 +34,22 @@ ae_timeline_plot(
 \arguments{
 \item{subjID}{key identifier field for participant ID in data sets}
 
-\item{subjID_ineligText}{character text that denotes participant IDs to exclude,
-for example, c("New Subject") (if provided)}
+\item{subjID_ineligText}{character text that denotes participant IDs to exclude.
+For example, c("New Subject") (if provided)}
 
-\item{baseline_datasets}{list of data frames that contain baseline participant characteristics,
-for example, list(enrollment_DF,demography_DF,ineligibility_DF)}
+\item{baseline_datasets}{list of data frames that contain baseline participant characteristics.
+For example, list(enrollment_DF,demography_DF,ineligibility_DF)}
 
 \item{ae_dataset}{data frame that contains subject AEs}
 
 \item{ae_attribVars}{field(s) that denotes attribution to intervention
-under study, for example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1")
+under study. For example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1")
 (if provided)}
 
-\item{ae_attribVarsName}{character text that denotes name of interventions under study,
-for example, c("Drug 1", "Drug 2") (if provided)}
+\item{ae_attribVarsName}{character text that denotes name of interventions under study.
+For example, c("Drug 1", "Drug 2") (if provided)}
 
-\item{ae_attribVarText}{character text that denotes related attribution, for example
+\item{ae_attribVarText}{character text that denotes related attribution. For example
 c("Definite", "Probable", "Possible") (if provided)}
 
 \item{startDtVars}{field(s) that denotes participant start date (i.e. 10MAY2021). For example,
@@ -65,8 +65,8 @@ for attribution in corresponding field order}
 
 \item{ae_onsetDtVar}{field that denotes participant AE onset date}
 
-\item{time_unit}{character text that denotes time unit for desired timeline,
-for example, could be one of c("day","week","month","year") (if provided)}
+\item{time_unit}{character text that denotes time unit for desired timeline.
+For example, could be one of c("day","week","month","year") (if provided)}
 
 \item{include_ae_detail}{boolean that denotes if AE detail should be included
 in timeline plot. Default is True}

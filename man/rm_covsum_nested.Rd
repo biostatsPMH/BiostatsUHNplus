@@ -14,7 +14,7 @@ rm_covsum_nested(
   covTitle = "",
   digits = 1,
   digits.cat = 0,
-  nicenames = TRUE,
+  nicenames = FALSE,
   IQR = FALSE,
   all.stats = FALSE,
   pvalue = TRUE,

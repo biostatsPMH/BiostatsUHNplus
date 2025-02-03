@@ -22,7 +22,7 @@ redcap_data_out(
 \arguments{
 \item{protocol}{study protocol name (i.e. Example_Study)}
 
-\item{pullDate}{date of data pull, for example, 2024_01_02 (if provided)}
+\item{pullDate}{date of data pull. For example, 2024_01_02 (if provided)}
 
 \item{subjID}{key identifier field(s) for participant ID in data sets}
 
@@ -36,15 +36,15 @@ IDs to include using first key identifier field. For example, c("^Site_A")
 \item{varFilter}{field to use for filtering data (if provided)}
 
 \item{varFilter_eligPattern}{character text that denotes pattern for filter
-variable to include, for example, c("^Arm_A") (if provided)}
+variable to include. For example, c("^Arm_A") (if provided)}
 
 \item{setWD_files}{directory where the both raw and label REDCap export .csv
 files are stored, following the convention for file names of
 1_DATA.csv, 1_DATA_LABELs.csv, 2_DATA.csv, 2_DATA_LABELs.csv, etc}
 
 \item{setWD_dataDict}{directory where the REDCap .csv data dictionary is stored.
-Make sure that file is saved as basic .csv file in Excel, and not UTF-8.
-Must contain "DataDictionary" in file name (if provided)}
+Make sure that file is saved as CSV UTF-8 comma delimited.
+Must contain "ictionary" in file name (if provided)}
 
 \item{outDir}{output directory where the Excel files are saved}
 }

@@ -39,7 +39,7 @@ dsmb_ccru(
 
 \item{title}{full character vector with name of study}
 
-\item{comp}{baseline comparison group, for example, cohort (if provided)}
+\item{comp}{baseline comparison group. For example, cohort (if provided)}
 
 \item{pi}{character vector name of study principal investigator}
 
