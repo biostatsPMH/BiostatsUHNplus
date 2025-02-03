@@ -16,8 +16,10 @@ status](https://www.r-pkg.org/badges/version/BiostatsUHNplus)](https://CRAN.R-pr
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/BiostatsUHNplus)](https://cran.r-project.org/package=BiostatsUHNplus)
 <!-- badges: end -->
 
-The goal of **BiostatsUHNplus** is to house publicly available code snippets and functions (some with multiple package dependencies) used by
-[Biostatistics@UHN](https://biostats.uhnresearch.ca/) in Toronto, Canada.
+The goal of **BiostatsUHNplus** is to house publicly available code
+snippets and functions (some with multiple package dependencies) used by
+[Biostatistics@UHN](https://biostats.uhnresearch.ca/) in Toronto,
+Canada.
 
 Many of these functions build upon the features of
 [**reportRmd**](https://github.com/biostatsPMH/reportRmd).
@@ -57,6 +59,10 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="development")
 
 ``` r
 library(BiostatsUHNplus);
+#> Warning in check_dep_version(): ABI version mismatch: 
+#> lme4 was built with Matrix ABI version 1
+#> Current Matrix ABI version is 0
+#> Please re-install lme4 from source or restore original 'Matrix' package
 z <- as_numeric_parse(c(1:5, "String1",6:10,"String2"))
 #> The following entries were converted to NA values:
 #> Entry 6, 'String1'
@@ -102,33 +108,33 @@ clinT <- reportRmd::set_labels(clinT, lbls);
 rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"), 
   covs = c("COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "ENROL_DATE_INT", 
            "AE_SEV_GD", "Drug_2_Attribution", "AE_ONSET_DT_INT", "ae_category"), 
-  maincov = "Drug_1_Attribution");
+  maincov = "Drug_1_Attribution", nicenames = TRUE);
 ```
 
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Full Sample (n=234)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Related (n=49)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unrelated (n=198)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested p-value
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested Effect Size
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested StatTest
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Nested p-value
 </th>
 </tr>
@@ -154,7 +160,7 @@ Nested p-value
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-0.95
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -265,7 +271,7 @@ Cohort D
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-0.63
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -460,7 +466,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-0.97
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -527,7 +533,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -1341,91 +1347,12 @@ options(knitr.kable.NA = '');
 knitr::kable(mcmcglmm_mva);
 ```
 
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Variable
-</th>
-<th style="text-align:left;">
-Levels
-</th>
-<th style="text-align:left;">
-OR (95% HPDI)
-</th>
-<th style="text-align:left;">
-MCMCp
-</th>
-<th style="text-align:left;">
-eff.samp
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Drug 1 Attribution
-</td>
-<td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-reference
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-2.74 (0.95, 7.56)
-</td>
-<td style="text-align:left;">
-0.065
-</td>
-<td style="text-align:left;">
-128.63
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-Drug 2 Attribution
-</td>
-<td style="text-align:left;">
-No
-</td>
-<td style="text-align:left;">
-reference
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-0.44 (0.15, 1.24)
-</td>
-<td style="text-align:left;">
-0.160
-</td>
-<td style="text-align:left;">
-151.17
-</td>
-</tr>
-</tbody>
-</table>
+| Variable           | Levels | OR (95% HPDI)     | MCMCp | eff.samp |
+|:-------------------|:-------|:------------------|:------|:---------|
+| Drug 1 Attribution | No     | reference         |       |          |
+|                    | Yes    | 2.72 (1.01, 6.53) | 0.028 | 184.77   |
+| Drug 2 Attribution | No     | reference         |       |          |
+|                    | Yes    | 0.43 (0.17, 1.38) | 0.125 | 155.01   |
 
 #### Intraclass correlation coefficients
 
@@ -1439,67 +1366,11 @@ options(knitr.kable.NA = '');
 knitr::kable(mcmcglmm_icc);
 ```
 
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-ICC
-</th>
-<th style="text-align:right;">
-lower
-</th>
-<th style="text-align:right;">
-upper
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-Subject
-</td>
-<td style="text-align:right;">
-0.0658
-</td>
-<td style="text-align:right;">
-0.0065
-</td>
-<td style="text-align:right;">
-0.3428
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-ae_category
-</td>
-<td style="text-align:right;">
-0.7523
-</td>
-<td style="text-align:right;">
-0.4550
-</td>
-<td style="text-align:right;">
-0.9408
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-units
-</td>
-<td style="text-align:right;">
-0.1068
-</td>
-<td style="text-align:right;">
-0.0341
-</td>
-<td style="text-align:right;">
-0.2531
-</td>
-</tr>
-</tbody>
-</table>
+|             |    ICC |  lower |  upper |
+|:------------|-------:|-------:|-------:|
+| Subject     | 0.0438 | 0.0090 | 0.3070 |
+| ae_category | 0.8734 | 0.5372 | 0.9497 |
+| units       | 0.0663 | 0.0228 | 0.2286 |
 
 #### Caterpillar plots of random effects - participant
 

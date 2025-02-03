@@ -103,7 +103,7 @@ clinT <- reportRmd::set_labels(clinT, lbls);
 rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"), 
   covs = c("COHORT", "GENDER_CODE", "INELIGIBILITY_STATUS", "ENROL_DATE_INT", 
            "AE_SEV_GD", "Drug_2_Attribution", "AE_ONSET_DT_INT", "ae_category"), 
-  maincov = "Drug_1_Attribution");
+  maincov = "Drug_1_Attribution", nicenames = TRUE);
 ```
 
 
