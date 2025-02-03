@@ -1,3 +1,7 @@
+# BiostatsUHNplus 1.0.3
+
+* Revised rm_covsum_nested() to account for updates in reportRmd package
+
 # BiostatsUHNplus 1.0.2
 
 * Revised dsmb_ccru() for enhanced formatting with REDCap data dictionary
