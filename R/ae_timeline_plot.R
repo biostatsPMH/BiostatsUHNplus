@@ -4,17 +4,17 @@
 #' parameters in ggsave() to customize fit for large plot.
 #'
 #' @param subjID key identifier field for participant ID in data sets
-#' @param subjID_ineligText character text that denotes participant IDs to exclude,
-#'    for example, c("New Subject") (if provided)
-#' @param baseline_datasets list of data frames that contain baseline participant characteristics,
-#'    for example, list(enrollment_DF,demography_DF,ineligibility_DF)
+#' @param subjID_ineligText character text that denotes participant IDs to exclude.
+#'    For example, c("New Subject") (if provided)
+#' @param baseline_datasets list of data frames that contain baseline participant characteristics.
+#'    For example, list(enrollment_DF,demography_DF,ineligibility_DF)
 #' @param ae_dataset data frame that contains subject AEs
 #' @param ae_attribVars field(s) that denotes attribution to intervention 
-#'    under study, for example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") 
+#'    under study. For example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") 
 #'    (if provided)
-#' @param ae_attribVarsName character text that denotes name of interventions under study,
-#'    for example, c("Drug 1", "Drug 2") (if provided)
-#' @param ae_attribVarText character text that denotes related attribution, for example
+#' @param ae_attribVarsName character text that denotes name of interventions under study.
+#'    For example, c("Drug 1", "Drug 2") (if provided)
+#' @param ae_attribVarText character text that denotes related attribution. For example
 #'    c("Definite", "Probable", "Possible") (if provided)
 #' @param startDtVars field(s) that denotes participant start date (i.e. 10MAY2021). For example,
 #'    it could be enrollment date or screening date. If more than one field given 
@@ -24,8 +24,8 @@
 #' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
 #' @param ae_onsetDtVar field that denotes participant AE onset date
-#' @param time_unit character text that denotes time unit for desired timeline, 
-#'   for example, could be one of c("day","week","month","year") (if provided)
+#' @param time_unit character text that denotes time unit for desired timeline. 
+#'   For example, could be one of c("day","week","month","year") (if provided)
 #' @param include_ae_detail boolean that denotes if AE detail should be included
 #'    in timeline plot. Default is True
 #' @param legendPerSpace parameter at denotes proportion of vertical image space 

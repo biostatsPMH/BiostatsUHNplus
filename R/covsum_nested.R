@@ -70,7 +70,7 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #'   \code{\link{wilcox.test}},\code{\link{kruskal.test}}, and
 #'   \code{\link{anova}} 
 covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, numobs = NULL, 
-                           markup = TRUE, sanitize = TRUE, nicenames = TRUE, IQR = FALSE, 
+                           markup = TRUE, sanitize = TRUE, nicenames = FALSE, IQR = FALSE, 
                            all.stats = FALSE, pvalue = TRUE, effSize = TRUE, show.tests = TRUE, 
                            nCores = NULL, nested.test = NULL, nsim = NULL, 
                            excludeLevels = NULL, dropLevels = TRUE, full = TRUE, 
@@ -360,7 +360,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'     "output_tab.tex", sep=""))
 #' }
 rm_covsum_nested <- function(data,covs,maincov=NULL,id=NULL,caption=NULL,tableOnly=FALSE,covTitle='',
-                             digits=1,digits.cat=0,nicenames=TRUE,IQR = FALSE,all.stats=FALSE,
+                             digits=1,digits.cat=0,nicenames=FALSE,IQR = FALSE,all.stats=FALSE,
                              pvalue=TRUE,effSize=TRUE,p.adjust='none',unformattedp=FALSE,show.tests=TRUE,
                              just.nested.pvalue=FALSE,nCores=NULL,nested.test=NULL,nsim=NULL, 
                              testcont=c('rank-sum test','ANOVA'),
