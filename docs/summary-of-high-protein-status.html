@@ -52,6 +52,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -210,21 +212,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.1.1</span> By data record (row):<a href="summary-of-high-protein-status.html#by-data-record-row" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>This uses the <em>reportRmd:::rm_covsum()</em> function to summarize Milk data set. However, we know that this data has a nested structure by both cow and yard.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="summary-of-high-protein-status.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum</span>(<span class="at">data =</span> Milk, <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;protein&quot;</span>, <span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Diet&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;High_Protein&quot;</span>, <span class="at">testcat =</span> <span class="st">&quot;Fisher&quot;</span>)</span></code></pre></div>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Full Sample (n=1337)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 N (n=951)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Y (n=386)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 p-value
 </th>
 </tr>
@@ -396,5044 +398,1871 @@ lupins
 <span id="cb2-4"><a href="summary-of-high-protein-status.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
 <span id="cb2-5"><a href="summary-of-high-protein-status.html#cb2-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(Milk_t);</span></code></pre></div>
 <table>
+<colgroup>
+<col width="7%" />
+<col width="7%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-Yard
-</th>
-<th style="text-align:left;">
-Cow
-</th>
-<th style="text-align:left;">
-1
-</th>
-<th style="text-align:left;">
-2
-</th>
-<th style="text-align:left;">
-3
-</th>
-<th style="text-align:left;">
-4
-</th>
-<th style="text-align:left;">
-5
-</th>
-<th style="text-align:left;">
-6
-</th>
-<th style="text-align:left;">
-7
-</th>
-<th style="text-align:left;">
-8
-</th>
-<th style="text-align:left;">
-9
-</th>
-<th style="text-align:left;">
-10
-</th>
-<th style="text-align:left;">
-11
-</th>
-<th style="text-align:left;">
-12
-</th>
-<th style="text-align:left;">
-13
-</th>
-<th style="text-align:left;">
-14
-</th>
-<th style="text-align:left;">
-15
-</th>
-<th style="text-align:left;">
-16
-</th>
-<th style="text-align:left;">
-17
-</th>
-<th style="text-align:left;">
-18
-</th>
-<th style="text-align:left;">
-19
-</th>
+<tr class="header">
+<th align="left">Yard</th>
+<th align="left">Cow</th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th align="left">5</th>
+<th align="left">6</th>
+<th align="left">7</th>
+<th align="left">8</th>
+<th align="left">9</th>
+<th align="left">10</th>
+<th align="left">11</th>
+<th align="left">12</th>
+<th align="left">13</th>
+<th align="left">14</th>
+<th align="left">15</th>
+<th align="left">16</th>
+<th align="left">17</th>
+<th align="left">18</th>
+<th align="left">19</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-B03
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-B13
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-B14
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-B15
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-B17
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-B18
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-BL04
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-BL05
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-BL06
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-BL07
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-BL08
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-BL18
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-L01
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-L05
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-L16
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-B01
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-B04
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-B19
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-B20
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL12
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL20
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL22
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL23
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-BL26
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-L02
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-L04
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-L07
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-L11
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-L15
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-L22
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-L25
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-B05
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-B06
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-B11
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-B23
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-BL09
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-BL10
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-BL11
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-BL13
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-BL17
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-BL19
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-BL21
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-L06
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-L12
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-L14
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-L18
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-L24
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-L27
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B02
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B07
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B08
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B09
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B21
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B22
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-B25
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-BL01
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-BL15
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-BL25
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-BL27
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-L09
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-L13
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-L17
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-L21
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-L23
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-B10
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-B12
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-B16
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-B24
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-BL02
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-BL03
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-BL14
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-BL16
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-BL24
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L03
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L08
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L10
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L19
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L20
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-L26
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-Y
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
-<td style="text-align:left;">
-N
-</td>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">B09</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">B10</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">B14</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">B23</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">BL17</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">BL19</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">BL24</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">BL25</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">L12</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">L14</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">L19</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">L20</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">B02</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">B08</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left"></td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">B16</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">B19</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">B24</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">BL15</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">L03</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">L04</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">L05</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">L08</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">L21</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">L22</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left"></td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">L24</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">L25</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">B15</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">B21</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">BL09</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">BL10</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">BL12</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">BL14</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">BL22</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">L02</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">L06</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">L09</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">L10</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">L13</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">L26</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">B04</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">B05</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">B06</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">B13</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">B17</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">B20</td>
+<td align="left">Y</td>
+<td align="left"></td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">BL05</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">BL06</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">BL13</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">BL21</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">L01</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">L17</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Y</td>
+<td align="left"></td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">L18</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">B01</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">B03</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">B07</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">B11</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">B12</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left"></td>
+<td align="left">Y</td>
+<td align="left"></td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">B18</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">B22</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">B25</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">BL01</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">BL02</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">BL03</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">BL04</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">BL07</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">BL08</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">BL11</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">BL16</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">BL18</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">BL20</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">BL23</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">BL26</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">BL27</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">L07</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">L11</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">L15</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">L16</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">L23</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">L27</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="left">N</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>

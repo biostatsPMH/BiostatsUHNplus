@@ -52,6 +52,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -216,215 +218,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-7"><a href="bayesian-hierarchical-model.html#cb14-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mcmcglmm_mva);</span></code></pre></div>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-Variable
-</th>
-<th style="text-align:left;">
-Levels
-</th>
-<th style="text-align:left;">
-OR (95% HPDI)
-</th>
-<th style="text-align:left;">
-MCMCp
-</th>
-<th style="text-align:left;">
-eff.samp
-</th>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Levels</th>
+<th align="left">OR (95% HPDI)</th>
+<th align="left">MCMCp</th>
+<th align="left">eff.samp</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Diet
-</td>
-<td style="text-align:left;">
-barley
-</td>
-<td style="text-align:left;">
-reference
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
+<tr class="odd">
+<td align="left">Diet</td>
+<td align="left">barley</td>
+<td align="left">reference</td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-barley+lupins
-</td>
-<td style="text-align:left;">
-0.36 (0.15, 0.84)
-</td>
-<td style="text-align:left;">
-0.022
-</td>
-<td style="text-align:left;">
-479.00
-</td>
+<tr class="even">
+<td align="left"></td>
+<td align="left">barley+lupins</td>
+<td align="left">0.36 (0.15, 0.78)</td>
+<td align="left">0.018</td>
+<td align="left">401.96</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-lupins
-</td>
-<td style="text-align:left;">
-0.18 (0.08, 0.41)
-</td>
-<td style="text-align:left;">
-0.001
-</td>
-<td style="text-align:left;">
-370.22
-</td>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">lupins</td>
+<td align="left">0.19 (0.08, 0.45)</td>
+<td align="left">0.001</td>
+<td align="left">346.25</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Time
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-0.96 (0.94, 1.00)
-</td>
-<td style="text-align:left;">
-0.018
-</td>
-<td style="text-align:left;">
-161.88
-</td>
+<tr class="even">
+<td align="left">Time</td>
+<td align="left"></td>
+<td align="left">0.96 (0.93, 0.99)</td>
+<td align="left">0.007</td>
+<td align="left">222.31</td>
 </tr>
 </tbody>
 </table>
 <p>Random effects ICC and 95% highest posterior density interval:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-ICC
-</th>
-<th style="text-align:right;">
-lower
-</th>
-<th style="text-align:right;">
-upper
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="right">ICC</th>
+<th align="right">lower</th>
+<th align="right">upper</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Cow
-</td>
-<td style="text-align:right;">
-0.6233
-</td>
-<td style="text-align:right;">
-0.4949
-</td>
-<td style="text-align:right;">
-0.7405
-</td>
+<tr class="odd">
+<td align="left">Cow</td>
+<td align="right">0.6459</td>
+<td align="right">0.4931</td>
+<td align="right">0.7315</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Yard
-</td>
-<td style="text-align:right;">
-0.0061
-</td>
-<td style="text-align:right;">
-0.0007
-</td>
-<td style="text-align:right;">
-0.1374
-</td>
+<tr class="even">
+<td align="left">Yard</td>
+<td align="right">0.0037</td>
+<td align="right">0.0007</td>
+<td align="right">0.1211</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-units
-</td>
-<td style="text-align:right;">
-0.3284
-</td>
-<td style="text-align:right;">
-0.2352
-</td>
-<td style="text-align:right;">
-0.4390
-</td>
+<tr class="odd">
+<td align="left">units</td>
+<td align="right">0.3499</td>
+<td align="right">0.2466</td>
+<td align="right">0.4611</td>
 </tr>
 </tbody>
 </table>
 <p>R-squared calculation with 95% credible intervals for marginal model - considers only the variance of the fixed effects (without the random effects):</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-R_Squared
-</th>
-<th style="text-align:right;">
-lower
-</th>
-<th style="text-align:right;">
-upper
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="right">R_Squared</th>
+<th align="right">lower</th>
+<th align="right">upper</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0.1833218
-</td>
-<td style="text-align:right;">
-0.0515791
-</td>
-<td style="text-align:right;">
-0.2759947
-</td>
+<tr class="odd">
+<td align="left"></td>
+<td align="right">0.1832298</td>
+<td align="right">0.0506528</td>
+<td align="right">0.2792039</td>
 </tr>
 </tbody>
 </table>
 <p>R-squared calculation with 95% credible intervals for conditional model - takes both the fixed and random effects into account:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:right;">
-R_Squared
-</th>
-<th style="text-align:right;">
-lower
-</th>
-<th style="text-align:right;">
-upper
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="right">R_Squared</th>
+<th align="right">lower</th>
+<th align="right">upper</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:right;">
-0.7228972
-</td>
-<td style="text-align:right;">
-0.6275827
-</td>
-<td style="text-align:right;">
-0.7948483
-</td>
+<tr class="odd">
+<td align="left"></td>
+<td align="right">0.7051893</td>
+<td align="right">0.6195889</td>
+<td align="right">0.8075663</td>
 </tr>
 </tbody>
 </table>

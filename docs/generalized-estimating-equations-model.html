@@ -52,6 +52,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -213,22 +215,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb13-4"><a href="generalized-estimating-equations-model.html#cb13-4" aria-hidden="true" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(Yard, Cow, Time);</span>
 <span id="cb13-5"><a href="generalized-estimating-equations-model.html#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-6"><a href="generalized-estimating-equations-model.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_mvsum</span>(<span class="at">model=</span><span class="fu">geeglm</span>(HP <span class="sc">~</span> Diet <span class="sc">+</span> Yard <span class="sc">+</span> Time, <span class="at">id=</span><span class="fu">c</span>(Cow), <span class="at">data=</span>Milk, <span class="at">family=</span>binomial, <span class="at">corstr=</span><span class="st">&quot;ar1&quot;</span>), <span class="at">data=</span>Milk, <span class="at">showN=</span>T, <span class="at">CIwidth=</span><span class="fl">0.95</span>);</span></code></pre></div>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 OR(95%CI)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 p-value
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 N
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Event
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+VIF
 </th>
 </tr>
 </thead>
@@ -247,6 +252,9 @@ Event
 <td style="text-align:right;">
 386
 </td>
+<td style="text-align:right;">
+1.10
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -263,16 +271,18 @@ Reference
 <td style="text-align:right;">
 183
 </td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
 barley+lupins
 </td>
 <td style="text-align:right;">
-0.46 (0.26, 0.79)
+0.45 (0.26, 0.77)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.005</span>
+<span style="font-weight: bold;">0.004</span>
 </td>
 <td style="text-align:right;">
 459
@@ -280,13 +290,15 @@ barley+lupins
 <td style="text-align:right;">
 119
 </td>
+<td style="text-align:right;">
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
 lupins
 </td>
 <td style="text-align:right;">
-0.31 (0.17, 0.56)
+0.33 (0.18, 0.61)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -296,6 +308,8 @@ lupins
 </td>
 <td style="text-align:right;">
 84
+</td>
+<td style="text-align:right;">
 </td>
 </tr>
 <tr>
@@ -312,6 +326,9 @@ lupins
 <td style="text-align:right;">
 386
 </td>
+<td style="text-align:right;">
+1.05
+</td>
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
@@ -323,10 +340,12 @@ Reference
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-251
+198
 </td>
 <td style="text-align:right;">
-66
+55
+</td>
+<td style="text-align:right;">
 </td>
 </tr>
 <tr>
@@ -334,16 +353,18 @@ Reference
 2
 </td>
 <td style="text-align:right;">
-1.27 (0.57, 2.85)
+0.91 (0.38, 2.15)
 </td>
 <td style="text-align:right;">
-0.56
+0.82
 </td>
 <td style="text-align:right;">
-276
+250
 </td>
 <td style="text-align:right;">
-76
+62
+</td>
+<td style="text-align:right;">
 </td>
 </tr>
 <tr>
@@ -351,16 +372,18 @@ Reference
 3
 </td>
 <td style="text-align:right;">
-1.45 (0.75, 2.81)
+0.96 (0.51, 1.82)
 </td>
 <td style="text-align:right;">
-0.27
+0.90
 </td>
 <td style="text-align:right;">
-272
+218
 </td>
 <td style="text-align:right;">
-92
+51
+</td>
+<td style="text-align:right;">
 </td>
 </tr>
 <tr>
@@ -368,16 +391,18 @@ Reference
 4
 </td>
 <td style="text-align:right;">
-1.11 (0.50, 2.47)
+1.03 (0.50, 2.09)
 </td>
 <td style="text-align:right;">
-0.80
+0.94
 </td>
 <td style="text-align:right;">
-268
+216
 </td>
 <td style="text-align:right;">
-87
+68
+</td>
+<td style="text-align:right;">
 </td>
 </tr>
 <tr>
@@ -385,16 +410,18 @@ Reference
 5
 </td>
 <td style="text-align:right;">
-1.10 (0.53, 2.26)
+1.23 (0.62, 2.43)
 </td>
 <td style="text-align:right;">
-0.80
+0.55
 </td>
 <td style="text-align:right;">
-270
+455
 </td>
 <td style="text-align:right;">
-65
+150
+</td>
+<td style="text-align:right;">
 </td>
 </tr>
 <tr>
@@ -402,7 +429,7 @@ Reference
 <span style="font-weight: bold;">Time</span>
 </td>
 <td style="text-align:right;">
-0.92 (0.89, 0.95)
+0.92 (0.89, 0.96)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -412,6 +439,9 @@ Reference
 </td>
 <td style="text-align:right;">
 386
+</td>
+<td style="text-align:right;">
+1.02
 </td>
 </tr>
 </tbody>

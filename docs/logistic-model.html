@@ -52,6 +52,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -211,24 +213,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="man/figures/ana10-1.png" width="672" /></p>
 <p>Below logistic model does not account for clustering of repeat observations by cow to high protein status of milk.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="logistic-model.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_mvsum</span>(<span class="at">model=</span><span class="fu">glm</span>(High_Protein <span class="sc">~</span> Diet <span class="sc">+</span> Yard <span class="sc">+</span> Time, <span class="at">data=</span>Milk, <span class="at">family=</span><span class="st">&#39;binomial&#39;</span>), <span class="at">showN=</span>T, <span class="at">vif=</span>T);</span></code></pre></div>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 OR(95%CI)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 p-value
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 N
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Event
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 VIF
 </th>
 </tr>
@@ -249,7 +251,7 @@ VIF
 386
 </td>
 <td style="text-align:right;">
-1.02
+1.04
 </td>
 </tr>
 <tr>
@@ -275,7 +277,7 @@ Reference
 barley+lupins
 </td>
 <td style="text-align:right;">
-0.45 (0.34, 0.60)
+0.43 (0.32, 0.58)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -294,7 +296,7 @@ barley+lupins
 lupins
 </td>
 <td style="text-align:right;">
-0.29 (0.21, 0.40)
+0.31 (0.23, 0.43)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -323,7 +325,7 @@ lupins
 386
 </td>
 <td style="text-align:right;">
-1.01
+1.02
 </td>
 </tr>
 <tr>
@@ -336,10 +338,10 @@ Reference
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-251
+198
 </td>
 <td style="text-align:right;">
-66
+55
 </td>
 <td style="text-align:right;">
 </td>
@@ -349,16 +351,16 @@ Reference
 2
 </td>
 <td style="text-align:right;">
-1.29 (0.86, 1.92)
+0.90 (0.58, 1.40)
 </td>
 <td style="text-align:right;">
-0.21
+0.64
 </td>
 <td style="text-align:right;">
-276
+250
 </td>
 <td style="text-align:right;">
-76
+62
 </td>
 <td style="text-align:right;">
 </td>
@@ -368,16 +370,16 @@ Reference
 3
 </td>
 <td style="text-align:right;">
-1.71 (1.16, 2.53)
+0.99 (0.63, 1.56)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.007</span>
+0.95
 </td>
 <td style="text-align:right;">
-272
+218
 </td>
 <td style="text-align:right;">
-92
+51
 </td>
 <td style="text-align:right;">
 </td>
@@ -387,16 +389,16 @@ Reference
 4
 </td>
 <td style="text-align:right;">
-1.31 (0.89, 1.95)
+1.04 (0.67, 1.60)
 </td>
 <td style="text-align:right;">
-0.17
+0.88
 </td>
 <td style="text-align:right;">
-268
+216
 </td>
 <td style="text-align:right;">
-87
+68
 </td>
 <td style="text-align:right;">
 </td>
@@ -406,16 +408,16 @@ Reference
 5
 </td>
 <td style="text-align:right;">
-1.08 (0.72, 1.63)
+1.30 (0.89, 1.91)
 </td>
 <td style="text-align:right;">
-0.70
+0.17
 </td>
 <td style="text-align:right;">
-270
+455
 </td>
 <td style="text-align:right;">
-65
+150
 </td>
 <td style="text-align:right;">
 </td>
@@ -428,7 +430,7 @@ Reference
 0.98 (0.95, 1.00)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.044</span>
+<span style="font-weight: bold;">0.039</span>
 </td>
 <td style="text-align:right;">
 1337

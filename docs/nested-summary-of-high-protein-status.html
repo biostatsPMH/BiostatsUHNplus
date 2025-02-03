@@ -52,6 +52,8 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 
 
 <style type="text/css">
@@ -214,30 +216,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Order of nested ids matter. For example, in c(&#39;id1&#39;,&#39;id2&#39;) id1 should be nested within id2, etc.</code></pre>
 <pre><code>## Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.
 ## Nested p-value derived from anova(afex::mixed(maincov ~ cov + (1|id1:id2:...idn), family=binomial, data, method=&#39;LRT&#39;)).</code></pre>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Full Sample (n=79)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 N (n=79)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Y (n=72)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested p-value
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested Effect Size
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested StatTest
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Nested p-value
 </th>
 </tr>
@@ -330,7 +332,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.024</span>
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -397,7 +399,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">&lt;0.001</span>
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -477,16 +479,16 @@ lupins
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-1.00
+0.99
 </td>
 <td style="text-align:right;">
-0.017
+0.041
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-0.75
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -494,13 +496,13 @@ Chi Sq, Cramer’s V
 1
 </td>
 <td style="text-align:right;">
-15 (19)
+12 (15)
 </td>
 <td style="text-align:right;">
-15 (19)
+12 (15)
 </td>
 <td style="text-align:right;">
-14 (19)
+11 (15)
 </td>
 <td style="text-align:right;">
 </td>
@@ -516,13 +518,13 @@ Chi Sq, Cramer’s V
 2
 </td>
 <td style="text-align:right;">
-16 (20)
+14 (18)
 </td>
 <td style="text-align:right;">
-16 (20)
+14 (18)
 </td>
 <td style="text-align:right;">
-14 (19)
+11 (15)
 </td>
 <td style="text-align:right;">
 </td>
@@ -538,13 +540,13 @@ Chi Sq, Cramer’s V
 3
 </td>
 <td style="text-align:right;">
-17 (22)
+13 (16)
 </td>
 <td style="text-align:right;">
-17 (22)
+13 (16)
 </td>
 <td style="text-align:right;">
-16 (22)
+13 (18)
 </td>
 <td style="text-align:right;">
 </td>
@@ -560,13 +562,13 @@ Chi Sq, Cramer’s V
 4
 </td>
 <td style="text-align:right;">
-16 (20)
+13 (16)
 </td>
 <td style="text-align:right;">
-16 (20)
+13 (16)
 </td>
 <td style="text-align:right;">
-14 (19)
+13 (18)
 </td>
 <td style="text-align:right;">
 </td>
@@ -582,13 +584,13 @@ Chi Sq, Cramer’s V
 5
 </td>
 <td style="text-align:right;">
-15 (19)
+27 (34)
 </td>
 <td style="text-align:right;">
-15 (19)
+27 (34)
 </td>
 <td style="text-align:right;">
-14 (19)
+24 (33)
 </td>
 <td style="text-align:right;">
 </td>
@@ -606,30 +608,30 @@ Chi Sq, Cramer’s V
 <h3><span class="header-section-number">2.2.2</span> By cow nested in yard:<a href="nested-summary-of-high-protein-status.html#by-cow-nested-in-yard" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Notice that this summary is the same as by cow, since each cow stays in only one yard for this example data.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="nested-summary-of-high-protein-status.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> Milk, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;Cow&quot;</span>, <span class="st">&quot;Yard&quot;</span>), <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;protein&quot;</span>, <span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Diet&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;High_Protein&quot;</span>)</span></code></pre></div>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Full Sample (n=79)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 N (n=79)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Y (n=72)
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested p-value
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested Effect Size
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested StatTest
 </th>
-<th style="text-align:right;">
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Nested p-value
 </th>
 </tr>
@@ -722,7 +724,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.024</span>
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
@@ -789,7 +791,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">&lt;0.001</span>
+Did not converge;<br>quasi or complete<br>category separation
 </td>
 </tr>
 <tr>
