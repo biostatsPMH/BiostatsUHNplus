@@ -9,8 +9,8 @@
 #' @param baseline_datasets list of data frames that contain baseline participant characteristics.
 #'    For example, list(enrollment_DF,demography_DF,ineligibility_DF)
 #' @param ae_dataset data frame that contains subject AEs
-#' @param ae_attribVars field(s) that denotes attribution to intervention 
-#'    under study. For example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") 
+#' @param ae_attribVars field(s) that denotes attribution to intervention under study. \cr 
+#'    For example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") 
 #'    (if provided)
 #' @param ae_attribVarsName character text that denotes name of interventions under study.
 #'    For example, c("Drug 1", "Drug 2") (if provided)
