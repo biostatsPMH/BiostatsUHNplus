@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.3 Examples | Example nested summary and Bayesian hierarchical model summary</title>
   <meta name="description" content="4.3 Examples | Example nested summary and Bayesian hierarchical model summary" />
-  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.3 Examples | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
@@ -245,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb19-21"><a href="examples.html#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> clinT, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;ae_detail&quot;</span>, <span class="st">&quot;Subject&quot;</span>, <span class="st">&quot;COHORT&quot;</span>), </span>
 <span id="cb19-22"><a href="examples.html#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;COHORT&quot;</span>, <span class="st">&quot;GENDER_CODE&quot;</span>, <span class="st">&quot;INELIGIBILITY_STATUS&quot;</span>, <span class="st">&quot;ENROL_DATE_INT&quot;</span>, </span>
 <span id="cb19-23"><a href="examples.html#cb19-23" aria-hidden="true" tabindex="-1"></a>           <span class="st">&quot;AE_SEV_GD&quot;</span>, <span class="st">&quot;Drug_2_Attribution&quot;</span>, <span class="st">&quot;AE_ONSET_DT_INT&quot;</span>, <span class="st">&quot;ae_category&quot;</span>), </span>
-<span id="cb19-24"><a href="examples.html#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">maincov =</span> <span class="st">&quot;Drug_1_Attribution&quot;</span>);</span></code></pre></div>
+<span id="cb19-24"><a href="examples.html#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">maincov =</span> <span class="st">&quot;Drug_1_Attribution&quot;</span>, <span class="at">nicenames =</span> <span class="cn">TRUE</span>);</span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -277,7 +277,7 @@ Nested p-value
 <tbody>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">COHORT</span>
+<span style="font-weight: bold;">Cohort</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -295,7 +295,7 @@ Nested p-value
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.95
 </td>
 </tr>
 <tr>
@@ -388,7 +388,7 @@ Cohort D
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">GENDER_CODE</span>
+<span style="font-weight: bold;">Gender</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -406,7 +406,7 @@ Cohort D
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.63
 </td>
 </tr>
 <tr>
@@ -455,7 +455,7 @@ Male
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">INELIGIBILITY_STATUS</span>
+<span style="font-weight: bold;">Ineligibility</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -519,7 +519,7 @@ Missing
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">ENROL_DATE_INT</span>
+<span style="font-weight: bold;">Enrollment date</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -583,7 +583,7 @@ Median (Min,Max)
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">AE_SEV_GD</span>
+<span style="font-weight: bold;">Adverse event severity grade</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -601,7 +601,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.97
 </td>
 </tr>
 <tr>
@@ -650,7 +650,7 @@ Median (Min,Max)
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">Drug_2_Attribution</span>
+<span style="font-weight: bold;">Attribution to second study drug</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -668,7 +668,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+<span style="font-weight: bold;">&lt;0.001</span>
 </td>
 </tr>
 <tr>
@@ -717,7 +717,7 @@ Unrelated
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">AE_ONSET_DT_INT</span>
+<span style="font-weight: bold;">Adverse event onset date</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -781,7 +781,7 @@ Median (Min,Max)
 </tr>
 <tr>
 <td style="text-align:left;">
-<span style="font-weight: bold;">ae_category</span>
+<span style="font-weight: bold;">Adverse event system organ class</span>
 </td>
 <td style="text-align:right;">
 </td>
@@ -799,7 +799,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+1.00
 </td>
 </tr>
 <tr>
@@ -1465,9 +1465,9 @@ Vascular disorders
 <tr class="even">
 <td align="left"></td>
 <td align="left">Yes</td>
-<td align="left">2.65 (1.10, 6.39)</td>
-<td align="left">0.025</td>
-<td align="left">209.85</td>
+<td align="left">2.81 (1.14, 7.29)</td>
+<td align="left">0.045</td>
+<td align="left">226.06</td>
 </tr>
 <tr class="odd">
 <td align="left">Drug 2 Attribution</td>
@@ -1479,9 +1479,9 @@ Vascular disorders
 <tr class="even">
 <td align="left"></td>
 <td align="left">Yes</td>
-<td align="left">0.46 (0.16, 1.23)</td>
-<td align="left">0.145</td>
-<td align="left">212.65</td>
+<td align="left">0.44 (0.14, 1.14)</td>
+<td align="left">0.108</td>
+<td align="left">162.39</td>
 </tr>
 </tbody>
 </table>
@@ -1504,21 +1504,21 @@ Vascular disorders
 <tbody>
 <tr class="odd">
 <td align="left">Subject</td>
-<td align="right">0.0486</td>
-<td align="right">0.0007</td>
-<td align="right">0.3251</td>
+<td align="right">0.0504</td>
+<td align="right">0.0055</td>
+<td align="right">0.3664</td>
 </tr>
 <tr class="even">
 <td align="left">ae_category</td>
-<td align="right">0.7436</td>
-<td align="right">0.4871</td>
-<td align="right">0.9542</td>
+<td align="right">0.8116</td>
+<td align="right">0.4374</td>
+<td align="right">0.9446</td>
 </tr>
 <tr class="odd">
 <td align="left">units</td>
-<td align="right">0.1211</td>
-<td align="right">0.0246</td>
-<td align="right">0.2515</td>
+<td align="right">0.1267</td>
+<td align="right">0.0329</td>
+<td align="right">0.2715</td>
 </tr>
 </tbody>
 </table>

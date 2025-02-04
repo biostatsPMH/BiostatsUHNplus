@@ -64,7 +64,7 @@ min,max on a separate line) should be displayed. Overrides IQR.}
 \item{pvalue}{boolean indicating if you want p-values included in the table}
 
 \item{effSize}{boolean indicating if you want effect sizes included in the
-table. Can only be obtained if pvalue is also requested.}
+table. Can only be obtained if p-value is also requested.}
 
 \item{show.tests}{boolean indicating if the type of statistical used should
 be shown in a column beside the p-values. Ignored if pvalue=FALSE.}
@@ -75,7 +75,8 @@ for calculating the nested p-value (default: 1).}
 \item{nested.test}{specifies test used for calculating nested p-value from
 afex::mixed function. Either \emph{parametric bootstrap} method
 or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap
-takes longer.}
+("PB") takes longer. If no p-value is outputted, may need to compile lme4 package
+using utils::install.packages("lme4", type = "source") from sources.}
 
 \item{nsim}{specifies number of simulations to use for calculating nested p-value
 with \emph{parametric bootstrap} method used for nested.test (default: 1000).}

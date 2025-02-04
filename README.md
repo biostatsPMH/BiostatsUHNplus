@@ -59,10 +59,6 @@ devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="development")
 
 ``` r
 library(BiostatsUHNplus);
-#> Warning in check_dep_version(): ABI version mismatch: 
-#> lme4 was built with Matrix ABI version 1
-#> Current Matrix ABI version is 0
-#> Please re-install lme4 from source or restore original 'Matrix' package
 z <- as_numeric_parse(c(1:5, "String1",6:10,"String2"))
 #> The following entries were converted to NA values:
 #> Entry 6, 'String1'
@@ -160,7 +156,7 @@ Nested p-value
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.95
 </td>
 </tr>
 <tr>
@@ -271,7 +267,7 @@ Cohort D
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.63
 </td>
 </tr>
 <tr>
@@ -466,7 +462,7 @@ Median (Min,Max)
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+0.97
 </td>
 </tr>
 <tr>
@@ -533,7 +529,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -664,7 +660,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+1.00
 </td>
 </tr>
 <tr>
@@ -1350,9 +1346,9 @@ knitr::kable(mcmcglmm_mva);
 | Variable           | Levels | OR (95% HPDI)     | MCMCp | eff.samp |
 |:-------------------|:-------|:------------------|:------|:---------|
 | Drug 1 Attribution | No     | reference         |       |          |
-|                    | Yes    | 2.72 (1.01, 6.53) | 0.028 | 184.77   |
+|                    | Yes    | 2.95 (1.05, 8.07) | 0.042 | 184.11   |
 | Drug 2 Attribution | No     | reference         |       |          |
-|                    | Yes    | 0.43 (0.17, 1.38) | 0.125 | 155.01   |
+|                    | Yes    | 0.43 (0.15, 1.23) | 0.128 | 151.39   |
 
 #### Intraclass correlation coefficients
 
@@ -1368,9 +1364,9 @@ knitr::kable(mcmcglmm_icc);
 
 |             |    ICC |  lower |  upper |
 |:------------|-------:|-------:|-------:|
-| Subject     | 0.0438 | 0.0090 | 0.3070 |
-| ae_category | 0.8734 | 0.5372 | 0.9497 |
-| units       | 0.0663 | 0.0228 | 0.2286 |
+| Subject     | 0.0477 | 0.0055 | 0.3570 |
+| ae_category | 0.9316 | 0.4712 | 0.9710 |
+| units       | 0.0820 | 0.0257 | 0.2297 |
 
 #### Caterpillar plots of random effects - participant
 
