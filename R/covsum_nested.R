@@ -27,7 +27,7 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #'   min,max on a separate line) should be displayed. Overrides IQR.
 #' @param pvalue boolean indicating if you want p-values included in the table
 #' @param effSize boolean indicating if you want effect sizes included in the 
-#'   table. Can only be obtained if pvalue is also requested.
+#'   table. Can only be obtained if p-value is also requested.
 #' @param show.tests boolean indicating if the type of statistical used should
 #'   be shown in a column beside the p-values. Ignored if pvalue=FALSE.
 #' @param nCores if > 1, specifies number of cores to use for parallel processing 
@@ -35,7 +35,8 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @param nested.test specifies test used for calculating nested p-value from 
 #'  afex::mixed function. Either \emph{parametric bootstrap} method 
 #'  or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap 
-#'  takes longer.
+#'  ("PB") takes longer. If no p-value is outputted, may need to compile lme4 package
+#'  using utils::install.packages("lme4", type = "source") from sources.
 #' @param nsim specifies number of simulations to use for calculating nested p-value
 #'  with \emph{parametric bootstrap} method used for nested.test (default: 1000). 
 #' @param dropLevels logical, indicating if empty factor levels be dropped from
