@@ -31,7 +31,7 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @param show.tests boolean indicating if the type of statistical used should
 #'   be shown in a column beside the p-values. Ignored if pvalue=FALSE.
 #' @param nCores if > 1, specifies number of cores to use for parallel processing 
-#'  for calculating the nested p-value (default: 1).
+#'  for calculating the nested p-value (default: parallelly::availableCores).
 #' @param nested.test specifies test used for calculating nested p-value from 
 #'  afex::mixed function. Either \emph{parametric bootstrap} method 
 #'  or \emph{likelihood ratio test} method (default: "LRT"). Parametric bootstrap 
@@ -65,7 +65,8 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @importFrom rlang syms 
 #' @importFrom modeest mlv 
 #' @importFrom utils getFromNamespace
-#' @importFrom parallel detectCores makeCluster clusterExport parLapply
+#' @importFrom parallel makeCluster clusterExport parLapply
+#' @importFrom parallelly availableCores
 #' @importFrom afex mixed
 #' @seealso \code{\link{fisher.test}},\code{\link{chisq.test}},
 #'   \code{\link{wilcox.test}},\code{\link{kruskal.test}}, and
@@ -86,14 +87,16 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
   nested.pvalue=FALSE
   if (pvalue) { 
     nested.pvalue=TRUE
-    nc <- parallel::detectCores() # number of cores
+    nc <- parallelly::availableCores() 
+    #nc <- parallel::detectCores() # number of cores, don't use this method 
     if (is.numeric(nCores) && nCores <= nc) {
       nc <- nCores
     } else if (is.numeric(nCores) && nCores > nc) {
       warning(paste("Number of core(s) requested exceeds that of system.\nUsing ", nc, " cores for parallel processing.\n", sep=""))
     }
     else {
-      nc <- 1
+      nc <- parallelly::availableCores()
+      #nc <- 1
     }
   }
   options(dplyr.summarise.inform = FALSE)
@@ -217,6 +220,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
     suppressWarnings({
       tryCatch({
         cl <- parallel::makeCluster(nc, type="PSOCK") # make cluster
+        #parallel::stopCluster(cl)
         parallel::clusterExport(cl, list("maincov", "cov", "objComb", "id", "data", "cl", "nsim"), envir=environment()) # send data and functions to cluster
         suppressWarnings({tryCatch({
             if (nested.test == "PB") {
@@ -228,10 +232,10 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
             }
             if (nested.test == "LRT") {
               if (length(unique(data[[maincov]])) == 2) {
-                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4])}, error=function(e){NA}))
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT", args_test=list(nsim=nsim,cl=cl)))[4])}, error=function(e){NA}))
               } else { #modify different family here in future for categorical outcome with more than 2 levels, but is ANOVA Type III test;
                 #out_glmer <- lapply(objComb$cov[which(objComb$cov != "")], function(x) try(as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4]), silent=TRUE))
-                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT"))[4])}, error=function(e){NA}))
+                out_glmer <- parallel::parLapply(cl, objComb$cov[which(objComb$cov != "")], function(x) tryCatch({as.numeric(stats::anova(afex::mixed(stats::as.formula(paste(maincov, '~', x, '+(', 1, '|', paste(id, collapse=':'), ')', sep='')), family=binomial, data=data, expand_re=TRUE, cl=NULL, method="LRT", args_test=list(nsim=nsim,cl=cl)))[4])}, error=function(e){NA}))
               }
             }
         }, error=function(e){})})
