@@ -193,7 +193,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       #sheet name has to be 28 characters or less (append rn_ for 31 max);
       
       joinNamesNRI <- NULL;
-      #i <- 21;
+      #i <- 2;
       for (i in 1:length(unique(data_dictionary[,2]))) {
         if (!unique(data_dictionary[,2])[i] %in% tables) {
           tmpTN <- paste(unique(data_dictionary[,2])[i], sep="");
@@ -203,15 +203,25 @@ redcap_data_out <- function(protocol,pullDate=NULL,
           dataNRI <- data[which(data$redcap_repeat_instrument %in% c("non_repeat_instrument", "extra_sheet")), ];
           dataNRI$redcap_repeat_instrument <- NA;
           tmp <- dataNRI[, which(colnames(dataNRI) %in% c(varKeep))];
-          non_repeat_instrument <- non_repeat_instrument[, which(colnames(non_repeat_instrument) %in% c(varKeep))];
+          
+          tryCatch({
+            non_repeat_instrument <- non_repeat_instrument[, which(colnames(non_repeat_instrument) %in% c(varKeep))];
+          }, error=function(e){})
+          tryCatch({
+            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %in% c(varKeep))];
+          }, error=function(e){})
           tryCatch({
             tmp[tmp == ""] <- NA;
             tmp <- tmp[rowSums(is.na(tmp[, which(!colnames(tmp) %in% c(subjID,"redcap_event_name",
-                      "redcap_repeat_instance"))])) != ncol(tmp[, which(!colnames(tmp) %in% 
-                      c(subjID,"redcap_event_name","redcap_repeat_instance"))]), ]; 
+                      "redcap_repeat_instance", "redcap_data_access_group"))])) != ncol(tmp[, which(!colnames(tmp) %in% 
+                      c(subjID,"redcap_event_name","redcap_repeat_instance", "redcap_data_access_group"))]), ]; 
             tmp$redcap_repeat_instrument <- tmpTN;
-            #tmp$redcap_repeat_instance <- 1;
-            tmp$redcap_repeat_instance[is.na(tmp$redcap_repeat_instance)] <- 1;
+            tryCatch({
+              tmp$redcap_repeat_instance[is.na(tmp$redcap_repeat_instance)] <- 1;
+            }, error=function(e){})
+            if (is.null(tmp$redcap_repeat_instance)) {
+              tmp$redcap_repeat_instance <- 1
+            }
             tmp <- as.data.frame(tmp);
             assign(tmpTN, tmp);
             joinNamesNRI[i] <- tmpTN;
