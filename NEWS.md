@@ -1,6 +1,6 @@
 # BiostatsUHNplus 1.0.3
 
-* Revised rm_covsum_nested() to account for updates in reportRmd package
+* Revised rm_covsum_nested() to use parallelly::availableCores()
 
 # BiostatsUHNplus 1.0.2
 
