@@ -138,12 +138,11 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     data$redcap_repeat_instrument <- as.factor(data$redcap_repeat_instrument);
     
     joinNames <- NULL;
-    #i <- 1;
+    #i <- 6;
     for (i in 1:length(tables) ) {
       tmpTN <- paste(tables[i], sep=""); 
       tmp <- data[which(data$redcap_repeat_instrument %in% c(tables[i])), ];
       tmp <- as.data.frame(tmp);
-      
       tmp <- tmp[, colSums(is.na(tmp)) != nrow(tmp)]; #remove columns that are all NA;
       if (length(tmp$redcap_repeat_instrument) > 0) {
         if (!tmp$redcap_repeat_instrument[1] %in% c("Extra Sheet")) {
@@ -151,6 +150,23 @@ redcap_data_out <- function(protocol,pullDate=NULL,
           tmp <- as.data.frame(tmp)
         }
       }
+      #sometimes repeat instrument name isn't set for all event instances... have to do it this way;
+      #have to exclude first two rows as data, as blank and column header rows;
+      tryCatch({
+        tmp <- data[-c(1:2), which(colnames(data) %in% colnames(tmp))];
+        '%!in%' <- function(x,y)!('%in%'(x,y)) ;
+        tmp$redcap_repeat_instrument <- tables[i];
+        colKeep <- c(subjID, "redcap_event_name", "redcap_repeat_instrument", 
+                    "redcap_repeat_instance", "redcap_data_access_group");
+        tmp <- tmp[rowSums(tmp[, which(colnames(tmp) %!in% c(colKeep))] == "") 
+                   != ncol(tmp[, which(colnames(tmp) %!in% c(colKeep))]), ]; #remove rows that are all blank;
+        if (length(tmp$redcap_repeat_instrument) > 0) {
+          if (!tmp$redcap_repeat_instrument[1] %in% c("Extra Sheet")) {
+            tmp <- tmp |> dplyr::select_if(function(x) !(all(x=="")))
+            tmp <- as.data.frame(tmp)
+          }
+        }
+      }, error=function(e){})  
       tmp <- tmp |> dplyr::select(-contains(".factor")); 
       tmp <- as.data.frame(tmp);
       assign(tmpTN, tmp);
@@ -193,7 +209,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       #sheet name has to be 28 characters or less (append rn_ for 31 max);
       
       joinNamesNRI <- NULL;
-      #i <- 2;
+      #i <- 3;
       for (i in 1:length(unique(data_dictionary[,2]))) {
         if (!unique(data_dictionary[,2])[i] %in% tables) {
           tmpTN <- paste(unique(data_dictionary[,2])[i], sep="");
