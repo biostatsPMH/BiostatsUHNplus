@@ -138,7 +138,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     data$redcap_repeat_instrument <- as.factor(data$redcap_repeat_instrument);
     
     joinNames <- NULL;
-    #i <- 6;
+    #i <- 32;
     for (i in 1:length(tables) ) {
       tmpTN <- paste(tables[i], sep=""); 
       tmp <- data[which(data$redcap_repeat_instrument %in% c(tables[i])), ];
@@ -150,8 +150,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
           tmp <- as.data.frame(tmp)
         }
       }
-      #sometimes repeat instrument name isn't set for all event instances... have to do it this way;
-      #have to exclude first two rows as data, as blank and column header rows;
+      #Sometimes repeat instrument name is not set for all event instances. Have to do it this way;
+      #Exclude first two rows of data, as blank and column header rows;
       tryCatch({
         tmp <- data[-c(1:2), which(colnames(data) %in% colnames(tmp))];
         '%!in%' <- function(x,y)!('%in%'(x,y)) ;
@@ -160,6 +160,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
                     "redcap_repeat_instance", "redcap_data_access_group");
         tmp <- tmp[rowSums(tmp[, which(colnames(tmp) %!in% c(colKeep))] == "") 
                    != ncol(tmp[, which(colnames(tmp) %!in% c(colKeep))]), ]; #remove rows that are all blank;
+        tmp <- tmp[rowSums(is.na(tmp)) != ncol(tmp), ]; #remove rows that are all NA;
+        tmp <- tmp[tmp[,1] %!in% c("Study ID", "Record ID", "Patient ID"), ]; #cleaning header rows;
         if (length(tmp$redcap_repeat_instrument) > 0) {
           if (!tmp$redcap_repeat_instrument[1] %in% c("Extra Sheet")) {
             tmp <- tmp |> dplyr::select_if(function(x) !(all(x=="")))
@@ -254,7 +256,11 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   
   #--#--#--#--#--#--#--#--#--#--#--#--#--#--#--# this writes tables as Excel sheets for participants;
   
-  joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument"))];
+  if (nrow(non_repeat_instrument) == 0) {
+    joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument", "non_repeat_instrument"))];
+  } else {
+    joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument"))];
+  }
   joinNames <- sort(joinNames, decreasing = FALSE); #sort table name alphabetically;
   
   #list_of_datasets <- lapply(joinNames, function(x) get(x, mode="list"), envir=sys.frame(sys.parent(0)));
