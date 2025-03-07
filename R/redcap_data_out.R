@@ -28,6 +28,7 @@
 #' @importFrom stringr str_trunc str_replace str_detect
 #' @importFrom stringi stri_trans_general
 #' @importFrom openxlsx write.xlsx 
+#' @importFrom rlang syms 
 #' @importFrom utils read.csv 
 #' @export
 #' @examples
@@ -151,17 +152,21 @@ redcap_data_out <- function(protocol,pullDate=NULL,
         }
       }
       #Sometimes repeat instrument name is not set for all event instances. Have to do it this way;
-      #Exclude first two rows of data, as blank and column header rows;
+      #Watch for blank and column header rows;
       tryCatch({
-        tmp <- data[-c(1:2), which(colnames(data) %in% colnames(tmp))];
+        tmp <- data[, which(colnames(data) %in% colnames(tmp))];
+        #tmp <- data[-c(1:2), which(colnames(data) %in% colnames(tmp))];
         '%!in%' <- function(x,y)!('%in%'(x,y)) ;
         tmp$redcap_repeat_instrument <- tables[i];
         colKeep <- c(subjID, "redcap_event_name", "redcap_repeat_instrument", 
                     "redcap_repeat_instance", "redcap_data_access_group");
+        tmp <- tmp |> dplyr::filter(!is.na(!!!(rlang::syms(subjID)))) #remove rows missing subjID;
+        tmp <- as.data.frame(tmp)
+        tmp <- tmp[, colSums(is.na(tmp)) == 0]; #remove NA columns; 
         tmp <- tmp[rowSums(tmp[, which(colnames(tmp) %!in% c(colKeep))] == "") 
                    != ncol(tmp[, which(colnames(tmp) %!in% c(colKeep))]), ]; #remove rows that are all blank;
         tmp <- tmp[rowSums(is.na(tmp)) != ncol(tmp), ]; #remove rows that are all NA;
-        tmp <- tmp[tmp[,1] %!in% c("Study ID", "Record ID", "Patient ID"), ]; #cleaning header rows;
+        tmp <- tmp[tmp[,1] %!in% c("Study ID", "Record ID", "Patient ID"), ]; #clean header rows;
         if (length(tmp$redcap_repeat_instrument) > 0) {
           if (!tmp$redcap_repeat_instrument[1] %in% c("Extra Sheet")) {
             tmp <- tmp |> dplyr::select_if(function(x) !(all(x=="")))
@@ -255,8 +260,9 @@ redcap_data_out <- function(protocol,pullDate=NULL,
 
   
   #--#--#--#--#--#--#--#--#--#--#--#--#--#--#--# this writes tables as Excel sheets for participants;
+
   
-  if (nrow(non_repeat_instrument) == 0) {
+  if (exists("non_repeat_instrument") && nrow((non_repeat_instrument)) == 0) {
     joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument", "non_repeat_instrument"))];
   } else {
     joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument"))];
