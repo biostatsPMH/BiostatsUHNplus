@@ -139,7 +139,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     data$redcap_repeat_instrument <- as.factor(data$redcap_repeat_instrument);
     
     joinNames <- NULL;
-    #i <- 32;
+    #i <- 3;
     for (i in 1:length(tables) ) {
       tmpTN <- paste(tables[i], sep=""); 
       tmp <- data[which(data$redcap_repeat_instrument %in% c(tables[i])), ];
@@ -162,7 +162,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
                     "redcap_repeat_instance", "redcap_data_access_group");
         tmp <- tmp |> dplyr::filter(!is.na(!!!(rlang::syms(subjID)))) #remove rows missing subjID;
         tmp <- as.data.frame(tmp)
-        tmp <- tmp[, colSums(is.na(tmp)) == 0]; #remove NA columns; 
+        tmp <- tmp[, !apply(tmp, 2, function(x) all(is.na(x)))] #remove NA columns; 
         tmp <- tmp[rowSums(tmp[, which(colnames(tmp) %!in% c(colKeep))] == "") 
                    != ncol(tmp[, which(colnames(tmp) %!in% c(colKeep))]), ]; #remove rows that are all blank;
         tmp <- tmp[rowSums(is.na(tmp)) != ncol(tmp), ]; #remove rows that are all NA;
