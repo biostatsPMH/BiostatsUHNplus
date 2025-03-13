@@ -169,8 +169,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
         tmp <- tmp[rowSums(tmp[, which(colnames(tmp) %!in% c(colKeep))] == "") 
                    != ncol(tmp[, which(colnames(tmp) %!in% c(colKeep))]), ]; #remove rows that are all blank;
         tmp <- tmp[rowSums(is.na(tmp)) != ncol(tmp), ]; #remove rows that are all NA;
-        tmp <- tmp |> dplyr::filter(dplyr::if_any(dplyr::any_of(subjID), ~ . %!in% c("Study ID", "Record ID", "Patient ID")))
-        #tmp <- tmp[tmp[,1] %!in% c("Study ID", "Record ID", "Patient ID"), ]; #clean header rows;
+        #tmp <- tmp |> dplyr::filter(dplyr::if_any(dplyr::any_of(subjID), ~ . %!in% c("Study ID", "Record ID", "Patient ID")))
+        tmp <- tmp[tmp[,1] %!in% c("Study ID", "Record ID", "Patient ID"), ]; #clean header rows;
         
         if (length(tmp$redcap_repeat_instrument) > 0) {
           if (!tmp$redcap_repeat_instrument[1] %in% c("Extra Sheet")) {
@@ -305,6 +305,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   keyIdentifiers <- keyIdentifiers |> dplyr::distinct_all()
   keyIdentifiers <- keyIdentifiers |> 
     dplyr::filter(dplyr::if_all(everything(), ~ !is.na(.) & . != ""))
+  
   
   
   ##Below filters instrument datasets by participant characteristics;
