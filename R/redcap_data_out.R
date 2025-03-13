@@ -24,7 +24,7 @@
 #' @returns two Excel files, one containing variable names and labels and the 
 #'    other containing REDCap survey instrument data by sheet
 #' @importFrom plyr rbind.fill
-#' @importFrom dplyr contains select select_if filter any_of everything left_join distinct_all ungroup
+#' @importFrom dplyr contains select select_if filter if_any if_all any_of everything left_join distinct_all ungroup
 #' @importFrom stringr str_trunc str_replace str_detect
 #' @importFrom stringi stri_trans_general
 #' @importFrom openxlsx write.xlsx 
@@ -139,7 +139,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     data$redcap_repeat_instrument <- as.factor(data$redcap_repeat_instrument);
     
     joinNames <- NULL;
-    #i <- 3;
+    #i <- 10;
     for (i in 1:length(tables) ) {
       tmpTN <- paste(tables[i], sep=""); 
       tmp <- data[which(data$redcap_repeat_instrument %in% c(tables[i])), ];
@@ -160,13 +160,18 @@ redcap_data_out <- function(protocol,pullDate=NULL,
         tmp$redcap_repeat_instrument <- tables[i];
         colKeep <- c(subjID, "redcap_event_name", "redcap_repeat_instrument", 
                     "redcap_repeat_instance", "redcap_data_access_group");
-        tmp <- tmp |> dplyr::filter(!is.na(!!!(rlang::syms(subjID)))) #remove rows missing subjID;
+        tmp <- tmp |> dplyr::filter(dplyr::if_any(dplyr::any_of(subjID), ~ !is.na(.))) #remove rows missing subjID;
+        #tmp <- tmp |> dplyr::filter(!is.na(!!!(rlang::syms(subjID)))) #remove rows missing subjID;
+        #tmp <- tmp |> dplyr::filter(!(!!!(rlang::syms(subjID))) == "") #remove rows where subjID is "";
+        tmp <- tmp |> dplyr::filter(dplyr::if_any(dplyr::any_of(subjID), ~ . != "")) #remove rows missing subjID;
         tmp <- as.data.frame(tmp)
         tmp <- tmp[, !apply(tmp, 2, function(x) all(is.na(x)))] #remove NA columns; 
         tmp <- tmp[rowSums(tmp[, which(colnames(tmp) %!in% c(colKeep))] == "") 
                    != ncol(tmp[, which(colnames(tmp) %!in% c(colKeep))]), ]; #remove rows that are all blank;
         tmp <- tmp[rowSums(is.na(tmp)) != ncol(tmp), ]; #remove rows that are all NA;
-        tmp <- tmp[tmp[,1] %!in% c("Study ID", "Record ID", "Patient ID"), ]; #clean header rows;
+        tmp <- tmp |> dplyr::filter(dplyr::if_any(dplyr::any_of(subjID), ~ . %!in% c("Study ID", "Record ID", "Patient ID")))
+        #tmp <- tmp[tmp[,1] %!in% c("Study ID", "Record ID", "Patient ID"), ]; #clean header rows;
+        
         if (length(tmp$redcap_repeat_instrument) > 0) {
           if (!tmp$redcap_repeat_instrument[1] %in% c("Extra Sheet")) {
             tmp <- tmp |> dplyr::select_if(function(x) !(all(x=="")))
@@ -289,14 +294,18 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   list_of_datasets <- Filter(Negate(is.null), list_of_datasets);
   
   ##Find distinct and complete subjID key identifiers from longest dataset;
-  keyIdentifiers <- lapply(list_of_datasets, function(df) df |>
-                            dplyr::select(dplyr::any_of(subjID)));
-  keyIdentifiers <- Filter(function(x) ncol(x) == length(subjID), keyIdentifiers); 
-  lengths <- lapply(keyIdentifiers, nrow);
-  longest <- which.max(lengths);
-  keyIdentifiers <- keyIdentifiers[[longest]]; 
-  keyIdentifiers <- keyIdentifiers |>
-    dplyr::distinct_all()
+  #str(list_of_datasets)
+  keyIdentifiers <- data |> dplyr::select(dplyr::any_of(subjID));
+  #keyIdentifiers <- lapply(list_of_datasets, function(df) df |>
+  #                          dplyr::select(dplyr::any_of(subjID)));
+  #keyIdentifiers <- Filter(function(x) ncol(x) == length(subjID), keyIdentifiers); 
+  #lengths <- lapply(keyIdentifiers, nrow);
+  #longest <- which.max(lengths);
+  #keyIdentifiers <- keyIdentifiers[[longest]]; 
+  keyIdentifiers <- keyIdentifiers |> dplyr::distinct_all()
+  keyIdentifiers <- keyIdentifiers |> 
+    dplyr::filter(dplyr::if_all(everything(), ~ !is.na(.) & . != ""))
+  
   
   ##Below filters instrument datasets by participant characteristics;
   list_of_datasets2 <- lapply(list_of_datasets, function(df) df |>
