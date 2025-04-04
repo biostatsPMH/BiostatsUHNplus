@@ -244,7 +244,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
           }, error=function(e){})
           tryCatch({
             #extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %in% c(varKeep))];
-            extra_sheet <- data;
+            extra_sheet <- dataNRI;
           }, error=function(e){})
           tryCatch({
             tmp[tmp == ""] <- NA;
