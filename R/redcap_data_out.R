@@ -61,6 +61,9 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   if (is.null(varFilter_eligPattern)) {
     varFilter_eligPattern <- "^";
   }
+  
+  '%!in%' <- function(x,y)!('%in%'(x,y))
+  
   first_subjID <- subjID[1];
 
   fileList1 <- list.files(path=setWD_files, pattern="LABEL", all.files=FALSE, full.names=FALSE, 
