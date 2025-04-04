@@ -214,8 +214,6 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   }
 
   
-  ##data$gender_int___1;
-  
   ###Get REDCap instrument from data dictionary, if provided for non-repeat instruments;
   tryCatch({
     if (length(data[which(data$redcap_repeat_instrument %in% 
@@ -226,7 +224,9 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       data_dictionary <- read.csv(newestFile, header=TRUE); 
       data_dictionary[,2] <- stringr::str_trunc(as.character(data_dictionary[,2]), 28, ellipsis=""); 
       #sheet name has to be 28 characters or less (append rn_ for 31 max);
+      tables <- unique(data$redcap_repeat_instrument);
       
+      joinNames <- NULL;
       joinNamesNRI <- NULL;
       #i <- 2;
       for (i in 1:length(unique(data_dictionary[,2]))) {
@@ -265,7 +265,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
         }
       }
     }
-    joinNames <- c(joinNamesNRI, joinNames);
+    joinNames <- c(joinNamesNRI, joinNames, "extra_sheet");
     tryCatch({
       joinNames <- joinNames[which(!joinNames %in% c(NA))];
     }, error=function(e){})
