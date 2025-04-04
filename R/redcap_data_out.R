@@ -126,7 +126,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
 
   ###If a REDCap repeat instrument exists, then do below;
   if (!is.null(data$redcap_repeat_instrument) && 
-      !is.na(data[which(data$redcap_repeat_instrument %!in% c("Extra Sheet")),]$redcap_repeat_instrument)) {
+      !all(is.na(data[which(data$redcap_repeat_instrument %!in% c("Extra Sheet")),]$redcap_repeat_instrument))) {
     data$redcap_repeat_instrument <- stringr::str_trunc(as.character(data$redcap_repeat_instrument), 28, 
                                     ellipsis=""); #sheet name has to be 28 characters or less (append rn_ for 31 max);
     data$redcap_repeat_instrument <- gsub(" ", "_", gsub("[[:punct:]]", "", 
