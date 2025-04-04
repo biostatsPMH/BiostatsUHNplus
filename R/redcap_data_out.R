@@ -244,7 +244,11 @@ redcap_data_out <- function(protocol,pullDate=NULL,
           }, error=function(e){})
           tryCatch({
             #extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %in% c(varKeep))];
-            extra_sheet <- dataNRI;
+            ddVars <- data_dictionary[which(data_dictionary[,2] %in% c(unique(data_dictionary[,2]))), 1];
+            ddVars <- c(ddVars, "data");
+            ddVars <- ddVars[ddVars %!in% c(data_dictionary[1,1], subjID, "redcap_event_name", "redcap_repeat_instrument", 
+                                     "redcap_repeat_instance", "redcap_data_access_group")];
+            extra_sheet <- dataNRI[, which(colnames(dataNRI) %!in% c(ddVars))];
           }, error=function(e){})
           tryCatch({
             tmp[tmp == ""] <- NA;
