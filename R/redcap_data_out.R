@@ -122,7 +122,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   
 
   ###If a REDCap repeat instrument exists, then do below;
-  if (!is.null(data$redcap_repeat_instrument)) {
+  if (!is.null(data$redcap_repeat_instrument) && 
+      !is.na(data[which(data$redcap_repeat_instrument %!in% c("Extra Sheet")),]$redcap_repeat_instrument)) {
     data$redcap_repeat_instrument <- stringr::str_trunc(as.character(data$redcap_repeat_instrument), 28, 
                                     ellipsis=""); #sheet name has to be 28 characters or less (append rn_ for 31 max);
     data$redcap_repeat_instrument <- gsub(" ", "_", gsub("[[:punct:]]", "", 
@@ -210,9 +211,12 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   }
 
   
+  ##data$gender_int___1;
+  
   ###Get REDCap instrument from data dictionary, if provided for non-repeat instruments;
   tryCatch({
-    if (length(data$redcap_repeat_instrument == "non_repeat_instrument") > 0) {
+    if (length(data[which(data$redcap_repeat_instrument %in% 
+                          c("non_repeat_instrument", "Extra Sheet")),]) > 0) {
       fileList3 <- file.info(list.files(pattern = c("ictionary"), path = setWD_dataDict, 
                                         full.names = TRUE));
       newestFile <- rownames(fileList3)[which.max(fileList3$mtime)];
@@ -221,14 +225,14 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       #sheet name has to be 28 characters or less (append rn_ for 31 max);
       
       joinNamesNRI <- NULL;
-      #i <- 3;
+      #i <- 2;
       for (i in 1:length(unique(data_dictionary[,2]))) {
         if (!unique(data_dictionary[,2])[i] %in% tables) {
           tmpTN <- paste(unique(data_dictionary[,2])[i], sep="");
           varKeep <- data_dictionary[which(data_dictionary[,2] %in% c(unique(data_dictionary[,2])[i])), 1];
           varKeep <- c(varKeep, data_dictionary[1,1], subjID, "redcap_event_name", "redcap_repeat_instrument", 
                        "redcap_repeat_instance", "redcap_data_access_group");
-          dataNRI <- data[which(data$redcap_repeat_instrument %in% c("non_repeat_instrument", "extra_sheet")), ];
+          dataNRI <- data[which(data$redcap_repeat_instrument %in% c("non_repeat_instrument", "extra_sheet", "Extra Sheet")), ];
           dataNRI$redcap_repeat_instrument <- NA;
           tmp <- dataNRI[, which(colnames(dataNRI) %in% c(varKeep))];
           
@@ -236,7 +240,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
             non_repeat_instrument <- non_repeat_instrument[, which(colnames(non_repeat_instrument) %in% c(varKeep))];
           }, error=function(e){})
           tryCatch({
-            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %in% c(varKeep))];
+            #extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %in% c(varKeep))];
+            extra_sheet <- data;
           }, error=function(e){})
           tryCatch({
             tmp[tmp == ""] <- NA;
