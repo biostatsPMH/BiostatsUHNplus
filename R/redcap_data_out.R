@@ -226,9 +226,11 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       #sheet name has to be 28 characters or less (append rn_ for 31 max);
       tables <- unique(data$redcap_repeat_instrument);
       
-      joinNames <- NULL;
+      if (is.null(joinNames)) {
+        joinNames <- NULL
+      }
       joinNamesNRI <- NULL;
-      #i <- 2;
+      #i <- 9;
       for (i in 1:length(unique(data_dictionary[,2]))) {
         if (!unique(data_dictionary[,2])[i] %in% tables) {
           tmpTN <- paste(unique(data_dictionary[,2])[i], sep="");
