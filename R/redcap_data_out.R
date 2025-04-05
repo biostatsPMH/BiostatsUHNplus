@@ -226,7 +226,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       #sheet name has to be 28 characters or less (append rn_ for 31 max);
       tables <- unique(data$redcap_repeat_instrument);
       
-      if (is.null(joinNames)) {
+      if (!exists("joinNames")) {
         joinNames <- NULL
       }
       joinNamesNRI <- NULL;
