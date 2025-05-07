@@ -128,7 +128,7 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
     }, error=function(e){})
   }
   
-  intSubjs <- mcmcglmm_object$Sol[, which(grepl(paste(subjID, '.*?', sep=""), colnames(mcmcglmm_object$Sol)))];
+  intSubjs <- mcmcglmm_object$Sol[, which(grepl(paste('^', subjID, '.*?', sep=""), colnames(mcmcglmm_object$Sol)))];
   
   ranefSubjs <- cbind(est = MCMCglmm::posterior.mode(intSubjs), CI = coda::HPDinterval(intSubjs, prob=prob)); 
   rownames(ranefSubjs) <- sub(paste(subjID, ".", sep=""), '', rownames(t(intSubjs)));
