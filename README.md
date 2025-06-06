@@ -520,7 +520,7 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 <td style="text-align:right;">
 0.55
@@ -529,7 +529,7 @@ Median (Min,Max)
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">\<0.001</span>
+<span style="font-weight: bold;"><0.001</span>
 </td>
 </tr>
 <tr>
@@ -1346,9 +1346,9 @@ knitr::kable(mcmcglmm_mva);
 | Variable           | Levels | OR (95% HPDI)     | MCMCp | eff.samp |
 |:-------------------|:-------|:------------------|:------|:---------|
 | Drug 1 Attribution | No     | reference         |       |          |
-|                    | Yes    | 2.81 (0.99, 6.37) | 0.035 | 159.42   |
+|                    | Yes    | 2.81 (1.10, 6.65) | 0.028 | 153.04   |
 | Drug 2 Attribution | No     | reference         |       |          |
-|                    | Yes    | 0.44 (0.16, 1.28) | 0.115 | 162.33   |
+|                    | Yes    | 0.46 (0.15, 1.12) | 0.117 | 174.20   |
 
 #### Intraclass correlation coefficients
 
@@ -1364,9 +1364,9 @@ knitr::kable(mcmcglmm_icc);
 
 |             |    ICC |  lower |  upper |
 |:------------|-------:|-------:|-------:|
-| Subject     | 0.0694 | 0.0035 | 0.3417 |
-| ae_category | 0.7996 | 0.4616 | 0.9485 |
-| units       | 0.0933 | 0.0345 | 0.2734 |
+| Subject     | 0.0512 | 0.0015 | 0.3541 |
+| ae_category | 0.7701 | 0.4970 | 0.9616 |
+| units       | 0.0711 | 0.0309 | 0.2438 |
 
 #### Caterpillar plots of random effects - participant
 
