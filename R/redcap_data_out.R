@@ -219,9 +219,22 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     if (length(data[which(data$redcap_repeat_instrument %in% 
                           c("non_repeat_instrument", "Extra Sheet")),]) > 0) {
       fileList3 <- file.info(list.files(pattern = c("ictionary"), path = setWD_dataDict, 
-                                        full.names = TRUE));
-      newestFile <- rownames(fileList3)[which.max(fileList3$mtime)];
-      data_dictionary <- read.csv(newestFile, header=TRUE); 
+                                        full.names = TRUE, include.dirs = FALSE));
+      newestFiles <- rownames(fileList3);
+      fileList3 <- grep(newestFiles, pattern='.csv', invert=FALSE, value=TRUE);
+      data_dictionary <- NA;
+      data_dictionary <- as.data.frame(data_dictionary);
+      #j <- 1;
+      for(j in 1:length(fileList3)){
+        data_dictionaryTMP <- read.csv(newestFiles[j], header=TRUE);
+        data_dictionary <- plyr::rbind.fill(data_dictionary, data_dictionaryTMP);
+      }
+      data_dictionary <- data_dictionary[-1,-1]; #remove first empty row and column;
+      data_dictionary <- data_dictionary[!duplicated(data_dictionary[,1]), ]; #remove duplicate field names (take first);
+      # fileList3 <- file.info(list.files(pattern = c("ictionary"), path = setWD_dataDict,
+      #                                   full.names = TRUE));
+      # newestFile <- rownames(fileList3)[which.max(fileList3$mtime)];
+      # data_dictionary <- read.csv(newestFile, header=TRUE);
       data_dictionary[,2] <- stringr::str_trunc(as.character(data_dictionary[,2]), 28, ellipsis=""); 
       #sheet name has to be 28 characters or less (append rn_ for 31 max);
       tables <- unique(data$redcap_repeat_instrument);
