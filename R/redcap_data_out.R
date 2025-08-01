@@ -213,7 +213,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     }
   }
 
-  
+  extra_sheet <- data; #need this part outside function;  
   ###Get REDCap instrument from data dictionary, if provided for non-repeat instruments;
   tryCatch({
     if (length(data[which(data$redcap_repeat_instrument %in% 
@@ -265,7 +265,10 @@ redcap_data_out <- function(protocol,pullDate=NULL,
             non_repeat_instrument <- non_repeat_instrument[, which(colnames(non_repeat_instrument) %in% c(varKeep))];
           }, error=function(e){})
           tryCatch({
-            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %in% c(varKeep))];
+            #extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %in% c(varKeep))];
+            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %!in% c(data_dictionary[,1][data_dictionary[,1] %!in% subjID]))];
+            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %!in% c(checkboxVars))];
+            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %!in% c(checkboxVar_dd))];
             #ddVars <- data_dictionary[which(data_dictionary[,2] %in% c(unique(data_dictionary[,2]))), 1];
             #ddVars <- c(ddVars, "data");
             #ddVars <- ddVars[ddVars %!in% c(data_dictionary[1,1], subjID, "redcap_event_name", "redcap_repeat_instrument", 
@@ -296,8 +299,11 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       joinNames <- joinNames[which(!joinNames %in% c(NA))];
     }, error=function(e){})
   }, error=function(e){})
-
   
+  
+  extra_sheet <- extra_sheet[, colSums(!is.na(extra_sheet)) > 0]; #remove empty columns;
+  extra_sheet <- extra_sheet[rowSums(is.na(extra_sheet)) != ncol(extra_sheet), ]; #remove empty rows;
+  joinNames <- c(joinNames, "extra_sheet"); #extra_sheet is always included now;
   #--#--#--#--#--#--#--#--#--#--#--#--#--#--#--# this writes tables as Excel sheets for participants;
 
   
