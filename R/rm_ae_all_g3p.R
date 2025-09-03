@@ -34,7 +34,7 @@
 #' @return R Markdown table of all and grade 3+ adverse events by treatment arm
 #' @importFrom openxlsx createStyle createWorkbook addWorksheet writeData mergeCells addStyle setRowHeights setColWidths saveWorkbook
 #' @importFrom plyr join_all
-#' @importFrom dplyr select distinct mutate arrange summarise group_by filter if_any all_of across row_number n_distinct
+#' @importFrom dplyr select distinct mutate arrange summarise group_by filter if_any all_of across row_number n_distinct pull
 #' @importFrom stringr str_detect
 #' @export
 #' @examples
