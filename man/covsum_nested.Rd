@@ -70,7 +70,7 @@ table. Can only be obtained if p-value is also requested.}
 be shown in a column beside the p-values. Ignored if pvalue=FALSE.}
 
 \item{nCores}{if > 1, specifies number of cores to use for parallel processing
-for calculating the nested p-value (default: 1).}
+for calculating the nested p-value (default: parallelly::availableCores).}
 
 \item{nested.test}{specifies test used for calculating nested p-value from
 afex::mixed function. Either \emph{parametric bootstrap} method
