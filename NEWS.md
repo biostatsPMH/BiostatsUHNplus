@@ -1,5 +1,6 @@
 # BiostatsUHNplus 1.0.3
 
+* Added rm_ae_all_g3p()
 * Revised rm_covsum_nested() to use parallelly::availableCores()
 
 # BiostatsUHNplus 1.0.2
