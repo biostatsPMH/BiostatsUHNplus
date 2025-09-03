@@ -177,8 +177,11 @@ rm_ae_all_g3p <- function(comp=NULL,pi,presDate,cutDate,boundDate=NULL,
   aes3_DF <- rbind(aes2_DF, aes3_DF);
   
   #### Table of all and grade 3+ adverse events by comparison group;
-  tab4a <- rm_covsum_nested(data = aes3_DF, id = c(subjID), covs = c("ae_detail"),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, nicenames = F, digits = 1, digits.cat = 1, tableOnly = T);
-  tab4 <- rm_covsum_nested(data = aes3_DF, id = c(subjID, "ae_detail"), covs = c("ae_detail"),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, nicenames = F, digits = 1, digits.cat = 1, tableOnly = T);
+  subjID <- c("Subject")  
+  ae_detailVar <- c("ae_detail") 
+  
+  tab4a <- BiostatsUHNplus:::covsum_nested(data = aes3_DF, id = c(subjID), covs = c(ae_detailVar),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, nicenames = F, digits = 1, digits.cat = 1);
+  tab4 <- BiostatsUHNplus:::covsum_nested(data = aes3_DF, id = c(subjID, ae_detailVar), covs = c(ae_detailVar),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, nicenames = F, digits = 1, digits.cat = 1);
   colnames(tab4) <- colnames(tab4a); #have to do this so participant count is correct;
   
   #should work to sort in descending order;
