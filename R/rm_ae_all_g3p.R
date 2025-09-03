@@ -156,9 +156,9 @@ rm_ae_all_g3p <- function(comp=NULL,pi,presDate,cutDate,boundDate=NULL,
     dplyr::arrange(Subject) 
   
   # Get number of distinct subjects per group
-  distinct_counts <- subjectsKeep_DF %>%
-    group_by(comp) %>%
-    summarise(n_distinct_subjects = n_distinct(Subject)) %>%
+  distinct_counts <- subjectsKeep_DF |>
+    group_by(comp) |>
+    summarise(n_distinct_subjects = n_distinct(Subject)) |>
     pull(n_distinct_subjects)
   
   if (!is.null(numSubj)) {
