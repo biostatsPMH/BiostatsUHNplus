@@ -176,12 +176,21 @@ rm_ae_all_g3p <- function(comp=NULL,pi,presDate,cutDate,boundDate=NULL,
   aes3_DF <- aes3_DF[-which(is.na(aes3_DF$grpAsn2)), ];
   aes3_DF <- rbind(aes2_DF, aes3_DF);
   
+  #aes3_DF <- aes3_DF |> purrr::modify_if(is.character, as.factor);
+  
   #### Table of all and grade 3+ adverse events by comparison group;
   subjID <- c("Subject")  
   ae_detailVar <- c("ae_detail") 
+  #aes3_DF <- reportRmd::set_labels(aes3_DF, data.frame(c1=c("ae_detail"), c2=("MedDRA Lowest Level Term")));
   
-  tab4a <- covsum_nested(data = aes3_DF, id = c(subjID), covs = c(ae_detailVar),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, nicenames = F, digits = 1, digits.cat = 1, sanitize = FALSE);
-  tab4 <- covsum_nested(data = aes3_DF, id = c(subjID, ae_detailVar), covs = c(ae_detailVar),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, nicenames = F, digits = 1, digits.cat = 1, sanitize = FALSE);
+  levelsStrat <- sort(c(unique(paste(aes2_DF$comp, "_All", sep="")), unique(paste(aes2_DF$comp, "_G3P", sep=""))));
+  aes3_DF$grpAsn2 <- factor(aes3_DF$grpAsn2, levels = levelsStrat);
+  #levels(aes3_DF$grpAsn2)
+    
+  tab4a <- covsum_nested(data = aes3_DF, id = c(subjID), covs = c(ae_detailVar),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
+  tab4 <- covsum_nested(data = aes3_DF, id = c(subjID, ae_detailVar), covs = c(ae_detailVar),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
+  #tab4a <- BiostatsUHNplus:::covsum_nested(data = aes3_DF, id = c(subjID), covs = c(ae_detailVar),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
+  #tab4 <- BiostatsUHNplus:::covsum_nested(data = aes3_DF, id = c(subjID, ae_detailVar), covs = c(ae_detailVar),  maincov = "grpAsn2", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
   colnames(tab4) <- colnames(tab4a); #have to do this so participant count is correct;
   
   #should work to sort in descending order;
@@ -224,7 +233,9 @@ rm_ae_all_g3p <- function(comp=NULL,pi,presDate,cutDate,boundDate=NULL,
   to_bold_name <- which(!tab4$Covariate %in% grep("^~~~", tab4$Covariate, value = TRUE))
   bold_cells <- arrayInd(to_bold_name, dim(tab4))
   
-  tab4$Covariate[1] <- ae_detailVar 
+  #tab4$Covariate[1] <- gsub("\\\\textbf\\{", "", tab4$Covariate[1])
+  #tab4$Covariate[1] <- substr(tab4$Covariate[1], 1, nchar(tab4$Covariate[1]) - 1)
+  tab4$Covariate[1] <- "MedDRA Lowest Level Term"
   tab4$Covariate <- gsub("^~~~", "", tab4$Covariate)
   
   reportRmd::outTable(tab=tab4,to_indent=to_indent,bold_cells=bold_cells)
