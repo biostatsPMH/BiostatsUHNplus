@@ -64,7 +64,7 @@
 dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDate=NULL,
                       subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
                       ineligVar=NULL,ineligVarText=NULL,
-                      genderVar,enrolDtVar,ae_detailVar,ae_categoryVar,
+                      genderVar,enrolDtVar,ae_detailVar,ae_categoryVar=NULL,
                       ae_severityVar,ae_onsetDtVar,ae_detailOtherText=NULL,ae_detailOtherVar=NULL,
                       ae_verbatimVar=NULL,ae_attribVars=NULL,
                       ae_attribVarsName=NULL,ae_attribVarText=NULL,related_ae=FALSE,
@@ -136,6 +136,9 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
   
   if (is.null(boundDate)) {
     boundDate <- "01JAN1990";
+  }
+  if (is.null(ae_categoryVar)) {
+    ae_categoryVar <- ae_detailVar;
   }
   if (is.null(ae_detailOtherVar)) {
     ae_detailOtherVar <- ae_detailVar;
