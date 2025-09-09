@@ -91,6 +91,9 @@ rm_ae_all_g3p <- function(comp=NULL,pi,presDate,cutDate,boundDate=NULL,
   if (is.null(ae_attribVarText)) {
     ae_attribVarText <- c("Definite", "Probable", "Possible");
   }
+  if (related_ae == TRUE & is.null(ae_attribVars)) {
+    stop("ae_attribVars is a required argument when related_ae=TRUE")
+  }
   if (is.null(comp)) {
     subjectsKeep_DF <- plyr::join_all(baseline_datasets, by = subjID, type = "full") |>
       #### --------------------------------------------- ####

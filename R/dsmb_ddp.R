@@ -95,6 +95,9 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
   if (is.null(ae_attribVarText)) {
     ae_attribVarText <- c("Definite", "Probable", "Possible");
   }
+  if (related_ae == TRUE & is.null(ae_attribVars)) {
+    stop("ae_attribVars is a required argument when related_ae=TRUE")
+  }
   if (!is.null(numSubj)) {
     numSubj <- c(sum(numSubj), numSubj)
   }
@@ -269,7 +272,7 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
   
   # Rel AEs by comp;
   sheetNamesR <- NULL;
-  if (related_ae == TRUE) {
+  if (related_ae == TRUE & !is.null(ae_attribVars)) {
     #i <- 1;
     for (i in 1:length(unique(subjectsKeep_DF[["comp"]]))) {
       comp <- unique(subjectsKeep_DF[["comp"]])[i]
@@ -281,7 +284,7 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
         #### --------------------------------------------- ####
       #### Just modify the below line for variable names ####
       dplyr::mutate(Subject = eval(parse(text=subjID)), ae_grade_code_dyn_std = eval(parse(text=ae_severityVar)), CTCAE5_LLT_NM = eval(parse(text=ae_detailOtherVar)), AE_VERBATIM_TRM_TXT = eval(parse(text=ae_verbatimVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar))) |>
-        dplyr::select(Subject, ae_grade_code_dyn_std,  dplyr::all_of(ae_attribVars), CTCAE5_LLT_NM, AE_VERBATIM_TRM_TXT, AE_ONSET_DT_INT, ae_detail, ae_category) |>
+        dplyr::select(Subject, ae_grade_code_dyn_std, dplyr::all_of(ae_attribVars), CTCAE5_LLT_NM, AE_VERBATIM_TRM_TXT, AE_ONSET_DT_INT, ae_detail, ae_category) |>
         #### --------------------------------------------- ####
       dplyr::mutate(ae_detail = toupper(ifelse(stringr::str_detect(ae_detail, ae_detailOtherText), trimws(AE_VERBATIM_TRM_TXT), ae_detail)), AE_ONSET_DT_INT = toupper(format(as.Date(AE_ONSET_DT_INT, tz = "UTC"), "%d%b%Y")), ae_category = toupper(ae_category)) |>
         dplyr::mutate(ae_detail = toupper(ifelse(is.na(ae_detail), CTCAE5_LLT_NM, ae_detail))) |>
