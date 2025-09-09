@@ -51,7 +51,8 @@
 #' @importFrom stringr str_detect str_wrap str_split
 #' @importFrom ggh4x strip_nested facet_nested elem_list_text elem_list_rect force_panelsizes
 #' @importFrom forcats fct_rev
-#' @importFrom cowplot get_legend
+#' @importFrom cowplot plot_grid
+#' @importFrom ggpubr get_legend
 #' @import ggplot2
 #' @import lifecycle
 #' @export
@@ -441,7 +442,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     
     #### This part makes the legend centered below both plot and panel area;
     gt <- ggplot_gtable(ggplot_build(p1_no_legend))
-    le1 <- cowplot::get_legend(p1_with_legend)
+    le1 <- ggpubr::get_legend(p1_with_legend, position = "bottom")
     
     #---!!!!!! note the second parameter in rel_heights below sets legend space area on plot !!!!!!---# 
     pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, legendPerSpaceDetail)) +
@@ -450,7 +451,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     return(pPlot)
   } else {
     
-    legendPerSpaceCategory = 0.1
+    legendPerSpaceCategory = 0.15;
     if (!is.null(legendPerSpace)) {
       tryCatch({
         legendPerSpaceCategory = na.fail(legendPerSpace)
@@ -621,10 +622,11 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     
     #### This part makes the legend centered below both plot and panel area;
     gt <- ggplot_gtable(ggplot_build(p1_no_legend))
-    le1 <- cowplot::get_legend(p1_with_legend)
+    le1 <- ggpubr::get_legend(p1_with_legend, position = "bottom")
     pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, legendPerSpaceCategory)) +
       theme(plot.background = element_rect(fill = "white", colour = NA))
     
+    #return(p1_with_legend)
     return(pPlot)
   }
 }

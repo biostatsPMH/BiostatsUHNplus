@@ -9,6 +9,7 @@ caterpillar_plot(
   subjID,
   subjLabel = NULL,
   remove.text.subjID = FALSE,
+  show.stats = TRUE,
   mcmcglmm_object,
   orig_dataset,
   binaryOutcomeVar,
@@ -32,6 +33,9 @@ participant ID with in plot (if provided)}
 removed from subjID in plot label. Note that this can only be used if there
 are non-duplicate participant IDs when non-numeric text is removed. Default
 is FALSE (if provided)}
+
+\item{show.stats}{boolean indicating if (n, events) summary output should be shown
+in subject label}
 
 \item{mcmcglmm_object}{MCMCglmm model output}
 

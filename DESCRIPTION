@@ -30,6 +30,7 @@ Imports:
     forcats,
     ggh4x,
     ggplot2,
+    ggpubr,
     lifecycle,
     MCMCglmm,
     modeest,
@@ -64,3 +65,5 @@ Collate:
     'ae_timeline_plot.R'
     'caterpillar_plot.R'
     'redcap_data_out.R'
+    'rm_ae_all_g3p.R'
+    'dsmb_ddp.R'

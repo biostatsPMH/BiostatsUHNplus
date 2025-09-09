@@ -8,6 +8,8 @@
 #'    removed from subjID in plot label. Note that this can only be used if there
 #'    are non-duplicate participant IDs when non-numeric text is removed. Default 
 #'    is FALSE (if provided)
+#' @param show.stats boolean indicating if (n, events) summary output should be shown 
+#'    in subject label
 #' @param mcmcglmm_object MCMCglmm model output
 #' @param orig_dataset data frame supplied to MCMCglmm function
 #' @param binaryOutcomeVar name of binary variable (0,1) that denotes outcome 
@@ -73,6 +75,7 @@
 
 caterpillar_plot <- function(subjID,subjLabel=NULL,
                              remove.text.subjID=FALSE,
+                             show.stats=TRUE,
                              mcmcglmm_object,orig_dataset,
                              binaryOutcomeVar,
                              prob=NULL,title=NULL,no.title=FALSE,
@@ -115,13 +118,17 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
   if (no.title == TRUE) {
     title <- NULL;
   }
-  if (is.null(subtitle)) {
+  if (is.null(subtitle) && show.stats == TRUE) {
     tryCatch({
       subtitle <- paste(subjID, " (n, events)", sep="");
     }, error=function(e){})
+  } else if (is.null(subtitle) && show.stats == FALSE) {
+    tryCatch({
+      subtitle <- paste(subjID, sep="");
+    }, error=function(e){})
   }
   
-  intSubjs <- mcmcglmm_object$Sol[, which(grepl(paste(subjID, '.*?', sep=""), colnames(mcmcglmm_object$Sol)))];
+  intSubjs <- mcmcglmm_object$Sol[, which(grepl(paste('^', subjID, '.*?', sep=""), colnames(mcmcglmm_object$Sol)))];
   
   ranefSubjs <- cbind(est = MCMCglmm::posterior.mode(intSubjs), CI = coda::HPDinterval(intSubjs, prob=prob)); 
   rownames(ranefSubjs) <- sub(paste(subjID, ".", sep=""), '', rownames(t(intSubjs)));
@@ -184,9 +191,15 @@ caterpillar_plot <- function(subjID,subjLabel=NULL,
   ranefSubjs <- ranefSubjs |>
     dplyr::select(ID, est, lower, upper, term, instances, hp_instances)
 
-  if (break.label.summary == TRUE) {
+  if (break.label.summary == TRUE && show.stats == TRUE) {
     ranefSubjs$term <- stringr::str_wrap(ranefSubjs$term, width = columnTextWidth);
     ranefSubjs$term <- paste(ranefSubjs$term, "\n(", ranefSubjs$instances, ", ", ranefSubjs$hp_instances, ")", sep="");
+  } else if (break.label.summary == TRUE && show.stats == FALSE) {
+    ranefSubjs$term <- paste(ranefSubjs$term, sep="");
+    ranefSubjs$term <- stringr::str_wrap(ranefSubjs$term, width = columnTextWidth);
+  } else if (break.label.summary == FALSE && show.stats == FALSE) {
+    ranefSubjs$term <- paste(ranefSubjs$term, sep="");
+    ranefSubjs$term <- stringr::str_wrap(ranefSubjs$term, width = columnTextWidth);
   } else {
     ranefSubjs$term <- paste(ranefSubjs$term, " (", ranefSubjs$instances, ", ", ranefSubjs$hp_instances, ")", sep="");
     ranefSubjs$term <- stringr::str_wrap(ranefSubjs$term, width = columnTextWidth);

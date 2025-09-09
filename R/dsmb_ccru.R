@@ -9,22 +9,22 @@
 #' @param cutDate recent cutoff date for AEs (i.e. 31AUG2023)
 #' @param boundDate lower bound cutoff date for AEs (if provided)
 #' @param subjID key identifier field for participant ID in data sets
-#' @param subjID_ineligText character text that denotes participant IDs to exclude,
-#'    for example, c("New Subject") (if provided)
-#' @param baseline_datasets list of data frames that contain baseline participant characteristics,
-#'    for example, list(enrollment_DF,demography_DF,ineligibility_DF)
+#' @param subjID_ineligText character text that denotes participant IDs to exclude.
+#'    For example, c("New Subject") (if provided)
+#' @param baseline_datasets list of data frames that contain baseline participant characteristics.
+#'    For example, list(enrollment_DF,demography_DF,ineligibility_DF)
 #' @param ae_dataset data frame that contains subject AEs
 #' @param ineligVar field that denotes participant ineligibility (if provided)
-#' @param ineligVarText character text that denotes participant ineligibility,
-#'    for example, c("Yes", "Y") (if provided)
+#' @param ineligVarText character text that denotes participant ineligibility.
+#'    For example, c("Yes", "Y") (if provided)
 #' @param genderVar field that denotes participant gender
 #' @param enrolDtVar field that denotes participant enrollment date (i.e. 10MAY2021)
 #' @param ae_detailVar field that denotes participant AE detail (lowest level term)
 #' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
 #' @param ae_onsetDtVar field that denotes participant AE onset date
-#' @param ae_detailOtherText character text that denotes referencing verbatim AE field, 
-#'   for example, c("Other, specify", "OTHER") (if provided)
+#' @param ae_detailOtherText character text that denotes referencing verbatim AE field. 
+#'   For example, c("Other, specify", "OTHER") (if provided)
 #' @param ae_detailOtherVar field that denotes participant AE detail other (if provided)
 #' @param ae_verbatimVar field that denotes participant AE detail verbatim (if provided)
 #' @param numSubj vector to override value for number of participants in summary (if provided)

@@ -24,10 +24,11 @@
 #' @returns two Excel files, one containing variable names and labels and the 
 #'    other containing REDCap survey instrument data by sheet
 #' @importFrom plyr rbind.fill
-#' @importFrom dplyr contains select select_if filter any_of everything left_join distinct_all ungroup
+#' @importFrom dplyr contains select select_if filter if_any if_all any_of everything left_join distinct_all ungroup
 #' @importFrom stringr str_trunc str_replace str_detect
 #' @importFrom stringi stri_trans_general
 #' @importFrom openxlsx write.xlsx 
+#' @importFrom rlang syms 
 #' @importFrom utils read.csv 
 #' @export
 #' @examples
@@ -60,6 +61,9 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   if (is.null(varFilter_eligPattern)) {
     varFilter_eligPattern <- "^";
   }
+  
+  '%!in%' <- function(x,y)!('%in%'(x,y))
+  
   first_subjID <- subjID[1];
 
   fileList1 <- list.files(path=setWD_files, pattern="LABEL", all.files=FALSE, full.names=FALSE, 
@@ -121,7 +125,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   
 
   ###If a REDCap repeat instrument exists, then do below;
-  if (!is.null(data$redcap_repeat_instrument)) {
+  if (!is.null(data$redcap_repeat_instrument) && 
+      !all(is.na(data[which(data$redcap_repeat_instrument %!in% c("Extra Sheet")),]$redcap_repeat_instrument))) {
     data$redcap_repeat_instrument <- stringr::str_trunc(as.character(data$redcap_repeat_instrument), 28, 
                                     ellipsis=""); #sheet name has to be 28 characters or less (append rn_ for 31 max);
     data$redcap_repeat_instrument <- gsub(" ", "_", gsub("[[:punct:]]", "", 
@@ -138,12 +143,11 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     data$redcap_repeat_instrument <- as.factor(data$redcap_repeat_instrument);
     
     joinNames <- NULL;
-    #i <- 1;
+    #i <- 10;
     for (i in 1:length(tables) ) {
       tmpTN <- paste(tables[i], sep=""); 
       tmp <- data[which(data$redcap_repeat_instrument %in% c(tables[i])), ];
       tmp <- as.data.frame(tmp);
-      
       tmp <- tmp[, colSums(is.na(tmp)) != nrow(tmp)]; #remove columns that are all NA;
       if (length(tmp$redcap_repeat_instrument) > 0) {
         if (!tmp$redcap_repeat_instrument[1] %in% c("Extra Sheet")) {
@@ -151,6 +155,34 @@ redcap_data_out <- function(protocol,pullDate=NULL,
           tmp <- as.data.frame(tmp)
         }
       }
+      #Sometimes repeat instrument name is not set for all event instances. Have to do it this way;
+      #Watch for blank and column header rows;
+      tryCatch({
+        tmp <- data[, which(colnames(data) %in% colnames(tmp))];
+        #tmp <- data[-c(1:2), which(colnames(data) %in% colnames(tmp))];
+        '%!in%' <- function(x,y)!('%in%'(x,y)) ;
+        tmp$redcap_repeat_instrument <- tables[i];
+        colKeep <- c(subjID, "redcap_event_name", "redcap_repeat_instrument", 
+                    "redcap_repeat_instance", "redcap_data_access_group");
+        tmp <- tmp |> dplyr::filter(dplyr::if_any(dplyr::any_of(subjID), ~ !is.na(.))) #remove rows missing subjID;
+        #tmp <- tmp |> dplyr::filter(!is.na(!!!(rlang::syms(subjID)))) #remove rows missing subjID;
+        #tmp <- tmp |> dplyr::filter(!(!!!(rlang::syms(subjID))) == "") #remove rows where subjID is "";
+        tmp <- tmp |> dplyr::filter(dplyr::if_any(dplyr::any_of(subjID), ~ . != "")) #remove rows missing subjID;
+        tmp <- as.data.frame(tmp)
+        tmp <- tmp[, !apply(tmp, 2, function(x) all(is.na(x)))] #remove NA columns; 
+        tmp <- tmp[rowSums(tmp[, which(colnames(tmp) %!in% c(colKeep))] == "") 
+                   != ncol(tmp[, which(colnames(tmp) %!in% c(colKeep))]), ]; #remove rows that are all blank;
+        tmp <- tmp[rowSums(is.na(tmp)) != ncol(tmp), ]; #remove rows that are all NA;
+        #tmp <- tmp |> dplyr::filter(dplyr::if_any(dplyr::any_of(subjID), ~ . %!in% c("Study ID", "Record ID", "Patient ID")))
+        tmp <- tmp[tmp[,1] %!in% c("Study ID", "Record ID", "Patient ID"), ]; #clean header rows;
+        
+        if (length(tmp$redcap_repeat_instrument) > 0) {
+          if (!tmp$redcap_repeat_instrument[1] %in% c("Extra Sheet")) {
+            tmp <- tmp |> dplyr::select_if(function(x) !(all(x=="")))
+            tmp <- as.data.frame(tmp)
+          }
+        }
+      }, error=function(e){})  
       tmp <- tmp |> dplyr::select(-contains(".factor")); 
       tmp <- as.data.frame(tmp);
       assign(tmpTN, tmp);
@@ -181,26 +213,51 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     }
   }
 
-  
+  extra_sheet <- data; #need this part outside function;  
   ###Get REDCap instrument from data dictionary, if provided for non-repeat instruments;
   tryCatch({
-    if (length(data$redcap_repeat_instrument == "non_repeat_instrument") > 0) {
+    if (length(data[which(data$redcap_repeat_instrument %in% 
+                          c("non_repeat_instrument", "Extra Sheet")),]) > 0) {
       fileList3 <- file.info(list.files(pattern = c("ictionary"), path = setWD_dataDict, 
-                                        full.names = TRUE));
-      newestFile <- rownames(fileList3)[which.max(fileList3$mtime)];
-      data_dictionary <- read.csv(newestFile, header=TRUE); 
+                                        full.names = TRUE, include.dirs = FALSE));
+      newestFiles <- rownames(fileList3);
+      fileList3 <- grep(newestFiles, pattern='.csv', invert=FALSE, value=TRUE);
+      data_dictionary <- NA;
+      data_dictionary <- as.data.frame(data_dictionary);
+      #j <- 1;
+      for(j in 1:length(fileList3)){
+        data_dictionaryTMP <- read.csv(newestFiles[j], header=TRUE);
+        data_dictionary <- plyr::rbind.fill(data_dictionary, data_dictionaryTMP);
+      }
+      data_dictionary <- data_dictionary[-1,-1]; #remove first empty row and column;
+      data_dictionary <- data_dictionary[!duplicated(data_dictionary[,1]), ]; #remove duplicate field names (take first);
+      # fileList3 <- file.info(list.files(pattern = c("ictionary"), path = setWD_dataDict,
+      #                                   full.names = TRUE));
+      # newestFile <- rownames(fileList3)[which.max(fileList3$mtime)];
+      # data_dictionary <- read.csv(newestFile, header=TRUE);
       data_dictionary[,2] <- stringr::str_trunc(as.character(data_dictionary[,2]), 28, ellipsis=""); 
       #sheet name has to be 28 characters or less (append rn_ for 31 max);
+      tables <- unique(data$redcap_repeat_instrument);
       
+      if (!exists("joinNames")) {
+        joinNames <- NULL
+      }
       joinNamesNRI <- NULL;
-      #i <- 2;
+      #i <- 9;
       for (i in 1:length(unique(data_dictionary[,2]))) {
         if (!unique(data_dictionary[,2])[i] %in% tables) {
           tmpTN <- paste(unique(data_dictionary[,2])[i], sep="");
           varKeep <- data_dictionary[which(data_dictionary[,2] %in% c(unique(data_dictionary[,2])[i])), 1];
           varKeep <- c(varKeep, data_dictionary[1,1], subjID, "redcap_event_name", "redcap_repeat_instrument", 
                        "redcap_repeat_instance", "redcap_data_access_group");
-          dataNRI <- data[which(data$redcap_repeat_instrument %in% c("non_repeat_instrument", "extra_sheet")), ];
+          dataNRI <- data[which(data$redcap_repeat_instrument %in% c("non_repeat_instrument", "extra_sheet", "Extra Sheet")), ];
+          tryCatch({
+            checkboxVars <- colnames(dataNRI[, grep("___", names(dataNRI))]); #these are REDCap checkbox variables;
+            checkboxVar_dd <- sub("___.*", "", checkboxVars);
+            cb_dd <- checkboxVar_dd %in% varKeep;
+            cbKeep <- checkboxVars[cb_dd];
+            varKeep <- c(varKeep, cbKeep);
+          }, error=function(e){})
           dataNRI$redcap_repeat_instrument <- NA;
           tmp <- dataNRI[, which(colnames(dataNRI) %in% c(varKeep))];
           
@@ -208,7 +265,15 @@ redcap_data_out <- function(protocol,pullDate=NULL,
             non_repeat_instrument <- non_repeat_instrument[, which(colnames(non_repeat_instrument) %in% c(varKeep))];
           }, error=function(e){})
           tryCatch({
-            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %in% c(varKeep))];
+            #extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %in% c(varKeep))];
+            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %!in% c(data_dictionary[,1][data_dictionary[,1] %!in% subjID]))];
+            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %!in% c(checkboxVars))];
+            extra_sheet <- extra_sheet[, which(colnames(extra_sheet) %!in% c(checkboxVar_dd))];
+            #ddVars <- data_dictionary[which(data_dictionary[,2] %in% c(unique(data_dictionary[,2]))), 1];
+            #ddVars <- c(ddVars, "data");
+            #ddVars <- ddVars[ddVars %!in% c(data_dictionary[1,1], subjID, "redcap_event_name", "redcap_repeat_instrument", 
+            #                         "redcap_repeat_instance", "redcap_data_access_group")];
+            #extra_sheet <- dataNRI[, which(colnames(dataNRI) %!in% c(ddVars))];
           }, error=function(e){})
           tryCatch({
             tmp[tmp == ""] <- NA;
@@ -234,11 +299,19 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       joinNames <- joinNames[which(!joinNames %in% c(NA))];
     }, error=function(e){})
   }, error=function(e){})
+  
+  
+  extra_sheet <- extra_sheet[, colSums(!is.na(extra_sheet)) > 0]; #remove empty columns;
+  extra_sheet <- extra_sheet[rowSums(is.na(extra_sheet)) != ncol(extra_sheet), ]; #remove empty rows;
+  joinNames <- c(joinNames, "extra_sheet"); #extra_sheet is always included now;
+  #--#--#--#--#--#--#--#--#--#--#--#--#--#--#--# this writes tables as Excel sheets for participants;
 
   
-  #--#--#--#--#--#--#--#--#--#--#--#--#--#--#--# this writes tables as Excel sheets for participants;
-  
-  joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument"))];
+  if (exists("non_repeat_instrument") && nrow((non_repeat_instrument)) == 0) {
+    joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument", "non_repeat_instrument"))];
+  } else {
+    joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument"))];
+  }
   joinNames <- sort(joinNames, decreasing = FALSE); #sort table name alphabetically;
   
   #list_of_datasets <- lapply(joinNames, function(x) get(x, mode="list"), envir=sys.frame(sys.parent(0)));
@@ -261,14 +334,19 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   list_of_datasets <- Filter(Negate(is.null), list_of_datasets);
   
   ##Find distinct and complete subjID key identifiers from longest dataset;
-  keyIdentifiers <- lapply(list_of_datasets, function(df) df |>
-                            dplyr::select(dplyr::any_of(subjID)));
-  keyIdentifiers <- Filter(function(x) ncol(x) == length(subjID), keyIdentifiers); 
-  lengths <- lapply(keyIdentifiers, nrow);
-  longest <- which.max(lengths);
-  keyIdentifiers <- keyIdentifiers[[longest]]; 
-  keyIdentifiers <- keyIdentifiers |>
-    dplyr::distinct_all()
+  #str(list_of_datasets)
+  keyIdentifiers <- data |> dplyr::select(dplyr::any_of(subjID));
+  #keyIdentifiers <- lapply(list_of_datasets, function(df) df |>
+  #                          dplyr::select(dplyr::any_of(subjID)));
+  #keyIdentifiers <- Filter(function(x) ncol(x) == length(subjID), keyIdentifiers); 
+  #lengths <- lapply(keyIdentifiers, nrow);
+  #longest <- which.max(lengths);
+  #keyIdentifiers <- keyIdentifiers[[longest]]; 
+  keyIdentifiers <- keyIdentifiers |> dplyr::distinct_all()
+  keyIdentifiers <- keyIdentifiers |> 
+    dplyr::filter(dplyr::if_all(everything(), ~ !is.na(.) & . != ""))
+  
+  
   
   ##Below filters instrument datasets by participant characteristics;
   list_of_datasets2 <- lapply(list_of_datasets, function(df) df |>
