@@ -22,7 +22,7 @@ dsmb_ddp(
   genderVar,
   enrolDtVar,
   ae_detailVar,
-  ae_categoryVar,
+  ae_categoryVar = NULL,
   ae_severityVar,
   ae_onsetDtVar,
   ae_detailOtherText = NULL,
