@@ -1,6 +1,7 @@
 #' Outputs R Markdown table of all and grade 3+ adverse events by comparison group
 #'
 #' @param comp baseline comparison group. For example, cohort (if provided)
+#' @param presDate presentation date (i.e. 17NOV2023)
 #' @param cutDate recent cutoff date for AEs (i.e. 31AUG2023)
 #' @param boundDate lower bound cutoff date for AEs (if provided)
 #' @param subjID key identifier field for participant ID in data sets
@@ -15,6 +16,7 @@
 #' @param genderVar field that denotes participant gender
 #' @param enrolDtVar field that denotes participant enrollment date (i.e. 10MAY2021)
 #' @param ae_detailVar field that denotes participant AE detail (lowest level term)
+#' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
 #' @param ae_onsetDtVar field that denotes participant AE onset date
 #' @param ae_detailOtherText character text that denotes referencing verbatim AE field. 
@@ -54,7 +56,7 @@
 #'   ae_attribVarText=c("Definite", "Probable", "Possible"),
 #'   numSubj=c(2,4,5,6))
 
-rm_ae_all_g3p <- function(comp=NULL,pi,presDate,cutDate,boundDate=NULL,
+rm_ae_all_g3p <- function(comp=NULL,presDate,cutDate,boundDate=NULL,
                           subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
                           ineligVar=NULL,ineligVarText=NULL,
                           genderVar,enrolDtVar,ae_detailVar,ae_categoryVar=NULL,

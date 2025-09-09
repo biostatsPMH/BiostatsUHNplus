@@ -6,7 +6,6 @@
 \usage{
 rm_ae_all_g3p(
   comp = NULL,
-  pi,
   presDate,
   cutDate,
   boundDate = NULL,
@@ -35,6 +34,8 @@ rm_ae_all_g3p(
 \arguments{
 \item{comp}{baseline comparison group. For example, cohort (if provided)}
 
+\item{presDate}{presentation date (i.e. 17NOV2023)}
+
 \item{cutDate}{recent cutoff date for AEs (i.e. 31AUG2023)}
 
 \item{boundDate}{lower bound cutoff date for AEs (if provided)}
@@ -59,6 +60,8 @@ For example, c("Yes", "Y") (if provided)}
 \item{enrolDtVar}{field that denotes participant enrollment date (i.e. 10MAY2021)}
 
 \item{ae_detailVar}{field that denotes participant AE detail (lowest level term)}
+
+\item{ae_categoryVar}{field that denotes participant AE category (system organ class)}
 
 \item{ae_severityVar}{field that denotes participant AE severity grade (numeric)}
 

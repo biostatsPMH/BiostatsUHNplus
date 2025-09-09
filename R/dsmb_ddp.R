@@ -241,11 +241,11 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
       dplyr::mutate(AE_Grade = ae_grade_code_dyn_std, AE_Detail = ae_detail, AE_Class = ae_category, Study = paste(protocol, sep=""))
       
     # Below takes worst AE for subject by AE detail for each study;
-    all_AEs_subject <- aes1_DF %>% 
-      dplyr::select(AE_Grade, AE_Detail, Study, Subject) %>%
-      dplyr::group_by(Study, AE_Detail, AE_Grade, Subject) %>%   
-      dplyr::arrange(Study, Subject, AE_Detail, desc(AE_Grade)) %>%
-      dplyr::group_by(Study, Subject, AE_Detail) %>% 
+    all_AEs_subject <- aes1_DF |> 
+      dplyr::select(AE_Grade, AE_Detail, Study, Subject) |>
+      dplyr::group_by(Study, AE_Detail, AE_Grade, Subject) |>  
+      dplyr::arrange(Study, Subject, AE_Detail, desc(AE_Grade)) |>
+      dplyr::group_by(Study, Subject, AE_Detail) |> 
       dplyr::filter(row_number()==1) #takes the top (highest grade) per subject per study
 
     # Get number of distinct subjects per AE grade
@@ -383,11 +383,11 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
         dplyr::mutate(AE_Grade = ae_grade_code_dyn_std, AE_Detail = ae_detail, AE_Class = ae_category, Study = paste(protocol, sep=""))
       
       # Below takes worst AE for subject by AE detail for each study;
-      all_AEs_subject <- aes1_DF %>% 
-        dplyr::select(AE_Grade, AE_Detail, Study, Subject) %>%
-        dplyr::group_by(Study, AE_Detail, AE_Grade, Subject) %>%   
-        dplyr::arrange(Study, Subject, AE_Detail, desc(AE_Grade)) %>%
-        dplyr::group_by(Study, Subject, AE_Detail) %>% 
+      all_AEs_subject <- aes1_DF |> 
+        dplyr::select(AE_Grade, AE_Detail, Study, Subject) |>
+        dplyr::group_by(Study, AE_Detail, AE_Grade, Subject) |>   
+        dplyr::arrange(Study, Subject, AE_Detail, desc(AE_Grade)) |>
+        dplyr::group_by(Study, Subject, AE_Detail) |> 
         dplyr::filter(row_number()==1) #takes the top (highest grade) per subject per study
       
       # Get number of distinct subjects per AE grade
