@@ -321,7 +321,7 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
     cn4 <- paste0("# of patients Grade 3", " (n=", col_AE_totals[4], ")")
     cn5 <- paste0("# of patients Grade 4", " (n=", col_AE_totals[5], ")")
     cn6 <- paste0("# of patients Grade 5", " (n=", col_AE_totals[6], ")")
-    cn7 <- paste0("Total # of patients", " (n=", col_AE_totals[1], " out of ", total_subj_count, ")")
+    cn7 <- paste0("Total # of patients", " (n=", col_AE_totals[1], "; out of ", total_subj_count, ")")
     
     colnames(tmp) <- c(cn1, cn2, cn3, cn4, cn5, cn6, cn7)
     tmpTN <- paste("All_AEs_", comp, sep="");
@@ -463,7 +463,7 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
       cn4 <- paste0("# of patients Grade 3", " (n=", col_AE_totals[4], ")")
       cn5 <- paste0("# of patients Grade 4", " (n=", col_AE_totals[5], ")")
       cn6 <- paste0("# of patients Grade 5", " (n=", col_AE_totals[6], ")")
-      cn7 <- paste0("Total # of patients", " (n=", col_AE_totals[1], " out of ", total_subj_count, ")")
+      cn7 <- paste0("Total # of patients", " (n=", col_AE_totals[1], "; out of ", total_subj_count, ")")
       
       colnames(tmp) <- c(cn1, cn2, cn3, cn4, cn5, cn6, cn7)
       tmpTN <- paste("Rel_AEs_", comp, sep="");
@@ -500,6 +500,7 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
   
   #----------#;
   
+  wb <- createWorkbook();
   table1_fn <- paste(protocol, "_AEs_",  presDate, ".xlsx", sep=""); 
   #i <- 1;
   for (i in 1:length(names(list_of_datasets))) {
@@ -510,11 +511,10 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
     table1_sn <- names(list_of_datasets[i]); 
     table1_sn <- substr(table1_sn, 1, 31);
     
-    wb <- createWorkbook();
     addWorksheet(wb, sheetName = table1_sn, gridLines = FALSE);
     writeData(wb, sheet = table1_sn, table1_df, colNames = TRUE, rowNames = FALSE, startCol = 1, startRow = 1);
     setRowHeights(wb, sheet = table1_sn, rows = 1, heights = 50); 
-    setColWidths(wb, sheet = table1_sn, cols = c(1, 2, 3, 4, 5, 6, 7), widths = c(34, 15, 15, 15, 15, 15, 15));
+    setColWidths(wb, sheet = table1_sn, cols = c(1, 2, 3, 4, 5, 6, 7), widths = c(45, 15, 15, 15, 15, 15, 15));
     addStyle(wb, sheet = table1_sn, headerStyle2, rows = 1, cols = 1:7, gridExpand = TRUE);
     addStyle(wb, sheet = table1_sn, contentStyleL, rows = 2:(length(table1_df[, 1])+1), cols = 1, gridExpand = TRUE);
     addStyle(wb, sheet = table1_sn, contentStyleR, rows = 2:(length(table1_df[, 1])+1), cols = 2:7, gridExpand = TRUE);
