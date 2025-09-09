@@ -70,6 +70,66 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
                       ae_attribVarsName=NULL,ae_attribVarText=NULL,related_ae=FALSE,
                       numSubj=NULL,fileNameUnderscore=TRUE){
   
+  #### Template style for tables;
+  ##https://stackoverflow.com/questions/54322814/how-to-apply-thick-border-around-a-cell-range-using-the-openxlsx-package-in-r ;
+  OutsideBorders <-
+    function(wb_,
+             sheet_,
+             rows_,
+             cols_,
+             border_col = "black",
+             border_thickness = "thick") {
+      left_col = min(cols_)
+      right_col = max(cols_)
+      top_row = min(rows_)
+      bottom_row = max(rows_)
+      sub_rows <- list(c(bottom_row:top_row),
+                       c(bottom_row:top_row),
+                       top_row,
+                       bottom_row)
+      sub_cols <- list(left_col,
+                       right_col,
+                       c(left_col:right_col),
+                       c(left_col:right_col))
+      directions <- list("Left", "Right", "Top", "Bottom")
+      mapply(function(r_, c_, d) {
+        temp_style <- createStyle(border = d,
+                                  borderColour = border_col,
+                                  borderStyle = border_thickness)
+        addStyle(
+          wb_,
+          sheet_,
+          style = temp_style,
+          rows = r_,
+          cols = c_,
+          gridExpand = TRUE,
+          stack = TRUE
+        )
+      }, sub_rows, sub_cols, directions)
+    }
+  
+  
+  backgroundStyle <- createStyle(fontName = "Arial", fontSize = 9, fontColour = "black",
+                                 halign = "center", valign = "center", fgFill = "white", 
+                                 border = NULL, borderColour = "#AAC1D9",
+                                 textDecoration = "bold", wrapText = TRUE, borderStyle = NULL)
+  headerStyle1 <- createStyle(fontName = "Arial", fontSize = 12, fontColour = "black",
+                              halign = "center", valign = "center", fgFill = "white", 
+                              border = NULL, borderColour = "#AAC1D9",
+                              textDecoration = "bold", wrapText = TRUE, borderStyle = NULL)
+  headerStyle2 <- createStyle(fontName = "Arial", fontSize = 10, fontColour = "black",
+                              halign = "center", valign = "center", fgFill = "white", 
+                              border = "TopBottomLeftRight", borderColour = "black",
+                              textDecoration = "bold", wrapText = TRUE)
+  contentStyleR <- createStyle(fontName = "Arial", fontSize = 10, fontColour = "black",
+                               halign = "right", valign = "center", fgFill = "white", 
+                               border = "LeftRight", borderColour = "black",
+                               wrapText = TRUE)
+  contentStyleL <- createStyle(fontName = "Arial", fontSize = 10, fontColour = "black",
+                               halign = "left", valign = "center", fgFill = "white", 
+                               border = "LeftRight", borderColour = "black",
+                               wrapText = TRUE)
+  
   #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#;
   
   #setwd(setwd);
@@ -136,6 +196,7 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
   # All AEs by comp;
   sheetNamesA <- NULL;
   #i <- 1;
+  #i <- 5;
   for (i in 1:length(unique(subjectsKeep_DF[["comp"]]))) {
     comp <- unique(subjectsKeep_DF[["comp"]])[i]
     tryCatch({
@@ -185,8 +246,11 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
       dplyr::filter(row_number()==1) #takes the top (highest grade) per subject per study
 
     # Get number of distinct subjects per AE grade
+    levelsStrat <- sort(c("1", "2", "3", "4", "5"));
+    all_AEs_subject$AE_Grade <- factor(all_AEs_subject$AE_Grade, levels = levelsStrat);
+    
     distinct_counts <- all_AEs_subject |>
-      group_by(AE_Grade) |>
+      group_by(AE_Grade, .drop=FALSE) |>
       summarise(n_distinct_subjects = n_distinct(Subject)) |>
       pull(n_distinct_subjects)
     
@@ -201,8 +265,6 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
     
     col_totals <- c(rep(total_subj_count, each = 6))
     
-    levelsStrat <- sort(c("1", "2", "3", "4", "5"));
-    all_AEs_subject$AE_Grade <- factor(all_AEs_subject$AE_Grade, levels = levelsStrat);
     tab4 <- BiostatsUHNplus:::covsum_nested(data = all_AEs_subject, id = c("Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
     
     # Should work to sort in descending order;
@@ -326,8 +388,11 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
         dplyr::filter(row_number()==1) #takes the top (highest grade) per subject per study
       
       # Get number of distinct subjects per AE grade
+      levelsStrat <- sort(c("1", "2", "3", "4", "5"));
+      all_AEs_subject$AE_Grade <- factor(all_AEs_subject$AE_Grade, levels = levelsStrat);
+      
       distinct_counts <- all_AEs_subject |>
-        group_by(AE_Grade) |>
+        group_by(AE_Grade, .drop=FALSE) |>
         summarise(n_distinct_subjects = n_distinct(Subject)) |>
         pull(n_distinct_subjects)
       
@@ -342,8 +407,6 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
       
       col_totals <- c(rep(total_subj_count, each = 6))
       
-      levelsStrat <- sort(c("1", "2", "3", "4", "5"));
-      all_AEs_subject$AE_Grade <- factor(all_AEs_subject$AE_Grade, levels = levelsStrat);
       tab4 <- BiostatsUHNplus:::covsum_nested(data = all_AEs_subject, id = c("Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
       
       # Should work to sort in descending order;
@@ -432,8 +495,34 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
   }
   
   names(list_of_datasets) <- make.unique(names(list_of_datasets), sep = '_')
-  openxlsx::write.xlsx(list_of_datasets, paste(setwd, "\\", protocol, "_AEs_", 
-                                               presDate, ".xlsx", sep=""));
+  #openxlsx::write.xlsx(list_of_datasets, paste(setwd, "\\", protocol, "_AEs_", presDate, ".xlsx", sep=""));
+  
+  
+  #----------#;
+  
+  table1_fn <- paste(protocol, "_AEs_",  presDate, ".xlsx", sep=""); 
+  #i <- 1;
+  for (i in 1:length(names(list_of_datasets))) {
+    table1_df <- list_of_datasets[i];
+    cn <- colnames(table1_df[[1]]);
+    table1_df <- as.data.frame(table1_df);
+    colnames(table1_df) <- cn;
+    table1_sn <- names(list_of_datasets[i]); 
+    table1_sn <- substr(table1_sn, 1, 31);
     
+    wb <- createWorkbook();
+    addWorksheet(wb, sheetName = table1_sn, gridLines = FALSE);
+    writeData(wb, sheet = table1_sn, table1_df, colNames = TRUE, rowNames = FALSE, startCol = 1, startRow = 1);
+    setRowHeights(wb, sheet = table1_sn, rows = 1, heights = 50); 
+    setColWidths(wb, sheet = table1_sn, cols = c(1, 2, 3, 4, 5, 6, 7), widths = c(34, 15, 15, 15, 15, 15, 15));
+    addStyle(wb, sheet = table1_sn, headerStyle2, rows = 1, cols = 1:7, gridExpand = TRUE);
+    addStyle(wb, sheet = table1_sn, contentStyleL, rows = 2:(length(table1_df[, 1])+1), cols = 1, gridExpand = TRUE);
+    addStyle(wb, sheet = table1_sn, contentStyleR, rows = 2:(length(table1_df[, 1])+1), cols = 2:7, gridExpand = TRUE);
+    OutsideBorders(wb, sheet = table1_sn, rows_ = 1:(length(table1_df[, 1])+1), cols_ = 1:7);
+    if (fileNameUnderscore == TRUE) {
+      table1_fn <- chartr(" ", "_", table1_fn);
+    }
+    saveWorkbook(wb, paste(setwd, table1_fn, sep=""), overwrite = TRUE);
+  }  
   #-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#;
 }
