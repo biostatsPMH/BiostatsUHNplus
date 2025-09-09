@@ -110,7 +110,7 @@ Outputs the DSMB-DDP AE summary tables in Excel format per UHN template
 }
 \examples{
 data("enrollment", "demography", "ineligibility", "ae");
-dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
+dsmb_ddp(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
   title="Phase X Study to Evaluate Treatments A-D",
   comp="COHORT",pi="Dr. Principal Investigator",
   presDate="30OCT2020",cutDate="31AUG2020",
@@ -124,6 +124,6 @@ dsmb_ccru(protocol="EXAMPLE_STUDY",setwd="./man/tables/",
   ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
   ae_attribVarsName=c("Drug 1","Drug 2"),
   ae_attribVarText=c("Definite", "Probable", "Possible"),
-  numSubj=c(2,4,5,6))
+  numSubj=c(4,4,3,4))
 }
 \keyword{dataframe}
