@@ -51,18 +51,18 @@ dsmb_ccru(
 
 \item{subjID}{key identifier field for participant ID in data sets}
 
-\item{subjID_ineligText}{character text that denotes participant IDs to exclude,
-for example, c("New Subject") (if provided)}
+\item{subjID_ineligText}{character text that denotes participant IDs to exclude.
+For example, c("New Subject") (if provided)}
 
-\item{baseline_datasets}{list of data frames that contain baseline participant characteristics,
-for example, list(enrollment_DF,demography_DF,ineligibility_DF)}
+\item{baseline_datasets}{list of data frames that contain baseline participant characteristics.
+For example, list(enrollment_DF,demography_DF,ineligibility_DF)}
 
 \item{ae_dataset}{data frame that contains subject AEs}
 
 \item{ineligVar}{field that denotes participant ineligibility (if provided)}
 
-\item{ineligVarText}{character text that denotes participant ineligibility,
-for example, c("Yes", "Y") (if provided)}
+\item{ineligVarText}{character text that denotes participant ineligibility.
+For example, c("Yes", "Y") (if provided)}
 
 \item{genderVar}{field that denotes participant gender}
 
@@ -76,8 +76,8 @@ for example, c("Yes", "Y") (if provided)}
 
 \item{ae_onsetDtVar}{field that denotes participant AE onset date}
 
-\item{ae_detailOtherText}{character text that denotes referencing verbatim AE field,
-for example, c("Other, specify", "OTHER") (if provided)}
+\item{ae_detailOtherText}{character text that denotes referencing verbatim AE field.
+For example, c("Other, specify", "OTHER") (if provided)}
 
 \item{ae_detailOtherVar}{field that denotes participant AE detail other (if provided)}
 

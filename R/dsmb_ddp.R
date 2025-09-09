@@ -1,4 +1,4 @@
-#' Outputs the DSMB-DDP AE summary tables in Excel format per NCI template
+#' Outputs the DSMB-DDP AE summary tables in Excel format per UHN template
 #'
 #' @param protocol study protocol name (uppercase, no spaces permitted)
 #' @param setwd directory to write Excel summary files to
