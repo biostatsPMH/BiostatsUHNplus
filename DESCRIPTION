@@ -1,6 +1,6 @@
 Package: BiostatsUHNplus
 Title: Nested Data Summary, Adverse Events and REDCap
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: c(
     person("Lisa", "Avery", , "lisa.avery@uhn.ca", role = "aut",
            comment = c(ORCID = "0000-0002-8431-5143")),
