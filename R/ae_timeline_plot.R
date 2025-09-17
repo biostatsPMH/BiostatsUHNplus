@@ -47,7 +47,7 @@
 #' @importFrom plyr join_all rbind.fill
 #' @importFrom stats lm sd anova as.formula binomial median na.fail
 #' @importFrom purrr modify_if
-#' @importFrom dplyr select distinct mutate arrange summarise group_by filter across row_number n_distinct all_of right_join count ungroup coalesce
+#' @importFrom dplyr select distinct mutate arrange summarise reframe group_by filter across row_number n_distinct all_of right_join count ungroup coalesce
 #' @importFrom stringr str_detect str_wrap str_split
 #' @importFrom ggh4x strip_nested facet_nested elem_list_text elem_list_rect force_panelsizes
 #' @importFrom forcats fct_rev
@@ -249,7 +249,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     dplyr::mutate(Subject = eval(parse(text=subjID)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar)), AE_SEV_GD = eval(parse(text=ae_severityVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar))) |>
     dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(ae_attribVars), dplyr::all_of(startDtVars), AE_ONSET_DT_INT) |>
     dplyr::group_by(across(c(Subject, ae_detail, ae_category, dplyr::all_of(ae_attribVars), AE_SEV_GD, AE_ONSET_DT_INT))) |>
-    dplyr::summarise(dplyr::across(dplyr::all_of(startDtVars), ~dplyr::coalesce(x=.x))) |>
+    dplyr::reframe(dplyr::across(dplyr::all_of(startDtVars), ~dplyr::coalesce(x=.x))) |>
+    dplyr::group_by(across(c(Subject, ae_detail, ae_category, dplyr::all_of(ae_attribVars), AE_SEV_GD, AE_ONSET_DT_INT))) |>
     dplyr::mutate(AE_ONSET_DT_INT = as.Date(AE_ONSET_DT_INT, tz = "UTC"), dplyr::across(dplyr::all_of(startDtVars), ~as.Date(x=.x, tz = "UTC")), AE_SEV_GD = as.numeric(AE_SEV_GD)) |>
     dplyr::filter(!Subject %in% subjID_ineligText) |>
     dplyr::arrange(Subject)
@@ -299,7 +300,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
         dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), dplyr::all_of(selectedStartVar), AE_ONSET_DT_INT) |> 
         dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(1:2) & AE_ONSET_DT_INT >= get(selectedStartVar)) |>
         dplyr::group_by(Subject, ae_detail, ae_category, AE_ONSET_DT_INT, get(selectedStartVar)) |>
-        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
+        dplyr::reframe(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
         dplyr::ungroup() |>
         dplyr::group_by(Subject, ae_detail, ae_category) |>
         dplyr::arrange(AE_ONSET_DT_INT) 
@@ -308,7 +309,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
         dplyr::ungroup() |>
         dplyr::select(ae_detail, ae_category, drug1_ae) |>
         dplyr::group_by(ae_detail, ae_category) |>
-        dplyr::summarise(time_median = median(drug1_ae), time_min = min(drug1_ae), time_max = max(drug1_ae), group = paste(drugName, ": AE 1-2", sep="")) 
+        dplyr::reframe(time_median = median(drug1_ae), time_min = min(drug1_ae), time_max = max(drug1_ae), group = paste(drugName, ": AE 1-2", sep="")) |>
+        dplyr::group_by(ae_detail, ae_category) 
       mydata_drug112 <- as.data.frame(mydata_drug112); 
       mydata_drug1_sum12 <- as.data.frame(mydata_drug1_sum12); 
       
@@ -317,7 +319,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
         dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), dplyr::all_of(selectedStartVar), AE_ONSET_DT_INT) |> 
         dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(3:5) & AE_ONSET_DT_INT >= get(selectedStartVar)) |>
         dplyr::group_by(Subject, ae_detail, ae_category, AE_ONSET_DT_INT, get(selectedStartVar)) |>
-        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
+        dplyr::reframe(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
         dplyr::ungroup() |>
         dplyr::group_by(Subject, ae_detail, ae_category) |>
         dplyr::arrange(AE_ONSET_DT_INT)
@@ -326,7 +328,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
         dplyr::ungroup() |>
         dplyr::select(ae_detail, ae_category, drug1_ae) |>
         dplyr::group_by(ae_detail, ae_category) |>
-        dplyr::summarise(time_median = median(drug1_ae), time_min = min(drug1_ae), time_max = max(drug1_ae), group = paste(drugName, ": AE 3+", sep="")) 
+        dplyr::reframe(time_median = median(drug1_ae), time_min = min(drug1_ae), time_max = max(drug1_ae), group = paste(drugName, ": AE 3+", sep="")) |>
+        dplyr::group_by(ae_detail, ae_category)
       mydata_drug13p <- as.data.frame(mydata_drug13p); 
       mydata_drug1_sum3p <- as.data.frame(mydata_drug1_sum3p); 
       
@@ -445,8 +448,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     le1 <- ggpubr::get_legend(p1_with_legend, position = "bottom")
     
     #---!!!!!! note the second parameter in rel_heights below sets legend space area on plot !!!!!!---# 
-    pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, legendPerSpaceDetail)) +
-      theme(plot.background = element_rect(fill = "white", colour = NA))
+    suppressWarnings(pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, legendPerSpaceDetail)) +
+      theme(plot.background = element_rect(fill = "white", colour = NA)))
     
     return(pPlot)
   } else {
@@ -493,7 +496,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
         dplyr::select(Subject, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), dplyr::all_of(selectedStartVar), AE_ONSET_DT_INT) |> 
         dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(1:2) & AE_ONSET_DT_INT >= get(selectedStartVar)) |>
         dplyr::group_by(Subject, ae_category, AE_ONSET_DT_INT, get(selectedStartVar)) |>
-        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
+        dplyr::reframe(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
         dplyr::ungroup() |>
         dplyr::group_by(Subject, ae_category) |>
         dplyr::arrange(AE_ONSET_DT_INT) 
@@ -502,7 +505,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
         dplyr::ungroup() |>
         dplyr::select(ae_category, drug1_ae) |>
         dplyr::group_by(ae_category) |>
-        dplyr::summarise(time_median = median(drug1_ae), time_min = min(drug1_ae), time_max = max(drug1_ae), group = paste(drugName, ": AE 1-2", sep="")) 
+        dplyr::reframe(time_median = median(drug1_ae), time_min = min(drug1_ae), time_max = max(drug1_ae), group = paste(drugName, ": AE 1-2", sep="")) |>
+        dplyr::group_by(ae_category)
       mydata_drug112 <- as.data.frame(mydata_drug112); 
       mydata_drug1_sum12 <- as.data.frame(mydata_drug1_sum12); 
       
@@ -511,7 +515,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
         dplyr::select(Subject, ae_category, AE_SEV_GD, dplyr::all_of(selectedAttribVar), dplyr::all_of(selectedStartVar), AE_ONSET_DT_INT) |> 
         dplyr::filter(get(selectedAttribVar) %in% ae_attribVarText & AE_SEV_GD %in% c(3:5) & AE_ONSET_DT_INT >= get(selectedStartVar)) |>
         dplyr::group_by(Subject, ae_category, AE_ONSET_DT_INT, get(selectedStartVar)) |>
-        dplyr::summarise(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
+        dplyr::reframe(drug1_ae = AE_ONSET_DT_INT - get(selectedStartVar)) |>
         dplyr::ungroup() |>
         dplyr::group_by(Subject, ae_category) |>
         dplyr::arrange(AE_ONSET_DT_INT) 
@@ -520,7 +524,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
         dplyr::ungroup() |>
         dplyr::select(ae_category, drug1_ae) |>
         dplyr::group_by(ae_category) |>
-        dplyr::summarise(time_median = median(drug1_ae), time_min = min(drug1_ae), time_max = max(drug1_ae), group = paste(drugName, ": AE 3+", sep="")) 
+        dplyr::reframe(time_median = median(drug1_ae), time_min = min(drug1_ae), time_max = max(drug1_ae), group = paste(drugName, ": AE 3+", sep="")) |>
+        dplyr::group_by(ae_category)
       mydata_drug13p <- as.data.frame(mydata_drug13p); 
       mydata_drug1_sum3p <- as.data.frame(mydata_drug1_sum3p);
       mydataPlot <- plyr::rbind.fill(mydataPlot, mydata_drug1_sum12, mydata_drug1_sum3p);
@@ -623,8 +628,8 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
     #### This part makes the legend centered below both plot and panel area;
     gt <- ggplot_gtable(ggplot_build(p1_no_legend))
     le1 <- ggpubr::get_legend(p1_with_legend, position = "bottom")
-    pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, legendPerSpaceCategory)) +
-      theme(plot.background = element_rect(fill = "white", colour = NA))
+    suppressWarnings(pPlot <- cowplot::plot_grid(gt, le1, nrow = 2, rel_heights = c(1, legendPerSpaceCategory)) +
+      theme(plot.background = element_rect(fill = "white", colour = NA)))
     
     #return(p1_with_legend)
     return(pPlot)
