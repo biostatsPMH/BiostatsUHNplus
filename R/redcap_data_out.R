@@ -350,7 +350,7 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   
   ##Below filters instrument datasets by participant characteristics;
   list_of_datasets2 <- lapply(list_of_datasets, function(df) df |>
-            dplyr::left_join(keyIdentifiers) |>
+            dplyr::left_join(keyIdentifiers, quiet=TRUE) |>
             dplyr::select(subjID, dplyr::everything()) |>
             dplyr::ungroup() |>
             dplyr::filter(!get(first_subjID) %in% subjID_ineligText) |>
