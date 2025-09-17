@@ -59,7 +59,7 @@
 #'   ae_attribVars=c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1"),
 #'   ae_attribVarsName=c("Drug 1","Drug 2"),
 #'   ae_attribVarText=c("Definite", "Probable", "Possible"),
-#'   numSubj=c(4,4,3,4))
+#'   numSubj=c(4,4,3,4),related_ae=TRUE)
 
 dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDate=NULL,
                       subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,

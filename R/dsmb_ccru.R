@@ -49,7 +49,7 @@
 #'   ae_categoryVar="ae_category",ae_severityVar="AE_SEV_GD",
 #'   ae_onsetDtVar="AE_ONSET_DT_INT",ae_detailOtherText="Other, specify",
 #'   ae_detailOtherVar="CTCAE5_LLT_NM",ae_verbatimVar="AE_VERBATIM_TRM_TXT",
-#'   numSubj=c(2,4,5,6))
+#'   numSubj=c(4,4,3,4))
 
 dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDate=NULL,
                       subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
