@@ -251,7 +251,7 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
     # Get number of distinct subjects per AE grade
     levelsStrat <- sort(c("1", "2", "3", "4", "5"));
     all_AEs_subject$AE_Grade <- factor(all_AEs_subject$AE_Grade, levels = levelsStrat);
-    
+
     distinct_counts <- all_AEs_subject |>
       group_by(AE_Grade, .drop=FALSE) |>
       summarise(n_distinct_subjects = n_distinct(Subject)) |>
@@ -268,8 +268,8 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
     
     col_totals <- c(rep(total_subj_count, each = 6))
     
-    tab4 <- covsum_nested(data = all_AEs_subject, id = c("Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
-    #tab4 <- BiostatsUHNplus:::covsum_nested(data = all_AEs_subject, id = c("Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
+    suppressWarnings(tab4 <- covsum_nested(data = all_AEs_subject, id = c("Study", "Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE));
+    #suppressWarnings(tab4 <- BiostatsUHNplus:::covsum_nested(data = all_AEs_subject, id = c("Study", "Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE));
     
     # Should work to sort in descending order;
     first_row <- tab4[1, ];
@@ -411,8 +411,8 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
       
       col_totals <- c(rep(total_subj_count, each = 6))
       
-      tab4 <- covsum_nested(data = all_AEs_subject, id = c("Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
-      #tab4 <- BiostatsUHNplus:::covsum_nested(data = all_AEs_subject, id = c("Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE);
+      suppressWarnings(tab4 <- covsum_nested(data = all_AEs_subject, id = c("Study", "Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE));
+      #suppressWarnings(tab4 <- BiostatsUHNplus:::covsum_nested(data = all_AEs_subject, id = c("Study", "Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE));
       
       # Should work to sort in descending order;
       first_row <- tab4[1, ];
