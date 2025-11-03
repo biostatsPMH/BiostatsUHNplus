@@ -202,6 +202,10 @@ rm_ae_all_g3p <- function(comp=NULL,presDate,cutDate,boundDate=NULL,
   first_row <- tab4[1, ];
   rest_sorted <- tab4[-1, ][order(-as.numeric(sapply(strsplit(tab4[-1, 2], " "), `[`, 1))), ];
   tab4  <- rbind(first_row, rest_sorted);  
+
+  subjAEtotals <- regmatches(colnames(tab4[1, ]), gregexpr("(?<=\\(n=)\\d+", colnames(tab4[1, ]), perl = TRUE));
+  subjAEtotals <- as.numeric(unlist(subjAEtotals));
+                                       
   
   # Remove all text in parentheses from character columns
   tab4[] <- lapply(tab4, function(x) {
@@ -223,7 +227,8 @@ rm_ae_all_g3p <- function(comp=NULL,presDate,cutDate,boundDate=NULL,
   tab4[, -1] <- lapply(tab4[, -1], as.numeric)
   
   # Append totals to column names
-  names(fr_tab4) <- c("Covariate", paste0(names(fr_tab4[-1]), " (n=", col_totals, ")")) 
+  #names(fr_tab4) <- c("Covariate", paste0(names(fr_tab4[-1]), " (n=", col_totals, ")")) 
+  names(fr_tab4) <- c("Covariate", paste0(names(fr_tab4[-1]), " (n=",subjAEtotals, " out of ", col_totals, ")")) 
   
   # Create a new dataframe with counts and percentages
   tab4_percent <- as.data.frame(mapply(function(col, total) {
