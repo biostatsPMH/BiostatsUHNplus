@@ -176,6 +176,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.3" data-path="bayesian-hierarchical-model.html"><a href="bayesian-hierarchical-model.html#caterpillar-plot-for-random-effect-of-yard"><i class="fa fa-check"></i><b>3.4.3</b> Caterpillar plot for random effect of yard</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="biostatsuhnplus.html"><a href="biostatsuhnplus.html"><i class="fa fa-check"></i><b>4</b> BiostatsUHNplus</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>4.1</b> Installation</a></li>
+<li class="chapter" data-level="4.2" data-path="documentation.html"><a href="documentation.html"><i class="fa fa-check"></i><b>4.2</b> Documentation</a></li>
+<li class="chapter" data-level="4.3" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>4.3</b> Examples</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="examples.html"><a href="examples.html#a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error"><i class="fa fa-check"></i><b>4.3.1</b> A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error</a></li>
+<li class="chapter" data-level="4.3.2" data-path="examples.html"><a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug"><i class="fa fa-check"></i><b>4.3.2</b> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug</a></li>
+<li class="chapter" data-level="4.3.3" data-path="examples.html"><a href="examples.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
+<li class="chapter" data-level="4.3.4" data-path="examples.html"><a href="examples.html#related-adverse-event-onset-timeline-plots"><i class="fa fa-check"></i><b>4.3.4</b> Related adverse event onset timeline plots</a></li>
+<li class="chapter" data-level="4.3.5" data-path="examples.html"><a href="examples.html#summary-functions-for-mcmcglmm-object-with-binary-outcome"><i class="fa fa-check"></i><b>4.3.5</b> Summary functions for MCMCglmm object with binary outcome</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -469,10 +482,10 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-0.97
+0.55
 </td>
 <td style="text-align:right;">
-0.12
+0.21
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
@@ -486,38 +499,13 @@ Chi Sq, Cramer’s V
 1
 </td>
 <td style="text-align:right;">
-17 (22)
+11 (14)
 </td>
 <td style="text-align:right;">
-4 (16)
+2 (8)
 </td>
 <td style="text-align:right;">
-6 (22)
-</td>
-<td style="text-align:right;">
-7 (26)
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-2
-</td>
-<td style="text-align:right;">
-19 (24)
-</td>
-<td style="text-align:right;">
-7 (28)
-</td>
-<td style="text-align:right;">
-7 (26)
+4 (15)
 </td>
 <td style="text-align:right;">
 5 (19)
@@ -533,16 +521,41 @@ Chi Sq, Cramer’s V
 </tr>
 <tr>
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
-3
+2
 </td>
 <td style="text-align:right;">
-10 (13)
+14 (18)
 </td>
 <td style="text-align:right;">
-4 (16)
+3 (12)
+</td>
+<td style="text-align:right;">
+8 (30)
 </td>
 <td style="text-align:right;">
 3 (11)
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+<td style="text-align:right;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+3
+</td>
+<td style="text-align:right;">
+13 (16)
+</td>
+<td style="text-align:right;">
+6 (24)
+</td>
+<td style="text-align:right;">
+4 (15)
 </td>
 <td style="text-align:right;">
 3 (11)
@@ -561,16 +574,16 @@ Chi Sq, Cramer’s V
 4
 </td>
 <td style="text-align:right;">
-14 (18)
+22 (28)
 </td>
 <td style="text-align:right;">
-5 (20)
+7 (28)
 </td>
 <td style="text-align:right;">
-5 (19)
+6 (22)
 </td>
 <td style="text-align:right;">
-4 (15)
+9 (33)
 </td>
 <td style="text-align:right;">
 </td>
@@ -589,13 +602,13 @@ Chi Sq, Cramer’s V
 19 (24)
 </td>
 <td style="text-align:right;">
-5 (20)
+7 (28)
 </td>
 <td style="text-align:right;">
-6 (22)
+5 (19)
 </td>
 <td style="text-align:right;">
-8 (30)
+7 (26)
 </td>
 <td style="text-align:right;">
 </td>
@@ -666,7 +679,7 @@ Chi Sq, Cramer’s V
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">B12</td>
+<td align="left">B08</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -676,52 +689,6 @@ Chi Sq, Cramer’s V
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left"></td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">B19</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">B22</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -735,7 +702,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">1</td>
-<td align="left">B25</td>
+<td align="left">B23</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -750,52 +717,6 @@ Chi Sq, Cramer’s V
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">BL01</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">BL04</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -804,7 +725,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">BL11</td>
+<td align="left">BL05</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -819,11 +740,11 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
@@ -850,7 +771,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">BL19</td>
+<td align="left">BL22</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -866,10 +787,10 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
 </tr>
 <tr class="even">
 <td align="left">1</td>
@@ -896,6 +817,29 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">1</td>
+<td align="left">L03</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
 <td align="left">L04</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -917,32 +861,9 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 </tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">L07</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-</tr>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">L09</td>
+<td align="left">L05</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -965,53 +886,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">1</td>
-<td align="left">L11</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">L18</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">L19</td>
+<td align="left">L16</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -1057,7 +932,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">2</td>
-<td align="left">B02</td>
+<td align="left">B11</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1080,7 +955,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">2</td>
-<td align="left">B03</td>
+<td align="left">B18</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1095,61 +970,15 @@ Chi Sq, Cramer’s V
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
-<td align="left">B06</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">B07</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">B10</td>
+<td align="left">B22</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1172,21 +1001,21 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">2</td>
-<td align="left">B13</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
+<td align="left">BL04</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1195,53 +1024,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">2</td>
-<td align="left">B15</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">BL02</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">BL08</td>
+<td align="left">BL06</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -1264,7 +1047,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">2</td>
-<td align="left">BL10</td>
+<td align="left">BL11</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -1280,12 +1063,35 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
 </tr>
 <tr class="even">
+<td align="left">2</td>
+<td align="left">BL14</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
 <td align="left">2</td>
 <td align="left">BL16</td>
 <td align="left">2</td>
@@ -1307,6 +1113,29 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">BL18</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">2</td>
@@ -1333,7 +1162,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">2</td>
-<td align="left">BL21</td>
+<td align="left">BL26</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -1349,28 +1178,28 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">2</td>
-<td align="left">BL23</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
+<td align="left">L12</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1379,7 +1208,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">2</td>
-<td align="left">L06</td>
+<td align="left">L18</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -1394,82 +1223,13 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">3</td>
+<td align="left">3</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">2</td>
-<td align="left">L08</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">L20</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">L21</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
 <td align="left">2</td>
 <td align="left">L26</td>
 <td align="left">3</td>
@@ -1492,9 +1252,78 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 </tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">B01</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
 <tr class="odd">
 <td align="left">3</td>
-<td align="left">B11</td>
+<td align="left">B03</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">B07</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">B09</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1517,7 +1346,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">3</td>
-<td align="left">B14</td>
+<td align="left">B13</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1540,9 +1369,9 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">3</td>
-<td align="left">B18</td>
+<td align="left">B20</td>
 <td align="left">1</td>
-<td align="left">1</td>
+<td align="left"></td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1563,28 +1392,51 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">3</td>
-<td align="left">B21</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
+<td align="left">BL09</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
+<td align="left">3</td>
+<td align="left">BL13</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
 <td align="left">3</td>
 <td align="left">BL17</td>
 <td align="left">2</td>
@@ -1607,32 +1459,9 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 <td align="left">2</td>
 </tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="left">BL18</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left"></td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left"></td>
-</tr>
 <tr class="odd">
 <td align="left">3</td>
-<td align="left">BL26</td>
+<td align="left">BL19</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -1648,14 +1477,14 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">3</td>
-<td align="left">L02</td>
+<td align="left">L10</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -1671,19 +1500,14 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">3</td>
-<td align="left">L12</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left"></td>
+<td align="left">L21</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -1693,11 +1517,16 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
 </tr>
 <tr class="even">
 <td align="left">3</td>
@@ -1724,6 +1553,29 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">4</td>
+<td align="left">B02</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
 <td align="left">B04</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1745,9 +1597,15 @@ Chi Sq, Cramer’s V
 <td align="left">1</td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">4</td>
-<td align="left">B08</td>
+<td align="left">B06</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1757,6 +1615,14 @@ Chi Sq, Cramer’s V
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">B14</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1767,6 +1633,15 @@ Chi Sq, Cramer’s V
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">4</td>
@@ -1816,7 +1691,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">4</td>
-<td align="left">B24</td>
+<td align="left">B25</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -1832,37 +1707,16 @@ Chi Sq, Cramer’s V
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">4</td>
-<td align="left">BL03</td>
+<td align="left">BL07</td>
 <td align="left">2</td>
 <td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="left">BL09</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -1878,6 +1732,27 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">BL10</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1908,6 +1783,29 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">4</td>
+<td align="left">BL21</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
 <td align="left">BL25</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -1929,7 +1827,7 @@ Chi Sq, Cramer’s V
 <td align="left"></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">4</td>
 <td align="left">BL27</td>
 <td align="left">2</td>
@@ -1952,9 +1850,124 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 <td align="left">2</td>
 </tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">L06</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
 <tr class="odd">
 <td align="left">4</td>
-<td align="left">L03</td>
+<td align="left">L14</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">L15</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">L17</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">L19</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="left">L20</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -1977,16 +1990,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">4</td>
-<td align="left">L13</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
+<td align="left">L22</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -1994,9 +1998,18 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
 </tr>
 <tr class="odd">
 <td align="left">4</td>
@@ -2046,29 +2059,6 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">B01</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
 <td align="left">B05</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -2090,9 +2080,78 @@ Chi Sq, Cramer’s V
 <td align="left">1</td>
 <td align="left">1</td>
 </tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">B10</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+</tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">B09</td>
+<td align="left">B12</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">B15</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">B19</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -2115,9 +2174,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">5</td>
-<td align="left">B20</td>
-<td align="left">1</td>
-<td align="left"></td>
+<td align="left">B21</td>
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
@@ -2134,126 +2191,36 @@ Chi Sq, Cramer’s V
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">1</td>
-<td align="left">1</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">B23</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left">1</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="left">BL05</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left"></td>
-<td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">BL06</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
+<td align="left">B24</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
 </tr>
 <tr class="even">
 <td align="left">5</td>
-<td align="left">BL07</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">BL13</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-<td align="left">2</td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="left">BL14</td>
+<td align="left">BL01</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -2276,7 +2243,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">BL22</td>
+<td align="left">BL02</td>
 <td align="left">2</td>
 <td align="left">2</td>
 <td align="left">2</td>
@@ -2298,6 +2265,75 @@ Chi Sq, Cramer’s V
 <td align="left">2</td>
 </tr>
 <tr class="even">
+<td align="left">5</td>
+<td align="left">BL03</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">BL08</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">BL23</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
 <td align="left">5</td>
 <td align="left">L01</td>
 <td align="left">3</td>
@@ -2320,9 +2356,32 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 </tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">L02</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+</tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">L05</td>
+<td align="left">L07</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -2345,7 +2404,7 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">5</td>
-<td align="left">L10</td>
+<td align="left">L08</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -2361,60 +2420,14 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">L14</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="left">L15</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">L16</td>
+<td align="left">L09</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -2437,7 +2450,15 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="even">
 <td align="left">5</td>
-<td align="left">L17</td>
+<td align="left">L11</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -2445,14 +2466,6 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left"></td>
-<td align="left"></td>
-<td align="left">3</td>
-<td align="left"></td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -2460,7 +2473,16 @@ Chi Sq, Cramer’s V
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">L22</td>
+<td align="left">L13</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left">3</td>
@@ -2468,18 +2490,9 @@ Chi Sq, Cramer’s V
 <td align="left">3</td>
 <td align="left">3</td>
 <td align="left"></td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">3</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>

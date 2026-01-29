@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.3 Generalized estimating equations model | Example nested summary and Bayesian hierarchical model summary</title>
-  <meta name="description" content="3.3 Generalized estimating equations model | Example nested summary and Bayesian hierarchical model summary" />
+  <title>4.2 Documentation | Example nested summary and Bayesian hierarchical model summary</title>
+  <meta name="description" content="4.2 Documentation | Example nested summary and Bayesian hierarchical model summary" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.3 Generalized estimating equations model | Example nested summary and Bayesian hierarchical model summary" />
+  <meta property="og:title" content="4.2 Documentation | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.3 Generalized estimating equations model | Example nested summary and Bayesian hierarchical model summary" />
+  <meta name="twitter:title" content="4.2 Documentation | Example nested summary and Bayesian hierarchical model summary" />
   
   
   
@@ -28,8 +28,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="logistic-model.html"/>
-<link rel="next" href="bayesian-hierarchical-model.html"/>
+<link rel="prev" href="installation.html"/>
+<link rel="next" href="examples.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -206,254 +206,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="generalized-estimating-equations-model" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Generalized estimating equations model<a href="generalized-estimating-equations-model.html#generalized-estimating-equations-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Below logistic model takes account of repeat observation by cow. Examine different correlation structures. It is of interest to note that (odds of) high protein content in milk appears to decrease as time since calving increases.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="generalized-estimating-equations-model.html#cb13-1" aria-hidden="true" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> <span class="fu">modify_if</span>(is.character, as.factor);</span>
-<span id="cb13-2"><a href="generalized-estimating-equations-model.html#cb13-2" aria-hidden="true" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span>
-<span id="cb13-3"><a href="generalized-estimating-equations-model.html#cb13-3" aria-hidden="true" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(Milk);</span>
-<span id="cb13-4"><a href="generalized-estimating-equations-model.html#cb13-4" aria-hidden="true" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(Yard, Cow, Time);</span>
-<span id="cb13-5"><a href="generalized-estimating-equations-model.html#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="generalized-estimating-equations-model.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_mvsum</span>(<span class="at">model=</span><span class="fu">geeglm</span>(HP <span class="sc">~</span> Diet <span class="sc">+</span> Yard <span class="sc">+</span> Time, <span class="at">id=</span><span class="fu">c</span>(Cow), <span class="at">data=</span>Milk, <span class="at">family=</span>binomial, <span class="at">corstr=</span><span class="st">&quot;ar1&quot;</span>), <span class="at">data=</span>Milk, <span class="at">showN=</span>T, <span class="at">CIwidth=</span><span class="fl">0.95</span>);</span></code></pre></div>
-<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-OR(95%CI)
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-p-value
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-N
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-Event
-</th>
-<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-VIF
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-<span style="font-weight: bold;">Diet</span>
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-1337
-</td>
-<td style="text-align:right;">
-386
-</td>
-<td style="text-align:right;">
-1.04
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-barley
-</td>
-<td style="text-align:right;">
-Reference
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-425
-</td>
-<td style="text-align:right;">
-183
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-barley+lupins
-</td>
-<td style="text-align:right;">
-0.42 (0.25, 0.72)
-</td>
-<td style="text-align:right;">
-<span style="font-weight: bold;">0.001</span>
-</td>
-<td style="text-align:right;">
-459
-</td>
-<td style="text-align:right;">
-119
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-lupins
-</td>
-<td style="text-align:right;">
-0.31 (0.18, 0.53)
-</td>
-<td style="text-align:right;">
-<span style="font-weight: bold;">&lt;0.001</span>
-</td>
-<td style="text-align:right;">
-453
-</td>
-<td style="text-align:right;">
-84
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="font-weight: bold;">Yard</span>
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-1337
-</td>
-<td style="text-align:right;">
-386
-</td>
-<td style="text-align:right;">
-1.02
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-1
-</td>
-<td style="text-align:right;">
-Reference
-</td>
-<td style="text-align:right;">
-</td>
-<td style="text-align:right;">
-193
-</td>
-<td style="text-align:right;">
-56
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-2
-</td>
-<td style="text-align:right;">
-1.13 (0.59, 2.18)
-</td>
-<td style="text-align:right;">
-0.71
-</td>
-<td style="text-align:right;">
-244
-</td>
-<td style="text-align:right;">
-84
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-3
-</td>
-<td style="text-align:right;">
-0.80 (0.38, 1.69)
-</td>
-<td style="text-align:right;">
-0.56
-</td>
-<td style="text-align:right;">
-222
-</td>
-<td style="text-align:right;">
-71
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-4
-</td>
-<td style="text-align:right;">
-0.51 (0.24, 1.11)
-</td>
-<td style="text-align:right;">
-0.092
-</td>
-<td style="text-align:right;">
-346
-</td>
-<td style="text-align:right;">
-76
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-5
-</td>
-<td style="text-align:right;">
-0.83 (0.42, 1.65)
-</td>
-<td style="text-align:right;">
-0.60
-</td>
-<td style="text-align:right;">
-332
-</td>
-<td style="text-align:right;">
-99
-</td>
-<td style="text-align:right;">
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-<span style="font-weight: bold;">Time</span>
-</td>
-<td style="text-align:right;">
-0.92 (0.88, 0.95)
-</td>
-<td style="text-align:right;">
-<span style="font-weight: bold;">&lt;0.001</span>
-</td>
-<td style="text-align:right;">
-1337
-</td>
-<td style="text-align:right;">
-386
-</td>
-<td style="text-align:right;">
-1.05
-</td>
-</tr>
-</tbody>
-</table>
+<div id="documentation" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Documentation<a href="documentation.html#documentation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://biostatsPMH.github.io/BiostatsUHNplus/">Online Documentation</a></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="logistic-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bayesian-hierarchical-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="installation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="examples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

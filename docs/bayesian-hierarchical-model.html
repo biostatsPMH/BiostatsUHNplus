@@ -29,7 +29,7 @@
   
   
 <link rel="prev" href="generalized-estimating-equations-model.html"/>
-
+<link rel="next" href="biostatsuhnplus.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -176,6 +176,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.3" data-path="bayesian-hierarchical-model.html"><a href="bayesian-hierarchical-model.html#caterpillar-plot-for-random-effect-of-yard"><i class="fa fa-check"></i><b>3.4.3</b> Caterpillar plot for random effect of yard</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="4" data-path="biostatsuhnplus.html"><a href="biostatsuhnplus.html"><i class="fa fa-check"></i><b>4</b> BiostatsUHNplus</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="installation.html"><a href="installation.html"><i class="fa fa-check"></i><b>4.1</b> Installation</a></li>
+<li class="chapter" data-level="4.2" data-path="documentation.html"><a href="documentation.html"><i class="fa fa-check"></i><b>4.2</b> Documentation</a></li>
+<li class="chapter" data-level="4.3" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i><b>4.3</b> Examples</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="examples.html"><a href="examples.html#a-wrapper-for-the-as.numeric-function.-prints-entries-that-fail-to-parse-instead-of-throwing-uninformative-error"><i class="fa fa-check"></i><b>4.3.1</b> A wrapper for the as.numeric function. Prints entries that fail to parse instead of throwing uninformative error</a></li>
+<li class="chapter" data-level="4.3.2" data-path="examples.html"><a href="examples.html#nested-summary-of-adverse-events-by-participant-in-cohort-stratified-by-attribution-to-first-study-drug"><i class="fa fa-check"></i><b>4.3.2</b> Nested summary of adverse events by participant in cohort, stratified by attribution to first study drug</a></li>
+<li class="chapter" data-level="4.3.3" data-path="examples.html"><a href="examples.html#outputs-three-dsmb-ccru-ae-summary-tables-in-excel-format-per-uhn-template"><i class="fa fa-check"></i><b>4.3.3</b> Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template</a></li>
+<li class="chapter" data-level="4.3.4" data-path="examples.html"><a href="examples.html#related-adverse-event-onset-timeline-plots"><i class="fa fa-check"></i><b>4.3.4</b> Related adverse event onset timeline plots</a></li>
+<li class="chapter" data-level="4.3.5" data-path="examples.html"><a href="examples.html#summary-functions-for-mcmcglmm-object-with-binary-outcome"><i class="fa fa-check"></i><b>4.3.5</b> Summary functions for MCMCglmm object with binary outcome</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -224,23 +237,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="even">
 <td align="left"></td>
 <td align="left">barley+lupins</td>
-<td align="left">0.35 (0.16, 0.88)</td>
-<td align="left">0.022</td>
-<td align="left">429.49</td>
+<td align="left">0.35 (0.16, 0.84)</td>
+<td align="left">0.015</td>
+<td align="left">398.15</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">lupins</td>
-<td align="left">0.19 (0.09, 0.46)</td>
+<td align="left">0.18 (0.07, 0.44)</td>
 <td align="left">0.001</td>
-<td align="left">524.07</td>
+<td align="left">255.76</td>
 </tr>
 <tr class="even">
 <td align="left">Time</td>
 <td align="left"></td>
-<td align="left">0.96 (0.94, 0.99)</td>
-<td align="left">0.025</td>
-<td align="left">175.84</td>
+<td align="left">0.96 (0.93, 0.99)</td>
+<td align="left">0.010</td>
+<td align="left">197.05</td>
 </tr>
 </tbody>
 </table>
@@ -257,21 +270,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left">Cow</td>
-<td align="right">0.6475</td>
-<td align="right">0.5172</td>
+<td align="right">0.6075</td>
+<td align="right">0.4777</td>
 <td align="right">0.7490</td>
 </tr>
 <tr class="even">
 <td align="left">Yard</td>
-<td align="right">0.0030</td>
-<td align="right">0.0008</td>
-<td align="right">0.1113</td>
+<td align="right">0.0027</td>
+<td align="right">0.0006</td>
+<td align="right">0.1500</td>
 </tr>
 <tr class="odd">
 <td align="left">units</td>
-<td align="right">0.3556</td>
-<td align="right">0.2304</td>
-<td align="right">0.4455</td>
+<td align="right">0.3300</td>
+<td align="right">0.2254</td>
+<td align="right">0.4448</td>
 </tr>
 </tbody>
 </table>
@@ -288,9 +301,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left"></td>
-<td align="right">0.1564211</td>
-<td align="right">0.0488425</td>
-<td align="right">0.2766206</td>
+<td align="right">0.1209689</td>
+<td align="right">0.0488906</td>
+<td align="right">0.2805348</td>
 </tr>
 </tbody>
 </table>
@@ -307,9 +320,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left"></td>
-<td align="right">0.7098256</td>
-<td align="right">0.6182144</td>
-<td align="right">0.7970187</td>
+<td align="right">0.7105743</td>
+<td align="right">0.6108916</td>
+<td align="right">0.7975269</td>
 </tr>
 </tbody>
 </table>
@@ -327,6 +340,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Odds ratio of high protein milk among yards is below. Highest posterior density intervals are not necessarily symmetric.</p>
 <p><img src="man/figures/caterpillar_plot_Yards_Model.png" width="100%" /></p>
 
+<!-- This file is used to create README.md
+Note that the README.md document may need updating to change
+'\<0.001' to '<0.001'. 
+-->
 </div>
 </div>
 <!-- </div> -->
@@ -335,8 +352,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="generalized-estimating-equations-model.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="generalized-estimating-equations-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="biostatsuhnplus.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
