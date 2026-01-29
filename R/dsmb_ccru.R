@@ -5,8 +5,8 @@
 #' @param title full character vector with name of study
 #' @param comp baseline comparison group. For example, cohort (if provided)
 #' @param pi character vector name of study principal investigator
-#' @param presDate presentation date (i.e. 17NOV2023) for DSMB
-#' @param cutDate recent cutoff date for AEs (i.e. 31AUG2023)
+#' @param presDate presentation date (e.g. 17NOV2023) for DSMB
+#' @param cutDate recent cutoff date for AEs (e.g. 31AUG2023)
 #' @param boundDate lower bound cutoff date for AEs (if provided)
 #' @param subjID key identifier field for participant ID in data sets
 #' @param subjID_ineligText character text that denotes participant IDs to exclude.
@@ -18,7 +18,7 @@
 #' @param ineligVarText character text that denotes participant ineligibility.
 #'    For example, c("Yes", "Y") (if provided)
 #' @param genderVar field that denotes participant gender
-#' @param enrolDtVar field that denotes participant enrollment date (i.e. 10MAY2021)
+#' @param enrolDtVar field that denotes participant enrollment date (e.g. 10MAY2021)
 #' @param ae_detailVar field that denotes participant AE detail (lowest level term)
 #' @param ae_categoryVar field that denotes participant AE category (system organ class)
 #' @param ae_severityVar field that denotes participant AE severity grade (numeric)
