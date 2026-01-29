@@ -278,7 +278,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       dplyr::group_by(Subject, ae_category, ae_detail, ae_grade_code_dyn_std) |>
       dplyr::filter(ae_grade_code_dyn_std == max(ae_grade_code_dyn_std)) |>
       dplyr::group_by(ae_category) |>
-      dplyr::frame(ind = n_distinct(Subject)) |>
+      dplyr::reframe(ind = n_distinct(Subject)) |>
       dplyr::mutate(ind_per = format(round((ind/total_subj_count)*100, 2), nsmall=2))
     table2_dfb <- aes2_DF |>
       dplyr::distinct(Subject, ae_category, ae_detail, ae_grade_code_dyn_std) |>
