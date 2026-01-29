@@ -40,7 +40,7 @@
 #' @return three Excel files containing DSMB-CCRU AE summary tables
 #' @importFrom openxlsx createStyle createWorkbook addWorksheet writeData mergeCells addStyle setRowHeights setColWidths saveWorkbook
 #' @importFrom plyr join_all
-#' @importFrom dplyr select distinct mutate arrange summarise group_by filter across row_number n_distinct
+#' @importFrom dplyr select distinct mutate arrange reframe group_by filter across row_number n_distinct
 #' @importFrom stringr str_detect
 #' @export
 #' @examples
@@ -171,7 +171,7 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
     dplyr::mutate(Subject = eval(parse(text=subjID)), comp = "", gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
       dplyr::select(Subject, comp, gender_code, PT_ELIG_IND_3, PARTIC_ENROL_DT_INT) |>
       dplyr::group_by(Subject) |>
-      dplyr::summarise(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
+      dplyr::reframe(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
       #### --------------------------------------------- ####
     dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
       dplyr::filter(!PT_ELIG_IND_3 %in% ineligVarText, !Subject %in% subjID_ineligText) |>
@@ -184,7 +184,7 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
     dplyr::mutate(Subject = eval(parse(text=subjID)), comp = eval(parse(text=comp)), gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
       dplyr::select(Subject, comp, gender_code, PT_ELIG_IND_3, PARTIC_ENROL_DT_INT) |>
       dplyr::group_by(Subject) |>
-      dplyr::summarise(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
+      dplyr::reframe(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
       #### --------------------------------------------- ####
     dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
       dplyr::filter(!PT_ELIG_IND_3 %in% ineligVarText, !Subject %in% subjID_ineligText) |>
@@ -254,12 +254,12 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
 
     distinct_counts <- all_AEs_subject |>
       group_by(AE_Grade, .drop=FALSE) |>
-      summarise(n_distinct_subjects = n_distinct(Subject)) |>
+      reframe(n_distinct_subjects = n_distinct(Subject)) |>
       pull(n_distinct_subjects)
     
     totalAESubj <- all_AEs_subject |>
       group_by(Study) |>
-      summarise(n_distinct_subjects = n_distinct(Subject)) |>
+      reframe(n_distinct_subjects = n_distinct(Subject)) |>
       pull(n_distinct_subjects)
     
     #total_subj_count;
@@ -397,12 +397,12 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
       
       distinct_counts <- all_AEs_subject |>
         group_by(AE_Grade, .drop=FALSE) |>
-        summarise(n_distinct_subjects = n_distinct(Subject)) |>
+        reframe(n_distinct_subjects = n_distinct(Subject)) |>
         pull(n_distinct_subjects)
       
       totalAESubj <- all_AEs_subject |>
         group_by(Study) |>
-        summarise(n_distinct_subjects = n_distinct(Subject)) |>
+        reframe(n_distinct_subjects = n_distinct(Subject)) |>
         pull(n_distinct_subjects)
       
       #total_subj_count;

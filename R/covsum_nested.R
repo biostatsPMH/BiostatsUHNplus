@@ -60,7 +60,7 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #'   \emph{column} (default) or \emph{row}
 #' @importFrom stats lm sd anova as.formula binomial median na.fail
 #' @importFrom rstatix cramer_v eta_squared
-#' @importFrom dplyr select reframe summarise group_by filter across row_number n
+#' @importFrom dplyr select reframe group_by filter across row_number n
 #' @importFrom purrr modify_if 
 #' @importFrom rlang syms 
 #' @importFrom modeest mlv 
@@ -99,7 +99,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       #nc <- 1
     }
   }
-  options(dplyr.summarise.inform = FALSE)
+  options(dplyr.reframe.inform = FALSE)
   is.date <- function(x) inherits(x, 'Date')
   covsIdData1 <- function(covs = covs, id = id, data = data, excludeLevels = excludeLevels){
     id <- c(id, NULL)
@@ -330,7 +330,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #'   which case a data frame is returned
 #' @importFrom stats lm sd anova as.formula binomial median na.fail
 #' @importFrom rstatix cramer_v eta_squared
-#' @importFrom dplyr select reframe summarise group_by filter across row_number n
+#' @importFrom dplyr select reframe group_by filter across row_number n
 #' @importFrom purrr modify_if 
 #' @importFrom rlang syms 
 #' @importFrom modeest mlv 

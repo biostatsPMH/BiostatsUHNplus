@@ -47,7 +47,7 @@
 #' @importFrom plyr join_all rbind.fill
 #' @importFrom stats lm sd anova as.formula binomial median na.fail
 #' @importFrom purrr modify_if
-#' @importFrom dplyr select distinct mutate arrange summarise reframe group_by filter across row_number n_distinct all_of right_join count ungroup coalesce
+#' @importFrom dplyr select distinct mutate arrange reframe group_by filter across row_number n_distinct all_of right_join count ungroup coalesce
 #' @importFrom stringr str_detect str_wrap str_split
 #' @importFrom ggh4x strip_nested facet_nested elem_list_text elem_list_rect force_panelsizes
 #' @importFrom forcats fct_rev
@@ -85,7 +85,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
                       attribColours=NULL,attribSymbols=NULL,
                       columnWidths=NULL){
   
-  options(dplyr.summarise.inform = FALSE)
+  options(dplyr.reframe.inform = FALSE)
   if (is.null(ae_attribVarText)) {
     ae_attribVarText <- c("Definite", "Probable", "Possible");
   }

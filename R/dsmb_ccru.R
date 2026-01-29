@@ -33,7 +33,7 @@
 #' @return three Excel files containing DSMB-CCRU AE summary tables
 #' @importFrom openxlsx createStyle createWorkbook addWorksheet writeData mergeCells addStyle setRowHeights setColWidths saveWorkbook
 #' @importFrom plyr join_all
-#' @importFrom dplyr select distinct mutate arrange summarise group_by filter across row_number n_distinct
+#' @importFrom dplyr select distinct mutate arrange reframe group_by filter across row_number n_distinct
 #' @importFrom stringr str_detect
 #' @export
 #' @examples
@@ -147,7 +147,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     dplyr::mutate(Subject = eval(parse(text=subjID)), comp = "", gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
       dplyr::select(Subject, comp, gender_code, PT_ELIG_IND_3, PARTIC_ENROL_DT_INT) |>
       dplyr::group_by(Subject) |>
-      dplyr::summarise(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
+      dplyr::reframe(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
       #### --------------------------------------------- ####
     dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
       dplyr::filter(!PT_ELIG_IND_3 %in% ineligVarText, !Subject %in% subjID_ineligText) |>
@@ -160,7 +160,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     dplyr::mutate(Subject = eval(parse(text=subjID)), comp = eval(parse(text=comp)), gender_code = eval(parse(text=genderVar)), PT_ELIG_IND_3 = eval(parse(text=ineligVar)), PARTIC_ENROL_DT_INT = eval(parse(text=enrolDtVar))) |>
       dplyr::select(Subject, comp, gender_code, PT_ELIG_IND_3, PARTIC_ENROL_DT_INT) |>
       dplyr::group_by(Subject) |>
-      dplyr::summarise(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
+      dplyr::reframe(comp = comp[which(!is.na(comp))[1]], gender_code = gender_code[which(!is.na(gender_code))[1]], PT_ELIG_IND_3 = PT_ELIG_IND_3[which(!is.na(PT_ELIG_IND_3))[1]], PARTIC_ENROL_DT_INT = PARTIC_ENROL_DT_INT[which(!is.na(PARTIC_ENROL_DT_INT))[1]]) |>
       #### --------------------------------------------- ####
     dplyr::mutate(PARTIC_ENROL_DT_INT = toupper(format(as.Date(PARTIC_ENROL_DT_INT, tz = "UTC"), "%d%b%Y"))) |>
       dplyr::filter(!PT_ELIG_IND_3 %in% ineligVarText, !Subject %in% subjID_ineligText) |>
@@ -225,7 +225,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       dplyr::group_by(Subject, ae_category, ae_detail, ae_grade_code_dyn_std) |>
       dplyr::filter(ae_grade_code_dyn_std == max(ae_grade_code_dyn_std)) |>
       dplyr::group_by(ae_category, ae_detail) |>
-      dplyr::summarise(ind = n_distinct(Subject)) |>
+      dplyr::reframe(ind = n_distinct(Subject)) |>
       dplyr::mutate(ind_per = format(round((ind/total_subj_count)*100, 2), nsmall=2))
     table1_dfb <- aes2_DF |>
       dplyr::distinct(Subject, ae_category, ae_detail, ae_grade_code_dyn_std) |>
@@ -233,7 +233,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       dplyr::filter(ae_grade_code_dyn_std == max(ae_grade_code_dyn_std)) |>
       dplyr::group_by(ae_category, ae_detail) |>
       dplyr::filter(ae_grade_code_dyn_std %in% c(3:5)) |>
-      dplyr::summarise(indH = n_distinct(Subject)) |>
+      dplyr::reframe(indH = n_distinct(Subject)) |>
       dplyr::mutate(indH_per = format(round((indH/total_subj_count)*100, 2), nsmall=2))
     table1_df <- table1_dfa |>
       dplyr::left_join(table1_dfb, by = c("ae_category", "ae_detail")) |>
@@ -278,7 +278,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       dplyr::group_by(Subject, ae_category, ae_detail, ae_grade_code_dyn_std) |>
       dplyr::filter(ae_grade_code_dyn_std == max(ae_grade_code_dyn_std)) |>
       dplyr::group_by(ae_category) |>
-      dplyr::summarise(ind = n_distinct(Subject)) |>
+      dplyr::frame(ind = n_distinct(Subject)) |>
       dplyr::mutate(ind_per = format(round((ind/total_subj_count)*100, 2), nsmall=2))
     table2_dfb <- aes2_DF |>
       dplyr::distinct(Subject, ae_category, ae_detail, ae_grade_code_dyn_std) |>
@@ -286,7 +286,7 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
       dplyr::filter(ae_grade_code_dyn_std == max(ae_grade_code_dyn_std)) |>
       dplyr::group_by(ae_category) |>
       dplyr::filter(ae_grade_code_dyn_std %in% c(3:5)) |>
-      dplyr::summarise(indH = n_distinct(Subject)) |>
+      dplyr::reframe(indH = n_distinct(Subject)) |>
       dplyr::mutate(indH_per = format(round((indH/total_subj_count)*100, 2), nsmall=2))
     table2_df <- table2_dfa |>
       dplyr::left_join(table2_dfb, by = c("ae_category")) |>
@@ -328,12 +328,12 @@ dsmb_ccru <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDa
     #### Table 3;
     table3_dfa <- aes1_DF |>
       dplyr::group_by(ae_category) |>
-      dplyr::summarise(ind = n()) |>
+      dplyr::reframe(ind = n()) |>
       dplyr::mutate(ind_per = format(round((ind/total_ae_count)*100, 2), nsmall=2))
     table3_dfb <- aes1_DF |>
       dplyr::group_by(ae_category) |>
       dplyr::filter(ae_grade_code_dyn_std %in% c(3:5)) |>
-      dplyr::summarise(indH = n()) |>
+      dplyr::reframe(indH = n()) |>
       dplyr::mutate(indH_per = format(round((indH/total_ae_count)*100, 2), nsmall=2))
     table3_df <- table3_dfa |>
       dplyr::left_join(table3_dfb, by = c("ae_category")) |>
