@@ -43,9 +43,9 @@ dsmb_ccru(
 
 \item{pi}{character vector name of study principal investigator}
 
-\item{presDate}{presentation date (i.e. 17NOV2023) for DSMB}
+\item{presDate}{presentation date (e.g. 17NOV2023) for DSMB}
 
-\item{cutDate}{recent cutoff date for AEs (i.e. 31AUG2023)}
+\item{cutDate}{recent cutoff date for AEs (e.g. 31AUG2023)}
 
 \item{boundDate}{lower bound cutoff date for AEs (if provided)}
 
@@ -66,7 +66,7 @@ For example, c("Yes", "Y") (if provided)}
 
 \item{genderVar}{field that denotes participant gender}
 
-\item{enrolDtVar}{field that denotes participant enrollment date (i.e. 10MAY2021)}
+\item{enrolDtVar}{field that denotes participant enrollment date (e.g. 10MAY2021)}
 
 \item{ae_detailVar}{field that denotes participant AE detail (lowest level term)}
 
