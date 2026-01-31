@@ -1,3 +1,7 @@
+# BiostatsUHNplus 1.0.5
+
+* Revised to not use deprecated dplyr functions
+
 # BiostatsUHNplus 1.0.4
 
 * Revised redcap_data_out() for enhanced formatting with REDCap data dictionary
