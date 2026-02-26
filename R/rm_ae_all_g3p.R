@@ -1,37 +1,39 @@
 #' Outputs R Markdown table of all and grade 3+ adverse events by comparison group
 #'
-#' @param comp baseline comparison group. For example, cohort (if provided)
-#' @param presDate presentation date (i.e. 17NOV2023)
-#' @param cutDate recent cutoff date for AEs (i.e. 31AUG2023)
-#' @param boundDate lower bound cutoff date for AEs (if provided)
-#' @param subjID key identifier field for participant ID in data sets
+#' @param comp baseline comparison group. For example, cohort (if provided).
+#' @param presDate presentation date (i.e. 17NOV2023).
+#' @param cutDate recent cutoff date for AEs (i.e. 31AUG2023).
+#' @param boundDate lower bound cutoff date for AEs (if provided).
+#' @param tableOnly Logical, if TRUE then a dataframe is returned, otherwise a
+#'    formatted printed object is returned (default).
+#' @param subjID key identifier field for participant ID in data sets.
 #' @param subjID_ineligText character text that denotes participant IDs to exclude.
-#'    For example, c("New Subject") (if provided)
+#'    For example, c("New Subject") (if provided).
 #' @param baseline_datasets list of data frames that contain baseline participant characteristics.
-#'    For example, list(enrollment_DF,demography_DF,ineligibility_DF)
-#' @param ae_dataset data frame that contains subject AEs
-#' @param ineligVar field that denotes participant ineligibility (if provided)
+#'    For example, list(enrollment_DF,demography_DF,ineligibility_DF).
+#' @param ae_dataset data frame that contains subject AEs.
+#' @param ineligVar field that denotes participant ineligibility (if provided).
 #' @param ineligVarText character text that denotes participant ineligibility.
-#'    For example, c("Yes", "Y") (if provided)
-#' @param genderVar field that denotes participant gender
-#' @param enrolDtVar field that denotes participant enrollment date (i.e. 10MAY2021)
-#' @param ae_detailVar field that denotes participant AE detail (lowest level term)
-#' @param ae_categoryVar field that denotes participant AE category (system organ class)
-#' @param ae_severityVar field that denotes participant AE severity grade (numeric)
-#' @param ae_onsetDtVar field that denotes participant AE onset date
+#'    For example, c("Yes", "Y") (if provided).
+#' @param genderVar field that denotes participant gender.
+#' @param enrolDtVar field that denotes participant enrollment date (i.e. 10MAY2021).
+#' @param ae_detailVar field that denotes participant AE detail (lowest level term).
+#' @param ae_categoryVar field that denotes participant AE category (system organ class).
+#' @param ae_severityVar field that denotes participant AE severity grade (numeric).
+#' @param ae_onsetDtVar field that denotes participant AE onset date.
 #' @param ae_detailOtherText character text that denotes referencing verbatim AE field. 
-#'   For example, c("Other, specify", "OTHER") (if provided)
-#' @param ae_detailOtherVar field that denotes participant AE detail other (if provided)
-#' @param ae_verbatimVar field that denotes participant AE detail verbatim (if provided)
+#'   For example, c("Other, specify", "OTHER") (if provided).
+#' @param ae_detailOtherVar field that denotes participant AE detail other (if provided).
+#' @param ae_verbatimVar field that denotes participant AE detail verbatim (if provided).
 #' @param ae_attribVars field(s) that denotes attribution to intervention under study. \cr 
 #'    For example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1") 
-#'    (if provided)
+#'    (if provided).
 #' @param ae_attribVarsName character text that denotes name of interventions under study.
-#'    For example, c("Drug 1", "Drug 2") (if provided)
+#'    For example, c("Drug 1", "Drug 2") (if provided).
 #' @param ae_attribVarText character text that denotes related attribution. For example
-#'    c("Definite", "Probable", "Possible") (if provided)
+#'    c("Definite", "Probable", "Possible") (if provided).
 #' @param related_ae boolean that denotes if summary is for related AEs. Default is False.
-#' @param numSubj vector to override value for number of participants in summary (if provided)
+#' @param numSubj vector to override value for number of participants in summary (if provided).
 #' @keywords dataframe
 #' @return R Markdown table of all and grade 3+ adverse events by treatment arm
 #' @importFrom openxlsx createStyle createWorkbook addWorksheet writeData mergeCells addStyle setRowHeights setColWidths saveWorkbook
@@ -56,7 +58,7 @@
 #'   ae_attribVarText=c("Definite", "Probable", "Possible"),
 #'   numSubj=c(4,4,3,4))
 
-rm_ae_all_g3p <- function(comp=NULL,presDate,cutDate,boundDate=NULL,
+rm_ae_all_g3p <- function(comp=NULL,presDate,cutDate,boundDate=NULL,tableOnly=FALSE,
                           subjID,subjID_ineligText=NULL,baseline_datasets,ae_dataset,
                           ineligVar=NULL,ineligVarText=NULL,
                           genderVar,enrolDtVar,ae_detailVar,ae_categoryVar=NULL,
@@ -247,6 +249,12 @@ rm_ae_all_g3p <- function(comp=NULL,presDate,cutDate,boundDate=NULL,
   #tab4$Covariate[1] <- substr(tab4$Covariate[1], 1, nchar(tab4$Covariate[1]) - 1)
   tab4$Covariate[1] <- "MedDRA Lowest Level Term"
   tab4$Covariate <- gsub("^~~~", "", tab4$Covariate)
+  
+  tab4 <- tab4[,-2];
+  
+  if (tableOnly){
+    return(tab4)
+  }
   
   reportRmd::outTable(tab=tab4,to_indent=to_indent,bold_cells=bold_cells)
 }

@@ -1,6 +1,7 @@
 # BiostatsUHNplus 1.0.5
 
 * Revised to not use deprecated dplyr functions
+* Revised rm_ae_all_g3p() to have tableOnly option
 
 # BiostatsUHNplus 1.0.4
 
