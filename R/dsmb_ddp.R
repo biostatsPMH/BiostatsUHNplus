@@ -270,10 +270,8 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
     
     #----------#;
     ###This makes sure there is always five columns for severity grade in tab4;
-    if (nrow(all_AEs_subject) <= 1) {
-      all_AEs_subject[nrow(all_AEs_subject) + 1, ] <- list("5", "zzz", "zzz", "zzz");
-      all_AEs_subject[nrow(all_AEs_subject) + 1, ] <- list("1", "zzz", "zzz", "zzz");
-    }
+    all_AEs_subject[nrow(all_AEs_subject) + 1, ] <- list("5", "zzz", "zzz", "zzz");
+    all_AEs_subject[nrow(all_AEs_subject) + 1, ] <- list("1", "zzz", "zzz", "zzz");
     #----------#;
     
     suppressWarnings(tab4 <- covsum_nested(data = all_AEs_subject, id = c("Study", "Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE));
@@ -428,10 +426,8 @@ dsmb_ddp <- function(protocol,setwd,title,comp=NULL,pi,presDate,cutDate,boundDat
       
       #----------#;
       ###This makes sure there is always five columns for severity grade in tab4;
-      if (nrow(all_AEs_subject) <= 1) {
-        all_AEs_subject[nrow(all_AEs_subject) + 1, ] <- list("5", "zzz", "zzz", "zzz");
-        all_AEs_subject[nrow(all_AEs_subject) + 1, ] <- list("1", "zzz", "zzz", "zzz");
-      }
+      all_AEs_subject[nrow(all_AEs_subject) + 1, ] <- list("5", "zzz", "zzz", "zzz");
+      all_AEs_subject[nrow(all_AEs_subject) + 1, ] <- list("1", "zzz", "zzz", "zzz");
       #----------#;
       
       suppressWarnings(tab4 <- covsum_nested(data = all_AEs_subject, id = c("Study", "Subject", "AE_Detail"), covs = c("AE_Detail"),  maincov = "AE_Grade", testcat = "Fisher", percentage = c("column"), show.tests = F, pvalue = F, effSize = F, full = T, IQR = F, digits = 1, digits.cat = 1, sanitize = FALSE, dropLevels = FALSE, nicenames = TRUE));
