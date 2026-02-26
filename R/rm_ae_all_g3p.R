@@ -180,7 +180,7 @@ rm_ae_all_g3p <- function(comp=NULL,presDate,cutDate,boundDate=NULL,tableOnly=FA
   aes2_DF$grpAsn2 <- paste(aes2_DF$comp, "_All", sep="");
   aes3_DF$grpAsn2 <- NA;
   aes3_DF$grpAsn2[which(aes3_DF$ae_grade_code_dyn_std %in% c(3, 4, 5))] <- paste(aes3_DF$comp[which(aes3_DF$ae_grade_code_dyn_std %in% c(3, 4, 5))], "_G3P", sep="");
-  aes3_DF <- aes3_DF[-which(is.na(aes3_DF$grpAsn2)), ];
+  #aes3_DF <- aes3_DF[-which(is.na(aes3_DF$grpAsn2)), ];
   aes3_DF <- rbind(aes2_DF, aes3_DF);
   
   #aes3_DF <- aes3_DF |> purrr::modify_if(is.character, as.factor);
@@ -251,6 +251,10 @@ rm_ae_all_g3p <- function(comp=NULL,presDate,cutDate,boundDate=NULL,tableOnly=FA
   tab4$Covariate <- gsub("^~~~", "", tab4$Covariate)
   
   tab4 <- tab4[,-2];
+  
+  if (!is.null(ae_attribVarsName)) {
+    colnames(tab4) <- c("Covariate", paste0(substr(colnames(tab4[2]), 1, 1), ae_attribVarsName[1], " ", substring(colnames(tab4[2]), 2)), paste0(substr(colnames(tab4[3]), 1, 1), ae_attribVarsName[1], " ", substring(colnames(tab4[3]), 2)))
+  }
   
   if (tableOnly){
     return(tab4)
