@@ -245,7 +245,7 @@ ae_timeline_plot <- function(subjID,subjID_ineligText=NULL,baseline_datasets,ae_
   }
   
   mydata <- plyr::join_all(baseline_datasets, by = subjID, type = "full") |>
-    dplyr::right_join(ae, by = subjID) |>
+    dplyr::right_join(ae_dataset, by = subjID) |>
     dplyr::mutate(Subject = eval(parse(text=subjID)), ae_detail = eval(parse(text=ae_detailVar)), ae_category = eval(parse(text=ae_categoryVar)), AE_SEV_GD = eval(parse(text=ae_severityVar)), AE_ONSET_DT_INT = eval(parse(text=ae_onsetDtVar))) |>
     dplyr::select(Subject, ae_detail, ae_category, AE_SEV_GD, dplyr::all_of(ae_attribVars), dplyr::all_of(startDtVars), AE_ONSET_DT_INT) |>
     dplyr::group_by(across(c(Subject, ae_detail, ae_category, dplyr::all_of(ae_attribVars), AE_SEV_GD, AE_ONSET_DT_INT))) |>
