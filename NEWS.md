@@ -1,3 +1,7 @@
+# BiostatsUHNplus 1.0.6
+
+* Updated
+
 # BiostatsUHNplus 1.0.5
 
 * Removed modeest::mlv dependency
