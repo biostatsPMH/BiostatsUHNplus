@@ -9,6 +9,7 @@ rm_ae_all_g3p(
   presDate,
   cutDate,
   boundDate = NULL,
+  tableOnly = FALSE,
   subjID,
   subjID_ineligText = NULL,
   baseline_datasets,
@@ -32,61 +33,64 @@ rm_ae_all_g3p(
 )
 }
 \arguments{
-\item{comp}{baseline comparison group. For example, cohort (if provided)}
+\item{comp}{baseline comparison group. For example, cohort (if provided).}
 
-\item{presDate}{presentation date (i.e. 17NOV2023)}
+\item{presDate}{presentation date (i.e. 17NOV2023).}
 
-\item{cutDate}{recent cutoff date for AEs (i.e. 31AUG2023)}
+\item{cutDate}{recent cutoff date for AEs (i.e. 31AUG2023).}
 
-\item{boundDate}{lower bound cutoff date for AEs (if provided)}
+\item{boundDate}{lower bound cutoff date for AEs (if provided).}
 
-\item{subjID}{key identifier field for participant ID in data sets}
+\item{tableOnly}{Logical, if TRUE then a dataframe is returned, otherwise a
+formatted printed object is returned (default).}
+
+\item{subjID}{key identifier field for participant ID in data sets.}
 
 \item{subjID_ineligText}{character text that denotes participant IDs to exclude.
-For example, c("New Subject") (if provided)}
+For example, c("New Subject") (if provided).}
 
 \item{baseline_datasets}{list of data frames that contain baseline participant characteristics.
-For example, list(enrollment_DF,demography_DF,ineligibility_DF)}
+For example, list(enrollment_DF,demography_DF,ineligibility_DF).}
 
-\item{ae_dataset}{data frame that contains subject AEs}
+\item{ae_dataset}{data frame that contains subject AEs.}
 
-\item{ineligVar}{field that denotes participant ineligibility (if provided)}
+\item{ineligVar}{field that denotes participant ineligibility (if provided).}
 
 \item{ineligVarText}{character text that denotes participant ineligibility.
-For example, c("Yes", "Y") (if provided)}
+For example, c("Yes", "Y") (if provided).}
 
-\item{genderVar}{field that denotes participant gender}
+\item{genderVar}{field that denotes participant gender.}
 
-\item{enrolDtVar}{field that denotes participant enrollment date (i.e. 10MAY2021)}
+\item{enrolDtVar}{field that denotes participant enrollment date (i.e. 10MAY2021).}
 
-\item{ae_detailVar}{field that denotes participant AE detail (lowest level term)}
+\item{ae_detailVar}{field that denotes participant AE detail (lowest level term).}
 
-\item{ae_categoryVar}{field that denotes participant AE category (system organ class)}
+\item{ae_categoryVar}{field that denotes participant AE category (system organ class).}
 
-\item{ae_severityVar}{field that denotes participant AE severity grade (numeric)}
+\item{ae_severityVar}{field that denotes participant AE severity grade (numeric).}
 
-\item{ae_onsetDtVar}{field that denotes participant AE onset date}
+\item{ae_onsetDtVar}{field that denotes participant AE onset date.}
 
 \item{ae_detailOtherText}{character text that denotes referencing verbatim AE field.
-For example, c("Other, specify", "OTHER") (if provided)}
+For example, c("Other, specify", "OTHER") (if provided).}
 
-\item{ae_detailOtherVar}{field that denotes participant AE detail other (if provided)}
+\item{ae_detailOtherVar}{field that denotes participant AE detail other (if provided).}
 
-\item{ae_verbatimVar}{field that denotes participant AE detail verbatim (if provided)}
+\item{ae_verbatimVar}{field that denotes participant AE detail verbatim (if provided).}
 
 \item{ae_attribVars}{field(s) that denotes attribution to intervention under study. \cr
 For example, c("CTC_AE_ATTR_SCALE","CTC_AE_ATTR_SCALE_1")
-(if provided)}
+(if provided).}
 
 \item{ae_attribVarsName}{character text that denotes name of interventions under study.
-For example, c("Drug 1", "Drug 2") (if provided)}
+For example, c("Drug 1", "Drug 2") (if provided).}
 
 \item{ae_attribVarText}{character text that denotes related attribution. For example
-c("Definite", "Probable", "Possible") (if provided)}
+c("Definite", "Probable", "Possible") (if provided).}
 
 \item{related_ae}{boolean that denotes if summary is for related AEs. Default is False.}
 
-\item{numSubj}{vector to override value for number of participants in summary (if provided)}
+\item{numSubj}{vector to override value for number of participants in summary (if provided).}
 }
 \value{
 R Markdown table of all and grade 3+ adverse events by treatment arm

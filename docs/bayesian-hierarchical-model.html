@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.4 Bayesian hierarchical model | Example nested summary and Bayesian hierarchical model summary</title>
   <meta name="description" content="3.4 Bayesian hierarchical model | Example nested summary and Bayesian hierarchical model summary" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.4 Bayesian hierarchical model | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
@@ -57,6 +57,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -209,13 +210,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="bayesian-hierarchical-model" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Bayesian hierarchical model<a href="bayesian-hierarchical-model.html#bayesian-hierarchical-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Below runs a logistic MCMCglmm model treating cow and yard as random effects for 800 posterior samples. Should specify burnin=125000, nitt=625000 and thin=100 for 5000 posterior samples with lower autocorrelation. Aim for effective sample sizes of at least 2000.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bayesian-hierarchical-model.html#cb14-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">MCMCglmm</span>(HP <span class="sc">~</span> Diet <span class="sc">+</span> Time, <span class="at">random=</span><span class="sc">~</span>Cow <span class="sc">+</span> Yard, <span class="at">family=</span><span class="st">&quot;categorical&quot;</span>, <span class="at">data=</span>Milk, <span class="at">saveX=</span><span class="cn">TRUE</span>, <span class="at">verbose=</span>F, <span class="at">burnin=</span><span class="dv">2000</span>, <span class="at">nitt=</span><span class="dv">10000</span>, <span class="at">thin=</span><span class="dv">10</span>, <span class="at">pr=</span><span class="cn">TRUE</span>, <span class="at">prior=</span>prior2RE);</span>
-<span id="cb14-2"><a href="bayesian-hierarchical-model.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="bayesian-hierarchical-model.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#autocorr.diag(model1$VCV); #use this to choose thinning interval, autocorrelation less than 0.01 ideally;</span></span>
-<span id="cb14-4"><a href="bayesian-hierarchical-model.html#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="bayesian-hierarchical-model.html#cb14-5" aria-hidden="true" tabindex="-1"></a>mcmcglmm_mva <span class="ot">&lt;-</span> <span class="fu">nice_mcmcglmm</span>(model1, Milk);</span>
-<span id="cb14-6"><a href="bayesian-hierarchical-model.html#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
-<span id="cb14-7"><a href="bayesian-hierarchical-model.html#cb14-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mcmcglmm_mva);</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bayesian-hierarchical-model.html#cb14-1" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">MCMCglmm</span>(HP <span class="sc">~</span> Diet <span class="sc">+</span> Time, <span class="at">random=</span><span class="sc">~</span>Cow <span class="sc">+</span> Yard, <span class="at">family=</span><span class="st">&quot;categorical&quot;</span>, <span class="at">data=</span>Milk, <span class="at">saveX=</span><span class="cn">TRUE</span>, <span class="at">verbose=</span>F, <span class="at">burnin=</span><span class="dv">2000</span>, <span class="at">nitt=</span><span class="dv">10000</span>, <span class="at">thin=</span><span class="dv">10</span>, <span class="at">pr=</span><span class="cn">TRUE</span>, <span class="at">prior=</span>prior2RE);</span>
+<span id="cb14-2"><a href="bayesian-hierarchical-model.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="bayesian-hierarchical-model.html#cb14-3" tabindex="-1"></a><span class="co">#autocorr.diag(model1$VCV); #use this to choose thinning interval, autocorrelation less than 0.01 ideally;</span></span>
+<span id="cb14-4"><a href="bayesian-hierarchical-model.html#cb14-4" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="bayesian-hierarchical-model.html#cb14-5" tabindex="-1"></a>mcmcglmm_mva <span class="ot">&lt;-</span> <span class="fu">nice_mcmcglmm</span>(model1, Milk);</span>
+<span id="cb14-6"><a href="bayesian-hierarchical-model.html#cb14-6" tabindex="-1"></a><span class="fu">options</span>(<span class="at">knitr.kable.NA =</span> <span class="st">&#39;&#39;</span>);</span>
+<span id="cb14-7"><a href="bayesian-hierarchical-model.html#cb14-7" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mcmcglmm_mva);</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -237,23 +238,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="even">
 <td align="left"></td>
 <td align="left">barley+lupins</td>
-<td align="left">0.35 (0.16, 0.84)</td>
-<td align="left">0.015</td>
-<td align="left">398.15</td>
+<td align="left">0.35 (0.15, 0.84)</td>
+<td align="left">0.022</td>
+<td align="left">928.97</td>
 </tr>
 <tr class="odd">
 <td align="left"></td>
 <td align="left">lupins</td>
-<td align="left">0.18 (0.07, 0.44)</td>
+<td align="left">0.19 (0.08, 0.50)</td>
 <td align="left">0.001</td>
-<td align="left">255.76</td>
+<td align="left">381.04</td>
 </tr>
 <tr class="even">
 <td align="left">Time</td>
 <td align="left"></td>
 <td align="left">0.96 (0.93, 0.99)</td>
-<td align="left">0.010</td>
-<td align="left">197.05</td>
+<td align="left">0.022</td>
+<td align="left">174.77</td>
 </tr>
 </tbody>
 </table>
@@ -270,21 +271,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left">Cow</td>
-<td align="right">0.6075</td>
-<td align="right">0.4777</td>
-<td align="right">0.7490</td>
+<td align="right">0.6364</td>
+<td align="right">0.4807</td>
+<td align="right">0.7313</td>
 </tr>
 <tr class="even">
 <td align="left">Yard</td>
-<td align="right">0.0027</td>
-<td align="right">0.0006</td>
-<td align="right">0.1500</td>
+<td align="right">0.0054</td>
+<td align="right">0.0008</td>
+<td align="right">0.1501</td>
 </tr>
 <tr class="odd">
 <td align="left">units</td>
-<td align="right">0.3300</td>
-<td align="right">0.2254</td>
-<td align="right">0.4448</td>
+<td align="right">0.3559</td>
+<td align="right">0.2307</td>
+<td align="right">0.4423</td>
 </tr>
 </tbody>
 </table>
@@ -301,9 +302,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left"></td>
-<td align="right">0.1209689</td>
-<td align="right">0.0488906</td>
-<td align="right">0.2805348</td>
+<td align="right">0.1457795</td>
+<td align="right">0.0363611</td>
+<td align="right">0.2739915</td>
 </tr>
 </tbody>
 </table>
@@ -320,25 +321,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left"></td>
-<td align="right">0.7105743</td>
-<td align="right">0.6108916</td>
-<td align="right">0.7975269</td>
+<td align="right">0.716362</td>
+<td align="right">0.624924</td>
+<td align="right">0.8039114</td>
 </tr>
 </tbody>
 </table>
 <div id="variance-piechart" class="section level3 hasAnchor" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Variance piechart<a href="bayesian-hierarchical-model.html#variance-piechart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p><img src="man/figures/variance_pie_plot.png" width="100%" /></p>
+<p><img src="man/figures/variance_pie_plot.png" alt="" width="100%" /></p>
 </div>
 <div id="caterpillar-plot-for-random-effect-of-cow" class="section level3 hasAnchor" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Caterpillar plot for random effect of cow<a href="bayesian-hierarchical-model.html#caterpillar-plot-for-random-effect-of-cow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Odds ratio of high protein milk among cows is below. Highest posterior density intervals are not necessarily symmetric, but should be close to symmetric upon running more model iterations. Note that cows L23 and L27 have a higher odds estimate for high protein milk in random effect, even though those cows were fed a diet of lupins and should in theory have lower protein milk. Cow B01 also has higher odds of high protein milk, but was always fed a better diet (barley).</p>
-<p><img src="man/figures/caterpillar_plot_Cows_Model.png" width="100%" /></p>
+<p><img src="man/figures/caterpillar_plot_Cows_Model.png" alt="" width="100%" /></p>
 </div>
 <div id="caterpillar-plot-for-random-effect-of-yard" class="section level3 hasAnchor" number="3.4.3">
 <h3><span class="header-section-number">3.4.3</span> Caterpillar plot for random effect of yard<a href="bayesian-hierarchical-model.html#caterpillar-plot-for-random-effect-of-yard" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Odds ratio of high protein milk among yards is below. Highest posterior density intervals are not necessarily symmetric.</p>
-<p><img src="man/figures/caterpillar_plot_Yards_Model.png" width="100%" /></p>
+<p><img src="man/figures/caterpillar_plot_Yards_Model.png" alt="" width="100%" /></p>
 
 <!-- This file is used to create README.md
 Note that the README.md document may need updating to change
@@ -367,42 +368,42 @@ Note that the README.md document may need updating to change
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": false
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "none",
-"toc_depth": 3,
-"scroll_highlight": true
-},
-"info": false
+  "sharing": {
+    "github": false,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none",
+    "toc_depth": 3,
+    "scroll_highlight": true
+  },
+  "info": false
 });
 });
 </script>

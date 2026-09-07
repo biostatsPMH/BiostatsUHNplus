@@ -221,6 +221,7 @@ Milk <- Milk |> tidyr::drop_na()
 Milk <- droplevels(Milk);
 Milk <- Milk |> dplyr::arrange(Yard, Cow, Time);
 
+Milk <- Milk[order(Milk$Cow), ]; 
 rm_mvsum(model=geeglm(HP ~ Diet + Yard + Time, id=c(Cow), data=Milk, family=binomial, corstr="ar1"), data=Milk, showN=T, CIwidth=0.95);
 ```
 

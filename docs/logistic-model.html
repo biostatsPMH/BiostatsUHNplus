@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.2 Logistic model | Example nested summary and Bayesian hierarchical model summary</title>
   <meta name="description" content="3.2 Logistic model | Example nested summary and Bayesian hierarchical model summary" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.2 Logistic model | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
@@ -57,6 +57,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -209,10 +210,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="logistic-model" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Logistic model<a href="logistic-model.html#logistic-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Examine the bivariate relationship first among variables to high protein status of milk. Check for quasi or complete separation of categories. Shout out to Lisa Avery for this function!</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="logistic-model.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotuv</span>(<span class="at">data=</span>Milk, <span class="at">response=</span><span class="st">&#39;High_Protein&#39;</span>, <span class="at">covs=</span><span class="fu">c</span>(<span class="st">&#39;Cow&#39;</span>, <span class="st">&#39;Yard&#39;</span>, <span class="st">&#39;Diet&#39;</span>, <span class="st">&#39;Time&#39;</span>, <span class="st">&#39;protein&#39;</span>));</span></code></pre></div>
-<p><img src="man/figures/ana10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="logistic-model.html#cb11-1" tabindex="-1"></a><span class="fu">plotuv</span>(<span class="at">data=</span>Milk, <span class="at">response=</span><span class="st">&#39;High_Protein&#39;</span>, <span class="at">covs=</span><span class="fu">c</span>(<span class="st">&#39;Cow&#39;</span>, <span class="st">&#39;Yard&#39;</span>, <span class="st">&#39;Diet&#39;</span>, <span class="st">&#39;Time&#39;</span>, <span class="st">&#39;protein&#39;</span>));</span></code></pre></div>
+<p><img src="man/figures/ana10-1.png" alt="" width="672" /></p>
 <p>Below logistic model does not account for clustering of repeat observations by cow to high protein status of milk.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="logistic-model.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_mvsum</span>(<span class="at">model=</span><span class="fu">glm</span>(High_Protein <span class="sc">~</span> Diet <span class="sc">+</span> Yard <span class="sc">+</span> Time, <span class="at">data=</span>Milk, <span class="at">family=</span><span class="st">&#39;binomial&#39;</span>), <span class="at">showN=</span>T, <span class="at">vif=</span>T);</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="logistic-model.html#cb12-1" tabindex="-1"></a><span class="fu">rm_mvsum</span>(<span class="at">model=</span><span class="fu">glm</span>(High_Protein <span class="sc">~</span> Diet <span class="sc">+</span> Yard <span class="sc">+</span> Time, <span class="at">data=</span>Milk, <span class="at">family=</span><span class="st">&#39;binomial&#39;</span>), <span class="at">showN=</span>T, <span class="at">vif=</span>T);</span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -251,7 +252,7 @@ VIF
 386
 </td>
 <td style="text-align:right;">
-1.03
+1.02
 </td>
 </tr>
 <tr>
@@ -277,7 +278,7 @@ Reference
 barley+lupins
 </td>
 <td style="text-align:right;">
-0.41 (0.31, 0.55)
+0.45 (0.33, 0.60)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -296,7 +297,7 @@ barley+lupins
 lupins
 </td>
 <td style="text-align:right;">
-0.29 (0.21, 0.40)
+0.30 (0.22, 0.41)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
@@ -338,7 +339,7 @@ Reference
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-193
+188
 </td>
 <td style="text-align:right;">
 56
@@ -351,16 +352,16 @@ Reference
 2
 </td>
 <td style="text-align:right;">
-1.11 (0.73, 1.71)
+1.11 (0.72, 1.70)
 </td>
 <td style="text-align:right;">
-0.62
+0.64
 </td>
 <td style="text-align:right;">
-244
+307
 </td>
 <td style="text-align:right;">
-84
+78
 </td>
 <td style="text-align:right;">
 </td>
@@ -370,16 +371,16 @@ Reference
 3
 </td>
 <td style="text-align:right;">
-0.80 (0.52, 1.25)
+0.74 (0.48, 1.14)
 </td>
 <td style="text-align:right;">
-0.33
+0.17
 </td>
 <td style="text-align:right;">
-222
+263
 </td>
 <td style="text-align:right;">
-71
+63
 </td>
 <td style="text-align:right;">
 </td>
@@ -389,16 +390,16 @@ Reference
 4
 </td>
 <td style="text-align:right;">
-0.54 (0.36, 0.83)
+0.93 (0.62, 1.41)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.004</span>
+0.74
 </td>
 <td style="text-align:right;">
-346
+324
 </td>
 <td style="text-align:right;">
-76
+86
 </td>
 <td style="text-align:right;">
 </td>
@@ -408,16 +409,16 @@ Reference
 5
 </td>
 <td style="text-align:right;">
-0.83 (0.55, 1.25)
+1.60 (1.06, 2.42)
 </td>
 <td style="text-align:right;">
-0.36
+<span style="font-weight: bold;">0.027</span>
 </td>
 <td style="text-align:right;">
-332
+255
 </td>
 <td style="text-align:right;">
-99
+103
 </td>
 <td style="text-align:right;">
 </td>
@@ -430,7 +431,7 @@ Reference
 0.97 (0.95, 1.00)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.020</span>
+<span style="font-weight: bold;">0.038</span>
 </td>
 <td style="text-align:right;">
 1337
@@ -465,42 +466,42 @@ Reference
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": false
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "none",
-"toc_depth": 3,
-"scroll_highlight": true
-},
-"info": false
+  "sharing": {
+    "github": false,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none",
+    "toc_depth": 3,
+    "scroll_highlight": true
+  },
+  "info": false
 });
 });
 </script>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.3 Generalized estimating equations model | Example nested summary and Bayesian hierarchical model summary</title>
   <meta name="description" content="3.3 Generalized estimating equations model | Example nested summary and Bayesian hierarchical model summary" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.3 Generalized estimating equations model | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
@@ -57,6 +57,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -209,12 +210,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="generalized-estimating-equations-model" class="section level2 hasAnchor" number="3.3">
 <h2><span class="header-section-number">3.3</span> Generalized estimating equations model<a href="generalized-estimating-equations-model.html#generalized-estimating-equations-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Below logistic model takes account of repeat observation by cow. Examine different correlation structures. It is of interest to note that (odds of) high protein content in milk appears to decrease as time since calving increases.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="generalized-estimating-equations-model.html#cb13-1" aria-hidden="true" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> <span class="fu">modify_if</span>(is.character, as.factor);</span>
-<span id="cb13-2"><a href="generalized-estimating-equations-model.html#cb13-2" aria-hidden="true" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span>
-<span id="cb13-3"><a href="generalized-estimating-equations-model.html#cb13-3" aria-hidden="true" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(Milk);</span>
-<span id="cb13-4"><a href="generalized-estimating-equations-model.html#cb13-4" aria-hidden="true" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(Yard, Cow, Time);</span>
-<span id="cb13-5"><a href="generalized-estimating-equations-model.html#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="generalized-estimating-equations-model.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_mvsum</span>(<span class="at">model=</span><span class="fu">geeglm</span>(HP <span class="sc">~</span> Diet <span class="sc">+</span> Yard <span class="sc">+</span> Time, <span class="at">id=</span><span class="fu">c</span>(Cow), <span class="at">data=</span>Milk, <span class="at">family=</span>binomial, <span class="at">corstr=</span><span class="st">&quot;ar1&quot;</span>), <span class="at">data=</span>Milk, <span class="at">showN=</span>T, <span class="at">CIwidth=</span><span class="fl">0.95</span>);</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="generalized-estimating-equations-model.html#cb13-1" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> <span class="fu">modify_if</span>(is.character, as.factor);</span>
+<span id="cb13-2"><a href="generalized-estimating-equations-model.html#cb13-2" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span>
+<span id="cb13-3"><a href="generalized-estimating-equations-model.html#cb13-3" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(Milk);</span>
+<span id="cb13-4"><a href="generalized-estimating-equations-model.html#cb13-4" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">arrange</span>(Yard, Cow, Time);</span>
+<span id="cb13-5"><a href="generalized-estimating-equations-model.html#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="generalized-estimating-equations-model.html#cb13-6" tabindex="-1"></a>Milk <span class="ot">&lt;-</span> Milk[<span class="fu">order</span>(Milk<span class="sc">$</span>Cow), ]; </span>
+<span id="cb13-7"><a href="generalized-estimating-equations-model.html#cb13-7" tabindex="-1"></a><span class="fu">rm_mvsum</span>(<span class="at">model=</span><span class="fu">geeglm</span>(HP <span class="sc">~</span> Diet <span class="sc">+</span> Yard <span class="sc">+</span> Time, <span class="at">id=</span><span class="fu">c</span>(Cow), <span class="at">data=</span>Milk, <span class="at">family=</span>binomial, <span class="at">corstr=</span><span class="st">&quot;ar1&quot;</span>), <span class="at">data=</span>Milk, <span class="at">showN=</span>T, <span class="at">CIwidth=</span><span class="fl">0.95</span>);</span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -227,10 +229,10 @@ OR(95%CI)
 p-value
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-N
+N (obs|clusters)
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-Event
+Event (total|clusters with event)
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 VIF
@@ -247,13 +249,13 @@ VIF
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-1337
+1337|79
 </td>
 <td style="text-align:right;">
-386
+386|72
 </td>
 <td style="text-align:right;">
-1.04
+1.05
 </td>
 </tr>
 <tr>
@@ -266,10 +268,10 @@ Reference
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-425
+425|25
 </td>
 <td style="text-align:right;">
-183
+183|24
 </td>
 <td style="text-align:right;">
 </td>
@@ -279,16 +281,16 @@ Reference
 barley+lupins
 </td>
 <td style="text-align:right;">
-0.42 (0.25, 0.72)
+0.46 (0.26, 0.81)
 </td>
 <td style="text-align:right;">
-<span style="font-weight: bold;">0.001</span>
+<span style="font-weight: bold;">0.006</span>
 </td>
 <td style="text-align:right;">
-459
+459|27
 </td>
 <td style="text-align:right;">
-119
+119|26
 </td>
 <td style="text-align:right;">
 </td>
@@ -298,16 +300,16 @@ barley+lupins
 lupins
 </td>
 <td style="text-align:right;">
-0.31 (0.18, 0.53)
+0.32 (0.18, 0.56)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
 </td>
 <td style="text-align:right;">
-453
+453|27
 </td>
 <td style="text-align:right;">
-84
+84|22
 </td>
 <td style="text-align:right;">
 </td>
@@ -321,13 +323,13 @@ lupins
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-1337
+1337|79
 </td>
 <td style="text-align:right;">
-386
+386|72
 </td>
 <td style="text-align:right;">
-1.02
+1.03
 </td>
 </tr>
 <tr>
@@ -340,10 +342,10 @@ Reference
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-193
+188|12
 </td>
 <td style="text-align:right;">
-56
+56|10
 </td>
 <td style="text-align:right;">
 </td>
@@ -353,16 +355,16 @@ Reference
 2
 </td>
 <td style="text-align:right;">
-1.13 (0.59, 2.18)
+1.20 (0.59, 2.43)
 </td>
 <td style="text-align:right;">
-0.71
+0.62
 </td>
 <td style="text-align:right;">
-244
+307|18
 </td>
 <td style="text-align:right;">
-84
+78|17
 </td>
 <td style="text-align:right;">
 </td>
@@ -372,16 +374,16 @@ Reference
 3
 </td>
 <td style="text-align:right;">
-0.80 (0.38, 1.69)
+0.90 (0.42, 1.91)
 </td>
 <td style="text-align:right;">
-0.56
+0.78
 </td>
 <td style="text-align:right;">
-222
+263|15
 </td>
 <td style="text-align:right;">
-71
+63|12
 </td>
 <td style="text-align:right;">
 </td>
@@ -391,16 +393,16 @@ Reference
 4
 </td>
 <td style="text-align:right;">
-0.51 (0.24, 1.11)
+1.07 (0.54, 2.13)
 </td>
 <td style="text-align:right;">
-0.092
+0.85
 </td>
 <td style="text-align:right;">
-346
+324|19
 </td>
 <td style="text-align:right;">
-76
+86|19
 </td>
 <td style="text-align:right;">
 </td>
@@ -410,16 +412,16 @@ Reference
 5
 </td>
 <td style="text-align:right;">
-0.83 (0.42, 1.65)
+1.75 (0.85, 3.61)
 </td>
 <td style="text-align:right;">
-0.60
+0.13
 </td>
 <td style="text-align:right;">
-332
+255|15
 </td>
 <td style="text-align:right;">
-99
+103|14
 </td>
 <td style="text-align:right;">
 </td>
@@ -429,16 +431,16 @@ Reference
 <span style="font-weight: bold;">Time</span>
 </td>
 <td style="text-align:right;">
-0.92 (0.88, 0.95)
+0.92 (0.89, 0.96)
 </td>
 <td style="text-align:right;">
 <span style="font-weight: bold;">&lt;0.001</span>
 </td>
 <td style="text-align:right;">
-1337
+1337|79
 </td>
 <td style="text-align:right;">
-386
+386|72
 </td>
 <td style="text-align:right;">
 1.05
@@ -467,42 +469,42 @@ Reference
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": false
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "none",
-"toc_depth": 3,
-"scroll_highlight": true
-},
-"info": false
+  "sharing": {
+    "github": false,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none",
+    "toc_depth": 3,
+    "scroll_highlight": true
+  },
+  "info": false
 });
 });
 </script>

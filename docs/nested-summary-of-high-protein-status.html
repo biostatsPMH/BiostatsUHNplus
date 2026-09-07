@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.2 Nested summary of high protein status | Example nested summary and Bayesian hierarchical model summary</title>
   <meta name="description" content="2.2 Nested summary of high protein status | Example nested summary and Bayesian hierarchical model summary" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.2 Nested summary of high protein status | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
@@ -57,6 +57,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -211,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="by-cow" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> By cow:<a href="nested-summary-of-high-protein-status.html#by-cow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are 72 cows that had at least one instance of milk with high protein content. Every cow (all 79) had at least one instance of milk with low protein content.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="nested-summary-of-high-protein-status.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> Milk, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;Cow&quot;</span>), <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;protein&quot;</span>, <span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Diet&quot;</span>, <span class="st">&quot;Yard&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;High_Protein&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="nested-summary-of-high-protein-status.html#cb3-1" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> Milk, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;Cow&quot;</span>), <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;protein&quot;</span>, <span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Diet&quot;</span>, <span class="st">&quot;Yard&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;High_Protein&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Use this function at your own risk. Please check output.
 ## Order of nested ids matter. For example, in c(&#39;id1&#39;,&#39;id2&#39;) id1 should be nested within id2, etc.</code></pre>
 <pre><code>## Warning in (function (data, covs, maincov = NULL, id = NULL, digits = 1, : Unnested p-value and statistical test is incorrect for nested data, but is kept for comparison to nested p-value.
@@ -265,7 +266,7 @@ Nested p-value
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+Did not converge;&lt;br&gt;quasi or complete&lt;br&gt;category separation
 </td>
 </tr>
 <tr>
@@ -479,16 +480,16 @@ lupins
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-1.00
+0.99
 </td>
 <td style="text-align:right;">
-0.018
+0.041
 </td>
 <td style="text-align:right;">
 Chi Sq, Cramer’s V
 </td>
 <td style="text-align:right;">
-0.53
+0.43
 </td>
 </tr>
 <tr>
@@ -496,10 +497,10 @@ Chi Sq, Cramer’s V
 1
 </td>
 <td style="text-align:right;">
-11 (14)
+12 (15)
 </td>
 <td style="text-align:right;">
-11 (14)
+12 (15)
 </td>
 <td style="text-align:right;">
 10 (14)
@@ -518,13 +519,13 @@ Chi Sq, Cramer’s V
 2
 </td>
 <td style="text-align:right;">
-14 (18)
+18 (23)
 </td>
 <td style="text-align:right;">
-14 (18)
+18 (23)
 </td>
 <td style="text-align:right;">
-13 (18)
+17 (24)
 </td>
 <td style="text-align:right;">
 </td>
@@ -540,10 +541,10 @@ Chi Sq, Cramer’s V
 3
 </td>
 <td style="text-align:right;">
-13 (16)
+15 (19)
 </td>
 <td style="text-align:right;">
-13 (16)
+15 (19)
 </td>
 <td style="text-align:right;">
 12 (17)
@@ -562,10 +563,10 @@ Chi Sq, Cramer’s V
 4
 </td>
 <td style="text-align:right;">
-22 (28)
+19 (24)
 </td>
 <td style="text-align:right;">
-22 (28)
+19 (24)
 </td>
 <td style="text-align:right;">
 19 (26)
@@ -584,13 +585,13 @@ Chi Sq, Cramer’s V
 5
 </td>
 <td style="text-align:right;">
-19 (24)
+15 (19)
 </td>
 <td style="text-align:right;">
-19 (24)
+15 (19)
 </td>
 <td style="text-align:right;">
-18 (25)
+14 (19)
 </td>
 <td style="text-align:right;">
 </td>
@@ -607,7 +608,7 @@ Chi Sq, Cramer’s V
 <div id="by-cow-nested-in-yard" class="section level3 hasAnchor" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> By cow nested in yard:<a href="nested-summary-of-high-protein-status.html#by-cow-nested-in-yard" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Notice that this summary is the same as by cow, since each cow stays in only one yard for this example data.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="nested-summary-of-high-protein-status.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> Milk, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;Cow&quot;</span>, <span class="st">&quot;Yard&quot;</span>), <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;protein&quot;</span>, <span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Diet&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;High_Protein&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="nested-summary-of-high-protein-status.html#cb6-1" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> Milk, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;Cow&quot;</span>, <span class="st">&quot;Yard&quot;</span>), <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;protein&quot;</span>, <span class="st">&quot;Time&quot;</span>, <span class="st">&quot;Diet&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;High_Protein&quot;</span>)</span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -657,7 +658,7 @@ Nested p-value
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
 <td style="text-align:right;">
-Did not converge;<br>quasi or complete<br>category separation
+Did not converge;&lt;br&gt;quasi or complete&lt;br&gt;category separation
 </td>
 </tr>
 <tr>
@@ -884,42 +885,42 @@ lupins
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": false
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "none",
-"toc_depth": 3,
-"scroll_highlight": true
-},
-"info": false
+  "sharing": {
+    "github": false,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none",
+    "toc_depth": 3,
+    "scroll_highlight": true
+  },
+  "info": false
 });
 });
 </script>

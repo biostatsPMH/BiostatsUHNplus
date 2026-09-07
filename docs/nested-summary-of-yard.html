@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 Nested summary of yard | Example nested summary and Bayesian hierarchical model summary</title>
   <meta name="description" content="2.3 Nested summary of yard | Example nested summary and Bayesian hierarchical model summary" />
-  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 Nested summary of yard | Example nested summary and Bayesian hierarchical model summary" />
   <meta property="og:type" content="book" />
@@ -57,6 +57,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -211,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="by-cow-1" class="section level3 hasAnchor" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> By cow:<a href="nested-summary-of-yard.html#by-cow-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Of the 5 yards, each that had at least one instance of a cow having milk with high protein content and a cow having milk with low protein content. Cows in some yards may have a lower mean time in weeks since calving, but there is no evidence to suggest that is a difference among yards.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="nested-summary-of-yard.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> Milk, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;Cow&quot;</span>), <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;protein&quot;</span>, <span class="st">&quot;Time&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;Yard&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="nested-summary-of-yard.html#cb7-1" tabindex="-1"></a><span class="fu">rm_covsum_nested</span>(<span class="at">data =</span> Milk, <span class="at">id =</span> <span class="fu">c</span>(<span class="st">&quot;Cow&quot;</span>), <span class="at">covs =</span> <span class="fu">c</span>(<span class="st">&quot;protein&quot;</span>, <span class="st">&quot;Time&quot;</span>), <span class="at">maincov =</span> <span class="st">&quot;Yard&quot;</span>)</span></code></pre></div>
 <table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -221,19 +222,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Full Sample (n=79)
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-1 (n=11)
+1 (n=12)
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-2 (n=14)
+2 (n=18)
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-3 (n=13)
+3 (n=15)
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-4 (n=22)
+4 (n=19)
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
-5 (n=19)
+5 (n=15)
 </th>
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
 Unnested p-value
@@ -267,16 +268,16 @@ Nested p-value
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-0.34
+0.73
 </td>
 <td style="text-align:right;">
-0.044
+0.049
 </td>
 <td style="text-align:right;">
 Kruskal Wallis, Eta sq
 </td>
 <td style="text-align:right;">
-0.98
+0.99
 </td>
 </tr>
 <tr>
@@ -290,16 +291,16 @@ Mean (sd)
 3.4 (0.2)
 </td>
 <td style="text-align:right;">
-3.5 (0.2)
+3.4 (0.2)
 </td>
 <td style="text-align:right;">
-3.5 (0.2)
+3.4 (0.2)
 </td>
 <td style="text-align:right;">
 3.4 (0.2)
 </td>
 <td style="text-align:right;">
-3.4 (0.2)
+3.5 (0.2)
 </td>
 <td style="text-align:right;">
 </td>
@@ -321,16 +322,16 @@ Median (Min,Max)
 3.4 (3.0, 3.8)
 </td>
 <td style="text-align:right;">
-3.5 (3.2, 3.7)
+3.4 (3.1, 3.7)
 </td>
 <td style="text-align:right;">
-3.5 (3.2, 3.9)
+3.4 (2.9, 3.6)
 </td>
 <td style="text-align:right;">
-3.3 (3.0, 3.8)
+3.4 (3.2, 3.7)
 </td>
 <td style="text-align:right;">
-3.4 (2.9, 3.7)
+3.5 (3.1, 3.9)
 </td>
 <td style="text-align:right;">
 </td>
@@ -358,16 +359,16 @@ Median (Min,Max)
 <td style="text-align:right;">
 </td>
 <td style="text-align:right;">
-0.27
+0.15
 </td>
 <td style="text-align:right;">
-0.095
+0.071
 </td>
 <td style="text-align:right;">
 Kruskal Wallis, Eta sq
 </td>
 <td style="text-align:right;">
-0.99
+0.95
 </td>
 </tr>
 <tr>
@@ -378,19 +379,19 @@ Mean (sd)
 9.0 (1.1)
 </td>
 <td style="text-align:right;">
-9.3 (1.2)
+8.4 (1.2)
 </td>
 <td style="text-align:right;">
-9.3 (1.0)
-</td>
-<td style="text-align:right;">
-9.1 (1.2)
-</td>
-<td style="text-align:right;">
-8.5 (1.1)
+9.2 (1.0)
 </td>
 <td style="text-align:right;">
 9.3 (1.1)
+</td>
+<td style="text-align:right;">
+9.0 (1.1)
+</td>
+<td style="text-align:right;">
+9.0 (1.2)
 </td>
 <td style="text-align:right;">
 </td>
@@ -409,19 +410,19 @@ Median (Min,Max)
 10.0 (7.1, 10.4)
 </td>
 <td style="text-align:right;">
-10.0 (7.5, 10.1)
+7.8 (7.1, 10.0)
 </td>
 <td style="text-align:right;">
-10.0 (7.5, 10.0)
+10.0 (7.5, 10.2)
 </td>
 <td style="text-align:right;">
 10.0 (7.5, 10.4)
 </td>
 <td style="text-align:right;">
-8.0 (7.5, 10.2)
+10.0 (7.5, 10.0)
 </td>
 <td style="text-align:right;">
-10.0 (7.1, 10.0)
+10.0 (7.5, 10.1)
 </td>
 <td style="text-align:right;">
 </td>
@@ -456,42 +457,42 @@ Median (Min,Max)
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": false,
-"twitter": false,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": false
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": null,
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "none",
-"toc_depth": 3,
-"scroll_highlight": true
-},
-"info": false
+  "sharing": {
+    "github": false,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": false
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": null,
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "none",
+    "toc_depth": 3,
+    "scroll_highlight": true
+  },
+  "info": false
 });
 });
 </script>
