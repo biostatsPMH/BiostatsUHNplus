@@ -33,7 +33,6 @@ Imports:
     ggpubr,
     lifecycle,
     MCMCglmm,
-    modeest,
     openxlsx,
     parallel,
     parallelly,

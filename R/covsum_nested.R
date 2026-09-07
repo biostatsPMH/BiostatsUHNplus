@@ -63,7 +63,6 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #' @importFrom dplyr select reframe group_by filter across row_number n
 #' @importFrom purrr modify_if 
 #' @importFrom rlang syms 
-#' @importFrom modeest mlv 
 #' @importFrom utils getFromNamespace
 #' @importFrom parallel makeCluster clusterExport parLapply
 #' @importFrom parallelly availableCores
@@ -101,13 +100,21 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
   }
   options(dplyr.reframe.inform = FALSE)
   is.date <- function(x) inherits(x, 'Date')
+  factor_mode <- function(x) {
+    ux <- na.omit(x)
+    if (length(ux) == 0) {
+      return(factor(NA, levels = levels(x)))
+    }
+    mode_val <- names(sort(table(ux), decreasing = TRUE))[1]
+    factor(mode_val, levels = levels(x))
+  }
   covsIdData1 <- function(covs = covs, id = id, data = data, excludeLevels = excludeLevels){
     id <- c(id, NULL)
     tto <- data |>
       purrr::modify_if(is.character, as.factor) |>
       dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
       dplyr::group_by(!!!(rlang::syms(id))) |>
-      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
+      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), factor_mode)) |>
       dplyr::group_by(!!!(rlang::syms(id)), .drop=FALSE) |>
       #dplyr::filter(dplyr::row_number() == ceiling(n()/2))
       dplyr::filter(dplyr::row_number() == 1)
@@ -119,7 +126,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       purrr::modify_if(is.character, as.factor) |>
       dplyr::select(!!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
       dplyr::group_by(!!!(rlang::syms(id))) |>
-      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
+      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), factor_mode)) |>
       dplyr::group_by(!!!(rlang::syms(id)), .drop=FALSE) |>
       #dplyr::filter(dplyr::row_number() == ceiling(n()/2))
       dplyr::filter(dplyr::row_number() == 1)
@@ -132,7 +139,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       purrr::modify_if(is.character, as.factor) |>
       dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
       dplyr::group_by(!!!(rlang::syms(id))) |>
-      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
+      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), factor_mode)) |>
       dplyr::group_by(!!!(rlang::syms(id)), .drop=FALSE) |>
       #dplyr::filter(dplyr::row_number() == ceiling(n()/2))
       dplyr::filter(dplyr::row_number() == 1)
@@ -144,7 +151,7 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
       purrr::modify_if(is.character, as.factor) |>
       dplyr::select(!!!(rlang::syms(maincov)), !!!(rlang::syms(covs)), !!!(rlang::syms(id))) |>
       dplyr::group_by(!!!(rlang::syms(id))) |>
-      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), ~ modeest::mlv(.x, method = mfv))) |>
+      dplyr::reframe(dplyr::across(where(is.numeric), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.date), ~ mean(.x, na.rm = TRUE)), dplyr::across(where(is.factor), factor_mode)) |>
       dplyr::group_by(!!!(rlang::syms(id)), .drop=FALSE) |>
       #dplyr::filter(dplyr::row_number() == ceiling(n()/2))
       dplyr::filter(dplyr::row_number() == 1)
@@ -333,7 +340,6 @@ covsum_nested <- function (data, covs, maincov = NULL, id = NULL, digits = 1, nu
 #' @importFrom dplyr select reframe group_by filter across row_number n
 #' @importFrom purrr modify_if 
 #' @importFrom rlang syms 
-#' @importFrom modeest mlv 
 #' @importFrom afex mixed
 #' @export
 #' @seealso \code{\link{fisher.test}},

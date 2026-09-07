@@ -1,5 +1,6 @@
 # BiostatsUHNplus 1.0.5
 
+* Removed modeest::mlv dependency
 * Revised to not use deprecated dplyr functions
 * Revised rm_ae_all_g3p() to have tableOnly option
 
