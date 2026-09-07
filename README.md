@@ -46,7 +46,7 @@ development version of **BiostatsUHNplus** can be installed from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="development")
+pak::pak("biostatsPMH/BiostatsUHNplus@development", upgrade = TRUE)
 ```
 
 ## Documentation
