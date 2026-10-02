@@ -81,7 +81,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   for(j in 1:length(fileList1)){
     tmpC <- read.csv(paste(setWD_files, "\\", fileList2[j], sep=""), header = T);
     if (!is.null(tmpC$redcap_repeat_instrument)) {
-      tmp1 <- read.csv(paste(setWD_files, "\\", fileList1[j], sep=""), header = F);
+      #tmp1 <- read.csv(paste(setWD_files, "\\", fileList1[j], sep=""), header = F);
+      tmp1 <- read.csv(paste(setWD_files, "\\", fileList1[j], sep=""), header = T);
     }
     if (is.null(tmpC$redcap_repeat_instrument)) {
       tmp1 <- read.csv(paste(setWD_files, "\\", fileList1[j], sep=""), header = T);
@@ -213,7 +214,9 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     }
   }
 
+  
   extra_sheet <- data; #need this part outside function;  
+  
   ###Get REDCap instrument from data dictionary, if provided for non-repeat instruments;
   tryCatch({
     if (length(data[which(data$redcap_repeat_instrument %in% 
@@ -301,6 +304,22 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   }, error=function(e){})
   
   
+  ###Remove duplication fields from  non_repeat_instrument if they exist in a table dataset;
+  if (!is.null(data$redcap_repeat_instrument)) {
+    vars_to_remove <- character(0)
+    for (tbl in na.omit(joinNames)) {
+      if (tbl != "non_repeat_instrument") {
+        vars_to_remove <- c(
+          vars_to_remove,
+          names(get(tbl))
+        )
+      }
+    }
+    vars_to_remove <- unique(vars_to_remove)
+    non_repeat_instrument <- non_repeat_instrument[, !(names(non_repeat_instrument) %in% vars_to_remove), drop = FALSE]
+  }
+
+  
   extra_sheet <- extra_sheet[, colSums(!is.na(extra_sheet)) > 0]; #remove empty columns;
   extra_sheet <- extra_sheet[rowSums(is.na(extra_sheet)) != ncol(extra_sheet), ]; #remove empty rows;
   joinNames <- c(joinNames, "extra_sheet"); #extra_sheet is always included now;
@@ -308,6 +327,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
 
   
   if (exists("non_repeat_instrument") && nrow((non_repeat_instrument)) == 0) {
+    joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument", "non_repeat_instrument"))];
+  } else if (exists("non_repeat_instrument") && length((non_repeat_instrument)) == 0) {
     joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument", "non_repeat_instrument"))];
   } else {
     joinNames <- joinNames[which(!joinNames %in% c("NA", "repeat_instrument"))];
