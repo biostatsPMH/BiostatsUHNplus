@@ -81,8 +81,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   for(j in 1:length(fileList1)){
     tmpC <- read.csv(paste(setWD_files, "\\", fileList2[j], sep=""), header = T);
     if (!is.null(tmpC$redcap_repeat_instrument)) {
-      #tmp1 <- read.csv(paste(setWD_files, "\\", fileList1[j], sep=""), header = F);
-      tmp1 <- read.csv(paste(setWD_files, "\\", fileList1[j], sep=""), header = T);
+      tmp1 <- read.csv(paste(setWD_files, "\\", fileList1[j], sep=""), header = F); #have to use this version;
+      #tmp1 <- read.csv(paste(setWD_files, "\\", fileList1[j], sep=""), header = T);
     }
     if (is.null(tmpC$redcap_repeat_instrument)) {
       tmp1 <- read.csv(paste(setWD_files, "\\", fileList1[j], sep=""), header = T);
