@@ -318,11 +318,40 @@ redcap_data_out <- function(protocol,pullDate=NULL,
     vars_to_remove <- unique(vars_to_remove)
     non_repeat_instrument <- non_repeat_instrument[, !(names(non_repeat_instrument) %in% vars_to_remove), drop = FALSE]
   }
-
+  
   
   extra_sheet <- extra_sheet[, colSums(!is.na(extra_sheet)) > 0]; #remove empty columns;
   extra_sheet <- extra_sheet[rowSums(is.na(extra_sheet)) != ncol(extra_sheet), ]; #remove empty rows;
   joinNames <- c(joinNames, "extra_sheet"); #extra_sheet is always included now;
+  
+  ###if first row of subjID field has two words then delete that row in the dataset;
+  for (ds in na.omit(joinNames)) {
+    df <- get(ds);
+    if (subjID %in% names(df) && nrow(df) > 0) 
+    {
+      x <- trimws(as.character(df[[subjID]][1]));
+      if (nzchar(x) && grepl("\\S+\\s+\\S+", x)) 
+      {
+        df <- df[-1, ];
+      }
+    }
+    assign(ds, df);
+  }
+  
+  ###if first row of subjID field is the same name of subjID column then delete that row in the dataset;
+  for (ds in na.omit(joinNames)) {
+    df <- get(ds);
+    if (subjID %in% names(df) && nrow(df) > 0) 
+    {
+      x <- trimws(as.character(df[[subjID]][1]));
+      if (!is.na(x) && tolower(x) == tolower(subjID)) 
+      {
+        df <- df[-1, ];
+      }
+    }
+    assign(ds, df);
+  }
+  
   #--#--#--#--#--#--#--#--#--#--#--#--#--#--#--# this writes tables as Excel sheets for participants;
 
   
@@ -372,7 +401,8 @@ redcap_data_out <- function(protocol,pullDate=NULL,
   ##Below filters instrument datasets by participant characteristics;
   list_of_datasets2 <- lapply(list_of_datasets, function(df) df |>
             suppressMessages(dplyr::left_join(keyIdentifiers)) |>
-            dplyr::select(subjID, dplyr::everything()) |>
+            #dplyr::select(subjID, dplyr::everything()) |>
+            dplyr::select(dplyr::everything()) |>
             dplyr::ungroup() |>
             dplyr::filter(!get(first_subjID) %in% subjID_ineligText) |>
             dplyr::filter(stringr::str_detect(get(varFilter), varFilter_eligPattern)) |>
