@@ -316,7 +316,10 @@ redcap_data_out <- function(protocol,pullDate=NULL,
       }
     }
     vars_to_remove <- unique(vars_to_remove)
-    non_repeat_instrument <- non_repeat_instrument[, !(names(non_repeat_instrument) %in% vars_to_remove), drop = FALSE]
+    ###added this tryCatch 19Nov2026;
+    tryCatch({
+      non_repeat_instrument <- non_repeat_instrument[, !(names(non_repeat_instrument) %in% vars_to_remove), drop = FALSE]
+    }, error = function(e) {})
   }
   
   
