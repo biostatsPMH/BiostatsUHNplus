@@ -1,10 +1,10 @@
 # BiostatsUHNplus 1.0.8
 
-* Updated 
+* Updated nice_mcmcglmm.R
 
 # BiostatsUHNplus 1.0.7
 
-* Updated 
+* Updated nice_mcmcglmm_icc.R
 
 # BiostatsUHNplus 1.0.6
 
