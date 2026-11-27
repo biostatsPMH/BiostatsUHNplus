@@ -1,6 +1,6 @@
 # BiostatsUHNplus 1.0.6
 
-* Updated
+* Updated redcap_data_out() for enhanced formatting with REDCap data dictionary
 
 # BiostatsUHNplus 1.0.5
 
