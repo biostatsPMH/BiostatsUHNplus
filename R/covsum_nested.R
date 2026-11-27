@@ -58,7 +58,7 @@ replaceLbl <- utils::getFromNamespace("replaceLbl", "reportRmd")
 #'   be included in statistical tests
 #' @param percentage choice of how percentages are presented, one of
 #'   \emph{column} (default) or \emph{row}
-#' @importFrom stats lm sd anova as.formula binomial median na.fail
+#' @importFrom stats lm sd anova as.formula binomial median na.fail na.omit
 #' @importFrom rstatix cramer_v eta_squared
 #' @importFrom dplyr select reframe group_by filter across row_number n
 #' @importFrom purrr modify_if 

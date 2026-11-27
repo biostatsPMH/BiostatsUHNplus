@@ -29,6 +29,7 @@
 #' @importFrom stringi stri_trans_general
 #' @importFrom openxlsx write.xlsx 
 #' @importFrom rlang syms 
+#' @importFrom stats na.omit 
 #' @importFrom utils read.csv 
 #' @export
 #' @examples
