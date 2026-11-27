@@ -46,7 +46,7 @@ development version of **BiostatsUHNplus** can be installed from
 
 ``` r
 # install.packages("devtools")
-pak::pak("biostatsPMH/BiostatsUHNplus@development", upgrade = TRUE)
+devtools::install_github("biostatsPMH/BiostatsUHNplus", ref="development")
 ```
 
 ## Documentation
@@ -59,6 +59,9 @@ pak::pak("biostatsPMH/BiostatsUHNplus@development", upgrade = TRUE)
 
 ``` r
 library(BiostatsUHNplus);
+#> Registered S3 method overwritten by 'lme4':
+#>   method           from
+#>   na.action.merMod car
 z <- as_numeric_parse(c(1:5, "String1",6:10,"String2"))
 #> The following entries were converted to NA values:
 #> Entry 6, 'String1'
@@ -107,1047 +110,1898 @@ rm_covsum_nested(data = clinT, id = c("ae_detail", "Subject", "COHORT"),
   maincov = "Drug_1_Attribution", nicenames = TRUE);
 ```
 
-<table class="table table" style="margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<table class="table table" style="color: black; margin-left: auto; margin-right: auto; color: black; margin-left: auto; margin-right: auto;">
+
 <thead>
+
 <tr>
+
 <th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+
 </th>
+
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+
 Full Sample (n=234)
 </th>
+
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+
 Related (n=49)
 </th>
+
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+
 Unrelated (n=198)
 </th>
+
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+
 Unnested p-value
 </th>
+
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+
 Unnested Effect Size
 </th>
+
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+
 Unnested StatTest
 </th>
+
 <th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+
 Nested p-value
 </th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr>
+
 <td style="text-align:left;">
+
 <span style="font-weight: bold;">Cohort</span>
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 0.65
 </td>
+
 <td style="text-align:right;">
+
 0.081
 </td>
+
 <td style="text-align:right;">
+
 Chi Sq, Cramer’s V
 </td>
+
 <td style="text-align:right;">
+
 0.95
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Cohort A
 </td>
+
 <td style="text-align:right;">
+
 59 (25)
 </td>
+
 <td style="text-align:right;">
+
 13 (27)
 </td>
+
 <td style="text-align:right;">
+
 49 (25)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Cohort B
 </td>
+
 <td style="text-align:right;">
+
 83 (35)
 </td>
+
 <td style="text-align:right;">
+
 14 (29)
 </td>
+
 <td style="text-align:right;">
+
 74 (37)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Cohort C
 </td>
+
 <td style="text-align:right;">
+
 37 (16)
 </td>
+
 <td style="text-align:right;">
+
 10 (20)
 </td>
+
 <td style="text-align:right;">
+
 30 (15)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Cohort D
 </td>
+
 <td style="text-align:right;">
+
 55 (24)
 </td>
+
 <td style="text-align:right;">
+
 12 (24)
 </td>
+
 <td style="text-align:right;">
+
 45 (23)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 <span style="font-weight: bold;">Gender</span>
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 0.14
 </td>
+
 <td style="text-align:right;">
+
 0.093
 </td>
+
 <td style="text-align:right;">
+
 Chi Sq, Cramer’s V
 </td>
+
 <td style="text-align:right;">
+
 0.63
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Female
 </td>
+
 <td style="text-align:right;">
+
 51 (22)
 </td>
+
 <td style="text-align:right;">
+
 15 (31)
 </td>
+
 <td style="text-align:right;">
+
 39 (20)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Male
 </td>
+
 <td style="text-align:right;">
+
 183 (78)
 </td>
+
 <td style="text-align:right;">
+
 34 (69)
 </td>
+
 <td style="text-align:right;">
+
 159 (80)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 <span style="font-weight: bold;">Ineligibility</span>
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 Chi Sq, Cramer’s V
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 No
 </td>
+
 <td style="text-align:right;">
+
 215 (100)
 </td>
+
 <td style="text-align:right;">
+
 46 (100)
 </td>
+
 <td style="text-align:right;">
+
 181 (100)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Missing
 </td>
+
 <td style="text-align:right;">
+
 19
 </td>
+
 <td style="text-align:right;">
+
 3
 </td>
+
 <td style="text-align:right;">
+
 17
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 <span style="font-weight: bold;">Enrollment date</span>
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Mean (sd)
 </td>
+
 <td style="text-align:right;">
+
 2017-01-07 (301.8 days)
 </td>
+
 <td style="text-align:right;">
+
 2017-01-31 (322.7 days)
 </td>
+
 <td style="text-align:right;">
+
 2016-12-28 (294.3 days)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Median (Min,Max)
 </td>
+
 <td style="text-align:right;">
+
 2016-09-14 (2016-01-18, 2018-05-16)
 </td>
+
 <td style="text-align:right;">
+
 2017-02-07 (2016-01-18, 2018-05-16)
 </td>
+
 <td style="text-align:right;">
+
 2016-09-14 (2016-01-18, 2018-05-16)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 <span style="font-weight: bold;">Adverse event severity grade</span>
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 0.12
 </td>
+
 <td style="text-align:right;">
+
 0.098
 </td>
+
 <td style="text-align:right;">
+
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
+
 <td style="text-align:right;">
-0.97
+
+0.96
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Mean (sd)
 </td>
+
 <td style="text-align:right;">
+
 1.8 (0.8)
 </td>
+
 <td style="text-align:right;">
+
 2.0 (0.9)
 </td>
+
 <td style="text-align:right;">
+
 1.7 (0.8)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Median (Min,Max)
 </td>
+
 <td style="text-align:right;">
+
 1.5 (1.0, 5.0)
 </td>
+
 <td style="text-align:right;">
+
 2 (1, 4)
 </td>
+
 <td style="text-align:right;">
+
 1.5 (1.0, 5.0)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 <span style="font-weight: bold;">Attribution to second study drug</span>
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+
+<span style="font-weight: bold;">\<0.001</span>
 </td>
+
 <td style="text-align:right;">
+
 0.55
 </td>
+
 <td style="text-align:right;">
+
 Chi Sq, Cramer’s V
 </td>
+
 <td style="text-align:right;">
-<span style="font-weight: bold;"><0.001</span>
+
+<span style="font-weight: bold;">\<0.001</span>
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Related
 </td>
+
 <td style="text-align:right;">
+
 37 (16)
 </td>
+
 <td style="text-align:right;">
+
 28 (57)
 </td>
+
 <td style="text-align:right;">
+
 11 (6)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Unrelated
 </td>
+
 <td style="text-align:right;">
+
 197 (84)
 </td>
+
 <td style="text-align:right;">
+
 21 (43)
 </td>
+
 <td style="text-align:right;">
+
 187 (94)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 <span style="font-weight: bold;">Adverse event onset date</span>
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 Wilcoxon Rank Sum, Wilcoxon r
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Mean (sd)
 </td>
+
 <td style="text-align:right;">
+
 2017-11-03 (161.1 days)
 </td>
+
 <td style="text-align:right;">
+
 2017-10-01 (146.6 days)
 </td>
+
 <td style="text-align:right;">
+
 2017-11-10 (161.2 days)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Median (Min,Max)
 </td>
+
 <td style="text-align:right;">
+
 2017-10-05 (2016-05-02, 2019-01-13)
 </td>
+
 <td style="text-align:right;">
+
 2017-09-07 (2017-03-18, 2018-11-24)
 </td>
+
 <td style="text-align:right;">
+
 2017-10-15 (2016-05-02, 2019-01-13)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;">
+
 <span style="font-weight: bold;">Adverse event system organ class</span>
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 <span style="font-weight: bold;">0.003</span>
 </td>
+
 <td style="text-align:right;">
+
 0.42
 </td>
+
 <td style="text-align:right;">
+
 Chi Sq, Cramer’s V
 </td>
+
 <td style="text-align:right;">
+
 1.00
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Blood and lymphatic system disorders
 </td>
+
 <td style="text-align:right;">
+
 15 (6)
 </td>
+
 <td style="text-align:right;">
+
 6 (12)
 </td>
+
 <td style="text-align:right;">
+
 10 (5)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Cardiac disorders
 </td>
+
 <td style="text-align:right;">
+
 6 (3)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 6 (3)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Ear and labyrinth disorders
 </td>
+
 <td style="text-align:right;">
+
 1 (0)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 1 (1)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Endocrine disorders
 </td>
+
 <td style="text-align:right;">
+
 1 (0)
 </td>
+
 <td style="text-align:right;">
+
 1 (2)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Eye disorders
 </td>
+
 <td style="text-align:right;">
+
 4 (2)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 4 (2)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Gastrointestinal disorders
 </td>
+
 <td style="text-align:right;">
+
 32 (14)
 </td>
+
 <td style="text-align:right;">
+
 16 (33)
 </td>
+
 <td style="text-align:right;">
+
 22 (11)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 General disorders and administration site conditions
 </td>
+
 <td style="text-align:right;">
+
 19 (8)
 </td>
+
 <td style="text-align:right;">
+
 1 (2)
 </td>
+
 <td style="text-align:right;">
+
 18 (9)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Hepatobiliary disorders
 </td>
+
 <td style="text-align:right;">
+
 2 (1)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 2 (1)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Immune system disorders
 </td>
+
 <td style="text-align:right;">
+
 1 (0)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 1 (1)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Infections and infestations
 </td>
+
 <td style="text-align:right;">
+
 15 (6)
 </td>
+
 <td style="text-align:right;">
+
 5 (10)
 </td>
+
 <td style="text-align:right;">
+
 13 (7)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Injury, poisoning and procedural complications
 </td>
+
 <td style="text-align:right;">
+
 4 (2)
 </td>
+
 <td style="text-align:right;">
+
 1 (2)
 </td>
+
 <td style="text-align:right;">
+
 4 (2)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Investigations
 </td>
+
 <td style="text-align:right;">
+
 34 (15)
 </td>
+
 <td style="text-align:right;">
+
 12 (24)
 </td>
+
 <td style="text-align:right;">
+
 23 (12)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Metabolism and nutrition disorders
 </td>
+
 <td style="text-align:right;">
+
 25 (11)
 </td>
+
 <td style="text-align:right;">
+
 3 (6)
 </td>
+
 <td style="text-align:right;">
+
 22 (11)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Musculoskeletal and connective tissue disorders
 </td>
+
 <td style="text-align:right;">
+
 7 (3)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 7 (4)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Neoplasms benign, malignant and unspecified (incl cysts and polyps)
 </td>
+
 <td style="text-align:right;">
+
 1 (0)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 1 (1)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Nervous system disorders
 </td>
+
 <td style="text-align:right;">
+
 20 (9)
 </td>
+
 <td style="text-align:right;">
+
 3 (6)
 </td>
+
 <td style="text-align:right;">
+
 18 (9)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Psychiatric disorders
 </td>
+
 <td style="text-align:right;">
+
 4 (2)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 4 (2)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Renal and urinary disorders
 </td>
+
 <td style="text-align:right;">
+
 5 (2)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 5 (3)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Reproductive system and breast disorders
 </td>
+
 <td style="text-align:right;">
+
 1 (0)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 1 (1)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Respiratory, thoracic and mediastinal disorders
 </td>
+
 <td style="text-align:right;">
+
 19 (8)
 </td>
+
 <td style="text-align:right;">
+
 1 (2)
 </td>
+
 <td style="text-align:right;">
+
 18 (9)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Skin and subcutaneous tissue disorders
 </td>
+
 <td style="text-align:right;">
+
 13 (6)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 13 (7)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 <tr>
+
 <td style="text-align:left;padding-left: 2em;" indentlevel="1">
+
 Vascular disorders
 </td>
+
 <td style="text-align:right;">
+
 5 (2)
 </td>
+
 <td style="text-align:right;">
+
 0 (0)
 </td>
+
 <td style="text-align:right;">
+
 5 (3)
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 <td style="text-align:right;">
+
 </td>
+
 </tr>
+
 </tbody>
+
 </table>
 
 ### Outputs three DSMB-CCRU AE summary tables in Excel format per UHN template
@@ -1236,7 +2090,7 @@ ggplot2::ggsave(paste("man/figures/ae_detail_timeline_plot", ".png", sep=""), p,
                 width=6.4, height=10, device="png", scale = 1.15);
 ```
 
-<img src="man/figures/ae_detail_timeline_plot.png" width="100%" />
+<img src="man/figures/ae_detail_timeline_plot.png" alt="" width="100%" />
 
 #### Example 2
 
@@ -1272,7 +2126,7 @@ ggplot2::ggsave(paste("man/figures/ae_category_timeline_plot", ".png", sep=""), 
                 width=3.6, height=5.4, device="png", scale = 1);
 ```
 
-<img src="man/figures/ae_category_timeline_plot.png" width="100%" />
+<img src="man/figures/ae_category_timeline_plot.png" alt="" width="100%" />
 
 #### Example 3
 
@@ -1308,7 +2162,7 @@ ggplot2::ggsave(paste("man/figures/ae_category_attribStart_timeline_plot", ".png
                 p, width=4.2, height=5.4, device="png", scale = 1);
 ```
 
-<img src="man/figures/ae_category_attribStart_timeline_plot.png" width="100%" />
+<img src="man/figures/ae_category_attribStart_timeline_plot.png" alt="" width="100%" />
 
 ### Summary functions for MCMCglmm object with binary outcome
 
@@ -1346,9 +2200,9 @@ knitr::kable(mcmcglmm_mva);
 | Variable           | Levels | OR (95% HPDI)     | MCMCp | eff.samp |
 |:-------------------|:-------|:------------------|:------|:---------|
 | Drug 1 Attribution | No     | reference         |       |          |
-|                    | Yes    | 2.69 (1.15, 7.06) | 0.045 | 222.24   |
+|                    | Yes    | 2.78 (1.14, 7.03) | 0.032 | 136.66   |
 | Drug 2 Attribution | No     | reference         |       |          |
-|                    | Yes    | 0.43 (0.17, 1.31) | 0.128 | 166.92   |
+|                    | Yes    | 0.41 (0.12, 1.05) | 0.088 | 162.53   |
 
 #### Intraclass correlation coefficients
 
@@ -1364,9 +2218,9 @@ knitr::kable(mcmcglmm_icc);
 
 |             |    ICC |  lower |  upper |
 |:------------|-------:|-------:|-------:|
-| Subject     | 0.0477 | 0.0033 | 0.3735 |
-| ae_category | 0.8251 | 0.4416 | 0.9624 |
-| units       | 0.1131 | 0.0258 | 0.2568 |
+| Subject     | 0.0777 | 0.0126 | 0.3482 |
+| ae_category | 0.8293 | 0.4570 | 0.9280 |
+| units       | 0.1431 | 0.0300 | 0.2731 |
 
 #### Caterpillar plots of random effects - participant
 
@@ -1385,7 +2239,7 @@ ggplot2::ggsave(paste("man/figures/caterpillar_plot_subject", ".png", sep=""),
        p, scale = 1.0, width=6.4, height=3.4, device="png");
 ```
 
-<img src="man/figures/caterpillar_plot_subject.png" width="100%" />
+<img src="man/figures/caterpillar_plot_subject.png" alt="" width="100%" />
 
 #### Caterpillar plots of random effects - system organ class
 
@@ -1409,4 +2263,4 @@ ggplot2::ggsave(paste("man/figures/caterpillar_plot_ae_category", ".png", sep=""
        p, scale = 1.3, width=6.4, height=3.8, device="png");
 ```
 
-<img src="man/figures/caterpillar_plot_ae_category.png" width="100%" />
+<img src="man/figures/caterpillar_plot_ae_category.png" alt="" width="100%" />
