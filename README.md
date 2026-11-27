@@ -2200,9 +2200,9 @@ knitr::kable(mcmcglmm_mva);
 | Variable           | Levels | OR (95% HPDI)     | MCMCp | eff.samp |
 |:-------------------|:-------|:------------------|:------|:---------|
 | Drug 1 Attribution | No     | reference         |       |          |
-|                    | Yes    | 2.78 (1.14, 7.03) | 0.032 | 136.66   |
+|                    | Yes    | 2.71 (1.03, 7.28) | 0.040 | 180.18   |
 | Drug 2 Attribution | No     | reference         |       |          |
-|                    | Yes    | 0.41 (0.12, 1.05) | 0.088 | 162.53   |
+|                    | Yes    | 0.44 (0.17, 1.36) | 0.145 | 164.37   |
 
 #### Intraclass correlation coefficients
 
@@ -2218,9 +2218,9 @@ knitr::kable(mcmcglmm_icc);
 
 |             |    ICC |  lower |  upper |
 |:------------|-------:|-------:|-------:|
-| Subject     | 0.0777 | 0.0126 | 0.3482 |
-| ae_category | 0.8293 | 0.4570 | 0.9280 |
-| units       | 0.1431 | 0.0300 | 0.2731 |
+| Subject     | 0.0312 | 0.0039 | 0.3908 |
+| ae_category | 0.7467 | 0.4486 | 0.9521 |
+| units       | 0.0892 | 0.0295 | 0.2485 |
 
 #### Caterpillar plots of random effects - participant
 
